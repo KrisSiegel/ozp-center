@@ -53,7 +53,7 @@
 					document.getElementById("ozone-bar-open").style.display = "block";
 				});
 
-				document.getElementById("AppLauncherButton").setAttribute("href", Ozone.utils.murl("hudUrl", "/#Apps/", true));
+				document.getElementById("AppLauncherButton").setAttribute("href", Ozone.utils.murl("hudUrl", "/#Apps/", false));
 				//
 				document.getElementById("AppLauncherButton").addEventListener("click", function (event) {
 					if (event.preventDefault) {

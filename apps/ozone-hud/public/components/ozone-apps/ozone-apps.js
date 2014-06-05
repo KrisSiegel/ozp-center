@@ -268,7 +268,7 @@
 					apps.hideGui();
 				}
 				if (hash === undefined || hash.length === 0) {
-					window.location.href = Ozone.utils.murl("hudUrl", "/#Apps/", true);
+					window.location.href = Ozone.utils.murl("hudUrl", "/#Apps/", false);
 				}
 			},
 			renderLauncher: function () {
