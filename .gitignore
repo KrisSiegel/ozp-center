@@ -1,7 +1,6 @@
 
 # git ls-files --others --exclude-from=.git/info/exclude
 # Lines that start with '#' are comments.
-node_modules
 npm-debug.log
 
 *-new.*
