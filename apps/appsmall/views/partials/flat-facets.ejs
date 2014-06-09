@@ -1,0 +1,20 @@
+        <div id="facets" class="facets">
+            <div class="margins" ng-show="hasPermission()">
+                <ul class="unstyled groupings">
+                    <div>
+                        <li><a href="#" ng-click="displayAllApps()" ng-class="{selected: showAllApps}"><strong>All Apps</strong></a></li>
+                    </div>
+                </ul>
+                <ul class="unstyled admin-facets clearfix" ng-repeat="topic in topics track by $index"
+                    drop-data="topic._id"  on-drop-success="dropfunction" app-droppable>
+                    <li class="clearfix">
+                        <div class="app-facets-item-label">
+                        	<a href="#" ng-click="setSelected(topic._id)" ng-class="{selected: isSelected(topic._id)}">{{topic.tag || 'Untitled <%=Ozone.utils.capitalizeWord(thingSingular)%>'}}</a>
+                        </div>
+                        <div class="app-drag-status-icon" ng-show="dropStatus.topic == topic._id">
+                            <i class="{{dropStatus.status}}" ></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>

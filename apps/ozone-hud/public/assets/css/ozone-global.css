@@ -1,0 +1,287 @@
+@font-face {
+	font-family: 'Quicksand-Light';
+    src: url('../fonts/Quicksand_Light.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+	font-family: 'Quicksand-Book';
+    src: url('../fonts/Quicksand_Book.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+	font-family: 'Quicksand-Bold';
+    src: url('../fonts/Quicksand_Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+::selection {
+    background: #18A9D4 !important;
+    color: #fff;
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background: #18A9D4 !important;
+    color: #fff;
+    text-shadow: none;
+}
+
+body {
+    font-family: 'Quicksand-Book';
+}
+
+.content-header {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    padding: 1px 0;
+}
+
+.content-header p {
+    padding-left: 46px;
+    color: #ffffff;
+}
+.content-header a.close-menu {
+    position: absolute;
+    top: 0;
+    right: 46px;
+    text-decoration: none;
+    color: #858585;
+}
+.content-header a.close-menu:hover {
+    color: #fff;
+}
+
+.placeholder-text-container {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 65%;
+}
+
+.placeholder-text {
+    color: #8c919f;
+    font-size: 2.6em;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+.placeholder-action-text {
+    color: #18a2cd;
+    font-size: 1.8em;
+    line-height: 1.3em;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.placeholder-text-container a {
+    display: block;
+    text-align: center;
+    text-decoration: none;    
+}
+
+/* Updated Login CSS */
+
+.login-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #1a1c21;
+}
+	.login-container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		width: 300px;
+		text-align: center;
+	}
+		.login-container img {
+			width: 200px;
+			margin-bottom: 25px;
+		}
+		.login-container .input-container {
+			position: relative;
+		}
+			.login-container .input-container .input-icon {
+				position: absolute;
+				top: 7px;
+				left: 0;
+				font-size: 14px;
+				color: #fff;				
+				padding: 5px 13px;
+				border-right: 1px solid #3c3e42;
+				display: inline-block;
+				z-index: 9;
+			}
+			.login-container .input-container .dd-icon {
+				left: auto;
+				top: 9px;
+				right: 0;
+				font-size: 12px;
+				border: none;
+			}
+			.login-container .input-container input {
+				width: 100%;
+				height: 40px;
+				padding: 2px 14px 2px 53px;
+				margin-bottom: 20px;
+				font-size: 12px;
+				font-family: 'Quicksand-Book';
+				color: #fff;
+				background: #2a2c31;
+				border: 1px solid #3c3e42;
+				-webkit-border-radius: 0; 
+				-moz-border-radius: 0; 
+				border-radius: 0; 
+				text-align: left;
+			}
+				.login-container .input-container input:hover {
+					border-color: rgba(24,185,232,.45);
+				}
+				.login-container .input-container input:focus {
+					border-color: rgba(24,185,232,1);
+				}
+					.login-container .input-container ::-webkit-input-placeholder {
+					   color: #fff;
+					   font-family: 'Quicksand-Book';
+					   font-weight: normal;
+					}
+					.login-container .input-container :-moz-placeholder {
+					   color: #fff;
+					   font-family: 'Quicksand-Book';
+					   font-weight: normal;
+					}
+					.login-container .input-container ::-moz-placeholder {
+					   color: #fff;
+					   font-family: 'Quicksand-Book';
+					   font-weight: normal;
+					}
+					.login-container .input-container :-ms-input-placeholder {
+					   color: #fff;
+					   font-family: 'Quicksand-Book';
+					   font-weight: normal;
+					}
+			.login-container .input-container .dd {
+				width: 100% !important;
+				height: 40px;
+				margin-bottom: 20px;
+				background: #2a2c31;
+				border: 1px solid #3c3e42;
+				-webkit-border-radius: 0; 
+				-moz-border-radius: 0; 
+				border-radius: 0; 
+				text-align: left;
+			}
+				.login-container .input-container .dd:hover {
+					border-color: rgba(24,185,232,.45);
+					cursor: pointer;
+				}
+				.login-container .input-container .dd .ddTitle {
+					background: transparent;
+					color: #fff;
+					font-size: 12px;
+					padding: 0;
+				}
+					.login-container .input-container .dd .ddTitle .ddTitleText {
+						width: 100%;
+						padding: 14px 14px 14px 53px;
+						display: inline-block;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+					.login-container .input-container .dd .ddTitle .divider {
+						display: none;
+					}
+					.login-container .input-container .dd .ddTitle .ddArrow {
+						display: none;
+					}
+				.login-container .input-container .dd .ddChild {
+					top: 39px;
+					width: 300px;
+					height: auto !important;
+					border-color: #3c3e42;
+					border-bottom: none;
+					 -webkit-border-radius: 0; 
+					-moz-border-radius: 0; 
+					border-radius: 0;
+					-moz-box-shadow: none;
+					-webkit-box-shadow: none;
+					box-shadow: none;
+				}
+					.login-container .input-container .dd .ddChild ul {
+						width: 100%;
+					}
+						.login-container .input-container .dd .ddChild ul li {
+							width: 100%;
+							height: 40px;
+							font-size: 12px;							
+							padding: 14px 14px;
+							background: #2a2c31;
+							border-bottom: 1px solid #3c3e42;
+						}
+							.login-container .input-container .dd .ddChild ul li:hover {
+								cursor: pointer;
+							}
+							.login-container .input-container .dd .ddChild ul li:last-child {
+								-webkit-border-radius: 0; 
+								-moz-border-radius: 0; 
+								border-radius: 0;
+							}
+							.login-container .input-container .dd .ddChild ul li .ddlabel {
+								font-family: 'Quicksand-Book';
+								color: #858585;
+							}
+								.login-container .input-container .dd .ddChild ul li:hover .ddlabel {
+									color: #fff;
+								}
+	    .login-container button {
+		    width: 100%;
+		    height: 40px;
+		    padding: 8px 10px 10px 10px;
+		    margin: 0 0 25px 0;
+		    font-size: 12px;
+		    color: #fff;
+		    background: #18b9e8 !important;
+		    border: none;
+		    -webkit-border-radius: 0; 
+			-moz-border-radius: 0; 
+			border-radius: 0; 
+	    }
+	    	.login-container button:hover {
+	    		background: #00a1d0 !important;
+	    		cursor: pointer;
+	    	}
+	    .login-container p {
+		    font-size: 12px;
+		    color: #727375;
+	    }
+	    	.login-container p a {
+		    	color: #fff;
+		    	text-decoration: none;
+		    	padding: 0 5px;
+	    	}
+	    		.login-container p a:hover {
+	    			text-decoration: underline;
+	    		}
+		    	.login-container p a .ozone-arrow-right {
+			    	padding: 0 2px;
+		    	}
+
+

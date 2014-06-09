@@ -1,0 +1,25 @@
+{
+  "name": "applications-mall-services",
+  "description": "OZONE Platform Applications Mall",
+  "version": "0.1.0",
+  "private": true,
+  "main": "AppsMallApi.js",
+  "dependencies": {
+    "express": "3.x",
+    "useragent": "~2.0.6",
+    "colorize": "~0.1.0",
+    "sanitizer": "*",
+    "mkdirp": "*",
+    "async": "0.x"
+  },
+  "devDependencies": {
+    "expect.js": "0.2.x",
+    "supertest": "0.8.x",
+    "mocha": "1.13.x",
+    "phantomjs": "*",
+    "karma": "*",
+    "karma-junit-reporter": "*",
+    "karma-jasmine": "*",
+    "karma-ng-scenario": "*"
+  }
+}

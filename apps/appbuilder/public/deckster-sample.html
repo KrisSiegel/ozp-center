@@ -1,0 +1,51 @@
+<div id="deck1" class="deckster-deck" data-col-max="4" junk-data-title="Expandable Cards" data-expandable="true" data-cards-expanded="false">
+    <div data-title="d---" class="deckster-card" data-row="1" data-col="1" data-col-span="2" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+
+    <div data-title="ca---" class="deckster-card" data-row="3" data-col="1" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="co---" class="deckster-card" data-row="5" data-col="1" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="sh---" class="deckster-card" data-row="7" data-col="1" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="pr---" class="deckster-card" data-row="9" data-col="1" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+
+    <div data-title="sm---" class="deckster-card" data-row="3" data-col="2" data-col-span="1" data-row-span="2" data-col-expand="2" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="ap---" class="deckster-card" data-row="5" data-col="2" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="me---" class="deckster-card" data-row="7" data-col="2" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="ju---" class="deckster-card" data-row="9" data-col="2" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+
+    <div data-title="ma---" class="deckster-card" data-row="1" data-col="3" data-col-span="2" data-row-span="4" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="so---" class="deckster-card" data-row="5" data-col="3" data-col-span="2" data-row-span="4" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="wi---" class="deckster-card" data-row="9" data-col="3" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+    <div data-title="to---" class="deckster-card" data-row="9" data-col="4" data-col-span="1" data-row-span="2" data-col-expand="4" data-row-expand="4"><div class="content"></div></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $.deckster({
+    "card-actions":{
+        "card-expanded":function($card,$contentSection){
+            console.log("card-expanded: I'm registered globally");
+        },
+        "card-collapsed":function($card,$contentSection){
+            console.log("card-collapsed: I'm registered globally");
+        }
+    },
+    "persistance":{
+       "format":"REST",
+       "url":"http://127.0.0.1:3000/user/testUser1",
+    }
+  });
+  $("#deck1").deckster({
+      animate: {
+        properties: {
+          opacity: ".5"
+        },
+        options: {
+          duration: "slow"
+        }
+      },
+      "scroll-helper": {
+          "x-position": "middle", // left | middle | right
+          "y-position": "top", // bottom | middle | top
+          "stay-in-view": true // true | false
+      }
+  });
+});
+</script>

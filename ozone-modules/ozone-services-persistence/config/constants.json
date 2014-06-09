@@ -1,0 +1,13 @@
+{
+	"database" : {
+		"store": {
+			"apps": "apps",
+			"tags": "tags"
+		},
+		"collection": {
+			"app": "app",
+			"tag": "tag",
+			"component": "component"
+		}
+	}
+}

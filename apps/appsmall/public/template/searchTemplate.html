@@ -1,0 +1,6 @@
+<a tabindex="-1">
+    <span ng-show="match.model.tag">
+        <i class="icon-tag"></i><span bind-html-unsafe="((match && match.model && match.model.tag) || '') | typeaheadHighlight:query"></span>
+    </span>
+    <span bind-html-unsafe="((match && match.model && match.model.app) || '') | typeaheadHighlight:query"></span>
+</a>

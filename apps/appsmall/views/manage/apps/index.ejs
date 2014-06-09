@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" ng-app="amlApp" ng-cloak>
+<head>
+    <meta charset="UTF-8">
+    <title>Application Management</title>
+    <% include ../../partials/head-includes %>
+    <script src="../../../lib/moment/moment.js"></script>
+    <link href="../../css/app-settings.css" rel="stylesheet">
+
+</head>
+<body ng-cloak>
+<div class="app" ng-controller="AdminAppController" style="min-height:400px;">
+    <div id="left-spacer" class="spacer"></div>
+    <div id="aml" class="interface admin">
+      <%- partial ('../../partials/top-bar') %>
+
+        <div class="status-bar">
+            <p>Admin Settings</p>
+        </div>
+
+        <div class="action-bar">
+            <div class="action-info">
+                <h1>Application Management</h1>
+                <p>Total Applications: {{applications.length}}</p>
+            </div>
+            <div class="action-buttons-user" ng-show="personaData.hasAppManagerAccess">
+                <button type="submit" class="btn" ng-click="loadAppChildForm()">Add New Application</button>
+            </div>
+            <!--
+            <div class="action-buttons-console">
+            	<div class="dropdown-container">
+	            	<select>
+		            	<option value="" class="dropdown-container-option-disable">Sort By...</option>
+		            	<option value="name">Sort by Name</option>
+		            	<option value="date">Sort by Update</option>
+	            	</select>
+	            	<span class="icon-group-segment icon-arrow-left"></span>
+            	</div>
+                <a href="#" class="btn"><span class="icon-action-bar icon-search"></span></a>
+            </div>
+            -->
+        </div>
+
+        <div id="facets" class="facets">
+            <!-- <div class="margins" ng-controller="TagController"> -->
+            <div class="margins">
+                <ul class="unstyled admin-facets" ng-repeat="workflowStatusType in workflowStatusTypes">
+                    <li>
+                        <a href="#" ng-click="toggleWorkflowStatusSelection(workflowStatusType)" ng-class="{selected: isWorkflowStatusSelected(workflowStatusType)}">{{workflowStatusType}}</a>
+                        <span class="facet-count" ng-class="{highlighted: isHighlighted(workflowStatusType)}" >{{getWorkflowStatusCount(workflowStatusType)}}</span>
+                    </li>
+                </ul>
+                <!--
+                <hr />
+                <button class="btn btn-primary btn-large" style="margin-left: 27px; width:178px;" ng-click="loadAppChildForm()">
+                    <span class="icon-plus" style="margin:1px 10px 7px 1px;"></span> <strong style="vertical-align:middle">Submit New</strong>
+                </button>
+                -->
+            </div>
+        </div>
+        <div id="application-search" class="applications clearfix">
+            <div id="store-bar" class="store-bar"></div>
+            <div class="appsmgt-empty-container" ng-show="isEmpty()">
+                <p class="appsmgt-empty-placeholder">There are no apps currently<br />available in AppsMall</p>
+                <!--
+                <p class="appsmgt-import-zone">Drag and drop apps here<br />to import them into AppsMall</p>
+                -->
+            </div>
+            <!--
+            <div class="listing_container" ng-show="isEmpty()">
+                <h1>No apps available.</h1>
+            </div>
+            -->
+            <div class="applications-app-container clearfix" ng-show="isAppManagerMode()">
+                <!-- <h2>App Management</h2> -->
+                <div class="app-container app-container-manage" ng-repeat="app in displayedApps">
+                    <amlapp no-launch="true"></amlapp>
+                    <div ng-class="workflowStatusClass(app.workflowState)">
+                        <div class="workflow-status">{{app.workflowState}}</div>
+                        <div class="workflow-datetime">{{getShortDateUpdated(app)}}</div>
+                        <div class="workflow-message">{{app.workflowMesssage}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="right-spacer" class="spacer"></div>
+</div>
+</body>
+<% include ../../partials/tail-includes %>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "ozone-services-messaging",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "devDependencies": {
+    "express": "3.x",
+    "jade": "*",
+    "expect.js": "0.2.x",
+    "socket.io-client": "0.9.x"
+  },
+  "dependencies": {
+    "socket.io": "0.9.x"
+  }
+}

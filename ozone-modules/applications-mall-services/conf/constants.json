@@ -1,0 +1,13 @@
+{
+	"AppsMallService": "AppsMall",
+	"database" : {
+		"store": {
+			"apps": "apps",
+			"appsmall": "appsmall"
+		},
+		"collection": {
+			"app": "app",
+			"review": "review"
+		}
+	}
+}

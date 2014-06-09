@@ -1,0 +1,13 @@
+{
+  "name": "ozone-services-personas",
+  "description": "OZONE Platform Personas Services",
+  "version": "2.0.0",
+  "private": true,
+  "main": "PersonasServicesApi.js",
+  "dependencies": {
+    "express": "3.x",
+    "expect.js": "0.2.x",
+    "supertest": "0.8.x",
+    "async": "0.x"
+  }
+}

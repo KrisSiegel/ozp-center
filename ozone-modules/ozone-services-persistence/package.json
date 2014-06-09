@@ -1,0 +1,20 @@
+{
+  "name": "ozone-services-persistence",
+  "description": "OZONE Persistence Service",
+  "version": "2.0.0",
+  "private": true,
+  "main": "main.js",
+  "dependencies": {
+    "mime": "1.2.x"
+  },
+  "devDependencies": {
+    "expect.js": "0.2.x",
+    "winston": "~0.7.2",
+    "express": "3.x",
+    "supertest": "0.8.x"
+  },
+  "bundleDependencies": [
+    "ozone-services-persistence-mock",
+    "ozone-services-persistence-mongo"
+  ]
+}

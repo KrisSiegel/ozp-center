@@ -1,0 +1,71 @@
+.app-drop-ready {
+    background-color: #18b9e8;
+}
+
+.drag-helper {
+    height: 80px;
+    width: 50px;
+}
+
+.drag-helper img {
+    max-height: 85%;
+}
+
+.ozone-app-collection-icon .application-container {
+    border: none;
+}
+
+.collection-modal .application-info a img {
+    width: 100%;
+}
+
+.collection-modal .application-info .icon-bookmark {
+    display: none;
+}
+
+.application-info button {
+    display:none;
+}
+
+.collection-modal .application-info:hover button.collection-remove {
+    display:block;
+    position: absolute;
+    top: 4px;
+    right: 0;
+    transition: all .2s;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: #fff;
+    background: red;
+    border-radius: 2px;
+    z-index: 10000;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 0 0 0 0;
+}
+
+.collection-modal .application-info:hover i {
+    opacity: 1;
+}
+
+.collection-modal .application-info button.collection-remove {
+    transition: all .2s;
+    display:block;
+    position: absolute;
+    top: 4px;
+    right: 0;
+    height: 0;
+    width: 0;
+    color: #fff;
+    background: red;
+    border-radius: 2px;
+    z-index: 10000;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 0 0 0 0;
+}
+
+.collection-modal .application-info i {
+    opacity: 0;
+}

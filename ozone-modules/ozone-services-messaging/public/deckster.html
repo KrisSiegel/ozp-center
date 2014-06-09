@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 1. Shim missing platform features -->
+    <!-- had problems when I tried putting angular after polymer -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="bower_components/polymer/polymer.min.js"></script>
+    <!--
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.3.0/ui-bootstrap-tpls.min.js"></script>
+    -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/ozone/messenger.js"></script>
+    <script src="js/chatclient.js"></script>
+    <!--
+    <script src="components/polymer/polymer.native.min.js"></script>
+    <script src="components/polymer/polymer.sandbox.min.js"></script>
+    -->
+    <!-- 2. Load a component -->
+    <link rel="import" href="p-components/deck.html">
+    <link rel="import" href="p-components/mini-chat.html">
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+  </head>
+  <body>
+    <!-- 3. Declare the component by its tag. -->
+    <deckster-deck title="This Is My Deck">
+      <deckster-card title="Card1">
+	<mini-irc clientID="Alice"></mini-irc>
+      </deckster-card>
+      <deckster-card title="Card2">
+	This is card content
+	<mini-irc clientID="Bob"></mini-irc>
+      </deckster-card>
+    </deckster-deck>
+    <deckster-deck></deckster-deck>
+  </body>
+</html>

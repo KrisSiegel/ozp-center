@@ -1,0 +1,50 @@
+<script type="text/javascript" src="ozone-chat.js"></script>
+<link rel="stylesheet" href="ozone-chat.css">
+<div id="ozone-chat" class="ozone-chat">
+    <div class="content-header">
+        <p>Messaging</p>
+        <a id="ozone-chat-close" class="close-menu icon-cross-3"></a>
+    </div>
+    <div class="placeholder-text-container">
+        <i class="icon-chat"></i>
+        <p class="placeholder-text">You currently have no friends</p>
+    </div>
+</div>
+<template id="contact-container-tpl">
+  <a href="#" class="contact-container">
+    <div class="contact-info">
+      <img src="/assets/images/contact-sample.jpg" />
+      <div class="contact-details">
+        <h1 class="contact-name"></h1>
+        <h2 class="contact-title"></h2>
+      </div>
+    </div>
+  </a>
+</template>
+<template id="chat-container-tpl">
+  <div class="chat-container">
+    <div class="chat-discussion chat">
+      <div class="chat-tab">
+        <div class="indicator indicator-active">&nbsp;</div>
+        <p class="label"></p>
+        <span class="icon icon-close-4">X</span>
+        <span class="icon icon-browser">o</span>
+      </div>
+      <div class="chat-discourse">
+        <div class="conversation">
+        </div>
+        <div class="input-container">
+          <textarea type="text" placeholder="Enter Message"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="chat-message-tpl">
+  <div>
+    <img class="profile" src="assets/images/contact-sample.jpg" />
+    <div class="bubble">
+      <p></p>
+    </div>
+  </div>
+</template>

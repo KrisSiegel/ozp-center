@@ -1,0 +1,37 @@
+<script type="text/javascript" src="ozone-bar.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="../../assets/css/dropdown.css">
+<link rel="stylesheet" href="ozone-bar.css">
+
+<script type="text/template" id="ozone-bar-tmpl">
+<!-- Start Open State -->
+<div id="ozone-bar-open" class="ozone-bar-open" style="display: none;">
+	<ul class="ozone-bar-left-menu">
+		<li><a id="AppLauncherButton" title="Go to App Launcher (with recent/favorite apps)"><span class="icon-layout"></span></a></li>
+		<!--<li><a href="/#Chat/"><span class="icon-chat"></span></a></li>-->
+		<!--<li><a href="/#Notifications/"><span class="icon-warning"></span></a></li>-->
+	</ul>
+	<ul class="ozone-bar-right-menu">
+		<a id="ozone-bar-right-menu-persona" style="display: none" class="settings-toggle">
+            <div id="profile-info">
+                <img src="assets/images/profile-icon.png" />
+                <div id="user-info">
+                    <h1 id="ozone-bar-right-menu-username">Guest</h1>
+                </div>
+                <span class="icon-arrow-down"></span>
+            </div>
+        </a>
+	</ul>
+    <div id="personaMenu" class="dropdown dropdown-tip custom-dropdown">
+        <ul class="dropdown-menu custom-menu">
+            <!-- These are dynamically added via pubsub events -->
+        </ul>
+    </div>
+</div>
+<!-- End Open State -->
+
+<!-- Start Closed State -->
+<div id="ozone-bar-closed" class="ozone-bar-closed">
+
+</div>
+<!-- End Closed State -->
+</script>

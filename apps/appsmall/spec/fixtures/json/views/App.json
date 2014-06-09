@@ -1,0 +1,17 @@
+{
+    "name": "Foo App",
+    "version": "3",
+    "lifeCycleState": "dev",
+    "accessible": true,
+    "users": 1999,
+    "rating": 4,
+    "ratings": 1690,
+    "description": "Here's a description. Foo. Bar. Baz.",
+    "organization": "Star Trek",
+    "icon": "/img/Favorites.png",
+    "documentationUrl": "https://www.owfgoss.org/demodata/Favorites.png",
+    "largePhoto": "/img/largeScreenshot.png",
+    "smallPhoto": "/img/smallScreenshot.png",
+    "_id": "1",
+    "url": "/aml/test/app/1"
+}

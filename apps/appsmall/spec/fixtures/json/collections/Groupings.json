@@ -1,0 +1,36 @@
+{
+    "count": 5,
+    "total": 5,
+    "records": [
+        {
+            "grouping": "Un",
+            "url": "/aml/test/grouping/123",
+            "access": "NONE",
+            "_id": "123"
+        },
+        {
+            "grouping": "Deux",
+            "url": "/aml/test/grouping/124",
+            "access": "PARTIAL",
+            "_id": "124"
+        },
+        {
+            "grouping": "Trois",
+            "url": "/aml/test/grouping/125",
+            "access": "ALL",
+            "_id": "125"
+        },
+        {
+            "grouping": "Quatre",
+            "url": "/aml/test/grouping/126",
+            "access": "ALL",
+            "_id": "126"
+        },
+        {
+            "grouping": "Cinq",
+            "url": "/aml/test/grouping/127",
+            "access": "NONE",
+            "_id": "127"
+        }
+    ]
+}

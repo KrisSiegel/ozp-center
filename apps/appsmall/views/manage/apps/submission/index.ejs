@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en" ng-app="amlApp" ng-cloak>
+<head>
+    <meta charset="UTF-8">
+    <title>App Management - Application Submission</title>
+    <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', true) %>"></script>
+    <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', true) %>"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.tab-content-container').scroll(function() {
+                if ($(this).scrollTop() == 0) {
+                    $('.action-bar').removeClass('action-bar-shadow');
+                }
+                else {
+                    $('.action-bar').addClass('action-bar-shadow');
+                }
+            });
+
+            // $("select").msDropdown();
+        });
+    </script>
+
+    <link href="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/css/bootstrap.min.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/aml.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/app-additional-icons.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/app-settings.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/icomoon.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/rslides.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/ubuntu.css', true) %>" rel="stylesheet">
+
+</head>
+<body ng-cloak id="app-submission-form">
+    <div class="app app-submission" ng-controller="AppSubmissionController" ng-init="initializeController()" style="min-height:400px;">
+    <div class="interface">
+
+        <div class="top-bar">
+            <div class="logo-container">
+                <a id="appsmall-logo-link"><img src="<%- Ozone.utils.murl('amlUrl', '/img/appsmall-logo.png', true) %>" /></a>
+            </div>
+            <!-- Hide search for now; will add to admin pages eventually
+            <div class="app-search-input-container" ng-cloak>
+                <appsmall-search-bar></appsmall-search-bar>
+            </div>
+            <div class="app-dropdown-menu-container">
+                <label class="control-label">Organization</label>
+                <div class="organization-dropdown">
+                    <select type="text" name="organization" class="input-large chosen-dropdown" chosen-field="orgList" ng-model="selectedOrganization" data-placeholder="Select Organization" placeholder="Organization" ng-options="value as text for (value,text) in orgList">
+                    <option value="">All Organizations</option>
+                    </select>
+                </div>
+            </div>
+            -->
+
+            <aml-nav-links></aml-nav-links>
+        </div>
+
+        <form novalidate name="appSubmissionForm" ng-class="workflowStatusClass(currentApp.workflowState)">
+            <!-- NON-FLOATS -->
+            <div class="status-bar workflow-status">
+                Application Submission: {{currentApp.workflowState}}
+            </div>
+
+            <div class="action-bar" ng-class="{{}}">
+                <div class="action-info">
+                    <h1>Application Submission</h1>
+                    <p>Last Updated: {{currentApp.updatedOn}}</p>
+                </div>
+                <div ng-show="personaData.hasSubmitApplicationAccess && canAcceptOrRejectApp()" class="action-buttons-user">
+                    <button type="submit" class="btn workflow-publish-button" ng-click="saveApp('publish', appSubmissionForm.$valid)">Publish Application</button>
+                    <button type="submit" class="btn workflow-moreinfo-button" ng-click="saveApp('moreinfo', true)">Need More Info</button>
+                    <button type="submit" class="btn workflow-reject-button" ng-click="saveApp('reject', true)">Reject</button>
+
+                    <span class="action-bar-dropdown">
+                        <select type="text" name="organization" class="input-large chosen-dropdown"
+                                chosen-field="selectedAction" ng-model="selectedAction" data-placeholder="Submission Actions">
+                            <option value="publish">Publish Application</option>
+                            <option value="more-info">Need More Info</option>
+                            <option value="reject">Reject</option>
+                        </select>
+                    </span>
+
+                    <!-- <span class="icon-group-segment icon-arrow-down icon-group-segment-month"></span> -->
+                </div>
+                <div ng-show="personaData.hasSubmitApplicationAccess && !canAcceptOrRejectApp()" class="action-buttons-user">
+                    <button type="submit" class="btn workflow-accept-button" ng-disabled="appSubmissionForm.$invalid" ng-click="saveApp('submit', appSubmissionForm.$valid)">Submit Application</button>
+                </div>
+                <div ng-show="personaData.hasSubmitApplicationAccess" class="action-buttons-console">
+                    <a href="#" class="btn" ng-click="loadPreviewModal(currentApp)">Preview</a>
+                    <a href="#" class="btn" ng-click="close()">Close</a>
+                    <button type="submit" class="btn workflow-save-button" ng-click="saveApp('save', true)">Save</button>
+                    <a href="#" class="btn" ng-click="deleteApp(currentApp)">Delete</a>
+                </div>
+                <p class="action-bar-status">Last saved 00-00-0000</p>
+            </div>
+
+            <div class="content-wrapper">
+
+                <div class="content-menu">
+
+                    <div class="menu-tabs">
+                        <ul data-tabs="tabs" class="clearfix">
+                            <li class="active">
+                                <a class="overview-tablink" data-toggle="tab" data-target="#{{initialShortname}}_info">
+                                    <p>Info</p>
+                                    <menu-tabs-indicator tab-page="Info" validation-state="tabValidationState.Info"></menu-tabs-indicator>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="details-tablink" data-toggle="tab" data-target="#{{initialShortname}}_artwork">
+                                    <p>Artwork</p>
+                                    <menu-tabs-indicator tab-page="Artwork" validation-state="tabValidationState.Artwork"></menu-tabs-indicator>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="reviews-tablink" data-toggle="tab" data-target="#{{initialShortname}}_owner">
+                                    <p>Owner</p>
+                                    <menu-tabs-indicator tab-page="Owner" validation-state="tabValidationState.Owner"></menu-tabs-indicator>
+                                </a>
+                            </li>
+                            <!--
+                            <li>
+                                <a class="reviews-tablink" data-toggle="tab" href="#{{initialShortname}}_history">
+                                    <p>History</p>
+                                </a>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="tab-content">
+
+                    <!-- Application Information and Details -->
+
+                    <div class="tab-pane active overview-content clearfix" id="{{initialShortname}}_info"> <!-- class="active" -->
+
+                        <div class="menu-content">
+
+                            <!--
+                            <div class="menu-content-status">
+                                <p>Incomplete</p>
+                            </div>
+                            -->
+
+                            <div class="menu-content-container">
+                                <h1>App Information</h1>
+                                <p class="app-menu-content-note">Note: All fields are required for submission, except for the items labeled (optional).</p>
+                                <h1>Useful Tips</h1>
+                                <ul>
+                                    <li>
+                                        <span class="icon-content icon-plus"></span>
+                                        <p>Add Feature</p>
+                                    </li>
+                                    <li>
+                                        <span class="icon-content icon-minus"></span>
+                                        <p>Remove Feature</p>
+                                    </li>
+                                    <li>
+                                        <span class="icon-content icon-info"></span>
+                                        <p>More Information</p>
+                                    </li>
+                                    <li>
+                                        <span class="icon-content icon-link"></span>
+                                        <p>Test URL Connection</p>
+                                    </li>
+                                    <li>
+                                        <span class="icon-content icon-field-container">
+                                            <div class="icon-field field-optional"></div>
+                                        </span>
+                                        <p>Required Field</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tab-content-container clearfix">
+                            <ng-form novalidate name="appInfoFormPage">
+                                <form-validation-watcher tab-page="Info" form-valid-state="appInfoFormPage.$valid"></form-validation-watcher>
+                                <div class="content-header clearfix">
+                                    <h1>Application Information and Details</h1>
+                                    <p ng-show="isSaving">Saving...</p>
+                                </div>
+
+                                <div class="content-form-wrapper content-form-wrapper-left"> <!-- FIRST COLUMN -->
+
+                                    <div class="control-group" ng-show="AllowComponents">
+                                        <div class="controls submission-type">
+                                            <ul class="inline">
+                                                <li>
+                                                    <input class="radio-btn-alt" name="appType" type="radio"
+                                                           ng-disabled="isExistingApp()" ng-model="currentApp.type" value="app">
+                                                    <label for="app">App</label>
+                                                </li>
+                                                <li>
+                                                    <input class="radio-btn-alt" name="appType" type="radio"
+                                                           ng-disabled="isExistingApp()" ng-model="currentApp.type" value="component">
+                                                    <label for="component">Component</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="top-label">Name</label>
+                                        <input type="text" name="name" class="input-large full-width" ng-model="currentApp.name" ng-init="" required placeholder="Enter Application Name" tabindex="1" />
+                                        <span class="error" ng-show="(hasInvalidSaveAttempt || appInfoFormPage.name.$dirty) && appInfoFormPage.name.$error.required">This field is required.</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="top-label">Short Name <a href="#" class="icon-label icon-info"></a></label>
+                                        <input type="text" name="shortname" class="input-large" ng-model="currentApp.shortname" required ng-pattern="/^[A-Za-z0-9]*$/" placeholder="Application Short Name (auto-generated)" ng-pattern=/^[A-Za-z0-9]+$/ tabindex="2" />
+                                        <span class="error" ng-show="(hasInvalidSaveAttempt || appInfoFormPage.shortname.$dirty || appInfoFormPage.name.$dirty) && appInfoFormPage.shortname.$error.required">This field is required.</span>
+                                        <span class="error" ng-show="appInfoFormPage.shortname.$error.pattern">Manually entered application shortnames cannot contain spaces or special characters.</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="top-label">URL</label>
+                                        <input type="url" name="appUrl" class="input-large full-width" ng-model="currentApp.appUrl" required ng-pattern="/^https?\:\/\//" placeholder="Enter Application URL" tabindex="3"/>
+                                        <a href="#" class="icon-input icon-link"></a>
+                                        <span class="error" ng-show="(appInfoFormPage.appUrl.$error.required && (isTabInvalid('Info') || appInfoFormPage.appUrl.$dirty))">This field is required.</span>
+                                        <span class="error" ng-show="appInfoFormPage.appUrl.$error.pattern && (isTabInvalid('Info') || appInfoFormPage.appUrl.$dirty)">You must enter a valid URL with an HTTP or HTTPS protocol type.</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="top-label">Short Description (150 Character Limit) <a href="#" class="icon-label icon-info"></a></label>
+                                        <textarea step="any" name="descriptionShort" class="input-medium full-width" style="min-height:80px;" ng-model="currentApp.descriptionShort" required maxlength=150 placeholder="Enter Short Description" tabindex="4"></textarea>
+                                        <span class="error" ng-show="(appInfoFormPage.descriptionShort.$error.required && (isTabInvalid('Info') || appInfoFormPage.descriptionShort.$dirty))">This field is required.</span>
+                                    </div>
+                                    <hr />
+                                    <div class="control-group text-area-container">
+                                        <label class="top-label">Description <a href="#">(View Examples)</a> <a href="#" class="icon-label icon-info"></a></label>
+                                        <markdown-text-area text="currentApp.description" placeholder="Enter Full Description"></markdown-text-area>
+                                        <span class="error" ng-show="(appInfoFormPage.markdownControl.$error.required && (isTabInvalid('Info') || appInfoFormPage.markdownControl.$dirty))">This field is required.</span>
+                                    </div>
+                                    <hr class="add-control-group-top" />
+                                    <div class="control-group add-control-group clearfix" ng-hide="fieldExistsInCurrentApp('whatsNew')">
+                                        <a href="#" ng-click="setFieldToEmpty('whatsNew')">
+                                            <span class="icon-additional icon-plus"></span> <p>Add a <strong>What's New</strong> section</p>
+                                        </a>
+                                        <a href="#" class="icon-label icon-info"></a>
+                                    </div>
+                                    <div class="control-group" ng-show="fieldExistsInCurrentApp('whatsNew')">
+                                        <label class="top-label top-label-whats-new">What's New <span class="label-optional">(Optional)</span> <a href="#" class="icon-label-remove icon-minus"></a></label>
+                                        <textarea step="any" class="input-medium full-width input-optional" style="min-height:80px;" ng-model="currentApp.whatsNew" placeholder="Enter What's New" tabindex="6"></textarea>
+                                    </div>
+                                    <hr class="add-control-group-top" />
+                                    <div class="control-group add-control-group" ng-hide="fieldExistsInCurrentApp('dependencies')">
+                                        <a href="#" ng-click="setFieldToEmpty('dependencies')">
+                                            <span class="icon-additional icon-plus"></span> <p>Add a <strong>Dependencies</strong> section</p>
+                                        </a>
+                                        <a href="#" class="icon-label icon-info"></a>
+                                    </div>
+                                    <div class="control-group" ng-show="fieldExistsInCurrentApp('dependencies')">
+                                        <label class="top-label top-label-whats-new">Dependencies <span class="label-optional">(Optional)</span> <a href="#" class="icon-label-remove icon-minus"></a></label>
+                                        <textarea step="any" class="input-medium full-width input-optional" style="min-height:80px;" ng-model="currentApp.dependencies" placeholder="Enter Dependencies" tabindex="7"></textarea>
+                                    </div>
+                                    <hr class="add-control-group-top" />
+
+                                </div> <!-- END FIRST COLUMN -->
+
+                                <div class="content-form-wrapper content-form-wrapper-right"> <!-- SECOND COLUMN -->
+                                    <div class="control-group">
+                                        <label class="top-label">Software Update</label>
+                                        <date-dropdowns app="currentApp" date-field="softwareUpdatedOn"></date-dropdowns>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="top-label">Version Number <a href="#" class="icon-label icon-info"></a></label>
+                                        <input type="text" name="version" required class="input-large" ng-model="currentApp.version" required placeholder="Enter Version Number" tabindex="8" />
+                                        <span class="error" ng-show="(appInfoFormPage.version.$error.required && (isTabInvalid('Info') || appInfoFormPage.version.$dirty))">This field is required.</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="top-label">Support Website <span class="label-optional">(Optional)</span></label>
+                                        <input type="text" name="supportWebsite" class="input-large" ng-pattern="/^https?\:\/\//" ng-model="currentApp.supportWebsite" placeholder="Enter Support Website" tabindex="9" />
+                                        <span class="error" ng-show="appInfoFormPage.supportWebsite.$error.pattern">You must enter a valid URL with an HTTP or HTTPS protocol type.</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="top-label">Feedback Contact <span class="label-optional">(Optional)</span> <a href="#" class="icon-label icon-info"></a></label>
+                                        <input type="email" name="feedbackContact" class="input-large" ng-model="currentApp.feedbackContact" placeholder="Enter Feedback Contact" tabindex="10" />
+                                        <span class="error" ng-show="appInfoFormPage.feedbackContact.$error.email">You must enter a valid email address.</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="top-label">Development Team Website <span class="label-optional">(Optional)</span> <a href="#" class="icon-label icon-info"></a></label>
+                                        <input type="text" name="developmentTeam" class="input-large" ng-pattern="/^https?\:\/\//" ng-model="currentApp.developmentTeamWebsite" placeholder="Enter Development Team" tabindex="11" />
+                                        <span class="error" ng-show="appInfoFormPage.developmentTeam.$error.pattern">You must enter a valid URL with an HTTP or HTTPS protocol type.</span>
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="control-group">
+                                        <label class="top-label">Categories</label>
+                                        <input type="text" class="input-large form-search" placeholder="Select Categories" name="appCategories" autofocus id="category_select"
+                                               data-placeholder="Select Categories" ng-model="categoryDropdownText"
+                                               typeahead="categoryObj as categoryObj.category for categoryObj in getCategoryDropdownSelection($viewValue)"
+                                               typeahead-on-select="addSelectedItemToList($item, 'selectedCategories', getCategoryField)"
+                                               typeahead-template-url="../../../template/categoryTemplate.html" tabindex="12" />
+                                        <div class="bootstrap-tagsinput searchbar-tags" ng-repeat="selectedCategory in selectedCategories">
+                                            <span class="tag badge badge-info"> {{selectedCategory}}
+                                                <span> <!-- style="background:#fff;border-radius:10px;margin-left:8px;text-align:center;border:1px solid #d6d6d6" -->
+                                                    <span class="icon-minus delete-hover" data-role="remove" ng-click="removeItemFromList(selectedCategory, 'selectedCategories')"></span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <input type="text" name="appCategoryCountHidden" required ng-hide="true" ng-model="categoryCount" ng-pattern="/[1-9]/" />
+                                        <span class="error" ng-show="(isTabInvalid('Info') || appInfoFormPage.appCategories.$dirty) && appInfoFormPage.appCategoryCountHidden.$error.pattern">You must enter at least one category.</span>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="top-label">Tags</label>
+                                        <input type="text" class="input-large form-search" placeholder="Select Tags" name="appTags" autofocus id="tag_select" data-placeholder="Select Tags"
+                                               ng-model="tagDropdownText" typeahead="tagObj as tagObj.tag for tagObj in getTagDropdownSelection($viewValue)"
+                                               typeahead-on-select="addSelectedItemToList($item, 'selectedTags', getTagField)"
+                                               typeahead-template-url="../../../template/tagTemplate.html" tabindex="13" />
+                                        <div class="bootstrap-tagsinput searchbar-tags" ng-repeat="selectedTag in selectedTags">
+                                            <span class="tag badge badge-info"> {{selectedTag}}
+                                                <span> <!-- style="background:#fff;border-radius:10px;margin-left:8px;text-align:center;border:1px solid #d6d6d6" -->
+                                                    <span class="icon-minus delete-hover" data-role="remove" ng-click="removeItemFromList(selectedTag, 'selectedTags')"></span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <input type="text" name="appTagCountHidden" required ng-model="tagCount" ng-hide="true" ng-pattern="/[1-9]/" />
+                                        <span class="error" ng-show="(isTabInvalid('Info') || appInfoFormPage.appTags.$dirty) && appInfoFormPage.appTagCountHidden.$error.pattern">You must enter at least one tag.</span>
+                                    </div>
+
+                                </div>
+                            </ng-form>
+                        </div>
+
+                    </div>
+
+                    <!-- Application Artwork and Screen Shots -->
+
+                    <div class="tab-pane" id="{{initialShortname}}_artwork">
+                        <ng-form novalidate name="appArtworkFormPage">
+                            <form-validation-watcher tab-page="Artwork" form-valid-state="appArtworkFormPage.$valid"></form-validation-watcher>
+                            <div class="menu-content">
+
+                                <!--
+                                <div class="menu-content-status">
+                                    <p>Incomplete</p>
+                                </div>
+                                -->
+
+                                <div class="menu-content-container">
+                                    <h1>App Artwork</h1>
+                                    <!-- <h2>Last Updated: {{currentApp.updatedOn}}</h2> -->
+                                    <!-- <p>Nullam non magna gravida dolor rutrum varius. Maecenas quis neque in nisi volutpat elementum. Vestibulum auctor risus sed imperdiet bibendum. Etiam convallis justo urna, ut varius magna pharetra laoreet.</p> -->
+                                    <p class="app-menu-content-note">Note: All fields are required for submission, except for the items labeled (optional).</p>
+                                    <h1>Useful Tips</h1>
+                                    <ul>
+                                        <li>
+                                            <span class="icon-content icon-plus"></span>
+                                            <p>Add Feature</p>
+                                        </li>
+                                        <li>
+                                            <span class="icon-content icon-minus"></span>
+                                            <p>Remove Feature</p>
+                                        </li>
+                                        <li>
+                                            <span class="icon-content icon-info"></span>
+                                            <p>More Information</p>
+                                        </li>
+                                        <!--
+                                        <li>
+                                            <span class="icon-content icon-link"></span>
+                                            <p>Test URL Connection</p>
+                                        </li>
+                                        <li>
+                                            <span class="icon-content icon-field-container">
+                                                <div class="icon-field field-required"></div>
+                                            </span>
+                                            <p>Required Field</p>
+                                        </li>
+                                        <li>
+                                            <span class="icon-content icon-field-container">
+                                                <div class="icon-field field-optional"></div>
+                                            </span>
+                                            <p>Optional Field</p>
+                                        </li>
+                                        -->
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <div class="tab-content-container tab-content-container-art-work clearfix">
+
+                                <div class="content-header clearfix">
+                                    <h1>Application Artwork and Screen Shots</h1>
+                                    <p ng-show="isSaving">Saving...</p>
+                                </div>
+
+                                <div class="content-form-wrapper content-form-wrapper-artwork clearfix">
+                                    <div class="content-artwork-section">
+                                        <div class="content-section-content content-section-content-large-banner">
+                                            <h1>Featured Banner</h1>
+                                            <!--
+                                            <p>Height must be 280px (lo-res) or 840px (hi-res).</p>
+                                            <p>Width must be 454px (lo-res) or 1362px (hi-res).</p>
+                                            <p>High resolution images are preferred.</p>
+                                            -->
+                                            <p>Must be at least 280px x 454px</p>
+                                            <div class="content-section-content-image content-section-content-image-upload">
+                                                <file-upload app-object="currentApp" field="images.featuredBannerId" file-upload-id="{{currentApp.images.featuredBannerId}}" field-name="featuredBanner" min-height="280" min-width="454"></file-upload>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="featuredBannerValidator" required ng-hide="true" ng-model="currentApp.images.featuredBannerId" />
+                                        <span class="error" ng-show="(isTabInvalid('Artwork') || appArtworkFormPage.$dirty) && appArtworkFormPage.featuredBannerValidator.$error.required">You must select a featured banner.</span>
+                                    </div>
+                                    <div class="content-artwork-section">
+                                        <div class="content-section-content content-section-content-small-banner">
+                                            <h1>Small Banner</h1>
+                                            <!--
+                                            <p>Height must be 140px (lo-res) or 420px (hi-res).</p>
+                                            <p>Width must be 220px (lo-res) or 660px (hi-res).</p>
+                                            <p>High resolution images are preferred.</p>
+                                            -->
+                                            <p>Must be at least 140px x 220px</p>
+                                            <div class="content-section-content-image content-section-content-image-upload">
+                                                <file-upload app-object="currentApp" field="images.smallBannerId" file-upload-id="{{currentApp.images.smallBannerId}}" field-name="smallBanner" min-height="140" min-width="220"></file-upload>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="smallBannerValidator" required ng-hide="true" ng-model="currentApp.images.smallBannerId" />
+                                        <span class="error" ng-show="(isTabInvalid('Artwork') || appArtworkFormPage.$dirty) && appArtworkFormPage.smallBannerValidator.$error.required">You must select a small banner.</span>
+                                    </div>
+                                    <div class="content-artwork-section">
+                                        <div class="content-section-content content-section-content-app-icon">
+                                            <h1>App Icon</h1>
+                                            <p>Must be at least 195px x 195px</p>
+                                            <div class="content-section-content-image content-section-content-image-upload">
+                                                <file-upload app-object="currentApp" field="images.iconId" file-upload-id="{{currentApp.images.iconId}}" field-name="icon" min-height="195" min-width="195"></file-upload>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="appIconValidator" required ng-hide="true" ng-model="currentApp.images.iconId" />
+                                        <span class="error" ng-show="(isTabInvalid('Artwork') || appArtworkFormPage.$dirty) && appArtworkFormPage.appIconValidator.$error.required">You must select an app icon.</span>
+                                    </div>
+
+                                    <div class="content-form-wrapper-artwork-header content-form-wrapper-artwork-header-screenshot">
+                                        <h1>Screen Shots</h1>
+                                        <p>For best results, screen shots should be at least 620px x 410px</p>
+                                    </div>
+                                    <div class="content-section-content content-section-content-screenshot clearfix">
+                                        <file-upload-array current-app="currentApp"></file-upload-array>
+                                    </div>
+                                    <input type="text" name="screenshotCountValidator" required ng-hide="true" ng-model="screenshotCount" ng-pattern="/[1-9]/" />
+                                    <span class="error" ng-show="(isTabInvalid('Artwork') || appArtworkFormPage.$dirty) && appArtworkFormPage.screenshotCountValidator.$error.pattern">You must add at least one screenshot.</span>
+                                </div>
+
+                            </div>
+                        </ng-form>
+                    </div>
+
+                    <!-- Application Ownership and Technical PoC Information -->
+
+                    <div class="tab-pane" id="{{initialShortname}}_owner">
+                        <ng-form novalidate id="app-ownership-form-page" name="appOwnershipFormPage">
+                            <form-validation-watcher tab-page="Owner" form-valid-state="appOwnershipFormPage.$valid"></form-validation-watcher>
+                            <div class="menu-content">
+
+                                <!--
+                                <div class="menu-content-status">
+                                    <p>Incomplete</p>
+                                </div>
+                                -->
+
+                                <div class="menu-content-container">
+                                    <h1>App Ownership</h1>
+                                    <!-- <h2>Last Updated: {{currentApp.updatedOn}}</h2> -->
+                                    <!-- <p>Phasellus quis aliquam felis. Integer hendrerit urna eu auctor molestie. Etiam commodo, justo porta pretium facilisis, mauris eros varius velit, feugiat cursus massa turpis non felis. Ut sodales, lorem ut pellentesque scelerisque, metus massa mollis nisi, ut commodo dolor risus iaculis erat.</p> -->
+                                    <p class="app-menu-content-note">Note: All fields are required for submission, except for the items labeled (optional).</p>
+                                    <h1>Useful Tips</h1>
+                                    <ul>
+                                        <li>
+                                            <span class="icon-content icon-plus"></span>
+                                            <p>Add Feature</p>
+                                        </li>
+                                        <li>
+                                            <span class="icon-content icon-minus"></span>
+                                            <p>Remove Feature</p>
+                                        </li>
+                                        <li>
+                                            <span class="icon-content icon-info"></span>
+                                            <p>More Information</p>
+                                        </li>
+                                        <!--
+                                        <li>
+                                            <span class="icon-content icon-link"></span>
+                                            <p>Test URL Connection</p>
+                                        </li>
+                                        -->
+                                        <!--
+                                        <li>
+                                            <span class="icon-content icon-field-container">
+                                                <div class="icon-field field-required"></div>
+                                            </span>
+                                            <p>Required Field</p>
+                                        </li>
+                                        -->
+                                        <li>
+                                            <span class="icon-content icon-field-container">
+                                                <div class="icon-field field-optional"></div>
+                                            </span>
+                                            <p>Required Field</p>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="tab-content-container clearfix">
+
+                                <div class="owner-column">
+
+                                    <div class="content-header clearfix">
+                                        <h1>Application Ownership Information and Details</h1>
+                                    </div>
+
+                                    <div class="content-form-wrapper content-form-wrapper-ownership content-form-wrapper-left"> <!-- FIRST COLUMN -->
+
+                                        <div class="control-group">
+                                             <label class="top-label">Organization</label>
+                                             <select required type="text" name="organization" required class="input-large chosen-dropdown" chosen-field="orgList" ng-model="currentOrgTag"
+                                                     ng-class="appOwnershipFormPage.organization.$error.pattern" data-placeholder="Select Organization" ng-options="value as text for (value,text) in orgList"></select>
+                                             <span class="error" ng-show="(appOwnershipFormPage.organization.$error.required && (isTabInvalid('Owner') || appOwnershipFormPage.organization.$dirty))">This field is required.</span>
+                                        </div>
+                                        <div class="control-group">
+                                             <label class="top-label">Sub Organization <span class="label-optional">(Optional)</span> </label>
+                                             <input type="text" name="subOrganization" class="input-large" ng-model="currentApp.subOrganization" placeholder="Enter Sub Organization" />
+                                        </div>
+                                        <hr />
+                                        <div class="control-group app-content-input-container-custom-component clearfix">
+                                            <label>Application Permissions</label>
+                                            <input type="checkbox" id="organizationOnlyAppCheckbox" name="organizationOnlyApp" ng-model="currentApp.organizationOnlyApp" />
+                                            <label for="organizationOnlyAppCheckbox"><span></span></label>
+                                            <div class="content-input-container-custom-component-label">
+                                                <h1>Application should only be viewed by my organization</h1>
+                                                <p>Note: Mall Moderator approval is required for this setting</p>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="control-group app-content-input-container-custom-component clearfix">
+                                            <label>Application Display Settings</label>
+                                            <input type="checkbox" id="featuredCheckbox" name="featured" ng-model="currentApp.featured" />
+                                            <label for="featuredCheckbox"><span></span></label>
+                                            <div class="content-input-container-custom-component-label">
+                                                <h1>This is a Featured Application</h1>
+                                                <p>Note: Mall Moderator approval is required for this setting</p>
+                                            </div>
+                                        </div>
+                                        <!--
+                                        <div class="control-group app-content-input-container-custom-component clearfix">
+                                            <label>Sample Check Box</label>
+                                            <input type="checkbox" id="checkbox2" name="cc" />
+                                            <label for="checkbox2"><span></span></label>
+                                            <div class="content-input-container-custom-component-label">
+                                                <h1>Maecenas et dui non neque congue aliquet</h1>
+                                                <p>Note: Nullam luctus mi non ante euismod, non laoreet nunc trist</p>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="control-group app-content-input-container-custom-component clearfix">
+                                            <label>Sample Radio Button</label>
+                                            <input type="radio" id="radio1" name="rr" />
+                                                <label for="radio1"><span></span></label>
+                                            <div class="content-input-container-custom-component-label">
+                                                <h1>Quisque eget enim nec augue lacinia commodo</h1>
+                                                <p>Note: Phasellus sit amet libero lobortis, scelerisque arcu sed</p>
+                                            </div>
+                                        </div>
+                                        <div class="control-group app-content-input-container-custom-component clearfix">
+                                            <label>Sample Radio Button</label>
+                                            <input type="radio" id="radio2" name="rr" />
+                                                <label for="radio2"><span></span></label>
+                                            <div class="content-input-container-custom-component-label">
+                                                <h1>Nam ornare lectus scelerisque nulla aliquet</h1>
+                                                <p>Note: Donec tellus turpis, tristique a consectetur ac, malesuada</p>
+                                            </div>
+                                        </div>
+                                        <div class="control-group app-content-input-container-custom-component clearfix">
+                                            <label>Sample Radio Button</label>
+                                            <input type="radio" id="radio3" name="rr" />
+                                                <label for="radio3"><span></span></label>
+                                            <div class="content-input-container-custom-component-label">
+                                                <h1>Phasellus aliquet turpis a risus feugiat</h1>
+                                                <p>Note: Mauris hendrerit egestas urna, mattis posuere lacus varius</p>
+                                            </div>
+                                        </div>
+                                        -->
+
+                                        <!--
+                                        <div class="control-group">
+                                             <input type="checkbox" name="organizationOnlyApp" ng-model="currentApp.organizationOnlyApp" style="float:left;"></input>
+                                             <div style="display:ineline-block;float:left;margin-left:20px;">
+                                                 <h4>Application should only be viewed by my organization</h4>
+                                                 <h6>Note: Mail Moderator approval is required for this setting.</h6>
+                                             </div>
+                                        </div>
+                                        -->
+
+                                    </div> <!-- END FIRST COLUMN -->
+                                </div>
+
+                                <div class="owner-column">
+                                    <div class="content-header clearfix">
+                                        <h1>Owner Info</h1>
+                                        <!-- <p ng-show="isSaving">Saving...</p> -->
+                                    </div>
+
+                                    <div class="content-form-wrapper content-form-wrapper-ownership content-form-wrapper-right"> <!-- SECOND COLUMN -->
+
+                                        <div class="control-group">
+                                            <label class="top-label">Full Name</label>
+                                            <input type="text" name="owner_organization" required class="input-large" ng-model="currentApp.owner.name" placeholder="Enter Full Name" />
+                                            <span class="error" ng-show="(appOwnershipFormPage.owner_organization.$error.required && (isTabInvalid('Owner') || appOwnershipFormPage.owner_organization.$dirty))">This field is required.</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="top-label">Email</label>
+                                            <input type="email" name="owner_email" required class="input-large" ng-model="currentApp.owner.email" placeholder="Enter Email Address" />
+                                            <span class="error" ng-show="(appOwnershipFormPage.owner_email.$error.required && (isTabInvalid('Owner') || appOwnershipFormPage.owner_email.$dirty))">This field is required.</span>
+                                            <span class="error" ng-show="appOwnershipFormPage.owner_email.$error.email">You must enter a valid email address.</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="top-label">Phone Number</label>
+                                            <input type="text" name="owner_phone" required class="input-large" ng-model="currentApp.owner.phone" autoformat-phone-number
+                                                   ng-pattern="/^[0-9]{3}\-[0-9]{4}|[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/" placeholder="Enter Phone Number" />
+                                            <span class="error" ng-show="(appOwnershipFormPage.owner_phone.$error.required && (isTabInvalid('Owner') || appOwnershipFormPage.owner_phone.$dirty))">This field is required.</span>
+                                            <span class="error" ng-show="appOwnershipFormPage.owner_phone.$error.pattern">You must enter a phone number as XXX-XXX-XXXX.</span>
+                                        </div>
+
+                                        <hr class="section-divider" />
+                                        <div class="content-header clearfix">
+                                            <h1>Technical PoC Info</h1>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="top-label">Full Name</label>
+                                            <input type="text" name="poc_organization" required class="input-large" ng-model="currentApp.poc.name" placeholder="Enter Full Name" />
+                                            <span class="error" ng-show="(appOwnershipFormPage.poc_organization.$error.required && (isTabInvalid('Owner') || appOwnershipFormPage.poc_organization.$dirty))">This field is required.</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="top-label">Email</label>
+                                            <input type="email" name="poc_email" required class="input-large" ng-model="currentApp.poc.email" placeholder="Enter Email Address" />
+                                            <span class="error" ng-show="(appOwnershipFormPage.poc_email.$error.required && (isTabInvalid('Owner') || appOwnershipFormPage.poc_email.$dirty))">This field is required.</span>
+                                            <span class="error" ng-show="appOwnershipFormPage.poc_email.$error.email">You must enter a valid email address.</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="top-label">Phone Number</label>
+                                            <input type="text" name="poc_phone" required class="input-large" ng-model="currentApp.poc.phone" autoformat-phone-number
+                                                   ng-pattern="/^[0-9]{3}\-[0-9]{4}|[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/" placeholder="Enter Phone Number" />
+                                            <span class="error" ng-show="(appOwnershipFormPage.poc_phone.$error.required && (isTabInvalid('Owner') || appOwnershipFormPage.poc_phone.$dirty))">This field is required.</span>
+                                            <span class="error" ng-show="appOwnershipFormPage.poc_phone.$error.pattern">You must enter a phone number as XXX-XXX-XXXX.</span>
+                                        </div>
+                                        <hr class="add-control-group-top" />
+
+                                         <div ng-repeat="person in currentApp.personnel">
+                                             <div ng-form="personnelSubForm">
+                                                 <div class="content-header clearfix" ng-show="(currentApp.personnel.length > 0)">
+                                                    <h1>Custom PoC</h1>
+                                                    <a href="#" class="icon-header icon-minus"></a>
+                                                     </div>
+                                                 <div class="control-group">
+                                                     <label class="top-label">Role</label>
+                                                     <input type="text" name="person_role" required class="input-large" ng-model="person.role" placeholder="Enter Role" />
+                                                     <span class="error" ng-show="(personnelSubForm.person_role.$error.required && (isTabInvalid('Owner') || personnelSubForm.person_role.$dirty))">This field is required.</span>
+                                                 </div>
+                                                 <div class="control-group">
+                                                     <label class="top-label">Full Name</label>
+                                                     <input type="text" name="person_organization" required class="input-large" ng-model="person.name" placeholder="Enter Full Name" />
+                                                     <span class="error" ng-show="(personnelSubForm.person_organization.$error.required && (isTabInvalid('Owner') || personnelSubForm.person_organization.$dirty))">This field is required.</span>
+                                                 </div>
+                                                 <div class="control-group">
+                                                     <label class="top-label">Email</label>
+                                                     <input type="email" name="person_email" required class="input-large" ng-model="person.email" placeholder="Enter Email Address" />
+                                                     <span class="error" ng-show="(personnelSubForm.person_email.$error.required && (isTabInvalid('Owner') || personnelSubForm.person_email.$dirty))">This field is required.</span>
+                                                     <span class="error" ng-show="personnelSubForm.person_email.$error.email">You must enter a valid email address.</span>
+                                                 </div>
+                                                 <div class="control-group">
+                                                     <label class="top-label">Phone Number</label>
+                                                     <input type="text" name="person_phone" required class="input-large" ng-model="person.phone" autoformat-phone-number
+                                                            ng-pattern="/^[0-9]{3}\-[0-9]{4}|[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/" placeholder="Enter Phone Number" />
+                                                     <span class="error" ng-show="(personnelSubForm.person_phone.$error.required && (isTabInvalid('Owner') || personnelSubForm.person_phone.$dirty))">This field is required.</span>
+                                                     <span class="error" ng-show="personnelSubForm.person_phone.$error.pattern">You must enter a phone number as XXX-XXX-XXXX.</span>
+                                                 </div>
+                                                 <hr class="add-control-group-top" />
+                                             </div>
+                                         </div>
+
+                                         <div class="control-group add-control-group clearfix">
+                                             <a href="#" ng-click="addNewEmptyField('personnel')">
+                                                 <span class="icon-additional icon-plus"></span> <p>Add a <strong>Custom PoC</strong> Info</p>
+                                             </a>
+                                             <a href="#" class="icon-label icon-info"></a>
+                                         </div>
+                                         <hr class="add-control-group-top" />
+
+                                    </div> <!-- END SECOND COLUMN -->
+                                </div>
+
+                                <!--
+
+                                <div class="span6">
+                                    <h3>&lt;Organization Name&gt; Specific Information</h3>
+                                    <h6>Note: This information is not visible by users.</h6>
+                                </div>
+
+                                <div class="span6">
+                                    <h3>&lt;Organization Specific Fields Would Display Here&gt;</h3>
+                                    <h6>These fields would be established by an Organization Moderator, would be managed on another screen, (e.g. Organization Configuration)</h6>
+                                </div>
+
+                                -->
+
+                            </div>
+                        </ng-form>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    </div>
+</body>
+
+<script src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.custom.min.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/jquery-mousestop/jquery.event.mousestop.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/js/bootstrap.min.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.min.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/carouFredSel/carouFredSel.min.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.jquery.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/moment/moment.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/showdown/src/showdown.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/js/common.js', true) %>"></script>
+
+<script src="<%- Ozone.utils.murl('libUrl', '/lodash/dist/lodash.compat.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-bootstrap/ui-bootstrap-tpls.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/handlebars/handlebars.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-chosen-localytics/chosen.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput-angular.js', true) %>"></script>
+
+<% if (bundleComponents) { %>
+<script src="<%= Ozone.utils.murl('amlUrl', minifiedIncludes[0], true) %>"></script>
+<% } else { %>
+<% for (var i = 0; i < angularIncludes.length; i++) {%>
+    <script src="<%= Ozone.utils.murl('amlUrl', angularIncludes[i], true) %>"></script>
+<% } // end for %>
+<% } // end if %>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "ozone-services-security",
+  "description": "OZONE Security Service",
+  "version": "2.0.0",
+  "private": true,
+  "main": "main.js",
+  "devDependencies": {
+    "expect.js": "0.2.x",
+    "express": "3.x",
+    "supertest": "0.8.x"
+  },
+  "bundleDependencies": [
+    "ozone-services-security-ezsecurity",
+    "ozone-services-security-mock"
+  ]
+}

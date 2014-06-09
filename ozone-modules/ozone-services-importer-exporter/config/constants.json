@@ -1,0 +1,7 @@
+{
+	"ImporterService": "Importer",
+	"ExporterService": "Exporter",
+    "magicNumbers": {
+        "zip": "504b0304"
+    }
+}

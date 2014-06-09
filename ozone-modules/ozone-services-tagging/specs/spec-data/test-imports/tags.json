@@ -1,0 +1,32 @@
+{
+    "injectableRecords": [
+        {
+            "uri": "/AppsMall/Apps/App1",
+            "topic": "/AppsMall/Category/",
+            "tag": "Category1",
+            "creatorUserId": "System",
+            "created": "2014-01-1T17:54:11Z",
+            "modified": "2014-01-1T17:54:11Z",
+            "visibility": {}
+        },
+        {
+            "uri": "/AppsMall/Apps/App2",
+            "topic": "/AppsMall/Category/",
+            "tag": "Category1",
+            "creatorUserId": "System",
+            "created": "2014-01-1T17:54:11Z",
+            "modified": "2014-01-1T17:54:11Z",
+            "visibility": {}
+        },
+        {
+            "uri": "/AppsMall/Apps/App1",
+            "topic": "/AppsMall/Category/",
+            "tag": "Category2",
+            "creatorUserId": "System",
+            "created": "2014-01-1T17:54:11Z",
+            "modified": "2014-01-1T17:54:11Z",
+            "visibility": {}
+        }
+    ]
+
+}

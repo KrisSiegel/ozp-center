@@ -1,0 +1,7 @@
+/node_modules
+/.project
+/.settings
+/conf/users.json
+/util/certificateGeneration
+/nbproject
+/public

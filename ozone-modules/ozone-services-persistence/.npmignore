@@ -1,0 +1,10 @@
+*.DS_Store
+/node_modules/.bin
+/node_modules/expect.js
+/node_modules/express
+/node_modules/winston
+/node_modules/supertest
+/node_modules/mime
+/node_modules/ozone-api
+/.project
+/.settings

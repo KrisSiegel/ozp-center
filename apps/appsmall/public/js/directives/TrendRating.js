@@ -1,0 +1,44 @@
+'use strict';
+
+directivesModule.directive('trendrating', function() {
+    var trendingText = {
+        0: 'Not Trending',
+        1: 'Trending: Warm',
+        2: 'Trending: Hot',
+        3: 'Trending: On fire'
+    };
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            srating: '=',
+            dynrating: '@'
+        },
+        template: '<div class="trait"><i class="icon-fire icon-white trending"></i><i class="icon-fire icon-white trending"></i><i class="icon-fire icon-white trending"></i></div>',
+        link: function(scope, element, attrs) {
+            var setRatingFunc = function(srating, calledFromWatch) {
+                    srating = common.rangeBounds((parseInt(srating) || 0), 0, 3)
+                    $(element).attr('title', ('Average rating: ' + srating + ' (' + trendingText[srating] + ')'));
+                    $(element).find('span.trending-message').remove();
+
+                    // fill in trending flames
+                    $(element).find('i').each(function(index, starElement) {
+                        if (srating > index) {
+                            $(starElement).removeClass('icon-white');
+                        } else {
+                            $(starElement).addClass('icon-white');
+                        }
+                    }, this);
+                    $(element).append('<span class="trending-message">' + trendingText[srating] + '</span>');
+                }
+            setRatingFunc(scope.rating, false);
+
+            // checking if dynrating attribute exists in directive tag, regardless of value (undefined or otherwise)
+            if (_.has(attrs, 'dynrating')) {
+                scope.$watch('dynrating', function() {
+                    setRatingFunc(attrs.dynrating, true);
+                });
+            }
+        }
+    };
+});

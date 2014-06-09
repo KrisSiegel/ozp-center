@@ -1,0 +1,27 @@
+<!--*-HTML-*-->
+    <script src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/jquery-ui.custom.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/jquery-mousestop/jquery.event.mousestop.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/js/bootstrap.min.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.min.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/carouFredSel/carouFredSel.min.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.jquery.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/../lib/showdown/src/showdown.js', true) %>"></script>
+
+    <script src="<%- Ozone.utils.murl('libUrl', '/lodash/dist/lodash.compat.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-bootstrap/ui-bootstrap-tpls.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/handlebars/handlebars.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-chosen-localytics/chosen.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput.js', true) %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput-angular.js', true) %>"></script>
+
+    <% if (bundleComponents) { %>
+      <script src="<%= Ozone.utils.murl('amlUrl', minifiedIncludes[0], true) %>"></script>
+    <% } else { %>
+      <% for (var i = 0; i < angularIncludes.length; i++) {%>
+         <script src="<%= Ozone.utils.murl('amlUrl', angularIncludes[i], true) %>"></script>
+      <% } // end for %>
+   <% } // end if %>

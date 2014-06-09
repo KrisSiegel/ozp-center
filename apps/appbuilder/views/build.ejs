@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+ <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Ozone Platform - App Builder</title>
+        <!--
+        <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+        -->
+        <link rel="stylesheet" href="../public/bower_components/bootstrap-2/css/bootstrap.css">
+        <link rel="stylesheet" href="../public/bower_components/x-tag-appbar/src/appbar.css">
+        <link rel="stylesheet" href="../lib/deckster/public/stylesheets/deckster.css">
+        <link rel="stylesheet" href="../public/bower_components/jquery-ui/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="../public/css/ozp-appbuilder.css">
+
+        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', true) %>"></script>
+
+        <script src="../public/bower_components/jquery/jquery.js"></script>
+        <script src="../public/bower_components/jquery-ui/ui/jquery-ui.js"></script>
+        <script src="../public/bower_components/bootstrap-2/js/bootstrap.js"></script>
+        <script src="../public/bower_components/x-tag-core/dist/x-tag-core.js"></script>
+
+        <!-- Appbar is one of the custom components from the Brick project -->
+        <!-- <script src="public/bower_components/x-tag-appbar/src/appbar.js"></script> -->
+        <script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', true) %>"></script>
+        <script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', true) %>"></script>
+        <script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', true) %>"></script>
+        <script src="../public/bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
+        <script src="../public/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+        <script src="../lib/deckster/deckster.js"></script>
+        <script src="../js/ozp-appbuilder.js"></script>
+        <script src="../js/services/App.js"></script>
+    </head>
+    <body>
+            <div ng-app="AppBuilder" id="appbuilder-outer" ng-controller="BuilderTopCtrl">
+                <div id="ozp-builder-panel">
+                    <tabset>
+                        <tab>
+                            <tab-heading active>LAYOUT</tab-heading>
+                            {{selected.title}}
+                            <a href="#" ng-click="openModal()">Change</a>
+                            <div ng-switch on="selected.name">
+                                <div ng-switch-when="partition">
+                                    <partition-control-panel></partition-control-panel>
+                                </div>
+                                <div ng-switch-when="fullscreen">
+                                    Here's the guide!
+                                </div>
+                                <div ng-switch-default>
+                                    This hasn't been set up yet.
+                                </div>
+                            </div>
+                        </tab>
+                        <tab>
+                            <tab-heading>COMPONENTS</tab-heading>
+                            <div ng-controller="ComponentListCtrl">
+                                <input type="text" ng-model="selectedComponent" typeahead="component.name for component in panelModel.components | filter:$viewValue | limitTo:8">
+                                <div ng-repeat="component in panelModel.components" class="c-list-item" component-icon>
+                                    <img ng-src="{{component.squareIcon}}" width="40px">
+                                    <p>
+                                        {{component.name}}
+                                    </p>
+                                </div>
+                            </div>
+                        </tab>
+                    </tabset>
+                </div>
+                <div id="ozp-builder-layout">
+
+                    <script type="text/ng-template" id="../startBuilderModal.html">
+                        <div class="modal-header">
+                            <h3>Select a Layout</h3>
+                        </div>
+                        <div class="modal-body layout-sel-modal">
+                            <ul>
+                <li ng-click="selected.item = item" ng-repeat="item in layoutTypes"
+                                        ng-class="{'selected-layout': selected.item == item}">
+                                    <a href="#">
+                                        <h4>{{ item.title }}</h4>
+                                        <p>{{item.description}}</p>
+                                    </a>
+                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" ng-click="ok()">OK</button>
+                        </div>
+                    </script>
+
+                    <script type="text/ng-template" id="../partitionLayoutControls.html">
+                            <div>
+                                Start with one of these predefined layouts
+                                <hr>
+                                Customize your layout by dragging one of these partition
+                                breaks onto your layout
+                                <ul class="draggable-bars">
+                                    <li class="ozp-appbuilder-divider ozp-layout-divider-h"><span></span><br/>Horizontal<br/>Divider</li>
+                                    <li class="ozp-appbuilder-divider ozp-layout-divider-v"><span></span><br/>Vertical<br/>Divider</li>
+                                </ul>
+                            </div>
+                    </script>
+
+                    <script type="text/ng-template" id="../templates/partitionConfig.html">
+                            <div class="appbuilder-component-control">
+                                <form>
+                                    <ul>
+                                        <li>
+                                            <input type="radio" name="container-type" value="single" ng-model="model.displayType">Single
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="container-type" value="accordion" ng-model="model.displayType">Accordion
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="container-type" value="tabbed" ng-model="model.displayType">Tabbed
+                                        </li>
+                                    </ul>
+                                </form>
+                                <ul>
+                                    <li>To divide this container, drag a Horizontal or Vertical Partition from the Layout tab to here</li>
+                                    <li>To place an application component in this container, drag a component icon from the Components tab to here</li>
+                                </ul>
+                            </div>
+                    </script>
+                    <script type="text/ng-template" id="../templates/componentPlacement.html">
+                        <div >
+                            <div class="appbuilder-component-delete clickable"
+                                     ng-click="deleteComponent()">_X_</div>
+                            <div class="appbuilder-component-settings clickable">Settings</div>
+                            <img ng-src="{{component.icon}}" height="100%">
+                            <p>
+                            URL is {{component.appUrl}}
+                            </p>
+                        </div>
+                    </script>
+                    <script type="text/ng-template" id="jtabset.html">
+                        <div>
+                            <ul>
+                                <li ng-repeat="component in tabItems" data-component-name="{{component.name}}">
+                                    <a href="#fragment-{{tabsetId}}-{{$index}}">{{component.name}}</a>
+                                    <span ng-if="tabsDeletable" class="ui-icon ui-icon-close" role="presentation" ng-click="deleteItem($index)">Remove Tab</span>
+                                </li>
+                            </ul>
+                            <div ng-repeat="component in tabItems" id="fragment-{{tabsetId}}-{{$index}}" data-component-name="{{component.name}}">
+                                <img ng-src="{{component.icon}}" class="placeholder-icon">
+                            </div>
+                        </div>
+                    </script>
+                    <script type="text/ng-template" id="appBuilderHeaderTmpl">
+                        <div id="app-builder-header">
+                            <input type="text" ng-model="appName" value="Enter App Name Here">
+                            <button ng-click="closeBuilder()" class="btn pull-right">Close</button>
+                            <button ng-click="saveApp()" class="btn pull-right">Save</button>
+                        </div>
+                    </script>
+                    <ng-include src="selected.template"></ng-include>
+                </div>
+            </div>
+    </body>
+</html>

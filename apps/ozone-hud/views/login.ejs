@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ozone Login</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/reset.css', true) %>" />
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-global.css', true) %>">
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-icons-additional.css', true) %>">
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('libUrl', '/msDropdown/css/msdropdown/dd.css', true) %>">
+
+<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', true) %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.min.js', true) %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/msDropdown/js/msdropdown/jquery.dd.min.js', true) %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', true) %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', true) %>"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#username").focus();
+        $("#username").keyup(function () {
+            var username = document.getElementById("username").value;
+            if (username.length > 0) {
+                document.getElementById("submit").className = "";
+            } else {
+                document.getElementById("submit").className = "disabled";
+            }
+        });
+
+        Ozone.Service("Personas").roles.query({}, function (result) {
+            var select = document.getElementById("role");
+            var first = document.createElement("option");
+            first.text = "Select Role..."; // &lt;User's Stored Value or System Default&gt;
+            first.value = "stored";
+            select.appendChild(first);
+            for (var i = 0; i < result.length; ++i) {
+                var elm = document.createElement("option");
+                elm.text = result[i].label;
+                elm.value = result[i].role;
+                select.appendChild(elm);
+            }
+            $("#role").msDropdown();
+        });
+        var submit = function () {
+            var username = document.getElementById("username").value;
+            var role = document.getElementById("role").value;
+            Ozone.ajax({
+                method: "get",
+                url: "<%- Ozone.utils.murl('apiBaseUrl', '/security/mockLogin/', true) %>" + username + ((role === "stored") ? "" : "/role/" + encodeURIComponent(role)),
+                success: function (response) {
+                    location.href = document.referrer;
+                }
+            });
+        };
+
+        var submitBtn = document.getElementById("submit");
+        var action = (typeof submitBtn.addEventListener === "undefined") ? "attachEvent" : "addEventListener";
+        submitBtn[action]("click", function (e) {
+            e.preventDefault();
+            if (document.getElementById("username").value.length > 0) {
+                submit();
+            } else {
+                alert("Please enter a username");
+            }
+        }, false);
+
+        var loginTxt = document.getElementById("username");
+        loginTxt.onkeydown = function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                submit();
+            }
+        };
+    });
+</script>
+
+</head>
+<body class="login-access-container">
+
+    <div class="login-wrapper">
+        <div class="login-container">
+            <img src="<%- Ozone.utils.murl('hudUrl', '/assets/images/login-logo.png', true) %>" />
+            <div class="input-container">
+                <span class="input-icon ozone-user"></span>
+                <input type="text" name="username" id="username" placeholder="Enter Username" />
+            </div>
+            <div class="input-container">
+                <span class="input-icon ozone-key"></span>
+                <span class="input-icon dd-icon ozone-menu"></span>
+                <select id="role"></select>
+            </div>
+            <button type="button" name="submit" id="submit" value="Login" class="disabled">Log In</button>
+        </div>
+    </div>
+
+</body>
+</html>

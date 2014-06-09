@@ -1,0 +1,21 @@
+<!--*-HTML-*-->
+                <div class="top-bar">
+                    <div class="logo-container">
+                        <a id="appsmall-logo-link"><img src="<%- Ozone.utils.murl('amlUrl', '/img/appsmall-logo.png', true) %>" /></a>
+                    </div>
+		    <% if (searchBar) { %>
+                    <div class="app-search-input-container" ng-cloak>
+                        <appsmall-search-bar></appsmall-search-bar>
+                    </div>
+                    <div class="app-dropdown-menu-container">
+                        <label class="control-label">Organization</label>
+                        <div class="organization-dropdown">
+                            <select type="text" name="organization" class="input-large chosen-dropdown" chosen-field="orgList" ng-model="selectedOrganization" data-placeholder="Select Organization"
+                                    placeholder="Organization" ng-options="value as text for (value,text) in orgList">
+                            <option value="">All Organizations</option>
+                            </select>
+                        </div>
+                    </div>
+		    <% } %>
+                    <aml-nav-links show-help="showHelp"></aml-nav-links>
+                </div>

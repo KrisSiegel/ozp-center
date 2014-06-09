@@ -1,0 +1,15 @@
+{
+  "name": "ozone-services-importer-exporter",
+  "description": "Ozone Platform Importer and Exporter",
+  "version": "2.0.0",
+  "private": true,
+  "main": "main.js",
+  "dependencies": {
+    "express": "3.x",
+    "expect.js": "0.2.x",
+    "supertest": "0.8.x",
+    "async": "0.x",
+    "tmp": "0.0.x",
+    "adm-zip": "0.4.x"
+  }
+}

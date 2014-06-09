@@ -1,0 +1,17 @@
+{
+    "oneBadge": [
+        { "one": "C" },
+        { "two": false },
+        { "three": false }
+    ],
+    "twoBadges": [
+        { "one": "B" },
+        { "two": false },
+        { "three": true }
+    ],
+    "allBadges": [
+        { "one": "D" },
+        { "two": true },
+        { "three": true }
+    ]
+}

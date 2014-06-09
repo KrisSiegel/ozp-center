@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>Ozone Platform - App Builder</title>
+   <link rel="stylesheet" href="css/appbuilder-start.css">
+
+   <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', true) %>"></script>
+   <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', true) %>"></script>
+
+   <script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', true) %>"></script>
+   <script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', true) %>"></script>
+   <script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', true) %>"></script>
+
+   <script src="js/appbuilder-start.js"></script>
+   <script src="js/services/App.js"></script>
+
+
+</head>
+<body ng-app="AppBuilder" ng-controller="PageCtrl">
+  <h1><img src="http://127.0.0.1:8080//img/app-icon-mineshaft-hires.png">App Builder</h1>
+  <h2>Your Apps</h2>
+<div class="app-tile create-app-tile" ng-click="goToBuilder()">
+  <p id="create-plus">+</p>
+  <p>CREATE NEW APP</p>
+</div>
+<div class="app-tile my-app-tile" ng-repeat="app in myapps | limitTo:3"><img ng-src="{{app.icon}}"><p class="app-name">{{app.name}}</p></div>
+</body>
+</html>

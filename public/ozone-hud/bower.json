@@ -1,0 +1,9 @@
+{
+	"name": "Ozone HUD",
+	"private": true,
+	"dependencies": {
+		"jquery": "1.9",
+		"jquery-ui": "1.10.x",
+        "msDropdown": "https://github.com/marghoobsuleman/ms-Dropdown.git"
+	}
+}

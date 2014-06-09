@@ -1,0 +1,43 @@
+@font-face {
+	font-family: 'ozone-icons-additional';
+	src:url('fonts/ozone-icons-additional.eot?-r33gud');
+	src:url('fonts/ozone-icons-additional.eot?#iefix-r33gud') format('embedded-opentype'),
+		url('fonts/ozone-icons-additional.woff?-r33gud') format('woff'),
+		url('fonts/ozone-icons-additional.ttf?-r33gud') format('truetype'),
+		url('fonts/ozone-icons-additional.svg?-r33gud#ozone-hud-additional') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="ozone-"], [class*=" ozone-"] {
+	font-family: 'ozone-icons-additional';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ozone-arrow-right:before {
+	content: "\e600";
+}
+.ozone-menu:before {
+	content: "\e601";
+}
+.ozone-user:before {
+	content: "\e602";
+}
+.ozone-key:before {
+	content: "\e603";
+}
+.ozone-user2:before {
+	content: "\e604";
+}
+.ozone-key2:before {
+	content: "\e605";
+}

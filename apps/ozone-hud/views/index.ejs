@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+ <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Ozone Platform</title>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.min.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/msDropdown/js/msdropdown/jquery.dd.min.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/pubsub.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/animate.js', true) %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/micro-x-tag.js', true) %>"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/reset.css', true) %>" />
+        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-global.css', true) %>">
+        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/icomoon.css', true) %>">
+	<!--
+          <link rel="import" href="hud-components.html">
+    -->
+	<% if (!bundleComponents) { %>
+        <script type="text/javascript">
+
+        (function () {
+            var link;
+            var htmlReady = false,
+                scriptsReady = false;
+
+            function initComponentsIfReady () {
+                if (htmlReady && scriptsReady) {
+                    microXTag.scriptsReady();
+                }
+            };
+
+            function addLink(rel, href) {
+ 	            link = document.createElement("link");
+                link.setAttribute("href", Ozone.utils.murl("hudUrl", href, true));
+                link.setAttribute("rel", rel);
+                document.head.appendChild(link);
+            }
+
+            // Get old (unconverted) xtag components
+            if (Ozone.config().getClientProperty("hud.xtagIncludes") !== undefined) {
+                for (var i = 0; i < Ozone.config().getClientProperty("hud.xtagIncludes").length; i++) {
+                    addLink("import", Ozone.config().getClientProperty("hud.xtagIncludes")[i]);
+                }
+            }
+            var importList = Ozone.config().getClientProperty("hud.includes");
+            microXTag.loadImports(importList);
+        })();
+        </script>
+	<% } %>
+        <!-- <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/ext-lib/x-tags/dist/x-tag-components.js', true) %>"></script> -->
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/x-tagger.js', true) %>"></script>
+
+    </head>
+    <body>
+        <ozone-app></ozone-app>
+        <ozone-mask></ozone-mask>
+    	<ozone-bar></ozone-bar>
+
+        <ozone-apps></ozone-apps>
+        <ozone-example></ozone-example>
+        <ozone-notifications></ozone-notifications>
+        <ozone-persona-permissions></ozone-persona-permissions>
+	<% if (bundleComponents) { %>
+	  <% include ../static/hud-components-micro.html %>
+	  <script type="text/javascript">
+	    <% include ../static/hud-components.min.js %>
+        microXTag.scriptsReady();
+
+	  </script>
+	<style>
+	  <% include ../static/hud-components-micro.css %>
+	</style>
+	<% } %>
+    </body>
+</html>

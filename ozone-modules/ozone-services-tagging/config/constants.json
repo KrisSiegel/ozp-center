@@ -1,0 +1,13 @@
+{
+	"TaggingService": "Tags",
+	"TaggingTopicService": "TagTopics",
+	"database" : {
+		"store": {
+			"tags": "tags"
+		},
+		"collection": {
+			"tag": "tag",
+            "topic": "tagTopic"
+		}
+	}
+}

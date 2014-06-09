@@ -1,0 +1,22 @@
+.collection-icon-container {
+    border: solid white 2px;
+    height: 100px;
+    width: 90%;
+}
+
+img.folder-icon-size1 {
+    width: 60% !important;
+}
+
+img.folder-icon-size2 {
+    width: 45% !important;
+}
+
+img.folder-icon-size3 {
+    width: 30% !important;
+}
+
+img.folder-icon-size4 {
+    width: 45px !important;
+}
+

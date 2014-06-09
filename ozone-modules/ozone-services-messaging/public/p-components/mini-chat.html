@@ -1,0 +1,114 @@
+<polymer-element name="mini-irc" attributes="selectedTarget newMessage clientID">
+  <template>
+    Set client name:
+    <input value="{{ newClientID }}">
+    <button on-click="updateClientID">Set</button>
+    <b>{{ clientID }}</b>
+    <div>
+      Subscribe to a channel:
+      <div>
+        <select value="newSubscription" id="newSubscription">
+          <option></option>
+          <template repeat="{{ channels }}">
+            <option value="{{ shortname }}">{{ longname }}</option>
+          </template>
+        </select>
+        <button on-click="addSubscription">Subscribe</button>
+      </div>
+    </div>
+    <ul>
+      <template repeat="{{ subscriptionList }}">
+        <li>{{ name }}</li>
+      </template>
+    </ul>
+    <div class="message-window">
+      <ul>
+        <template repeat="{{ messages }}">
+          <li>{{ content }}</li>
+        </template>
+      </ul>
+    </div>
+    <button class="addChannel" on-click="addChannel">Add Channel</button>
+    <input value="{{ newChannel }}">
+    <div>
+      Select message target (user or channel):
+      <select id="selectedTarget" name="selectedTarget">
+        <!-- perhaps we make a custom element out of this? -->
+        <option></option>
+        <template repeat="{{ targets }}">
+          <option value="{{ shortname }}">{{ longname }}</option>
+        </template>
+      </select>
+      <textarea id="newMessage" name="textarea" rows="10" cols="35">{{ newMessage }}</textarea>
+      <button class="chatPost" on-click="sendPost">Post</button>
+    </div>
+  </template>
+  <script>
+    Polymer('mini-irc', {
+        newChannel: "",
+        newMessage: "The medium is the massage",
+        messages: [
+            { content: "All your base are belong to us" },
+            { content: "You are on the way to destruction" },
+            { content: "You have no chance to survive make your time" },
+            { content: "HA HA HA HA" }
+        ],
+        updateClientID: function (event) {
+            this.clientID = this.newClientID;
+            this.messenger.changeID(this.clientID);
+        },
+
+        sendPost: function (event) {
+            // The two-way data-binding isn't working now.
+            console.log("sending the following message to " + this.selectedTarget);
+            console.log(this.newMessage + " (this is probably broken)");
+            // This works, though
+            console.log(this.$.newMessage.value);
+            this.messenger.sendMessage(this.$.selectedTarget.value, this.$.newMessage.value);
+        },
+        addChannel: function (event) {
+            console.log("adding Channel " + this.newChannel);
+            if (this.newChannel) {
+                this.messenger.createChannel(this.newChannel,
+                                             {
+                                                 channelType: "open",
+                                                 dataType: "chat"
+                                             });
+            };
+        },
+        addSubscription: function (event) {
+            var newSubscription = this.$.newSubscription.value;
+            if (!newSubscription) {
+                console.log("no channel selected");
+                return;
+            };
+            console.log("selected channel is " + newSubscription);
+
+            this.subscriptionSet[newSubscription] = 1;
+            var newList = [];
+            for (key in this.subscriptionSet) {
+                newList.push({name: key});
+            };
+            this.subscriptionList = newList;
+            this.messenger.subscribe(newSubscription);
+        },
+        ready: function () {
+            this.subscriptionList = [];
+            this.subscriptionSet = {};
+            this.targets = [
+                { shortname: "test",
+                  longname: "testing" }
+            ];
+            this.messages = [];
+            this.channels = [
+                {
+                    shortname: "english",
+                    longname: "English Channel"
+                }
+            ];
+            this.messages = [];
+            this.messenger = new ChatClient(this);
+        }
+        });
+  </script>
+</polymer-element>

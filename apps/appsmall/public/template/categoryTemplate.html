@@ -1,0 +1,6 @@
+<a tabindex="-1">
+    <span ng-show="match.model.category">
+        <i class="icon-files"></i><span bind-html-unsafe="match.model.category | typeaheadHighlight:query"></span>
+    </span>
+    <span bind-html-unsafe="(match && match.model && match.model.app) | typeaheadHighlight:query"></span>
+</a>

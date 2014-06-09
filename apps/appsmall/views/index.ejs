@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" ng-app="amlApp" ng-cloak>
+    <head>
+        <meta charset="UTF-8">
+        <title>AppsMall</title>
+	<% include partials/head-includes %>
+
+        <script type="text/javascript">
+            function openAppBuilder() {
+                Ozone.Service("Apps").launchAppByShortname("AppBuilder");
+            }
+        </script>
+    </head>
+    <body ng-cloak>
+        <div class="app" ng-controller="AppController" ng-init="initializeController()">
+            <help-overlay ng-show="showHelp"></help-overlay>
+            <div id="left-spacer" class="spacer"></div>
+            <div id="aml" class="interface-home interface" ng-cloak>
+	      <%- partial ('partials/top-bar') %>
+              <div class="appsmall-empty-container" ng-show="isEmpty()">
+                <p class="appsmall-empty-placeholder">There are no apps currently available in AppsMall</p>
+                <img src="img/placeholder-text-sad-face.png">
+              </div>
+                <!--
+                FACETS' BAR
+                -->
+                <div id="facets" class="facets">
+                    <div class="resizing" panel-class="facets" ng-hide="isEmptyOrLoading()">
+                        <div class="margins" ng-controller="TagController" ng-init="initializeController()"
+                             style="overflow-y:hidden;">
+                            <ul class="unstyled groupings" ng-repeat="systemTag in systemTags track by $id(systemTag)">
+                                <li>
+                                    <a href="#" ng-click="toggleMenuSelection(systemTag)"
+                                       ng-class="{selected: systemTag.selected}" ng-attr-title="{{systemTag.tooltip}}"><span class="facets-indicator"></span>{{systemTag.name}}</a>
+                                </li>
+                            </ul>
+                            <ul class="unstyled groupings">
+                                <li>
+                                    <a href="#" slide-toggle="#collection-listing">Collections</a>
+                                </li>
+                            </ul>
+                            <div class="slideable" id="collection-listing" easing="ease-in-out" duration="300ms">
+                                <!-- <hr /> -->
+                                <ul class="unstyled groupings" ng-repeat="collectionTag in collectionTags track by $id(collectionTag)" >
+                                    <li>
+                                        <a href="#" ng-click="toggleMenuSelection(collectionTag)"
+                                           ng-class="{selected: collectionTag.selected}" ng-attr-title="{{collectionTag.tooltip}}">{{collectionTag.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- <hr /> -->
+                            <!--<h5 style="text-transform:uppercase; margin-left:30px;" ng-show="hasRoleTags()">Categories</h5>-->
+                            <div class="facets-categories-container">
+	                            <ul class="unstyled categories" ng-repeat="categoryTag in categoryTags track by $id(categoryTag)">
+	                                <li>
+	                                    <a href="#" ng-click="toggleMenuSelection(categoryTag)"
+	                                       ng-class="{selected: categoryTag.selected}" ng-attr-title="{{categoryTag.tooltip}}"><span class="facets-indicator"></span>{{categoryTag.name}}</a>
+	                                </li>
+	                            </ul>
+                            </div>
+                            <!-- <hr /> -->
+                            <ul class="unstyled other-nav">
+                                <li ng-show="AllowComponents"><b>
+                                    <a href="#">Components</a>
+                                </b></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+                APP DISPLAY SECTION
+                -->
+                <div id="application-search" class="applications clearfix">
+                    <div class="listing_container">
+
+                    </div>
+
+                    <div id="store-bar" class="store-bar"></div>
+                    <!--<div class="listing_container" style="display:block" ng-show="isEmpty()">
+                        <h1>No apps available.</h1>
+                    </div>-->
+
+                    <!--
+                    CATEGORY SELECTION
+                    -->
+                    <div class="listing_container" ng-show="isTagFilterMode()">
+                        <div class="bootstrap-tagsinput searchbar-tags" ng-repeat="selectedTag in selectedTags | hideOrg:selectedOrganization">
+                            <span class="tag badge badge-info">{{selectedTag.name}}
+                                <span class="icon-remove-tag icon-cross" data-role="remove" ng-click="executeTagRemovalSearch(selectedTag)"></span>
+                            </span>
+                        </div>
+                        <div class="listing_container composite-app" ng-class="{tagsvisible: hasSelectedTags()}"  style="min-width:960px;">
+                            <div ng-repeat="appRow in appRows track by $index">
+                                <span class="app-container" ng-repeat="app in appRow track by $index">
+                                    <amlapp no-featured="true"></amlapp>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="listing_container" ng-show="isSearchPanelVisible()">
+                        <div class="search-filter-bar" ng-show="isSearchMode()">
+                            <div class="filter-bar-container">
+                                <div class="bootstrap-tagsinput searchbar-tags" ng-repeat="selectedTag in selectedTags | hideOrg:selectedOrganization">
+                                    <span class="tag badge badge-info">{{selectedTag.name}}
+                                        <span class="icon-remove-tag icon-cross" data-role="remove" ng-click="executeTagRemovalSearch(selectedTag)"></span>
+                                    </span>
+                                </div>
+                                <div class="bootstrap-tagsinput searchbar-tags">
+                                    <span class="tag badge badge-info">{{searchText}}
+                                        <span class="icon-remove-tag icon-cross" data-role="remove" ng-click="clearSearch()"></span>
+                                    </span>
+                                </div>
+
+                                <div class="button-container" ng-show="AllowComponents">
+                                    <div class="filter-bar-button" ng-class="{chosen: filteredSearchResults.filter == 'all'}" ng-click="filteredSearchResults.filter = 'all'">
+                                        <span >ALL</span>
+                                    </div>
+                                    <div class="filter-bar-button" ng-class="{chosen: filteredSearchResults.filter == 'apps'}" ng-click="filteredSearchResults.filter = 'apps'">
+                                        <span >APPS</span>
+                                    </div>
+                                    <div class="filter-bar-button" ng-class="{chosen: filteredSearchResults.filter == 'components'}" ng-click="filteredSearchResults.filter = 'components'">
+                                        <span >COMPONENTS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- For searching -->
+                        <div ng-show="isSearchMode()">
+                            <div style="display:inline-block;margin-bottom:12px;" ng-show="(filteredSearchResults.filter == 'all' || filteredSearchResults.filter == 'apps')">
+                                <h2 style="text-transform:uppercase;" ng-show="AllowComponents">APPS</h2>
+                                <span class="app-container" ng-repeat="app in filteredSearchResults.apps | limitTo:getSearchResultLimit() track by $index">
+                                    <amlapp></amlapp>
+                                </span>
+                            </div>
+                            <br />
+                            <div style="display:inline-block;" ng-show="(filteredSearchResults.filter == 'all' || filteredSearchResults.filter == 'components')">
+                                <h2 style="text-transform:uppercase;">COMPONENTS</h2>
+                                <span class="app-container" ng-repeat="app in filteredSearchResults.components | limitTo:getSearchResultLimit() track by $index">
+                                    <amlapp></amlapp>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- For filtering -->
+                        <div ng-repeat="rowCategory in searchResults track by $index" style="display:inline-block; margin-bottom: 12px; margin-top: 0; max-width:985px;" ng-show="isHome()" class="app-row" ng-class="{featuredAppWrapper: rowCategory.featuredBanner, recommendedAppWrapper: !rowCategory.carousel}">
+                            <h2 style="text-transform:uppercase;">{{rowCategory.header}}</h2>
+                            <div dynamic-carousel="{{rowCategory.carousel}}" width="980" height="{{rowCategory.bannerHeight}}" is-featured-carousel="{{rowCategory.featuredBanner}}">
+                                <div class="app-container" ng-repeat="app in rowCategory.apps track by $index" style="display:inline-block">
+                                    <amlapp featured-banner="{{rowCategory.featuredBanner}}"></amlapp>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right-spacer" class="spacer"></div>
+        </div>
+    </body>
+    <% include partials/tail-includes %>
+
+</html>

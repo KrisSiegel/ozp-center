@@ -1,0 +1,219 @@
+.stop-scroll {
+    overflow: hidden;
+}
+.mall-background {
+    background:url('../img/help-layover/tour-background.png');
+    height:100%;
+    left: 50%;
+    top:0;
+    margin: 0 auto;
+    position: absolute;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    width:1256px;
+    z-index:110;
+}
+
+.mask {
+    background-color: rgba(3,5,10,.8);
+    height:100%;
+    position: absolute;
+    top:0;
+    width:100%;
+    z-index:200;
+}
+
+.tour-text-container {
+    height:644px;
+    left: 50%;
+    position: absolute;
+    top:0;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    width:1386px;
+    z-index:300;
+}
+
+.tour-text-1 {
+    display:block;
+    height:632px;
+    position: absolute;
+    top:0;
+    left: 65px;
+    margin: 0 auto;
+    width:1248px;
+}
+
+.tour-text-2 {
+    display:block;
+    height:345px;
+    margin-left: 57px;
+    position: absolute;
+    width:844px;
+}
+
+
+.help-menu-bar{
+    position: absolute;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    background-color: #000000;
+    opacity: .8;
+    z-index: 350;
+    text-align: center;
+}
+.button-group{
+    margin: auto;
+
+}
+.button-group button{
+    height: 24px;
+    width: 72px;
+    margin: 8px;
+}
+
+.page-indicator{
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -khtml-border-radius: 100px;
+    width: 10px;
+    height: 10px;
+    background: rgba(255,255,255,.5);
+    float:left;
+    margin: 5px;
+}
+.page-indicator-active{
+    background: rgba(255,255,255,1);
+}
+.page-indicator:hover{
+    background: rgba(255,255,255,1);
+    cursor: pointer;
+}
+.pagination-container{
+    margin: auto;
+    width:100px;
+    text-align: center;
+}
+
+/* Help CSS Override */
+
+/*
+.app {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+*/
+	.interface {
+		min-height: 100%;
+		height: auto !important;
+	}
+
+.mall-background {
+	display: none;
+}
+.mask {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(3,5,10,.85);
+}
+.tour-close {
+	position: absolute;
+	top: 55px;
+	right: 55px;
+	width: 40px;
+	height: 40px;
+	z-index: 999;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	-moz-opacity: .7;
+	-khtml-opacity: .7;
+	opacity: .7;
+	transition: linear .25s all;
+}
+	.tour-close:hover {
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+		filter: alpha(opacity=100);
+		-moz-opacity: 1;
+		-khtml-opacity: 1;
+		opacity: 1;
+		cursor: pointer;
+		transition: linear .25s all;
+	}
+.tour-text-container {
+	height: 100%;
+}
+	.tour-text-container .tour-text-content {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+		transform: translateX(-50%);
+		width: 1260px;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
+.help-menu-bar {
+	width: 100%;
+	height: 130px;
+	background: rgba(0,0,0,.85);
+	padding: 20px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+	.help-menu-bar h1 {
+		width: 100%;
+		color: #fff;
+		font-size: 24px;
+		font-weight: 100;
+		text-align: center;
+		line-height: 26px;
+		padding: 0;
+		margin: 0;
+		display: none;
+	}
+	.help-menu-bar button {
+		height: 40px;
+		padding-left: 20px;
+		padding-right: 20px;
+		margin: 0 10px 15px 10px;
+		background: transparent;
+		border: 1px solid #fff;
+		outline: none;
+		color: #b5b5b5;
+		transition: linear .25s all;
+	}
+		.help-menu-bar button:hover {
+			color: #fff;
+			transition: linear .25s all;
+		}
+		.help-menu-bar button.btn-center {
+			width: 90px;
+			color: #18A9D4;
+			border-color: #18A9D4;
+			transition: linear .25s all;
+		}
+			.help-menu-bar button.btn-center:hover {
+				color: #2ccfff;
+				transition: linear .25s all;
+			}

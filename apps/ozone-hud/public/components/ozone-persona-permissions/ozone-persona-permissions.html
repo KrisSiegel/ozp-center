@@ -1,0 +1,169 @@
+<script type="text/javascript" src="ozone-persona-permissions.js"></script>
+
+<link rel="stylesheet" href="css/ozone-persona-permissions.css">
+
+<link rel="stylesheet" href="css/ozone-persona-permissions-alt.css">
+
+<link rel="stylesheet" href="css/ozone-persona-permissions-custom-components.css">
+<link rel="stylesheet" href="css/ozone-persona-permissions-icons.css">
+<link rel="stylesheet" href="css/ozone-persona-permissions-media-queries.css">
+<link rel="stylesheet" href="css/ozone-persona-permissions-firefox.css">
+
+<!-- Ozone Persona Permissions List/Grid View -->
+<script type="text/template" id="ozone-persona-permissions-tmpl">
+<div id="ozone-persona-permissions" style="display: none;" class="ozone-persona-permissions">
+
+	<div id="ozone-persona-permissions-container" class="ozone-persona-permissions-first-level">
+        <div class="opp-sidebar">
+        	<div class="opp-sidebar-intro">
+            	<h1>User Permissions</h1>
+                <p>Set a user's permissions across Ozone and registered applications.</p>
+            </div>
+            <div class="opp-sidebar-app-list">
+            	<ul id="ozone-persona-permissions-app-list">
+
+                </ul>
+            </div>
+        </div>
+        <div id="ozone-persona-permissions-persona-list" class="opp-content">
+        	<div class="opp-content-container">
+        		<div class="opp-content-container-header">
+                        <div class="opp-content-container-header-top">
+                            <h1>Apps Mall All Users</h1>
+                            <div class="opp-content-container-header-search">
+                                <input type="text" name="search-users" placeholder="Search All Users" />
+                                <a href="#" class="opp-content-container-header-search-icon icon-search"></a>
+                            </div>
+                            <div class="opp-content-container-header-btn">
+                                <span id="oop-switch-list" class="opp-content-container-header-btn-icon icon-menu"></span>
+                            </div>
+                            <div class="opp-content-container-header-btn">
+                                <span id="oop-switch-grid" class="opp-content-container-header-btn-icon icon-grid-alt opp-content-container-header-btn-icon-active"></span>
+                            </div>
+                        </div>
+                        <div class="opp-content-container-header-bottom">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <a href="#">Name</a>
+                                        <span class="opp-content-container-header-icon icon-menu2"></span>
+                                    </th>
+                                    <!--
+                                    <th>
+                                        <a href="#">Username</a>
+                                        <span class="opp-content-container-header-icon icon-menu2"></span>
+                                    </th>
+                                    <th>
+                                        <a href="#">Email</a>
+                                        <span class="opp-content-container-header-icon icon-menu2"></span>
+                                    </th>
+                                    -->
+                                    <th>
+                                        <a href="#">Role</a>
+                                        <span class="opp-content-container-header-icon icon-menu2"></span>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                <div class="opp-content-container-content opp-content-container-content-grid"> <!-- Grid Layout by Default -->
+                	<table id="persona_tile_display">
+                        <!-- Dynamically generated -->
+                    </table>
+                </div>
+            </div>
+        </div>
+		<div id="ozone-persona-permissions-persona" class="opp-content opp-content-profile">
+			<div class="opp-container-profile">
+				<div class="opp-container-profile-sidebar">
+					<h1>User Settings</h1>
+					<p>Integer consequat velit in libero fe rmentum, a convallis ipsum ullam corper et eget ante.</p>
+					<div class="opp-container-profile-sidebar-instructions clearfix">
+						<div class="opp-container-profile-sidebar-instructions-section clearfix">
+							<span class="opp-container-profile-sidebar-instructions-section-icon icon-user"></span>
+							<h1>Edit Basic Info</h1>
+							<p>In congue, nunc eget frin gilla rhoncus, dui nibh im perdiet augue.</p>
+						</div>
+						<div class="opp-container-profile-sidebar-instructions-section clearfix">
+							<span class="opp-container-profile-sidebar-instructions-section-icon icon-flow-tree"></span>
+							<h1>Edit User Role and Permissions</h1>
+							<p>Curabitur in odio varius, cursus lectus vitae, ultricies augue. Nunc pulvinar tortor massa, non scelerisque nisi.</p>
+						</div>
+						<div class="opp-container-profile-sidebar-instructions-section clearfix">
+							<span class="opp-container-profile-sidebar-instructions-section-icon icon-support"></span>
+							<h1>Need Help?</h1>
+							<p>Sed ut viverra elit, quis elementum quam. <a href="#">systems@owf.com</a></p>
+						</div>
+					</div>
+				</div>
+				<div class="opp-container-profile-content">
+					<div id="persona_permissions_backToList" class="opp-container-profile-content-header">
+						<a style="cursor: pointer;"><span class="opp-container-profile-content-header-icon icon-arrow-left"></span> Back to List</a>
+					</div>
+					<div class="opp-container-profile-content-section">
+						<div style='height: 0px;width: 0px; overflow:hidden;'><input type="file" name="persona-permission-selected-image-input" id="persona-permission-selected-image-input" /></div>
+						<div class="opp-container-profile-content-section-sidebar">
+							<h1>Basic Information</h1>
+							<div id="persona-permission-selected-image-control" class="opp-container-profile-content-section-sidebar-image">
+								<img id="persona-permission-selected-image" src="components/ozone-persona-permissions/images/default-profile.jpg" />
+								<div class="opp-container-profile-content-section-sidebar-upload">
+									<span class="opp-container-profile-content-section-sidebar-upload-icon icon-camera"></span>
+								</div>
+							</div>
+						</div>
+						<div class="opp-container-profile-content-section-content clearfix">
+							<div class="opp-container-profile-content-section-content-data opp-container-profile-content-section-content-data-left">
+								<label>Full Name</label>
+								<h1 id="persona-permission-selected-full-name"></h1>
+							</div>
+							<div class="opp-container-profile-content-section-content-data opp-container-profile-content-section-content-data-right">
+								<label>Role</label>
+								<h1 id="persona-permission-selected-role"></h1>
+							</div>
+							<!--
+							<div class="opp-container-profile-content-section-content-data opp-container-profile-content-section-content-data-left">
+								<label>Email</label>
+								<h1>test@test.org</h1>
+							</div>
+							-->
+							<div class="opp-container-profile-content-section-content-data opp-container-profile-content-section-content-data-leftx">
+								<label>Username</label>
+								<h1 id="persona-permission-selected-username"></h1>
+							</div>
+						</div>
+					</div>
+					<div class="opp-container-profile-content-section">
+						<div class="opp-container-profile-content-section-sidebar">
+							<h1>User Role</h1>
+						</div>
+						<div class="opp-container-profile-content-section-content opp-container-profile-content-section-content-data-role clearfix">
+							<div class="opp-container-profile-content-section-content-data opp-container-profile-content-section-content-data-left">
+								<label>Role</label>
+								<div class="opp-container-profile-content-section-content-data-dd">
+									<select id="ozone-persona-permissions-role-dropdown">
+
+									</select>
+									<span class="opp-container-profile-content-section-content-data-dd-icon icon-arrow-down"></span>
+								</div>
+								<div class="opp-container-profile-content-section-content-data-descrption clearfix">
+									<ul id="ozone-personas-permissions-persona-role-desc" class="clearfix">
+
+									</ul>
+								</div>
+							</div>
+							<div id="ozone-persona-permissions-persona-permission-list" class="opp-container-profile-content-section-content-data opp-container-profile-content-section-content-data-right">
+
+							</div>
+							<div class="opp-container-profile-content-section-content-data-controls">
+								<a href="#">Cancel</a>
+								<button id="ozone-personas-permission-permission-save" type="submit" name="submit" class="submit-btn">Save Changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</script>

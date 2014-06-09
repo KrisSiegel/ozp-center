@@ -1,0 +1,42 @@
+	<!--*-HTML-*-->
+        <div id="facets" class="facets">
+            <div class="margins" ng-show="hasPermission()">
+                <div class="app-facets-search-input clearfix">
+                    <form ng-submit="searchTopic()" class="clearfix">
+                        <div class="app-facet-search-input-container clearfix">
+                        	<input type="text" name="searchedTopic" ng-model="searchedTopic" placeholder="Search Tags" typeahead="topic for topic in getTopicNames() | filter:$viewValue | limitTo:8" typeahead-on-select="searchTopic()" />
+                        </div>
+                        <button type="submit"><i class="icon-search"></i></button>
+                    </form>
+                </div>
+                <ul class="app-facets-top unstyled groupings">
+                    <li>
+                        <a href="#" ng-click="displayAllApps()" ng-class="{selected: showAllApps}">
+                            <strong>All Apps</strong>
+                        </a>
+
+                    </li>
+                </ul>
+                <div ng-repeat="(title, topicList) in groupedTopics track by $index" class="app-drop-container"
+                        ng-mouseover="hoverIn(title)" ng-mouseout="hoverOut()">
+
+
+                    <div class="app-facets-item"  slide-toggle="#tag-listing-{{title}}" expanded="expandGroup(title)" ng-click="setActiveGroup(title)">
+                        <h2>{{title}}</h2>
+                    </div>
+                    <div id="tag-listing-{{title}}" ng-class="{'drag-hover': draggableHoverState(title)}" class="app-facets-item-draw slideable" easing="ease-in-out" duration="300ms">
+                         <ul class="unstyled admin-facets clearfix" ng-repeat="topic in topicList.topics track by $index"
+                        drop-data="topic._id"  on-drop-success="dropfunction" app-droppable>
+                        <li class="clearfix">
+                            <div class="app-facets-item-label">
+	                            <a href="#" ng-click="setSelected(topic._id)" ng-class="{selected: isSelected(topic._id)}">{{topic.tag || 'Untitled Tag'}}</a>
+							</div>
+                            <div class="app-drag-status-icon" ng-show="dropStatus.topic == topic._id">
+                                <i class="{{dropStatus.status}}" ></i>
+                            </div>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>

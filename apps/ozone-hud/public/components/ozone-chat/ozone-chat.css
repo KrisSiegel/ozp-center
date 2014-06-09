@@ -1,0 +1,210 @@
+div.ozone-chat {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 6000;
+	display: none;
+}
+
+.placeholder-text-container i {
+    font-size: 4em;
+    color: #8c919f;
+    margin-bottom: 20px;
+}
+
+.placeholder-text {
+    margin-top: 30px;   
+}
+
+#ozone-contact-list {
+    margin-top: 140px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.contact-info {
+    float: left;
+    width: 100px;
+    margin: 15px;
+    color: white;
+}
+
+.contact-info img {
+    width: 80px;
+}
+
+.chat-container {
+    position: absolute;
+    bottom: 46px;
+    width: 250px;
+    height: auto;
+    font-family: 'Quicksand-Book';
+    z-index: 9999;
+}
+.chat-discussion {
+    width: 100%;
+    height: 432px;
+    position: absolute;
+    bottom: 0;
+}
+.chat-inactive {
+    height: 32px;
+    overflow: hidden;
+}
+.chat-inactive .chat-discourse textarea {
+    /*display: none;*/
+}
+.chat-tab {
+    width: 100%;
+    height: 32px;
+    padding: 10px;
+    background: #25282e;
+    border-top: 1px solid #303030;
+    border-left: 1px solid #303030;
+    border-right: 1px solid #303030;
+    color: #fff;
+    cursor: pointer;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+.chat-tab .indicator {
+    width: 10px;
+    height: 10px;
+    background: #989dab;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -khtml-border-radius: 100px;
+    float: left;
+}
+.chat-tab .indicator-active {
+    background: #18b9e8;
+}
+.chat-tab .label {
+    font-size: 12px;
+    float: left;
+    padding: 1px 10px;
+}
+.chat-tab .icon {
+    float: right;
+    font-size: 10px;
+    padding-left: 10px;
+    color: #515458;
+    transition: all .5s;
+}
+.chat-tab .icon:hover {
+    color: #fff;
+    transition: all .5s;
+}
+
+.chat-discourse {
+    width: 100%;
+    height: 400px;
+    background: #f1f1f1;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    padding: 5px 5px 70px 5px;
+}
+.chat-discourse .input-container {
+    width: 100%;
+    padding: 5px;
+    /*
+      background: #fff;
+      border-top: 1px solid #e5e5e5;
+      */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.chat-discourse textarea {
+    width: 100%;
+    height: 60px;
+    font-family: 'Quicksand-Book';
+    line-height: 18px;
+    overflow-y: scroll;
+    resize: none;
+    padding: 5px;
+    border: 1px solid #e5e5e5;
+}
+.chat-discourse textarea:focus {
+    border: 1px solid #18b9e8;
+}
+
+.chat-discourse .conversation {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.chat-discourse .conversation a {
+    color: #18b9e8;
+    text-decoration: none;
+}
+.chat-discourse .conversation a:hover {
+    text-decoration: underline;
+}
+
+.conversation-other-side {
+    width: 100%;
+    padding-bottom: 5px;
+    position: relative;
+}
+.conversation-other-side img.profile {
+    width: 25px;
+    border: 1px solid #d5d7d6;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -khtml-border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.conversation-other-side .bubble {
+    display: block;
+    width: auto;
+    margin-left: 30px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -khtml-border-radius: 5px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #2a2a2a;
+}
+
+.conversation-my-side {
+    width: 100%;
+    padding-bottom: 5px;
+    position: relative;
+}
+.conversation-my-side img.profile {
+    width: 25px;
+    border: 1px solid #d5d7d6;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -khtml-border-radius: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.conversation-my-side .bubble {
+    display: block;
+    width: auto;
+    margin-right: 30px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #d5d5d5;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -khtml-border-radius: 5px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #2a2a2a;
+}

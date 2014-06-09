@@ -1,0 +1,24 @@
+{
+    "injectableRecords": [
+        {
+            "level": "System",
+            "uri": "/AppsMall/Category/",
+            "tag": "Category1",
+            "description": "Category1 is great.",
+            "creatorUserId": "System",
+            "created": "2014-01-1T17:54:11Z",
+            "modified": "2014-01-1T17:54:11Z",
+            "visibility": {}
+        },
+        {
+            "level": "System",
+            "uri": "/AppsMall/Category/",
+            "tag": "Category2",
+            "description": "Category2 is the best.",
+            "creatorUserId": "System",
+            "created": "2014-01-1T17:54:13Z",
+            "modified": "2014-01-1T17:54:13Z",
+            "visibility": {}
+        }
+    ]
+}

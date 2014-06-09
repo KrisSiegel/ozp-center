@@ -1,0 +1,18 @@
+<script type="text/javascript" src="ozone-collection.js"></script>
+<link rel="stylesheet" href="ozone-collection.css">
+<script type="text/template" id="collection-tmpl">
+<div class="ozone-collection-layover">
+</div>
+<div class="ozone-collection-content">
+    <div class="content-header">
+      <!-- toggle hidden attributes on these to switch between edit/display mode -->
+        <div class="folder-name-wrapper">
+            <!--<img src="../../assets/images/banner-sml-folder-hires.png" height="20px" />-->
+            <input type="text" name="folder-name" value="New Folder">
+            <h1 class="ozone-collection-name" hidden>New Folder</h1>
+        </div>
+       <a id="ozone-folder-close" class="close-menu icon-cross-3"></a>
+    </div>
+    <ozone-apps-grid x-micro-tags="true" class="collection-modal"></ozone-apps-grid>
+</div>
+</script>

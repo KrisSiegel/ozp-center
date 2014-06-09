@@ -1,0 +1,30 @@
+{
+    "count": 4,
+    "total": 4,
+    "records": [
+        {
+            "category": "Eins",
+            "url": "/aml/test/category/1",
+            "access": "NONE",
+            "_id": "1"
+        },
+        {
+            "category": "Zwei",
+            "url": "/aml/test/category/2",
+            "access": "FOO",
+            "_id": "2"
+        },
+        {
+            "category": "Drei",
+            "url": "/aml/test/category/3",
+            "access": "NONE",
+            "_id": "3"
+        },
+        {
+            "category": "Vier",
+            "url": "/aml/test/category/4",
+            "access": "BAR",
+            "_id": "4"
+        }
+    ]
+}

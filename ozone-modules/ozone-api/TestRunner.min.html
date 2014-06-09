@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lane="en">
+<head>
+  <title>Ozone Client API - Mocha Spec Runner</title>
+  <link rel="stylesheet" href="lib/mocha/mocha.css" />
+  <script type="text/javascript" src="lib/mocha/mocha.js"></script>
+  <script type="text/javascript" src="lib/expect/expect.js"></script>
+  <script type="text/javascript">
+    mocha.setup('bdd');
+  </script>
+
+  <script type="text/javascript" src="client-api.min.js"></script>
+  <script type="text/javascript" src="client-api.spec.js"></script>
+
+  <script type="text/javascript">
+    onload = function() {
+      var runner = mocha.run();
+    };
+  </script>
+
+</head>
+<body>
+  <div id="mocha"></div>
+</body>
+</html>

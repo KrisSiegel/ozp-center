@@ -1,0 +1,28 @@
+
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+node_modules
+npm-debug.log
+
+*-new.*
+*.DS_Store
+*.swp
+*.zip
+*~
+.\#*
+/util/certificateGeneration
+/util/certificateGeneration
+\#*\#
+.project
+.project*~
+/.settings
+/lib
+/public/lib
+/nbproject
+/util/certificateGeneration
+auto-save-list
+bower_components/
+hud-components.*
+ozone-modules/ozone-api/client*
+ozone-modules/ozone-api/server*
+README.pdf

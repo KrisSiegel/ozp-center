@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lane="en">
+<head>
+  <title>Ozone Client API - Jasmine Spec Runner</title>
+  <link rel="stylesheet" href="lib/mocha/mocha.css" />
+  <script type="text/javascript" src="lib/mocha/mocha.js"></script>
+  <link rel="stylesheet" type="text/css" href="lib/jasmine/lib/jasmine-core/jasmine.css">
+  <script type="text/javascript" src="lib/jasmine/lib/jasmine-core/jasmine.js"></script>
+  <script type="text/javascript" src="lib/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+  <script type="text/javascript" src="lib/jasmine.async/lib/jasmine.async.js"></script>
+  <script type="text/javascript" src="lib/expect/expect.js"></script>
+  <script type="text/javascript">
+    //mocha.setup('bdd');
+  </script>
+
+  <script type="text/javascript" src="client-api.js"></script>
+  <script type="text/javascript" src="client-api.spec.js"></script>
+
+  <script type="text/javascript">
+  	
+	// using Jasmine instead of mocha
+  	loadJasmine();
+  	//loadMocha();
+  	
+  	function loadJasmine() {
+  		var jasmineEnv = jasmine.getEnv();
+  		jasmineEnv.updateInterval = 1000;
+
+  		var htmlReporter = new jasmine.HtmlReporter();
+
+  		jasmineEnv.addReporter(htmlReporter);
+
+  		jasmineEnv.specFilter = function(spec) {
+  	  		return htmlReporter.specFilter(spec);
+  	  	};
+
+  		var currentWindowOnload = window.onload;
+
+  		window.onload = function() {
+  		    if (currentWindowOnload) {
+  		      currentWindowOnload();
+  		    }
+  		    execJasmine();
+  		};
+
+  		function execJasmine() {
+  		    jasmineEnv.execute();
+  		}	
+  	};
+  	
+  	function loadMocha() {
+  		onload = function() {
+        	var runner = mocha.run();
+      	};
+  	};
+    
+  </script>
+
+</head>
+<body>
+  <div id="mocha"></div>
+  <div id="HTMLReporter"></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<script type="text/javascript" src="ozone-apps.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="../../assets/css/toggle-switch.css" />
+<link rel="stylesheet" href="ozone-apps.css">
+<script type="text/template" id="ozone-apps-tmpl">
+<div id="ozone-apps" class="ozone-apps" style="display: none;">
+	<div id="ozone-apps-no-apps" class="ozone-apps-no-apps" style="display: none;">
+		<div class="content-header">
+            <p>App Launcher</p>
+        </div>
+        <div class="placeholder-text-container">
+            <i class="icon-layout"></i>
+            <p class="placeholder-text">You Currently have no<br />Apps to display</p>
+            <p class="placeholder-action-text">Visit the AppsMall to discover<br />Apps you can start using</p>
+            <div class="button-bar">
+                <a class="link-to-appsmall"><img src="assets/images/hud-icon-appsmall.png"></a>
+            </div>
+        </div>
+	</div>
+	<div id="ozone-apps-launcher" class="ozone-apps-launcher" style="display: none;">
+		<div id="app-launcher" class="content">
+            	<div class="content-container">
+                    <div class="content-header">
+                        <p>Application Launcher</p>
+                        <a id="ozone-apps-close" class="close-menu icon-cross-3"></a>
+
+                        <div id="switch-wrapper">
+                            <form class="form-horizontal">
+                                <div class="controls well switch">
+                                    <input id="fav" name="view" type="radio" checked>
+                                    <label id="fav-label" for="fav">Favorite Apps</label>
+
+                                    <input id="recent" name="view" type="radio">
+                                    <label id="recent-label" for="recent">Recently Opened</label>
+
+                                    <span class="slide-button btn"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Paging Controls Left and Right -->
+                    <div class="paging-controls">
+                        <a id="app-launcher-page-left" class="side-toggle left-arrow icon-arrow-left-2 paging" href="#"></a>
+                        <a id="app-launcher-page-right" class="side-toggle right-arrow icon-arrow-right-2 paging" href="#"></a>
+                    </div>
+
+                    <div id="content-app-launcher">
+
+                        <ozone-apps-grid x-micro-tags="true" id="ozone-apps-main-grid"></ozone-apps-grid>
+
+                        <!-- Paging Controls Toggle -->
+                        <div class="page-toggle">
+			  <!--
+                        	<a class="active" href="#"></a>
+                            <a class="" href="#"></a>
+			    -->
+                        </div>
+
+                        <div class="button-bar">
+                            <a class="link-to-appsmall"><img src="assets/images/hud-icon-appsmall.png"></a>
+                            <!--<a id="ozone-apps-appbuilder" class="link-to-appbuilder"><img src="assets/images/hud-icon-appbuilder.png"></a>-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+	</div>
+</div>
+</script>

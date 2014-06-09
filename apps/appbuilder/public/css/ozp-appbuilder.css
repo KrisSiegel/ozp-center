@@ -1,0 +1,267 @@
+/************************
+Custom Fonts
+************************/
+
+@font-face {
+    font-family: 'museo_sans';
+    src: url('../fonts/museosans-100-webfont.eot');
+    src: url('../fonts/museosans-100-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/museosans-100-webfont.woff') format('woff'),
+         url('../fonts/museosans-100-webfont.ttf') format('truetype'),
+         url('../fonts/museosans-100-webfont.svg#museo_sans100') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'museo_sans';
+    src: url('../fonts/museosans-300-webfont.eot');
+    src: url('../fonts/museosans-300-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/museosans-300-webfont.woff') format('woff'),
+         url('../fonts/museosans-300-webfont.ttf') format('truetype'),
+         url('../fonts/museosans-300-webfont.svg#museo_sans300') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'museo_sans';
+    src: url('../fonts/museosans-500-webfont.eot');
+    src: url('../fonts/museosans-500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/museosans-500-webfont.woff') format('woff'),
+         url('../fonts/museosans-500-webfont.ttf') format('truetype'),
+         url('../fonts/museosans-500-webfont.svg#museo_sans500') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+html, body, input[type=text], button, select, textarea  {
+	background: #EDEDED;
+	height: 100%;
+	font-size: 13px;
+	font-family: 'museo_sans', 'Ubuntu' !important;
+}
+
+
+#ozp-builder-layout {
+    display: block;
+    float: left;
+    background-color: #fff;
+    position: absolute;
+}
+
+#builder-guide {
+    padding: 18px;
+}
+
+iframe {
+    width: 1000px;
+    height: 700px;
+}
+
+.layout-sel-modal li {
+    list-style: none;
+    margin: 0 25px 0 0;
+    padding: 6px;
+    float: left;
+    max-width: 150px;
+}
+
+.selected-layout {
+    background-color: #ddeebb;
+}
+
+.ozp-component-icon {
+    font-size: 10px;
+    font-weight: bold;
+    display: block;
+}
+
+#ozp-builder-panel {
+    width: 250px;
+    float: left;
+    border: solid black 1px;
+    background-color: #F2F2F2;
+}
+
+#ozp-builder-panel .tab-content {
+    padding: 10px;
+}
+
+.c-list-item {
+    float: left;
+    width: 100px;
+    margin: 4px;
+}
+
+.c-list-item img {
+    align: center;
+}
+
+.tab-content h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.layout-header {
+    width: 100%;
+    background-color: red;
+}
+
+.draggable-bars {
+	
+}
+
+.draggable-bars li {
+	list-style: none;
+	margin: 0 25px 0 0;
+	padding: 6px;
+	float: left;
+	text-align: center;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 13px;
+	width: 60px;
+	height: 90px;
+}
+
+.draggable-bars li:hover {
+	background: #E0E0E0;
+	cursor: pointer;
+}
+
+.ozp-layout-divider-h span {
+	display:block;
+	height: 3px;
+	width: 30px;
+	background: #808080;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 13px;
+	margin-top: 10px;
+}
+
+.ozp-layout-divider-v span {
+	display:block;
+	height: 25px;
+	width: 3px;
+	background: #808080;
+	margin: auto;
+}
+
+.appbuilder-h-partition, .appbuilder-v-partition {
+    x-border: solid black 1px;
+    /*margin: 5px;*/
+}
+
+.appbuilder-v-partition {
+    float: left;
+}
+
+.appbuilder-h-divider, .appbuilder-v-divider {
+    /*border: solid black 1px;*/
+    background-color: #CCCCCC;
+}
+
+.appbuilder-h-divider {
+    height: 2px;
+}
+
+.appbuilder-v-divider {
+    width: 2px;
+    float: left;
+}
+
+.appbuilder-h-divider-handle, 
+.appbuilder-v-divider-handle {
+    margin: auto;
+    background-color: #B2B2B2;
+    border-radius: 2px;
+}
+
+.appbuilder-h-divider-handle:hover, 
+.appbuilder-v-divider-handle:hover {
+    cursor: pointer;
+	background: #33ADB8;
+}
+
+.appbuilder-h-divider-handle {
+    height: 6px;
+    width: 60px;
+	position: relative;
+	vertical-align: middle;
+}
+
+.appbuilder-v-divider-handle {
+    width: 6px;
+    height: 60px;
+    /*
+      position: relative;
+      top: 41%;
+      */
+}
+
+[horizontalpartition] {
+    position: absolute;
+    width: 100%;
+}
+
+[verticalpartition] {
+    position: absolute;
+}
+
+.appbuilder-component-control {
+    padding: 10px;
+	background: #F2F2F2;
+}
+
+.appbuilder-component-control ul {
+	
+}
+
+.appbuilder-component-control ul li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.appbuilder-component-control form {
+
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.appbuilder-component-settings {
+    background-color: #444488;
+    color: white;
+    float: left;
+}
+
+.appbuilder-component-delete {
+    background-color: #ff3311;
+    color: white;
+    float: right;
+}
+
+[component-placement] img {
+	max-width: 100%;
+	max-height: 85%;
+}
+
+app-builder-header div {
+	padding: 8px;
+}
+
+
+[tabset-reorderable] .ui-icon-close {
+    float: left;
+    margin: 0.4em 0.2em 0 0;
+    cursor: pointer;
+}
+
+img.placeholder-icon {
+    max-height: 100%;
+}

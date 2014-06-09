@@ -1,0 +1,11 @@
+{
+	"serviceName": "TagTopic",
+	"database" : {
+		"store": {
+			"tags": "tags"
+		},
+		"collection": {
+			"tagTopic": "tagTopic"
+		}
+	}
+}

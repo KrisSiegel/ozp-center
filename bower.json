@@ -1,0 +1,21 @@
+{
+    "name": "Ozone HUD",
+    "private": true,
+    "dependencies": {
+        "jquery": "1.9",
+        "jquery-ui": "1.10.x",
+        "msDropdown": "https://github.com/marghoobsuleman/ms-Dropdown.git",
+        "angular-bootstrap": "0.10.0",
+        "angular-resource": "1.2.x",
+        "angular-route": "1.2.x",
+        "bootstrap-2": "bootstrap-css#2.3.x",
+        "angular-chosen-localytics": "1.0.x",
+        "chosen": "0.9.x",
+        "lodash": "2.2.x",
+        "moment": "2.4.0",
+        "showdown": "0.3.1"
+    },
+    "resolutions": {
+        "chosen": "0.9.x"
+    }
+}

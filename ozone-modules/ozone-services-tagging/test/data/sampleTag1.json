@@ -1,0 +1,9 @@
+{
+	"level": "System",
+	"topic": "AppsMall",
+	"uri": "/AppsMall/Apps/SampleApp1",
+	"tag": "SampleTag1",
+	"description": "",
+	"creatorUserId": "TestUser1",
+	"visibility": {}
+}

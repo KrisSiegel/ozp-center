@@ -1,0 +1,161 @@
+<div class="modal-header">
+    <div class="modal-header-info" class="clearfix">
+        <img src="{{currentApp.images.iconUrl}}" />
+        <h1 class="detailed-name">{{currentApp.name}}</h1>
+
+        <div class="traits-row">
+            <star-rating num-stars="{{currentApp.rating}}" ng-model="currentApp.rating"></star-rating>
+            <span class="vert-bar"></span>
+            <span style="padding:1px 4px;margin:2px 5px 5px 0;" ng-repeat="categoryName in currentApp.categories">
+            <a>{{categoryName}}</a>
+            </span>
+            <span class="vert-bar"></span>
+            &nbsp; <span ng-show="currentApp.launchedCount">{{currentApp.launchedCount}} times launched</span><span ng-hide="currentApp.launchedCount">Never launched</span>
+            <span class="vert-bar"></span>
+            <span class="organization-badge">{{currentApp.orgTag}}</span>
+        </div>
+    </div>
+    <div class="modal-header-console">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
+            <img src="{{getImage('icon-modal-close.png')}}" />
+        </button>
+        <button class="btn btn-primary bookmark" ng-click="setBookmark(currentApp)" ng-class="{'bookmark\-selected': isBookmarked(currentApp)}"  ng-hide="isPreviewer">
+            <i class="icon-bookmark"></i>
+        </button>
+        <button class="btn btn-primary add" ng-click="openApp(currentApp)" ng-hide="isPreviewer" style="border-right: none;">
+            Launch App
+        </button>
+    </div>
+    <!--
+    <app-badges dynbadges="{{currentApp.badges}}"></app-badges>
+    -->
+    </div>
+</div>
+<div class="modal-body">
+    <ul class="nav nav-tabs detailed-tabs unstyled" data-tabs="tabs">
+        <li class="detailed-tab overview-tab active"><a class="overview-tablink" data-toggle="tab" data-target="#overview{{$index}}"> Overview </a></li>
+        <li class="detailed-tab"><a class="details-tablink" data-toggle="tab" data-target="#details{{$index}}"> Details </a></li>
+        <li class="detailed-tab"><a class="reviews-tablink" data-toggle="tab" data-target="#reviews{{$index}}"> Reviews </a></li>
+    </ul>
+</div>
+<div class="tab-content">
+    <div class="tab-pane overview-content active clearfix" id="overview{{$index}}">
+        <div class="overview-block overview-left-bar modal-tab-content-left" style="display:inline-block;">
+            <div dynamic-carousel="true" num-items="1" is-auto="true" on-image-click="openChildImageModal" width=480 height=380 timeout=200 carousel-paginator-id="paginator">
+                <img ng-repeat="screenshotUrl in currentApp.images.screenshotUrls" src="{{screenshotUrl}}" class="image screenshot-img" /> <!-- style="max-width:480px; max-height:360px;" -->
+            </div>
+            <div id="paginator" class="carousel-pagination"></div>
+        </div>
+        <!--
+        -->
+        <div class="overview-right-bar modal-tab-content-right">
+            <h1>Overview</h1>
+            <div class="description" data-ng-bind-html="fullDescriptionHtml"></div>
+            <div class="tags">
+                <h1>Tags</h1>
+                <div class="tags-wrapper">
+                    <span class="tag-container" ng-repeat="tagName in tagsForApp">
+                        <span class="icon-tag"></span>{{tagName}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane details-content clearfix" id="details{{$index}}">
+        <div class="details-block details-left-bar modal-tab-content-left">
+            <h1 class="details-heading">Description</h1>
+            <div class="description" data-ng-bind-html="fullDescriptionHtml"></div>
+            <div ng-show="{{currentApp.whatsNew && true}}">
+                <h1 class="details-heading">What's New</h1>
+                <p>{{currentApp.whatsNew}}</p>
+            </div>
+            <div ng-show="{{currentApp.dependencies && true}}">
+                <h1 class="details-heading">Dependencies</h1>
+                <p class="description">{{currentApp.dependencies}}</p>
+            </div>
+        </div>
+        <div class="details-right-bar modal-tab-content-right">
+            <h1>Resources</h1>
+            <div class="resource-container">
+                <div class="support" ng-show="{{currentApp.supportWebsite && true}}"> <a href="{{currentApp.supportWebsite}}" target="new"><!-- <i class="icon-book"></i> -->Support</a></div>
+                <div class="feedback" ng-show="{{currentApp.feedbackContact && true}}"> <a href="{{currentApp.feedbackContact}}"><!-- <i class="icon-book"></i> -->Feedback</a></div>
+                <div class="devteam" ng-show="{{currentApp.developmentTeamWebsite && true}}"> <a href="{{currentApp.developmentTeamWebsite}}" target="new"><!-- <i class="icon-book"></i> -->Development Team</a></div>
+            </div>
+            <hr class="horiz-bar">
+            <div class="details-container version">
+                <label>Version:</label>
+                <p>{{currentApp.version}}</p>
+            </div>
+            <div class="details-container create">
+                <label>Created On:</label>
+                <p>{{currentApp.createdOn}}</p>
+            </div>
+            <div class="details-container update">
+                <label>Updated On:</label>
+                <p>{{currentApp.softwareUpdatedOn}}</p>
+            </div>
+            <!-- <hr class="horiz-bar"> -->
+        </div>
+    </div>
+    <div class="tab-pane reviews-content clearfix" id="reviews{{$index}}">
+        <div class="rating-left-bar modal-tab-content-left"> <!-- reviews-right  -->
+            <h1 class="user-review-heading">User Reviews
+                <span style="font-weight:bold;" ng-show="reviewsAreFiltered()">({{starRatingFilter}} star only.
+                    <a style="cursor:pointer;"ng-click="filterReviewsByRating()">
+                        Remove Filter
+                    </a>)
+                </span>
+            </h1>
+            <div class="no-user-reviews" ng-hide="hasUserReviews">
+                <span class="placeholder-text">
+                    <h2>There are no user reviews for this app</h2>
+                </span>
+            </div>
+            <div class="user-reviews">
+                <div ng-repeat="userReview in visibleUserReviews" class="single-review user-review">
+                    <div class="review">
+                        <img src="img/modal-default-profile.jpg" alt={{userReview.user}} class="image user-icon user-review-image">
+                        <div class="user-review-content">
+                            <div class="user-review-info">
+                                <div class="user-name">{{userReview.user}}</div>
+                                <div class="user-rate-date">{{userReview.dateModified}}</div>
+                                <star-rating num-stars="{{userReview.starRating}}" ng-model="userReview.starRating"></star-rating>
+                            </div>
+                            <div class="user-comments">{{userReview.reviewText}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rating-left rating-right-bar modal-tab-content-right" ng-show="isLoggedIn && !isPreviewer">
+            <div ng-show="hasUserReviews" style="margin-bottom:25px;">
+                <h1 class="rating-heading">Average Rating</h1>
+                <div style="text-align:center; margin:10px;">
+                    <div class="avg-rating">{{averageStarRatingText}}</div>
+                    <div class="clearfix"><star-rating num-stars="{{averageRatingAsInt}}" ng-model="averageRatingAsInt"></star-rating></div>
+                    <div class="clearfix" class="num-ratings num-of-ratings" style="padding-top:5px;">({{numRatings}} Review{{(numRatings === 1) ? '' : 's'}})</div>
+                </div>
+                <div ng-repeat="num in [5,4,3,2,1]" class="clearfix">
+                    <a style="float:left;margin-right:10px;font-size:12px;cursor:pointer" ng-click="filterReviewsByRating(num)">{{num}} Star</a>
+                    <span style="width:180px;"><span class="blue-bar" ng-style="{'width':(starRatingMap[num] * 180 / numRatings)}"></span></span>
+                    <span class="num-of-ratings" style="float:right">({{starRatingMap[num]}})</span>
+                </div>
+            </div>
+
+            <h1 class="rating-heading">Rate this Application</h1>
+            <div class="rating-box" ng-show="launchedByUser">
+                <form name="ratingForm">
+                    <div class="not-installed">
+                        <interactive-star-rating ng-model="rating" class="interactive-star-rating"></interactive-star-rating>
+                        <textarea class="review-textbox" ng-model="reviewText"></textarea>
+                        <button class="btn btn-primary" ng-click="submitRating()">Submit Rating</button>
+                    </div>
+                </form>
+            </div>
+            <div class="rating-box" ng-hide="launchedByUser">
+                <span class="primary-action-message rating-box-message">Launch this app to rate it</span>
+                <tt class='error rating-box-message'>{{errorMessage}}</tt>
+            </div>
+        </div>
+    </div>
+</div>

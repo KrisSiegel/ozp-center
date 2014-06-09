@@ -1,0 +1,23 @@
+{
+	"TaggingService": "Tags",
+	"AppService": "App",
+	"database" : {
+		"store": {
+			"apps": "apps",
+			"tags": "tags"
+		},
+		"collection": {
+			"app": "app",
+			"component": "component",
+			"collection": "collection",
+			"tag": "tag"
+		}
+	},
+	"rest":{
+		"appsURL": "apps/",
+		"componentsURL": "components/"
+	},
+	"magicNumbers": {
+		"zip": "504b0304"
+	}
+}

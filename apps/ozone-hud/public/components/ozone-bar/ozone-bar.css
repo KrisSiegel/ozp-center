@@ -1,0 +1,206 @@
+/* Start Open State */
+div.ozone-bar-open {
+	background: none #2f323a;
+	width: 100%;
+	min-width: 100%;
+	border-top: 1px solid #3b3e46;
+	position: fixed;
+	height: 46px;
+	min-height: 46px;
+	bottom: 0px;
+	left: 0px;
+	color: #9398a6;
+	z-index: 9000;
+	margin-bottom: -46px;
+}
+
+div.ozone-bar-open a,  
+div.ozone-bar-open a:visited, 
+div.ozone-bar-open a:active, 
+div.ozone-bar-open a:link {
+	text-decoration: none;
+	color: #9398a6;
+}
+
+ul.ozone-bar-left-menu {
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: auto;
+}
+
+ul.ozone-bar-left-menu li {
+	display: block;
+    float: left;
+	list-style-type: none;
+	border-right: 1px solid #3b3e46;
+	line-height: 46px;
+	height: 46px;
+}
+
+ul.ozone-bar-left-menu li:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+ul.ozone-bar-left-menu li a {
+	border-bottom: 3px solid #2F323A;
+    display: block;
+	float: left;
+	height: 46px;
+	padding: 2px 1em 0 1em;
+}
+
+ul.ozone-bar-left-menu li a:hover, ul.ozone-bar-left-menu li a.active {
+    background: none repeat scroll 0 0 #25282E;
+    border-bottom: 3px solid #18B9E8;
+    color: #FFFFFF;   
+}
+
+ul.ozone-bar-right-menu {
+	float: right;
+	margin: 0;
+	padding: 0;
+	width: auto;
+}
+
+ul.ozone-bar-right-menu li {
+	display: inline;
+	list-style-type: none;
+	border-left: 1px solid #3b3e46;
+	line-height: 46px;
+	height: 46px;
+}
+
+ul.ozone-bar-right-menu li a {
+	display: block;
+	float: right;
+	height: 46px;
+	padding: 0 1em;
+}
+
+a.settings-toggle h1 {
+	float: right;
+	color: #9398a6;
+}
+
+a,
+a:hover {
+    transition: all 0.5s ease 0s;
+}
+
+
+/* START: Styles for User Menu */
+a.settings-toggle {
+	float: right;
+	/* border-left: 1px solid #3b3e46; */
+	color: #9398a6;
+}
+	a.settings-toggle:hover {
+		color: #fff;
+		/* background: #25282e; */
+	}
+	/*
+	a.settings-toggle:active {
+		color: #9398a6;
+	}
+	*/
+	.icon-arrow-down {
+		display: inline-block;
+		font-size: 18px;
+		/* color: #9398a6; */
+		text-decoration: none;
+		padding: 12px 15px 18px 5px;
+	}
+		.custom-dropdown {
+			position: fixed !important;
+			bottom: 65px;
+			right: 20px;
+		}
+		.custom-menu {
+			width: 200px;
+			background: #25282e !important;
+			border: 0 !important;
+			/* border: 1px solid #3b3e46 !important; */
+			font-family: 'Quicksand-Bold' !important;
+			font-size: 12px;
+		}
+			.custom-menu ul {
+				padding: 10px !important;
+			}
+			.custom-menu li {
+				border-bottom: 1px solid #3b3e46 !important;
+			}		
+				.custom-menu li:last-child {
+					border-bottom: 0 !important;
+				}
+			.custom-menu li a {
+				background: #2f323a;
+				/* border-top: 1px solid #3b3e46; */
+				border-left: 3px solid #2f323a;
+				padding: 10px 15px !important;
+				color: #9398a6 !important;
+			}
+				.custom-menu li a:hover {
+					background: #25282e !important;
+					/* border: 1px solid #202228 !important; */
+					border-left: 3px solid #18b9e8 !important;
+					border-bottom: 0 !important;
+					color: #fff !important;
+				}
+			.settings-icon {
+				padding-right: 10px;
+			}
+
+#profile-info {
+	border-left: 1px solid #3b3e46;
+	width: auto;
+	float: right;
+	text-align: right;
+	position: relative;
+}
+	#profile-info img {
+		width: 17px;
+		float: left;
+		margin: 13px 10px 0 15px;
+		/*-moz-border-radius: 100px;
+			-webkit-border-radius: 100px;
+			border-radius: 100px;
+			-khtml-border-radius: 100px;*/
+	}
+	#user-info {
+		float: left;
+		line-height: 14px;
+		padding: 15px 25px 15px 10px;
+	}
+		#user-info h1 {
+			float: left;
+			font-size: 12px;
+		}
+		#user-info h2 {
+			float: right;
+			font-size: 10px;
+			width: 100%;
+			color: #18b9e8;
+		}
+/* End: Styles for User Menu */
+
+/* End Open State */
+
+/* Start Closed State */
+div.ozone-bar-closed {
+	background: none #2f323a;
+	width: 100%;
+	min-width: 100%;
+	border-top: 1px solid #3b3e46;
+	position: fixed;
+	height: 16px;
+	min-height: 16px;
+	bottom: 0px;
+	left: 0px;
+	color: #9398a6;
+	margin-bottom: -16px;
+	z-index: 9000;
+}
+/* End Closed State */

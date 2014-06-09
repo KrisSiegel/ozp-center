@@ -1,0 +1,18 @@
+{
+	"PersonasService": "Personas",
+	"database" : {
+		"store": {
+			"personas": "personas"
+		},
+		"collection": {
+			"persona": "persona",
+            "roles": "roles",
+            "permissions": "permissions"
+		}
+	},
+	"urls": {
+		"persona": "personas/persona",
+		"permission": "personas/permission",
+		"role": "personas/role"
+	}
+}
