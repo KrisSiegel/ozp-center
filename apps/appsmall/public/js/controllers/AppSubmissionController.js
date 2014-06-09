@@ -68,8 +68,8 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          orgTag = null;
          $scope.currentOrgTag = null;
 
-         $scope.workflowStatusTypes = AppWorkflow.workflowStatusTypes;
-         $scope.workflowStatusActions = AppWorkflow.workflowStatusActions;
+         $scope.workflowStateTypes = AppWorkflow.workflowStateTypes;
+         $scope.workflowStateActions = AppWorkflow.workflowStateActions;
 
          var defaultAppValues = {
              lifeCycleState: 'dev',
@@ -201,7 +201,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
      } // end initializeController()
 
      $scope.workflowStatusClass = function(workflowStatus) {
-          return AppWorkflow.workflowStatusColorClasses[workflowStatus] || '';
+          return AppWorkflow.workflowStateColorClasses[workflowStatus] || '';
      }
 
      $scope.getShortDateUpdated = function(app) {
@@ -362,8 +362,8 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              // also checks for full-field validation if submitting or publishing.
              // If valid, set workflow state for app based on action type passed in.
              if (appNameValidation($scope.currentApp) && isValidForWorkflowState) {
-                 if ($scope.workflowStatusActions[workflowAction]) {
-                     $scope.currentApp.workflowState = $scope.workflowStatusActions[workflowAction];
+                 if ($scope.workflowStateActions[workflowAction]) {
+                     $scope.currentApp.workflowState = $scope.workflowStateActions[workflowAction];
                  }
                  else {
                      $scope.currentApp.workflowState = $scope.currentApp.workflowState || 'Drafts';

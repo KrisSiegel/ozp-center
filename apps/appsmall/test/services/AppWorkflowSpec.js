@@ -19,6 +19,6 @@ describe('AppWorkflow service', function() {
     });
 
     it('should get a list of workflow status types', function() {
-        expect(appWorkflowService.workflowStatusTypes.length).toBeGreaterThan(0);
+        expect(appWorkflowService.workflowStateTypes.length).toBeGreaterThan(0);
     });
 });

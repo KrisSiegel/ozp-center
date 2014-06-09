@@ -44,7 +44,7 @@
         <div id="facets" class="facets">
             <!-- <div class="margins" ng-controller="TagController"> -->
             <div class="margins">
-                <ul class="unstyled admin-facets" ng-repeat="workflowStatusType in workflowStatusTypes">
+                <ul class="unstyled admin-facets" ng-repeat="workflowStatusType in workflowStateTypes">
                     <li>
                         <a href="#" ng-click="toggleWorkflowStatusSelection(workflowStatusType)" ng-class="{selected: isWorkflowStatusSelected(workflowStatusType)}">{{workflowStatusType}}</a>
                         <span class="facet-count" ng-class="{highlighted: isHighlighted(workflowStatusType)}" >{{getWorkflowStatusCount(workflowStatusType)}}</span>

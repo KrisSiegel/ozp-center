@@ -41,8 +41,8 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     $scope.allApps = [];
 
     // workflow status-related
-    $scope.workflowStatusTypes = AppWorkflow.workflowStatusTypes;
-    $scope.workflowStatusActions = AppWorkflow.workflowStatusActions;
+    $scope.workflowStateTypes = AppWorkflow.workflowStateTypes;
+    $scope.workflowStateActions = AppWorkflow.workflowStateActions;
 
     // a list of all apps grouped by workflow status, so that filtering does not require an Ajax call
     $scope.appsByWorkflowStatus = {};
@@ -53,7 +53,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     });
 
     $scope.workflowStatusClass = function(workflowStatus) {
-        return AppWorkflow.workflowStatusColorClasses[workflowStatus] || '';
+        return AppWorkflow.workflowStateColorClasses[workflowStatus] || '';
     }
 
     $scope.isHighlighted = function(workflowStatus) {
