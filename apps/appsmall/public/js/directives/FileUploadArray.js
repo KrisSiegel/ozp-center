@@ -1,6 +1,25 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule FileUploadArrayModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('fileUploadArray', ['$compile', '$timeout', 'FileUpload', function($compile, $timeout, FileUpload) {
+/**
+ * @class FileUploadArrayDirective
+ * @static
+ */ 
+
+/**
+ * @class FileUploadArrayDirective
+ * @constructor
+ * @param {Object} $compile
+ * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ */
+var FileUploadArrayDirective = ['$compile', '$timeout', 'FileUpload', function($compile, $timeout, FileUpload) {
     var getScreenshotCount = function(currentApp) {
         return _.compact(currentApp.images.screenshots).length;
     }
@@ -44,4 +63,6 @@ directivesModule.directive('fileUploadArray', ['$compile', '$timeout', 'FileUplo
             }
          }
     }
-}]);
+}];
+
+directivesModule.directive('fileUploadArray', FileUploadArrayDirective);

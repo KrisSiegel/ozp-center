@@ -1,6 +1,24 @@
+/**
+ * Service object for getting and submitting user reviews
+ *
+ * @module servicesModule
+ * @submodule ReviewModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
-servicesModule.factory('Review', function($q) {
+/**
+ * @class ReviewService
+ * @static
+ */ 
+
+/**
+ * @class ReviewService
+ * @constructor
+ * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
+ */
+var ReviewService = ['$q', function($q) {
     return {
         get: function(appid, username, context) {
             var deferred = $q.defer();
@@ -35,4 +53,6 @@ servicesModule.factory('Review', function($q) {
             }];
         }
     };
-});
+}];
+
+servicesModule.factory('Review', ReviewService);

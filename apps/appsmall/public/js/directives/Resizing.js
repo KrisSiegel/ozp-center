@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule ResizingModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('resizing', function() {
+/**
+ * @class ResizingDirective
+ * @static
+ */ 
+
+/**
+ * @class ResizingDirective
+ * @constructor
+ */
+var ResizingDirective = [function() {
     return {
         restrict: 'C',
         link: function(scope, element, attrs) {
@@ -28,4 +44,6 @@ directivesModule.directive('resizing', function() {
             $(window).resize(resizeFunc);
         }
     };
-});
+}];
+
+directivesModule.directive('resizing', ResizingDirective);

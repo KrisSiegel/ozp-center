@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule TrendratingModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('trendrating', function() {
+/**
+ * @class TrendratingDirective
+ * @static
+ */ 
+
+/**
+ * @class TrendratingDirective
+ * @constructor
+ */
+var TrendratingDirective = [function() {
     var trendingText = {
         0: 'Not Trending',
         1: 'Trending: Warm',
@@ -41,4 +57,6 @@ directivesModule.directive('trendrating', function() {
             }
         }
     };
-});
+}];
+
+directivesModule.directive('trendrating', TrendratingDirective);

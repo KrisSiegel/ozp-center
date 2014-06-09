@@ -1,7 +1,23 @@
+/**
+ * Service object for accessing Ozone API settings
+ *
+ * @module servicesModule
+ * @submodule OzoneCommonModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
-servicesModule.factory('OzoneCommon', function() {
+/**
+ * @class OzoneCommonService
+ * @static
+ */ 
 
+/**
+ * @class OzoneCommonService
+ * @constructor
+ */
+var OzoneCommonService = [function() {
     var amlUri = Ozone.utils.murl("amlUrl");
     var allowComponents = Ozone.config().getClientProperty('allowComponents');
 
@@ -18,4 +34,6 @@ servicesModule.factory('OzoneCommon', function() {
             }
         }
     };
-});
+}];
+
+servicesModule.factory('OzoneCommon', OzoneCommonService);

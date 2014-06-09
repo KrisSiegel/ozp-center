@@ -1,6 +1,23 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AppBadgesModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('appBadges', function(Dropdown) {
+/**
+ * @class AppBadgesDirective
+ * @static
+ */ 
+
+/**
+ * @class AppBadgesDirective
+ * @constructor
+ * @param Dropdown {Object} an Angular-injected instance of {{#crossLink "DropdownService"}}{{/crossLink}}
+ */
+var AppBadgesDirective = ['Dropdown', function(Dropdown) {
     var badgeNamesByLetter = {};
     return {
         restrict: 'E',
@@ -33,4 +50,6 @@ directivesModule.directive('appBadges', function(Dropdown) {
             });
         }
     };
-});
+}]
+
+directivesModule.directive('appBadges', AppBadgesDirective);

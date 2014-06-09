@@ -1,6 +1,23 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule SlideToggleModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('slideToggle', ['$timeout', function($timeout) {
+/**
+ * @class SlideToggleDirective
+ * @static
+ */ 
+
+/**
+ * @class SlideToggleDirective
+ * @constructor
+ * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
+ */
+var SlideToggleDirective = ['$timeout', function($timeout) {
     return {
         restrict: 'A',
         scope: {expanded: '='},
@@ -37,4 +54,6 @@ directivesModule.directive('slideToggle', ['$timeout', function($timeout) {
             toggleExpand();
         }
     }
-}]);
+}];
+
+directivesModule.directive('slideToggle', SlideToggleDirective);

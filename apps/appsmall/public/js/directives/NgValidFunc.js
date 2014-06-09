@@ -1,7 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule NgValidFuncModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-// controller function based validation.  (RWP: currently not hooked into app submission page, but here just in case we need this directive in the future.)
-directivesModule.directive('ngValidFunc', function() {
+/**
+ * @class NgValidFuncDirective
+ * @static
+ */ 
+
+/**
+ * @class NgValidFuncDirective
+ * @constructor
+ */
+var NgValidFuncDirective = [function() {
     return {
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
@@ -15,4 +30,7 @@ directivesModule.directive('ngValidFunc', function() {
             });
         }
     };
-});
+}];
+
+// controller function based validation.  (RWP: currently not hooked into app submission page, but here just in case we need this directive in the future.)
+directivesModule.directive('ngValidFunc', NgValidFuncDirective);

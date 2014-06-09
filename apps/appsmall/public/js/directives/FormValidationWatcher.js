@@ -1,6 +1,23 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule FormValidationWatcherModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('formValidationWatcher', function($rootScope) {
+/**
+ * @class FormValidationWatcherDirective
+ * @static
+ */ 
+
+/**
+ * @class FormValidationWatcherDirective
+ * @constructor
+ * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
+ */
+var FormValidationWatcherDirective = ['$rootScope', function($rootScope) {
     return {
         restrict: 'E',
         replace: true,
@@ -19,4 +36,6 @@ directivesModule.directive('formValidationWatcher', function($rootScope) {
             scope.$watch('formValidState', watchFunction);
         }
     };
-});
+}];
+
+directivesModule.directive('formValidationWatcher', FormValidationWatcherDirective);

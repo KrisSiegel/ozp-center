@@ -1,6 +1,25 @@
+/**
+ * Service object for performing simple CRUD operations and advanced searches on the Tag Mongo collection
+ *
+ * @module servicesModule
+ * @submodule TagModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
-servicesModule.factory('Tag', function($q, Persona) {
+/**
+ * @class TagService
+ * @static
+ */ 
+
+/**
+ * @class TagService
+ * @constructor
+ * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
+ */
+var TagService = ['$q', 'Persona', function($q, Persona) {
 
     // get URI from app data. (TO DO: apps and components might have different URI path components, if applicable.)
     function getShortnameFromUri(uri, tagObj, allTags) { 
@@ -367,4 +386,6 @@ servicesModule.factory('Tag', function($q, Persona) {
         deleteTopics: deleteTopics,
         getAppShortnamesWithTags: getAppShortnamesWithTags
     };
-})
+}];
+
+servicesModule.factory('Tag', TagService);

@@ -1,3 +1,8 @@
+/**
+ * Provides common utility functions for application.
+ *
+ * @module common
+ */
 var common = (function () {
 
     // String.prototype custom functions for OWF

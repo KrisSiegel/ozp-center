@@ -1,6 +1,24 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AmlNavLinksModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('amlNavLinks', ['OzoneCommon', 'Persona', function(OzoneCommon, Persona) {
+/**
+ * @class AmlNavLinksDirective
+ * @static
+ */ 
+
+/**
+ * @class AmlNavLinksDirective
+ * @constructor
+ * @param OzoneCommon {Object} an Angular-injected instance of {{#crossLink "OzoneCommonService"}}{{/crossLink}}
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
+ */
+var AmlNavLinksDirective = ['OzoneCommon', 'Persona', function(OzoneCommon, Persona) {
     // HTML template for top-right navigation links.  Will add permission logic later.
     var htmlTemplate =
         '<div style="float:right"><div class="btn-group admin-menu">' +
@@ -46,4 +64,6 @@ directivesModule.directive('amlNavLinks', ['OzoneCommon', 'Persona', function(Oz
             });
         }
     };
-}]);
+}];
+
+directivesModule.directive('amlNavLinks', AmlNavLinksDirective);

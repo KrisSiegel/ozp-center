@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule MenuTabsIndicatorModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('menuTabsIndicator', function($rootScope) {
+/**
+ * @class MenuTabsIndicatorDirective
+ * @static
+ */ 
+
+/**
+ * @class MenuTabsIndicatorDirective
+ * @constructor
+ */
+var MenuTabsIndicatorDirective = [function() {
     // validation state tracker for all tab indicators
 
     return {
@@ -26,4 +42,6 @@ directivesModule.directive('menuTabsIndicator', function($rootScope) {
             scope.$watch('validationState', changeValidationState)
         }
     };
-});
+}];
+
+directivesModule.directive('menuTabsIndicator', MenuTabsIndicatorDirective);

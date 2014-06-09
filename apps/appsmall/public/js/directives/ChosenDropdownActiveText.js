@@ -1,6 +1,24 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule ChosenDropdownActiveTextModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('chosenDropdownActiveText', function($timeout) {
+/**
+ * @class ChosenDropdownActiveTextDirective
+ * @static
+ */ 
+
+/**
+ * @class ChosenDropdownActiveTextDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ */
+var ChosenDropdownActiveTextDirective = [function() {
     return {
         restrict: 'C',
         link: function(scope, element, attrs) {
@@ -19,4 +37,6 @@ directivesModule.directive('chosenDropdownActiveText', function($timeout) {
             }
         }
     };
-});
+}];
+
+directivesModule.directive('chosenDropdownActiveText', ChosenDropdownActiveTextDirective);

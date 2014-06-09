@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule SlideableModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('slideable', function () {
+/**
+ * @class SlideableDirective
+ * @static
+ */ 
+
+/**
+ * @class SlideableDirective
+ * @constructor
+ */
+var SlideableDirective = [function() {
     return {
         restrict:'C',
         compile: function (element, attr) {
@@ -23,4 +39,6 @@ directivesModule.directive('slideable', function () {
             };
         }
     };
-});
+}];
+
+directivesModule.directive('slideable', SlideableDirective);

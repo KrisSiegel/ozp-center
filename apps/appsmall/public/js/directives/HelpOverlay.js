@@ -1,7 +1,24 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule HelpOverlayModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('helpOverlay',['Persona', function(Persona){
-    function Controller($scope, $element, $attrs){
+/**
+ * @class HelpOverlayDirective
+ * @static
+ */ 
+
+/**
+ * @class HelpOverlayDirective
+ * @constructor
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
+ */
+var HelpOverlayDirective = ['Persona', function(Persona) {
+    function Controller($scope, $element, $attrs) {
         var keyHandler = function(event){
             switch(event.keyCode){
                 case 27: //esc
@@ -92,4 +109,6 @@ directivesModule.directive('helpOverlay',['Persona', function(Persona){
         scope: {ngShow: "="},
         transclude: 'element'
     }
-}]);
+}];
+
+directivesModule.directive('helpOverlay', HelpOverlayDirective);

@@ -1,9 +1,37 @@
+/**
+ * Service object that acts as intermediaries for services that perform CRUD operations on either App or Collection Mongo collections.
+ * Use this service when querying for a combined list of App and Component objects.
+ *
+ * @module servicesModule
+ * @submodule AppOrComponentModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
-servicesModule.factory('AppOrComponent', function($q, App, Component) {
+/**
+ * Performs querying and data modification on either App or Component objects.
+ * The 'type' object attribute is used to differentiate between apps and components.
+ *
+ * @class AppOrComponentService
+ * @static
+ */ 
+
+/**
+ * @class AppOrComponentService
+ * @constructor
+ * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
+ * @param App {Object} an Angular-injected instance of {{#crossLink "AppService"}}{{/crossLink}}
+ * @param Component {Object} an Angular-injected instance of {{#crossLink "ComponentService"}}{{/crossLink}}
+ */
+var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Component) {
     
-    // set to True if AppsMall uses components; False if AppsMall does not use components.
-    // If AppsMall does not use components, then App service methods will be called from this service.
+    /**
+     * Ozone configuration flag that determines whether AppsMall recognizes Component objects
+     * @attribute {Boolean} AllowComponents
+     * @private
+     * @writeOnce
+     */
     var AllowComponents = Ozone.config().getClientProperty('allowComponents');
 
     function setEmptySelectorToDefault(selector) {
@@ -14,7 +42,7 @@ servicesModule.factory('AppOrComponent', function($q, App, Component) {
         return selector;
     }
 
-    // get URI from app data. (TO DO: apps and components might have different URI path components.)
+    // See return object for documentation
     function getUri(app) { 
         return ('/AppsMall/Apps/' + app.shortname); 
     }
@@ -24,13 +52,26 @@ servicesModule.factory('AppOrComponent', function($q, App, Component) {
         return (appOrComponent.type === 'app');
     }
 
-    // Wrapper methods that call App and Component Resource methods.
-    // If app/component distinction cannot be deterßmined from parsing the inputs, then params.type must be 
-    // set to either 'app' or 'component'.
     return {
+        /**
+         * @method save
+         * @param appOrComponent {Object} an App or Component object to be saved:
+         * @param appOrComponent.type {String} lower-case string that identifies whether to save an App or Component object. 
+         *        (Defaults to 'app' but using default is not recommended)
+         * @param [context] {Object} an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @return Angular promise that returns newly created/updated App or Component object in then() callback
+         */
         save: function(appOrComponent, context) { 
             return (isApp(appOrComponent) ? App.save(appOrComponent, context) : Component.save(appOrComponent, context));
         },
+        /**
+         * @method query
+         * @param [selector] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
+         *        (Example: ```{shortname: 'Bob'}``` will query for all apps with shortname equal to 'Bob'.)
+         * @param [selector.type] {String} lower-case string that identifies whether to query on only App or Component objects; defaults to query on both types.
+         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @return Angular promise that returns query results as an array of App objects in then() callback
+         */
         query: function(selector, context) {
             selector = setEmptySelectorToDefault(selector);
             if (selector.type === 'app') {
@@ -52,6 +93,14 @@ servicesModule.factory('AppOrComponent', function($q, App, Component) {
                 return deferred.promise;
             }
         },
+        /**
+         * @method get
+         * @param selector {Object} an object containing the id and/or type to get
+         * @param selector.id {String} the UUID (unique identifier) of the App object to get
+         * @param [selector.type] {String} lower-case string that identifies whether to get an App or Component object; defaults to 'app'.
+         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @return Angular promise that returns App object with id equal to parameter in then() callback
+         */
         get: function(selector, context) {
             selector = setEmptySelectorToDefault(selector);
             // allow both id field formats
@@ -71,17 +120,40 @@ servicesModule.factory('AppOrComponent', function($q, App, Component) {
             }
             return $q.reject();
         },
-        // redirect to App or Component service method
+        /**
+         * @method delete
+         * @param appOrComponent {Object} an App object to be deleted
+         * @param appOrComponent.type {String} lower-case string that identifies whether to delete an App or Component object
+         *        (Defaults to 'app' but using default is not recommended)
+         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @return Angular promise that returns newly deleted App object in then() callback
+         */
         delete: function(appOrComponent, context) {
             return (isApp(appOrComponent) ? App.delete(appOrComponent, context) : Component.delete(appOrComponent, context));
         },
-        // redirect to App or Component service method
+        /**
+         * @method remove
+         * @param appOrComponent {Object} an App object to be deleted
+         * @param appOrComponent.type {String} lower-case string that identifies whether to delete an App or Component object
+         *        (Defaults to 'app' but using default is not recommended)
+         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @return Angular promise that returns newly deleted App object in then() callback
+         */
         remove: function(appOrComponent, context) {
             return (isApp(appOrComponent) ? App.remove(appOrComponent, context) : Component.remove(appOrComponent, context));
         },
+        /**
+         * @method getUri
+         * @param app {Object} an App object with a unique shortname
+         * @return {String} the URI of the App object passed in
+         */
         getUri: getUri,
+        /**
+         * @method AllowComponents
+         * @return {Boolean} Ozone configuration flag that determines whether AppsMall recognizes Component objects
+         */
         AllowComponents: AllowComponents
     };
-});
+}];
 
-/*------------*/
+servicesModule.factory('AppOrComponent', AppOrComponentService);

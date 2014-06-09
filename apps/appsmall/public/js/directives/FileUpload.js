@@ -1,6 +1,23 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule FileUploadModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('fileUpload', function(FileUpload) {
+/**
+ * @class FileUploadDirective
+ * @static
+ */ 
+
+/**
+ * @class FileUploadDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ */
+var FileUploadDirective = ['FileUpload', function(FileUpload) {
     var setStatusMessage = function(msgFunc, msg, isError) {
         if (_.isFunction(msgFunc)) {
             if (isError) {
@@ -181,4 +198,6 @@ directivesModule.directive('fileUpload', function(FileUpload) {
             }); // end $fileInput.bind('change', ...)
         }
     }
-});
+}];
+
+directivesModule.directive('fileUpload', FileUploadDirective);

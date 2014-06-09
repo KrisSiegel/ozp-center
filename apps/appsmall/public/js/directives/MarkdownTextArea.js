@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule MarkdownTextAreaModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('markdownTextArea', function() {
+/**
+ * @class MarkdownTextAreaDirective
+ * @static
+ */ 
+
+/**
+ * @class MarkdownTextAreaDirective
+ * @constructor
+ */
+var MarkdownTextAreaDirective = [function() {
     var converter = new Showdown.converter();
 
     // Markdown syntax patterns:
@@ -149,7 +165,7 @@ directivesModule.directive('markdownTextArea', function() {
             }
         }
     };
-});
+}];
 
 // gets selected (highlighted) text from textarea control and returns text and start/end location indexes
 function getSelectionObject(textComponent) {
@@ -171,3 +187,5 @@ function getSelectionObject(textComponent) {
     }
     return {startPos: startPos, endPos: endPos, text: selectedText};
 }
+
+directivesModule.directive('markdownTextArea', MarkdownTextAreaDirective);

@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AppsmallSearchBarModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('appsmallSearchBar', [function() {
+/**
+ * @class AppsmallSearchBarDirective
+ * @static
+ */ 
+
+/**
+ * @class AppsmallSearchBarDirective
+ * @constructor
+ */
+var AppsmallSearchBarDirective = [function() {
     return {
         restrict: 'E',
         replace: true,
@@ -13,4 +29,6 @@ directivesModule.directive('appsmallSearchBar', [function() {
        ' </div></form>',
         link: function(scope, element, attrs) { }
     };
-}]);
+}];
+
+directivesModule.directive('appsmallSearchBar', AppsmallSearchBarDirective);

@@ -1,4 +1,22 @@
-directivesModule.directive('requireUnique', function() {
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule RequireUniqueModule
+ * @requires amlApp.directives
+ */
+'use strict';
+
+/**
+ * @class RequireUniqueDirective
+ * @static
+ */ 
+
+/**
+ * @class RequireUniqueDirective
+ * @constructor
+ */
+var RequireUniqueDirective = [function() {
     console.log('require unique hit');
     return {
         restrict: 'A',
@@ -11,4 +29,6 @@ directivesModule.directive('requireUnique', function() {
             }
         }
     }
-});
+}];
+
+directivesModule.directive('requireUnique', RequireUniqueDirective);

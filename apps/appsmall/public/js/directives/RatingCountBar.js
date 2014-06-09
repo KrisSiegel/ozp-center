@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule RatingCountBarModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('ratingCountBar', function() {
+/**
+ * @class RatingCountBarDirective
+ * @static
+ */ 
+
+/**
+ * @class RatingCountBarDirective
+ * @constructor
+ */
+var RatingCountBarDirective = [function() {
     return {
         restrict: 'E',
         replace: true,
@@ -21,4 +37,6 @@ directivesModule.directive('ratingCountBar', function() {
             $(element).text(appRatingText);
         }
     }
-});
+}];
+
+directivesModule.directive('ratingCountBar', RatingCountBarDirective);

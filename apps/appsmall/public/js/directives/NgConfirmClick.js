@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule NgConfirmClickModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('ngConfirmClick', [function() {
+/**
+ * @class NgConfirmClickDirective
+ * @static
+ */ 
+
+/**
+ * @class NgConfirmClickDirective
+ * @constructor
+ */
+var NgConfirmClickDirective = [function() {
     function link(scope, element, attr) {
         var msg = attr.ngConfirmClick || "Are you sure?";
         var clickAction = attr.confirmedClick;
@@ -13,4 +29,6 @@ directivesModule.directive('ngConfirmClick', [function() {
     return {
         link: link
     }
-}]);
+}];
+
+directivesModule.directive('ngConfirmClick', NgConfirmClickDirective);

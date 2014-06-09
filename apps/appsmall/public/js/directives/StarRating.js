@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule StarRatingModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('starRating', function() {
+/**
+ * @class StarRatingDirective
+ * @static
+ */ 
+
+/**
+ * @class StarRatingDirective
+ * @constructor
+ */
+var StarRatingDirective = [function() {
     return {
         restrict: 'E',
         replace: true,
@@ -34,7 +50,7 @@ directivesModule.directive('starRating', function() {
             }
         }
     };
-});
+}];
 
 // CLEANUP: MOVE TO SERVICE AND INJECT SERVICE INTO DIRECTIVE
 function getRatingText(ratingScale, rating) {
@@ -47,3 +63,5 @@ function getRatingText(ratingScale, rating) {
         return "None";
     }
 }
+
+directivesModule.directive('starRating', StarRatingDirective);

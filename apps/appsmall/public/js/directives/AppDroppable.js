@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AppDroppableModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('appDroppable', ['$parse', function($parse){
+/**
+ * @class AppDroppableDirective
+ * @static
+ */ 
+
+/**
+ * @class AppDroppableDirective
+ * @constructor
+ */
+var AppDroppableDirective = [function() {
     function link(scope, element, attrs){
         function drop(event, ui ){
             var dragData = $(ui.draggable[0]).data('drag');
@@ -15,5 +31,6 @@ directivesModule.directive('appDroppable', ['$parse', function($parse){
         },
         link: link
     };
+}];
 
-}]);
+directivesModule.directive('appDroppable', AppDroppableDirective);

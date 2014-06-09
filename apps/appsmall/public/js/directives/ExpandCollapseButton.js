@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule ExpandCollapseButtonModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('expandCollapseButton', function() {
+/**
+ * @class ExpandCollapseButtonDirective
+ * @static
+ */ 
+
+/**
+ * @class ExpandCollapseButtonDirective
+ * @constructor
+ */
+var ExpandCollapseButtonDirective = [function() {
     return {
         restrict: 'C',
         link: function(scope, element, attrs) {
@@ -18,4 +34,6 @@ directivesModule.directive('expandCollapseButton', function() {
             });
         }
     }
-});
+}];
+
+directivesModule.directive('expandCollapseButton', ExpandCollapseButtonDirective);

@@ -1,14 +1,31 @@
+/**
+ * Service object for handling file uploads and retrieving URLs of previously uploaded files
+ *
+ * @module servicesModule
+ * @submodule FileUploadModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
 // file upload service
-servicesModule.factory('FileUpload', function($q) {
+var defaultImageTypes = {
+    icon: Ozone.utils.murl("amlUrl", '/img/app-icon-not-available-hires.png'),
+    smallBanner: Ozone.utils.murl("amlUrl", '/img/banner-sml-not-available-hires.png'),
+    featuredBanner: Ozone.utils.murl("amlUrl", '/img/banner-lg-not-available-hires.png'),
+};
 
-    var defaultImageTypes = {
-        icon: Ozone.utils.murl("amlUrl", '/img/app-icon-not-available-hires.png'),
-        smallBanner: Ozone.utils.murl("amlUrl", '/img/banner-sml-not-available-hires.png'),
-        featuredBanner: Ozone.utils.murl("amlUrl", '/img/banner-lg-not-available-hires.png'),
-    };
+/**
+ * @class FileUploadService
+ * @static
+ */ 
 
+/**
+ * @class FileUploadService
+ * @constructor
+ * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
+ */
+var FileUploadService = ['$q', function ($q) {
     return {
         upload: function(fileObject, context) {
             var deferred = $q.defer();
@@ -27,4 +44,6 @@ servicesModule.factory('FileUpload', function($q) {
             }
         }
     };
-})
+}];
+
+servicesModule.factory('FileUpload', FileUploadService);

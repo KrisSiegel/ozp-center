@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule InteractiveAppBadgesModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('interactiveAppBadges', function(Dropdown) {
+/**
+ * @class InteractiveAppBadgesDirective
+ * @static
+ */ 
+
+/**
+ * @class InteractiveAppBadgesDirective
+ * @constructor
+ */
+var InteractiveAppBadgesDirective = [function(Dropdown) {
     var badgeNamesByLetter = {};
     return {
         restrict: 'E',
@@ -48,4 +64,6 @@ directivesModule.directive('interactiveAppBadges', function(Dropdown) {
             });
         }
     };
-});
+}];
+
+directivesModule.directive('interactiveAppBadges', InteractiveAppBadgesDirective);

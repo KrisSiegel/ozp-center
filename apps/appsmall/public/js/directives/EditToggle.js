@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule EditToggleModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('editToggle', function() {
+/**
+ * @class EditToggleDirective
+ * @static
+ */ 
+
+/**
+ * @class EditToggleDirective
+ * @constructor
+ */
+var EditToggleDirective = [function() {
     return {
         restrict: 'C',
         link: function(scope, element, attrs) {
@@ -16,4 +32,6 @@ directivesModule.directive('editToggle', function() {
             });
         }
     }
-});
+}];
+
+directivesModule.directive('editToggle', EditToggleDirective);

@@ -1,7 +1,23 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule DynamicCarouselModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('dynamicCarousel', function($timeout) {
+/**
+ * @class DynamicCarouselDirective
+ * @static
+ */ 
 
+/**
+ * @class DynamicCarouselDirective
+ * @constructor
+ * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
+ */
+var DynamicCarouselDirective = ['$timeout', function($timeout) {
     return {
         restrict: 'A',
         scope: {
@@ -170,4 +186,7 @@ directivesModule.directive('dynamicCarousel', function($timeout) {
             });
         }
     };
-});
+}];
+
+
+directivesModule.directive('dynamicCarousel', DynamicCarouselDirective);

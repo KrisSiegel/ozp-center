@@ -1,6 +1,22 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule StatusMessageModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('statusMessage', function() {
+/**
+ * @class StatusMessageDirective
+ * @static
+ */ 
+
+/**
+ * @class StatusMessageDirective
+ * @constructor
+ */
+var StatusMessageDirective = [function() {
     return {
         restrict: 'E',
         transclude: true,
@@ -46,4 +62,6 @@ directivesModule.directive('statusMessage', function() {
             });
         }
     }
-});
+}];
+
+directivesModule.directive('statusMessage', StatusMessageDirective);

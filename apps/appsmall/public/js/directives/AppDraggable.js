@@ -1,6 +1,23 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AppDraggableModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('appDraggable', ['FileUpload', function(FileUpload){
+/**
+ * @class AppDraggableDirective
+ * @static
+ */ 
+
+/**
+ * @class AppDraggableDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ */
+var AppDraggableDirective = ['FileUpload', function(FileUpload) {
     function getSquareIcon(app) {
         return FileUpload.getFileUrl((app.images || { }).iconId, "icon");
     }
@@ -37,4 +54,6 @@ directivesModule.directive('appDraggable', ['FileUpload', function(FileUpload){
         },
         link: link
     };
-}]);
+}];
+
+directivesModule.directive('appDraggable', AppDraggableDirective);

@@ -1,6 +1,24 @@
+/**
+ * Service object for accessing persona data through the Ozone API
+ *
+ * @module servicesModule
+ * @submodule PersonaModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
-servicesModule.factory('Persona', function($q) {
+/**
+ * @class PersonaService
+ * @static
+ */ 
+
+/**
+ * @class PersonaService
+ * @constructor
+ * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
+ */
+var PersonaService = ['$q', function($q) {
 
     // permission type lookup - used in case URI prefixes change
     var permissionTypes = {
@@ -137,4 +155,6 @@ servicesModule.factory('Persona', function($q) {
             return deferred.promise;
         }
     };
-});
+}];
+
+servicesModule.factory('Persona', PersonaService);

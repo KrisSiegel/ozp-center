@@ -1,3 +1,11 @@
+/**
+ * 
+ *
+ * @module servicesModule
+ * @submodule AppWorkflowModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
 // Workflow status strings and corresponding CSS classes.
@@ -23,7 +31,17 @@ var workflowStatusActions = {
 
 var redHighlighted = ["Action Needed"];
 
-servicesModule.factory('AppWorkflow', function() {
+/**
+ * @class AppWorkflowService
+ * @static
+ */ 
+
+/**
+ * @class AppWorkflowService
+ * @constructor
+ */
+
+var AppWorkflowService = [function() {
     return {
         workflowStatusTypes: _.keys(workflowStatusColorClasses),
         workflowStatusColorClasses: workflowStatusColorClasses,
@@ -32,4 +50,6 @@ servicesModule.factory('AppWorkflow', function() {
             return _.contains(redHighlighted, workflowStatus);
         }
     };
-});
+}];
+
+servicesModule.factory('AppWorkflow', AppWorkflowService);

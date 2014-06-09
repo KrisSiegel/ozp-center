@@ -79,6 +79,7 @@
                 start: "npm start",
                 startInTest: "npm test",
                 test: "npm test",
+                angularTest: "./apps/appsmall/test/test.sh",
                 dropDb: ("mongo " + grunt.option("db") + " --eval 'db.dropDatabase()'")
             }
         });
@@ -89,5 +90,6 @@
         grunt.registerTask("dropDb", ["exec:dropDb"]);
         grunt.registerTask("build", ["clean", "concat", "component-concat", "uglify:minify", "markdownpdf"]);
         grunt.registerTask("test", ["exec:test"]);
+        grunt.registerTask("angularTest", ["exec:angularTest"]);
     };
 }());

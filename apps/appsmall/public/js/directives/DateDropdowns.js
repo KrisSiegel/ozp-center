@@ -1,6 +1,24 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule DateDropdownsModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('dateDropdowns', function() {
+/**
+ * @class DateDropdownsDirective
+ * @static
+ */ 
+
+/**
+ * @class DateDropdownsDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ */
+var DateDropdownsDirective = [function() {
     var monthsOfYear = {
         January: 31,
         February: function(year) { return ((year % 4 === 0) ? 29 : 28); },
@@ -70,4 +88,6 @@ directivesModule.directive('dateDropdowns', function() {
 
         }
     };
-});
+}];
+
+directivesModule.directive('dateDropdowns', DateDropdownsDirective);
