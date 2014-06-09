@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "" 
+    "url": "git@github.com:ozone-development/aml-center.git"
   },
   "dependencies": {
     "express": "3.x",
@@ -28,7 +28,6 @@
     "ejs-locals": "1.x",
     "redis": "^0.10.1",
     "connect-redis": "1.4.7",
-    "connect-memcache": "0.0.5",
     "connect-memcached": "0.0.6"
   },
   "devDependencies": {
