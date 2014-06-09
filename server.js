@@ -127,14 +127,12 @@ module.exports = (function (environment) {
             }
         });
     };
-    
+
     // Load security module first
     Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.security"));
 
     // Load all other modules once the security module is registered and ready
     Ozone.Service().on("ready", "Security", function () {
-        // Security module is ready, register the middleware
-        app.use(Ozone.Service("Security").getMiddleware());
         standUpServer();
     });
 
