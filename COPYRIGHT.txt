@@ -12,35 +12,35 @@ This product further may include software developed by other individuals, entiti
 
 The product further references the following libraries or capabilities which are NOT included as part of this copyright statement, and are hereby listed with their license terms.
 
-* express.js
-* methods
-* winston
-* mkdirp
-* mongodb
-* socket.io
-* async
-* adm-zip
-* tmp
-* mime
-* ejs
-* ejs-locals
-* redis
-* connect-redis
-* connect-memcached
-* grunt
-* grunt-contrib-uglify
-* grunt-contrib-concat
-* grunt-contrib-clean
-* grunt-jasmine-node
-* grunt-exec
-* grunt-contrib-jshint
-* grunt-markdown-pdf
-* cheerio
-* supertest
-* jsdom
-* karma-jasmine
-* karma-chrome-launcher
-* jasmine-node
+* express.js web application framework, based on MIT License, https://raw.githubusercontent.com/visionmedia/express/master/LICENSE
+* methods http verbs, based on MIT License, https://raw.githubusercontent.com/visionmedia/node-methods/master/LICENSE
+* winston custom logging, https://raw.githubusercontent.com/flatiron/winston/master/LICENSE
+* mkdirp mkdir -p, based on MIT License, https://raw.githubusercontent.com/substack/node-mkdirp/master/LICENSE
+* mongodb mongodb node driver, based on Apache 2.0 license, https://raw.githubusercontent.com/mongodb/node-mongodb-native/1.4/LICENSE
+* socket.io realtime application framework, based on MIT License, https://raw.githubusercontent.com/Automattic/socket.io/master/LICENSE
+* async async utilities for JavaScript, https://raw.githubusercontent.com/caolan/async/master/LICENSE
+* adm-zip zip for JavaScript, based on MIT license, https://raw.githubusercontent.com/cthackers/adm-zip/master/MIT-LICENSE.txt
+* tmp utility for creating temporary files and folders, https://github.com/raszi/node-tmp, based on MIT license, http://opensource.org/licenses/MIT
+* mime utility for mime types, based on MIT license, https://raw.githubusercontent.com/broofa/node-mime/master/LICENSE
+* ejs JavaScript templating, based on MIT license, https://github.com/visionmedia/ejs
+* ejs-locals JavaScript templating enhancements to ejs, based on MIT license, https://github.com/RandomEtc/ejs-locals
+* redis redis client for node, based on MIT license, https://github.com/mranney/node_redis
+* connect-redis connect session client for redis, based on MIT license, https://github.com/visionmedia/connect-redis
+* connect-memcached connect session client for memcached, based on MIT license, https://raw.githubusercontent.com/balor/connect-memcached/master/LICENSE
+* grunt JavaScript task runner, based on MIT license, https://raw.githubusercontent.com/gruntjs/grunt/master/LICENSE-MIT
+* grunt-contrib-uglify uglify task for grunt, based on MIT license, https://raw.githubusercontent.com/gruntjs/grunt-contrib-uglify/master/LICENSE-MIT
+* grunt-contrib-concat concat task for grunt, based on MIT license, https://raw.githubusercontent.com/gruntjs/grunt-contrib-concat/master/LICENSE-MIT
+* grunt-contrib-clean clean task for grunt, based on MIT license, https://raw.githubusercontent.com/gruntjs/grunt-contrib-clean/master/LICENSE-MIT
+* grunt-jasmine-node jasmine-node task for grunt, based on MIT license, https://raw.githubusercontent.com/jasmine-contrib/grunt-jasmine-node/master/LICENSE-MIT
+* grunt-exec exec task for grunt, based on MIT license, https://raw.githubusercontent.com/jharding/grunt-exec/master/LICENSE-MIT
+* grunt-contrib-jshint jshint task for grunt, based on MIT license, https://raw.githubusercontent.com/gruntjs/grunt-contrib-jshint/master/LICENSE-MIT
+* grunt-markdown-pdf markdown to pdf grunt task, based on MIT license, https://raw.githubusercontent.com/treasonx/grunt-markdown/master/LICENSE-MIT
+* cheerio jQuery implementation for node, based on MIT license, https://github.com/cheeriojs/cheerio
+* supertest unit testing framework, based on MIT license, https://raw.githubusercontent.com/visionmedia/supertest/master/LICENSE
+* jsdom browser DOM on the server, based on MIT license, https://raw.githubusercontent.com/tmpvar/jsdom/master/LICENSE.txt
+* karma-jasmine unit testing of client code on the server, based on MIT license, https://raw.githubusercontent.com/karma-runner/karma-jasmine/master/LICENSE
+* karma-chrome-launcher launches chrome for karma testing, based on MIT license, https://raw.githubusercontent.com/karma-runner/karma-chrome-launcher/master/LICENSE
+* jasmine-node node implementation of jasmine unit testing, based on MIT license, https://raw.githubusercontent.com/mhevery/jasmine-node/master/LICENSE
 * JQuery Ajax/eventing library, http://jquery.com, based on MIT License, https://raw.github.com/jquery/jquery/master/MIT-LICENSE.txt
 * JQuery UI UI library, http://jqueryui.com, based on MIT License, https://raw.githubusercontent.com/jquery/jquery-ui/master/MIT-LICENSE.txt
 * angular.js HTML enhancemend for web apps, https://angularjs.org, based on MIT License, https://raw.githubusercontent.com/angular/angular.js/master/LICENSE
@@ -48,5 +48,5 @@ The product further references the following libraries or capabilities which are
 * bootstrap frontend framework, http://getbootstrap.com, based on MIT License, https://raw.githubusercontent.com/twbs/bootstrap/master/LICENSE
 * chosen enhanced select boxes, based on MIT License, https://raw.githubusercontent.com/harvesthq/chosen/master/LICENSE.md
 * lodash utility library, based on MIT License, https://raw.githubusercontent.com/lodash/lodash/master/LICENSE.txt
-* moment 
-* showdown
+* moment utility to parse, validate and manipulate dates, https://raw.githubusercontent.com/moment/moment/develop/LICENSE
+* showdown handling markdown, https://raw.githubusercontent.com/coreyti/showdown/master/license.txt
