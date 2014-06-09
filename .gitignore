@@ -25,3 +25,4 @@ hud-components.*
 ozone-modules/ozone-api/client*
 ozone-modules/ozone-api/server*
 README.pdf
+node_modules
