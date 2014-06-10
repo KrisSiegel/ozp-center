@@ -47,7 +47,7 @@ var AppService = ['$q', function($q) {
          * @method query
          * @param [selector] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
          *                 (Example: ```{shortname: 'Bob'}``` will query for all apps with shortname equal to 'Bob'.)
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns query results as an array of App objects in then() callback
          */
         query: function(selector, context) {
@@ -60,7 +60,7 @@ var AppService = ['$q', function($q) {
         /**
          * @method get
          * @param id {String} the UUID (unique identifier) of the App object to delete
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns App object with id equal to parameter in then() callback
          */
         get: function(id, context) { 
@@ -73,7 +73,7 @@ var AppService = ['$q', function($q) {
         /**
          * @method delete
          * @param app {Object} an App object to be deleted
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns newly deleted App object in then() callback
          */
         delete: function(app, context) {
@@ -86,7 +86,7 @@ var AppService = ['$q', function($q) {
         /**
          * @method remove
          * @param app {Object} an App object to be deleted
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns newly deleted App object in then() callback
          */
         remove: function(app, context) {

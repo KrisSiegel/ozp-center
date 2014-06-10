@@ -9,6 +9,7 @@
 'use strict';
 
 /**
+ * Contains static lists used to populate dropdowns; currently empty.
  * @class DropdownService
  * @static
  */ 

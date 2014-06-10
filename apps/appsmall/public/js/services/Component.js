@@ -50,7 +50,7 @@ var ComponentService = ['$q', function($q) {
              * @method query
              * @param [selector] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
              *                 (Example: ```{shortname: 'Bob'}``` will query for all components with shortname equal to 'Bob'.)
-             * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
              * @return Angular promise that returns query results as an array of Component objects in then() callback
              */
             query: function(selector, context) {
@@ -63,7 +63,7 @@ var ComponentService = ['$q', function($q) {
             /**
              * @method get
              * @param id {String} the UUID (unique identifier) of the Component object to delete
-             * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
              * @return Angular promise that returns Component object with id equal to parameter in then() callback
              */
             get: function(id, context) { 
@@ -76,7 +76,7 @@ var ComponentService = ['$q', function($q) {
             /**
              * @method delete
              * @param component {Object} an Component object to be deleted
-             * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
              * @return Angular promise that returns newly deleted Component object in then() callback
              */
             delete: function(component, context) { 
@@ -89,7 +89,7 @@ var ComponentService = ['$q', function($q) {
             /**
              * @method remove
              * @param component {Object} an Component object to be deleted
-             * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
              * @return Angular promise that returns newly deleted Component object in then() callback
              */
             remove: function(component, context) { 
@@ -103,20 +103,25 @@ var ComponentService = ['$q', function($q) {
     }
     else {
         return {
+            // see save method in (allowComponents) section above
             save: function(component, context) { 
                 return $q.reject();
             },
+            // see query method in (allowComponents) section above
             query: function(selector, context) {
                 var deferred = $q.defer();
                 deferred.resolve([]);
                 return deferred.promise;
             },
+            // see get method in (allowComponents) section above
             get: function(id, context) { 
                 return $q.reject();
             },
+            // see delete method in (allowComponents) section above
             delete: function(component, context) { 
                 return $q.reject();
             },
+            // see remove method in (allowComponents) section above
             remove: function(component, context) { 
                 return $q.reject();
             }

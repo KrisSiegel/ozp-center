@@ -69,7 +69,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          * @param [selector] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
          *        (Example: ```{shortname: 'Bob'}``` will query for all apps with shortname equal to 'Bob'.)
          * @param [selector.type] {String} lower-case string that identifies whether to query on only App or Component objects; defaults to query on both types.
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns query results as an array of App objects in then() callback
          */
         query: function(selector, context) {
@@ -98,7 +98,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          * @param selector {Object} an object containing the id and/or type to get
          * @param selector.id {String} the UUID (unique identifier) of the App object to get
          * @param [selector.type] {String} lower-case string that identifies whether to get an App or Component object; defaults to 'app'.
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns App object with id equal to parameter in then() callback
          */
         get: function(selector, context) {
@@ -125,7 +125,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          * @param appOrComponent {Object} an App object to be deleted
          * @param appOrComponent.type {String} lower-case string that identifies whether to delete an App or Component object
          *        (Defaults to 'app' but using default is not recommended)
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns newly deleted App object in then() callback
          */
         delete: function(appOrComponent, context) {
@@ -136,7 +136,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          * @param appOrComponent {Object} an App object to be deleted
          * @param appOrComponent.type {String} lower-case string that identifies whether to delete an App or Component object
          *        (Defaults to 'app' but using default is not recommended)
-         * @param [context] {Object} @optional an object context for Ozone API call.  Uses Ozone API context if not defined.
+         * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
          * @return Angular promise that returns newly deleted App object in then() callback
          */
         remove: function(appOrComponent, context) {

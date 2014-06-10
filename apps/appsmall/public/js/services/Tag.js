@@ -21,7 +21,15 @@
  */
 var TagService = ['$q', 'Persona', function($q, Persona) {
 
-    // get URI from app data. (TO DO: apps and components might have different URI path components, if applicable.)
+    /**
+     * get URI from app data. (TO DO: apps and components might have different URI path components, if applicable.)
+     * @method getShortnameFromUri
+     * @param uri {String} the full or relative path for an app
+     * @param [tagObj] {Object} a tag object used as a search constraint that, if defined, must contain a tag from allTags with uri equal to the uri passed in
+     * @param [allTags] {Array} an array of Tag objects that, if defined, must contain a tag with tagObj's tag name
+     * @public
+     * @return the shortname parsed from the uri passed in, or the empty string of the uri was not contained in the tag object and tag list parameters
+     */
     function getShortnameFromUri(uri, tagObj, allTags) { 
         // if no tags are passed in: do simple parsing of URI component.
         if (!tagObj && !allTags) {
@@ -38,8 +46,16 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return '';
     }
 
-    // This method currently doesn't work as expected. Just ignore it; getTagByComplex works
-    // for the same thing. We'll revisit this later as part of the Ozone API.
+    /**
+     * This method currently doesn't work as expected. Just ignore it; getTagByComplex works
+     * for the same thing. We'll revisit this later as part of the Ozone API.
+     * @method getTagById
+     * @param id {String} the UUID (unique identifier) of the App object to delete
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @private
+     * @deprecated
+     * @return Angular promise that returns Tag object with id equal to parameter in then() callback
+     */
     var getTagById = function (id, context) {
         if (_.isEmpty(id)) {
             return $q.reject();
@@ -52,21 +68,21 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         }
     };
 
-    // queries tags by the query object passed in.
-
-    /*
-
-      Make an arbitrary tag query using a query object.
-
-      Example query object:
-
-      {
-         "topic": "/AppsMall/Category",
-         "uri": uri,
-         "tag": tag,
-      }
-     */
-
+     /**
+      * Advanced function to query on tags.
+      * @method getTags
+      * @param [queryObj] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
+      * Example query object:
+      * ```
+      * {
+      *   "topic": "/AppsMall/Category",
+      *   "uri": uri,
+      *   "tag": tag,
+      * }```
+      * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+      * @public
+      * @return Angular promise that returns a list of queried Tag objects.
+      */
     var getTagByComplex = function (queryObj, context) {
         if (arguments.length > 2) {
             console.log("getTagByComplex signature has changed: now getTagByComplex(queryObj, context)");
@@ -80,6 +96,16 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
+    /**
+     * @method createTagFromPersonaData
+     * @param tag {String} name of the tag to be created
+     * @param uri {String} the full-path URI for this tag
+     * @param topic {String} The topic of this tag
+     * @param personaData {Object} A Persona object containing a valid username that will get assigned to the tag
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @private
+     * @return Angular promise that returns the newly created Tag object
+     */
     var createTagFromPersonaData = function(tag, uri, topic, personaData, context) {
         var deferred = $q.defer();
         var currentDate = (new Date()).toString();
@@ -98,7 +124,16 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     }
 
-    // creates a new tag with the parameters passed in
+    /**
+     * Creates a single new tag using the user's logged-in Persona data.  If the user is not logged in, then this method will fail without raising an exception.
+     * @method createNewTag
+     * @param tag {String} name of the tag to be created
+     * @param uri {String} the full-path URI for this tag
+     * @param topic {String} The topic of this tag
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly created Tag object
+     */
     var createNewTag = function(tag, uri, topic, context) {
         var deferred = $q.defer();
         Persona.getCurrentPersonaData().then(function(personaData) {
@@ -109,8 +144,18 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
-    // function that calls createNewTag() for every tag in the list using $q.all.
-    // The success function chained to calling this function doesn't get invoked until all createNewTag() calls succeed.
+    /**
+     * Creates multiple new tags using the user's logged-in Persona data, by invoking the $q.all method.  If the user is not logged in, 
+     *     then this method will fail without raising an exception.
+     * @method createNewTags
+     * @param tagList {Array} a list of tag names, for tags to be created
+     * @param uri {String} the full-path URI for this tag
+     * @param topic {String} The topic of this tag
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly created Tag objects.  The then-clause for the returned promise will not get invoked until
+     *     every single tag creation async call has been returned successfully.
+     */
     var createNewTags = function(tagList, uri, topic, context) {
         if (!_.isArray(tagList) || (tagList.length === 0)) {
             return $q.reject('No tags were given to be created.');
