@@ -16,9 +16,6 @@ module.exports = (function (environment) {
     // Drop X-Powered-By header
     app.disable('x-powered-by');
 
-    // Load the appropriate session module
-    Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.session"));
-
     // Upload limit and upload directory settings
     app.use(express.bodyParser({
         limit: Ozone.config().getServerProperty("requestSizeLimit") || "25mb",
@@ -66,6 +63,9 @@ module.exports = (function (environment) {
         standUpServer();
         return Ozone;
     };
+
+    // Load the appropriate session module
+    Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.session"));
 
     function standUpServer () {
         // Load additional Ozone services
