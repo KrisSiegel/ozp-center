@@ -1,18 +1,19 @@
 #Apps Mall
 The Apps Mall project provides access to, and facilitates the discovery of, web applications through a store front. Apps Mall is built on top of the Ozone Platform Service Container and various Ozone Services that provide modularity and an API all services can consume and export at each level (server-side, RESTful and client-side API levels).
 
-##Requirements
-The requirements below are required to go from cloning the repository to running the application and unit tests. The last 3 requirements (jasmine-node, karma-jarmine and karma-chrome-launcher) are ONLY required if you wish you run the unit tests. The only exception in this list is MongoDB can be replaced with an in-memory mock data store.
+##Prerequisites
+The requirements below are required to go from cloning the repository to running the application and unit tests. The last 4 prerequisites (jasmine-node, karma, karma-jarmine and karma-chrome-launcher) are ONLY required if you wish you run the unit tests. The only exception in this list is MongoDB can be replaced with an in-memory mock data store.
 * node.js 0.10.x
 * bower (npm install -g bower)
 * grunt (npm install -g grunt-cli)
 * MongoDB 2.4.x or higher with text searching enabled
 * jasmine-node (npm install -g jasmine-node)
+* karma (npm install -g karma)
 * karma-jasmine (npm install -g karma-jasmine)
 * karma-chrome-launcher (npm install -g karma-chrome-launcher)
 
 ##Quick Start
-If the requirements are all installed then follow these 4 steps to quickly get up and running.
+If the requirements are all installed then follow these 4 steps to quickly get up and running (if not then read the [Getting Started](docs/getting-started.md) to make sure your environment is setup).
 1. Run ```npm install```
 2. Run ```bower install```
 3. Ensure MongoDB is running (```grunt mongod``` is a quick shortcut to start mongod with text indexing)
@@ -27,7 +28,7 @@ The documentation below outlines everything needed to configure, deploy, extend 
 * [Getting Started](docs/getting-started.md)
 * [Architecture Design](docs/design.md)
 * [Configuring Apps Mall and Ozone Platform](docs/configuration.md)
-* [Deploying Apps Mall and Ozone Platform](docs/deployment.md)
+* [Building and Deploying Apps Mall and Ozone Platform](docs/build-deploy.md)
 * [Ozone Platform API](docs/ozone-api.md)
 * [Creating a new Ozone Module](docs/creating-ozone-module.md)
 * Bundled Ozone Platform Services
