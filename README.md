@@ -14,11 +14,11 @@ The requirements below are required to go from cloning the repository to running
 
 ##Quick Start
 If the requirements are all installed then follow these 4 steps to quickly get up and running (if not then read the [Getting Started](docs/getting-started.md) to make sure your environment is setup).
-1. Run ```npm install```
-2. Run ```bower install```
-3. Ensure MongoDB is running (```grunt mongod``` is a quick shortcut to start mongod with text indexing)
-4. Run ```npm start```
-5. Verify your server is running by visiting http://localhost:3000/
+* Run ```npm install```
+* Run ```bower install```
+* Ensure MongoDB is running (```grunt mongod``` is a quick shortcut to start mongod with text indexing)
+* Run ```npm start```
+* Verify your server is running by visiting http://localhost:3000/
 
 You are now running Apps Mall. Now what? Check out the additional documentation resources below.
 
