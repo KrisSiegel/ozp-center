@@ -169,7 +169,15 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
-    var updateTag = function(tag, context){
+    /**
+     * Update a single existing tag using the user's logged-in Persona data.  If the user is not logged in, then this method will fail without raising an exception.
+     * @method updateTag
+     * @param tag {Object} Tag object to be updated
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly updated Tag object
+     */
+    var updateTag = function(tag, context) {
         var deferred = $q.defer();
         var currentDate = (new Date()).toString();
         var topicWithMetadata = {
@@ -182,7 +190,15 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     }
 
-    var updateTags = function(tagList, context){
+    /**
+     * Update a single existing tag using the user's logged-in Persona data.  If the user is not logged in, then this method will fail without raising an exception.
+     * @method updateTags
+     * @param tagList {Array} An array of Tag objects to be updated
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly updated Tag object
+     */
+    var updateTags = function(tagList, context) {
         if (!_.isArray(tagList) || (tagList.length === 0)) {
             return $q.reject('No tags were given to be updated.');
         }
@@ -193,6 +209,14 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     }
 
+    /**
+     * Deletes one or more tags with ids equal to the values passed in.
+     * @method deleteTags
+     * @param idValueOrArray {Array, String} the UUID (unique identifier) of the Tag object to delete, or an array of tag UUIDs
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly deleted Tag objects
+     */
     var deleteTags = function(idValueOrArray, context) {
         if (common.isValidId(idValueOrArray)) {
             return deleteSingleTag(idValueOrArray, context);
@@ -216,14 +240,30 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
-    var deleteSingleTag = function(idValueOrArray, context) {
+    /**
+     * Deletes a single tag with the id value passed in
+     * @method deleteSingleTag
+     * @param id {String} the UUID (unique identifier) of the Tag object to delete
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @private
+     * @return Angular promise that returns the newly deleted Tag
+     */
+    var deleteSingleTag = function(id, context) {
         var deferred = $q.defer();
-        Ozone.Service("Tags").tag.del({id: idValueOrArray}, function() {
+        Ozone.Service("Tags").tag.del({id: id}, function() {
             deferred.resolve.apply(this, arguments);
         }, context);
         return deferred.promise;
     }
 
+    /**
+     * Returns a list of Tag objects where the tag names start with the substring passed in
+     * @method searchTagsByNameSubstring
+     * @param substring {String} 
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns a list of Tag objects that match the beginning of the substring passed in
+     */
     var searchTagsByNameSubstring = function(substring, context) {
         substring = substring.toLowerCase();
         var deferred = $q.defer();
@@ -236,6 +276,13 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
+    /**
+     * Returns a list of Topic objects where the topic names start with the substring passed in
+     * @method searchTagTopicsByNameSubstring
+     * @param substring {String} 
+     * @public
+     * @return Angular promise that returns a list of Topic objects that match the beginning of the substring passed in
+     */
     var searchTagTopicsByNameSubstring = function(substring) {
         substring = substring.toLowerCase();
         var deferred = $q.defer();
@@ -248,6 +295,12 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
+    /**
+     * Returns a list of all App shortnames that contain at least one tag.
+     * @method getAllTagShortnames
+     * @private
+     * @return Angular promise that returns a list of App shortnames that contain at least one tag.
+     */
     var getAllTagShortnames = function() {
         var deferred = $q.defer();
         getTagByComplex().then(function(allTags) {
@@ -261,6 +314,14 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
+    /**
+     * Returns a list of Tag objects that match the URI prefix passed in and match all query parameters contained in the object passed in.
+     * @method getTagsByUriPrefix
+     * @param prefix {String} a substring that all tag names returned must start with
+     * @param queryObj {Object} An object containing query parameters, in standard key-value form
+     * @public
+     * @return Angular promise that returns a list of Tag objects with matching URI prefix and matches query parameters
+     */
     var getTagsByUriPrefix = function(prefix, queryObj) {
         queryObj = queryObj || {};
         var deferred = $q.defer();
@@ -273,6 +334,13 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     }
 
+    /**
+     * Returns a list of all App shortnames that contain at least one tag from the tag name list passed in.
+     * @method getAllTagShortnames
+     * @param selectedTagNames {Array} a list of tag names used to filter return values
+     * @public
+     * @return Angular promise that returns a list of App shortnames that contain at least one tag, and contained in the list of tag names passed in.
+     */
     var getAppShortnamesWithTags = function(selectedTagNames) {
         if (_.isEmpty(selectedTagNames)) {
             return getAllTagShortnames();
@@ -296,7 +364,17 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
-    // creates a new topic with the parameters passed in
+    // 
+
+    /**
+     * Creates a single new Topic object with the parameters and persona passed in.  If no persona is passed in, then this method will fail without raising an exception.
+     * @method createNewTopic
+     * @param newTopic {Object} new Topic to be created
+     * @param [persona] {Object} Persona object that new topic will be assigned to.  Uses current persona if this field is empty. 
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly created Topic object
+     */
     var createNewTopic = function(newTopic, persona, context) {
         // if no persona was passed in, then make call to get persona and call recursively with returned persona (if valid)
         if (!_.isObject(persona)) {
@@ -322,6 +400,18 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         }
     };
 
+    /**
+     * Creates a single new Topic object with the parameters and persona passed in, then creates multiple new tags linked to the newly created topic
+     *     using the user's logged-in Persona data, by invoking the $q.all method.  If the user is not logged in, then this method will fail without raising an exception.
+     * @method createNewTagsAndTopics
+     * @param tagList {Array} a list of tag names, for tags to be created
+     * @param appUri {String} the full-path URI for all tags to be created
+     * @param topicUri {String} the full-path URI for the topic to be created
+     * @param level {String} The topic level; must be either 'System' for system-level topics or 'Role' for role-based topics.
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly created Tag objects.
+     */
     var createNewTagsAndTopics = function(tagList, appUri, topicUri, level, context) {
         if (!_.isArray(tagList) || (tagList.length === 0)) {
             return $q.reject();
@@ -344,7 +434,15 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         });
     }
 
-    //updates a topic with the parameters passed in
+    /**
+     * Updates an existing Topic object with the object passed in.
+     * @method updateTopic
+     * @param newTopic {Object} new Topic to be created
+     * @param [persona] {Object} Persona object that new topic will be assigned to.  Uses current persona if this field is empty. 
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly created Topic object
+     */
     var updateTopic = function(topic, context) {
         var deferred = $q.defer();
         var currentDate = (new Date()).toString();
@@ -358,9 +456,17 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     }
 
-    function getTopicsByTopic(topic, level) {
+    /**
+     * Queries topics based on the topic URI passed in an existing Topic object with the object passed in.
+     * @method getTopicsByTopic
+     * @param topicUri {String} topic URI to query on
+     * @param [level] {String} The topic level; must be either 'System' or 'Role' for respective topic levels, or empty to search for all topic levels.
+     * @public
+     * @return Angular promise that returns a list of topics containing the URI passed in.
+     */
+    function getTopicsByTopic(topicUri, level) {
         var deferred = $q.defer();
-        var filter = {uri: topic};
+        var filter = {uri: topicUri};
         if(level)
             filter['level'] = level;
         Ozone.Service("Tags").topic.query(filter, function(topics) {
@@ -368,6 +474,22 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         });
         return deferred.promise;
     };
+
+    /**
+     * Advanced function to query on topics.
+     * @method getTopicsByComplex
+     * @param [queryObj] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
+     * Example query object:
+     * ```
+     * {
+     *   "topic": "/AppsMall/Category",
+     *   "uri": uri,
+     *   "tag": tag,
+     * }```
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns a list of queried Tag objects.
+     */
 
     // queries tags by a query object (see getTagByComplex)
     function getTopicsByComplex(queryObj, context) {
@@ -383,6 +505,14 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
+    /**
+     * Deletes one or more topics with ids equal to the values passed in.
+     * @method deleteTags
+     * @param idValueOrArray {Array, String} the UUID (unique identifier) of the Topic object to delete, or an array of tag UUIDs
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @public
+     * @return Angular promise that returns the newly deleted Topic objects
+     */
     function deleteTopics(idValueOrArray, context) {
         if (common.isValidId(idValueOrArray)) {
             return deleteSingleTopic(idValueOrArray, context);
@@ -403,9 +533,17 @@ var TagService = ['$q', 'Persona', function($q, Persona) {
         return deferred.promise;
     };
 
-    var deleteSingleTopic = function(idValueOrArray, context) {
+    /**
+     * Deletes a single topic with the id value passed in
+     * @method deleteSingleTag
+     * @param id {String} the UUID (unique identifier) of the Topic object to delete
+     * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+     * @private
+     * @return Angular promise that returns the newly deleted Topic
+     */
+    var deleteSingleTopic = function(id, context) {
         var deferred = $q.defer();
-        Ozone.Service("Tags").topic.delete({id: idValueOrArray}, function() {
+        Ozone.Service("Tags").topic.delete({id: id}, function() {
             console.log('DELETED TOPIC: '+ JSON.stringify(arguments));
             deferred.resolve.apply(this, arguments);
         }, context);
