@@ -20,7 +20,11 @@
  */
 var PersonaService = ['$q', function($q) {
 
-    // permission type lookup - used in case URI prefixes change
+    /**
+     * lookup object for permission type URI - matches permissions from Ozone API
+     * @attribute permissionTypes
+     * @private
+     */
     var permissionTypes = {
         Tags: "/Ozone/Apps/App/AppsMall/Manage/Tags/",
         Collections: "/Ozone/Apps/App/AppsMall/Manage/Collections/",
@@ -31,6 +35,15 @@ var PersonaService = ['$q', function($q) {
         GrantPermission: "/Ozone/Apps/App/AppsMall/GrantPermission/"
     };
 
+    /**
+     * lookup object for permission type URI - matches permissions from Ozone API
+     * @method personaHasPermission
+     * @param permissionNameOrUri {String} either a permission URI, or a permission name that corresponds to a URI.
+     *        Valid permission names: "Tags", "Collections", "Categories", "ApproveOrganizationOnlyApplication", "ApproveMallWideApplication", "SubmitApplication", "GrantPermission"
+     * @param persona {Object} a Persona object used for permission lookup
+     * @private
+     * @return {Boolean} true if Persona permission bit for permission name passed in is set to True, or false otherwise
+     */
     var personaHasPermission = function(permissionNameOrUri, persona) {
         // get permission URI, either from management permission lookup or passed in directly.
         var permissionUri = ((_.has(permissionTypes, permissionNameOrUri)) ? permissionTypes[permissionNameOrUri] : permissionNameOrUri);
@@ -41,19 +54,42 @@ var PersonaService = ['$q', function($q) {
         }
         return false;
     };
-    var viewedHelpPage = function(persona){
+
+    /**
+     * lookup object for permission type URI - matches permissions from Ozone API
+     * @method viewedHelpPage
+     * @param persona {Object} a Persona object used for help page lookup
+     * @private
+     * @return {Boolean} true if persona passed in has viewed the help page
+     */
+    var viewedHelpPage = function(persona) {
         if (_.isObject(persona) && _.isFunction(persona.getViewedHelpPage)){
             return persona.getViewedHelpPage();
         }
         return false;
     };
-    var setViewedHelpPage = function(boolViewedHelpPage){
+
+    /**
+     * lookup object for permission type URI - matches permissions from Ozone API
+     * @method setViewedHelpPage
+     * @param boolViewedHelpPage {Boolean} "has help page been viewed?" flag to get set
+     * @private 
+     * @return Angular promise that returns the viewed help page boolean flag
+     */
+    var setViewedHelpPage = function(boolViewedHelpPage) {
         getCurrentPersona().then(function(persona){
             if (_.isObject(persona) && _.isFunction(persona.setViewedHelpPage)){
                 return persona.setViewedHelpPage(!!boolViewedHelpPage);
             }
         });
     };
+
+    /**
+     * Retrieves a Persona object from the currently logged-in user
+     * @method getCurrentPersona
+     * @public 
+     * @return Angular promise that returns Persona object from currently logged-in user
+     */
     var getCurrentPersona = function() {
         var deferred = $q.defer();
         Ozone.Service('Personas').persona.getCurrent(function(persona) {
@@ -63,8 +99,15 @@ var PersonaService = ['$q', function($q) {
     };
 
     return {
-        // Checks permission, and invokes then clause of promise if hasPermission() returns true.
-        // Persona can either be passed in as second parameter, or left blank -- if blank, then current persona will be used.
+        /**
+         * Performs permission check, and returns invokable Angular promise if permission bit equals true
+         * @method checkPermission
+         * @param permissionNameOrUri {String} either a permission URI, or a permission name that corresponds to a URI.
+         *        Valid permission names: "Tags", "Collections", "Categories", "ApproveOrganizationOnlyApplication", "ApproveMallWideApplication", "SubmitApplication", "GrantPermission"
+         * @param persona {Object} a Persona object used for permission lookup.  If empty, then the current persona will be used.
+         * @public 
+         * @return Angular promise that returns Persona object from currently logged-in user
+         */
         checkPermission: function(permissionNameOrUri, persona) {
             var deferred = $q.defer();
             if (_.isObject(persona) && _.isFunction(persona.hasPermission)) {
@@ -94,7 +137,15 @@ var PersonaService = ['$q', function($q) {
             });
             return deferred.promise;
         },
+        // See method above
         getCurrentPersona: getCurrentPersona,
+        /**
+         * Saves Persona object passed in to the database.
+         * @method setCurrentPersona
+         * @param persona {Object} the Persona object to save
+         * @public 
+         * @return Angular promise that returns Persona object from currently logged-in user
+         */
         setCurrentPersona: function(persona) {
             var deferred = $q.defer();
             Ozone.Service('Personas').persona.updateCurrent(persona, function() {
@@ -102,6 +153,12 @@ var PersonaService = ['$q', function($q) {
             });
             return deferred.promise;
         },
+        /**
+         * Retrieves the Persona object from the currently logged-in user, then creates data object with results from all permission flags method calls
+         * @method getCurrentPersonaData
+         * @public 
+         * @return Angular promise that returns data object with permission flag calls
+         */
         getCurrentPersonaData: function() {
             var deferred = $q.defer();
             Ozone.Service('Personas').persona.getCurrent(function(persona) {
@@ -138,6 +195,14 @@ var PersonaService = ['$q', function($q) {
             });
             return deferred.promise;
         },
+        /**
+         * Retrieves the Persona object from the currently logged-in user, then creates data object with results from all permission flags method calls
+         * @method getCurrentPersonaData
+         * @param appShortname {String} shortname of app to save Favorite flag
+         * @param isAddingFavorite {Boolean} value of Favorite flag to be set on Persona object
+         * @public
+         * @return Angular promise that returns new favorite flag value if invoked with then() call
+         */
         addOrRemoveFavoriteApp: function(appShortname, isAddingFavorite) {
             var deferred = $q.defer();
             Ozone.Service('Personas').persona.getCurrent(function(persona) {
