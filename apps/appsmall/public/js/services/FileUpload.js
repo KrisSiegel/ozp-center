@@ -31,7 +31,7 @@ var FileUploadService = ['$q', function ($q) {
          * @method upload
          * @param fileObject {File} a File object containing an uploaded image, as defined by the [HTML5 File API](http://www.w3.org/TR/FileAPI/) 
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns an acknowledgement object if successful that contains the newly generated id, or an error object if unsuccessful.
+         * @return {PromiseObject} that, when invoked, passes an acknowledgement object if successful that contains the newly generated id, or an error object if unsuccessful.
          */
         upload: function(fileObject, context) {
             var deferred = $q.defer();

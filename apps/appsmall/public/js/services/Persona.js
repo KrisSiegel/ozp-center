@@ -74,7 +74,7 @@ var PersonaService = ['$q', function($q) {
      * @method setViewedHelpPage
      * @param boolViewedHelpPage {Boolean} "has help page been viewed?" flag to get set
      * @private 
-     * @return Angular promise that returns the viewed help page boolean flag
+     * @return {PromiseObject} that, when invoked, passes the viewed help page boolean flag
      */
     var setViewedHelpPage = function(boolViewedHelpPage) {
         getCurrentPersona().then(function(persona){
@@ -88,7 +88,7 @@ var PersonaService = ['$q', function($q) {
      * Retrieves a Persona object from the currently logged-in user
      * @method getCurrentPersona
      * @public 
-     * @return Angular promise that returns Persona object from currently logged-in user
+     * @return {PromiseObject} that, when invoked, passes a Persona object from the currently logged-in user as a parameter
      */
     var getCurrentPersona = function() {
         var deferred = $q.defer();
@@ -106,7 +106,7 @@ var PersonaService = ['$q', function($q) {
          *        Valid permission names: "Tags", "Collections", "Categories", "ApproveOrganizationOnlyApplication", "ApproveMallWideApplication", "SubmitApplication", "GrantPermission"
          * @param persona {Object} a Persona object used for permission lookup.  If empty, then the current persona will be used.
          * @public 
-         * @return Angular promise that returns Persona object from currently logged-in user
+         * @return {PromiseObject} that can only be invoked if the user has the permission flag passed in set to True.  This promise does not pass any parameters into the then() call.
          */
         checkPermission: function(permissionNameOrUri, persona) {
             var deferred = $q.defer();
@@ -130,6 +130,15 @@ var PersonaService = ['$q', function($q) {
             }
             return deferred.promise;
         },
+        /**
+         * Queries for Persona objects based on the query parameters passed in
+         * @method checkPermission
+         * @param permissionNameOrUri {String} either a permission URI, or a permission name that corresponds to a URI.
+         *        Valid permission names: "Tags", "Collections", "Categories", "ApproveOrganizationOnlyApplication", "ApproveMallWideApplication", "SubmitApplication", "GrantPermission"
+         * @param persona {Object} a Persona object used for permission lookup.  If empty, then the current persona will be used.
+         * @public 
+         * @return {PromiseObject} that, when invoked, passes an array of Persona objects based on query results as a parameter
+         */
         queryPersona: function(querySelector) {
             var deferred = $q.defer();
             Ozone.Service('Personas').persona.query(querySelector, function(personaResults) {
@@ -144,7 +153,7 @@ var PersonaService = ['$q', function($q) {
          * @method setCurrentPersona
          * @param persona {Object} the Persona object to save
          * @public 
-         * @return Angular promise that returns Persona object from currently logged-in user
+         * @return {PromiseObject} that, when invoked, passes Persona object from currently logged-in user as a parameter
          */
         setCurrentPersona: function(persona) {
             var deferred = $q.defer();
@@ -157,7 +166,7 @@ var PersonaService = ['$q', function($q) {
          * Retrieves the Persona object from the currently logged-in user, then creates data object with results from all permission flags method calls
          * @method getCurrentPersonaData
          * @public 
-         * @return Angular promise that returns data object with permission flag calls
+         * @return {PromiseObject} that, when invoked, passes data object with permission flag calls as a parameter 
          */
         getCurrentPersonaData: function() {
             var deferred = $q.defer();
@@ -196,12 +205,12 @@ var PersonaService = ['$q', function($q) {
             return deferred.promise;
         },
         /**
-         * Retrieves the Persona object from the currently logged-in user, then creates data object with results from all permission flags method calls
+         * Sets the Favorite flag from the Persona object of the currently logged-in user.
          * @method getCurrentPersonaData
          * @param appShortname {String} shortname of app to save Favorite flag
          * @param isAddingFavorite {Boolean} value of Favorite flag to be set on Persona object
          * @public
-         * @return Angular promise that returns new favorite flag value if invoked with then() call
+         * @return {PromiseObject} that, when invoked, passes new favorite flag value as a parameter
          */
         addOrRemoveFavoriteApp: function(appShortname, isAddingFavorite) {
             var deferred = $q.defer();

@@ -25,9 +25,10 @@ var ReviewService = ['$q', function($q) {
          * @param appid {String} the UUID (unique identifier) of the App object to query for reviews
          * @param [username] {String} The username as defined in the Persona object (Persona.username)
          *        If empty, then this parameter designates "all users"
-         * @return Angular promise that returns a single Review object if appid and username are not empty, or all reviews for the app that has id
-         *         equal to appid if username is empty.  Returns an empty array if no review exists for the appid and/or user passed in
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+         * @return {PromiseObject} that, when invoked, passes a single-element Review array matching the appid and username into then() callback.
+         *         If username is empty, then all Reviews with matching appid are passed in.
+         *         If no review exists for the appid and/or user passed in, then an empty array is passed in.
          */
         get: function(appid, username, context) {
             var deferred = $q.defer();
@@ -43,7 +44,7 @@ var ReviewService = ['$q', function($q) {
          * @param username {String} The username as defined in the Persona object (Persona.username)
          * @param reviewText {String} The text body of the review to be submitted
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns the newly created Review object
+         * @return {PromiseObject} that, when invoked, passes the newly created Review object into then() callback.
          */
         submit: function(app, ratingAsNumber, username, reviewText, context) {
             var deferred = $q.defer();
@@ -55,7 +56,7 @@ var ReviewService = ['$q', function($q) {
         /**
          * Static list of all star ratings and descriptions
          * @method getRatings
-         * @return list of all star ratings and descriptions
+         * @return {Array} list of all star ratings and descriptions
          */
         getRatings: function() {
             return [{

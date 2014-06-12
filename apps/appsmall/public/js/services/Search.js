@@ -29,7 +29,8 @@ var SearchService =  ['$q', 'AppOrComponent', 'Tag', function($q, AppOrComponent
      * @param searchTerm {String} name search string.  This method will query for all names that start with this search string.
      * @param searchType {String} must equal 'app' or 'component'; identifies whether to search on Apps or Components
      * @param isAutocomplete {Boolean} determines whether a standard or autocomplete search is being performed.
-     * @return Angular promise that returns search results: an array of App objects if isAutocomplete is false, or an array of app names if isAutocomplete is true.
+     * @return {PromiseObject} that, when invoked, passes search results as a parameter into then() callback.
+     *          Search results are represented as an array of App objects if isAutocomplete is false, or an array of app names if isAutocomplete is true.
      */
     var appOrComponentSearch = function(searchTerm, searchType, isAutocomplete) {
         if (_.contains(['app', 'component'], searchType)) {
@@ -95,7 +96,7 @@ var SearchService =  ['$q', 'AppOrComponent', 'Tag', function($q, AppOrComponent
          * Performs query to retrieve apps as search results.
          * @method appSearch
          * @param searchTerm {String} name search string.  This method will query for all names that start with this search string.
-         * @return Angular promise that returns an array of App objects that match the search term passed in.
+         * @return {PromiseObject} that, when invoked, passes an array of App objects with matching the search term into then() callback.
          */
         appSearch: function(searchTerm) {
             return appOrComponentSearch(searchTerm, 'app', false);
@@ -104,25 +105,25 @@ var SearchService =  ['$q', 'AppOrComponent', 'Tag', function($q, AppOrComponent
          * Performs query to retrieve components as search results.
          * @method componentSearch
          * @param searchTerm {String} name search string.  This method will query for all names that start with this search string.
-         * @return Angular promise that returns an array of Component objects that match the search term passed in.
+         * @return {PromiseObject} that, when invoked, passes an array of Component object query results into then() callback.
          */
         componentSearch: function(searchTerm) {
             return appOrComponentSearch(searchTerm, 'component', false);
         },
         /**
-         * Performs query to retrieve app names as search results.
+         * Performs query to retrieve app names as search results, where app names match the beginning of the search term passed in.
          * @method appNameSearch
          * @param searchTerm {String} name search string.  This method will query for all names that start with this search string.
-         * @return Angular promise that returns an array of app names that match the search term passed in.
+         * @return {PromiseObject} that, when invoked, passes an array of app names into then() callback.
          */
         appNameSearch: function(searchTerm) {
             return appOrComponentSearch(searchTerm, 'app', true);
         },
         /**
-         * Performs query to retrieve component names as search results.
+         * Performs query to retrieve component names as search results, where component names match the beginning of the search term passed in.
          * @method componentNameSearch
          * @param searchTerm {String} name search string.  This method will query for all names that start with this search string.
-         * @return Angular promise that returns an array of component names that match the search term passed in.
+         * @return {PromiseObject} that, when invoked, passes an array of component names into then() callback.
          */
         componentNameSearch: function(searchTerm) {
             return appOrComponentSearch(searchTerm, 'component', true);
@@ -133,7 +134,7 @@ var SearchService =  ['$q', 'AppOrComponent', 'Tag', function($q, AppOrComponent
          * @param searchTerm {String} name search string.  This method will query for all names that start with this search string.
          * @param [searchType] {String} 'app' or 'apps' indicates App name serach; 'component' or 'components' indicates Component name search.
          *        If empty, this method will search on both apps and components.
-         * @return Angular promise that passes an object of the form ```apps: <app name array>, components: <component name array>``` into the "then" callback.
+         * @return {PromiseObject} that, when invoked, passes an object of the form ```apps: <app name array>, components: <component name array>``` into the then() callback.
          */
         nameSearch: nameSearch,
         /**
@@ -142,7 +143,7 @@ var SearchService =  ['$q', 'AppOrComponent', 'Tag', function($q, AppOrComponent
          * @param searchTerm {String} name search string.  This method will query for all names that start with this search string.
          * @param searchType {String} 'app' or 'apps' indicates App + Tag name serach; 'component' or 'components' indicates Component + Tag name search
          *        If empty, this method will search on both Apps, Components, and Tags.
-         * @return Angular promise that passes an object of the form ```apps: <app name array>, components: <component name array>, tags: <tag name array>``` into the "then" callback.
+         * @return {PromiseObject} that, when invoked, passes an object of the form ```apps: <app name array>, components: <component name array>, tags: <tag name array>``` into the then() callback.
          */
         appAndTagNameSearch: appAndTagNameSearch
     };

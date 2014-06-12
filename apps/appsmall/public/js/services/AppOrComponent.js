@@ -56,10 +56,10 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
         /**
          * @method save
          * @param appOrComponent {Object} an App or Component object to be saved:
-         * @param appOrComponent.type {String} lower-case string that identifies whether to save an App or Component object. 
+         * @param appOrComponent.type {String} lower-case string that identifies whether to save an App or Component object.
          *        (Defaults to 'app' but using default is not recommended)
          * @param [context] {Object} an object context for Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns newly created/updated App or Component object in then() callback
+         * @return {PromiseObject} that, when invoked, passes newly created/updated App or Component object as a parameter into then() callback
          */
         save: function(appOrComponent, context) { 
             return (isApp(appOrComponent) ? App.save(appOrComponent, context) : Component.save(appOrComponent, context));
@@ -70,7 +70,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          *        (Example: ```{shortname: 'Bob'}``` will query for all apps with shortname equal to 'Bob'.)
          * @param [selector.type] {String} lower-case string that identifies whether to query on only App or Component objects; defaults to query on both types.
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns query results as an array of App objects in then() callback
+         * @return {PromiseObject} that, when invoked, passes query results as an array of App objects as a parameter into then() callback
          */
         query: function(selector, context) {
             selector = setEmptySelectorToDefault(selector);
@@ -99,7 +99,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          * @param selector.id {String} the UUID (unique identifier) of the App object to get
          * @param [selector.type] {String} lower-case string that identifies whether to get an App or Component object; defaults to 'app'.
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns App object with id equal to parameter in then() callback
+         * @return {PromiseObject} that, when invoked, passes App object with matching id as a parameter into then() callback
          */
         get: function(selector, context) {
             selector = setEmptySelectorToDefault(selector);
@@ -126,7 +126,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          * @param appOrComponent.type {String} lower-case string that identifies whether to delete an App or Component object
          *        (Defaults to 'app' but using default is not recommended)
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns newly deleted App object in then() callback
+         * @return {PromiseObject} that, when invoked, passes newly deleted App object as a parameter into then() callback
          */
         delete: function(appOrComponent, context) {
             return (isApp(appOrComponent) ? App.delete(appOrComponent, context) : Component.delete(appOrComponent, context));
@@ -137,7 +137,7 @@ var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Compone
          * @param appOrComponent.type {String} lower-case string that identifies whether to delete an App or Component object
          *        (Defaults to 'app' but using default is not recommended)
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns newly deleted App object in then() callback
+         * @return {PromiseObject} that, when invoked, passes newly deleted App object as a parameter into then() callback
          */
         remove: function(appOrComponent, context) {
             return (isApp(appOrComponent) ? App.remove(appOrComponent, context) : Component.remove(appOrComponent, context));

@@ -26,7 +26,7 @@ var AppService = ['$q', function($q) {
          * @method save
          * @param app {Object} an App object to be saved
          * @param [context] {Object} an object context for Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns newly created/updated App object in then() callback
+         * @return {PromiseObject} that, when invoked, passes newly created/updated App object as a parameter into then() callback
          */
         save: function(app, context) { 
             var deferred = $q.defer();
@@ -48,7 +48,7 @@ var AppService = ['$q', function($q) {
          * @param [selector] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
          *                 (Example: ```{shortname: 'Bob'}``` will query for all apps with shortname equal to 'Bob'.)
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns query results as an array of App objects in then() callback
+         * @return {PromiseObject} that, when invoked, passes query results as an array of App objects as a parameter into then() callback
          */
         query: function(selector, context) {
             var deferred = $q.defer();
@@ -61,7 +61,7 @@ var AppService = ['$q', function($q) {
          * @method get
          * @param id {String} the UUID (unique identifier) of the App object to delete
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns App object with id equal to parameter in then() callback
+         * @return {PromiseObject} that, when invoked, passes App object with matching id as a parameter into then() callback
          */
         get: function(id, context) { 
             var deferred = $q.defer();
@@ -74,7 +74,7 @@ var AppService = ['$q', function($q) {
          * @method delete
          * @param app {Object} an App object to be deleted
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns newly deleted App object in then() callback
+         * @return {PromiseObject} that, when invoked, passes newly deleted App object as a parameter into then() callback
          */
         delete: function(app, context) {
             var deferred = $q.defer();
@@ -87,7 +87,7 @@ var AppService = ['$q', function($q) {
          * @method remove
          * @param app {Object} an App object to be deleted
          * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-         * @return Angular promise that returns newly deleted App object in then() callback
+         * @return {PromiseObject} that, when invoked, passes newly deleted App object as a parameter into then() callback
          */
         remove: function(app, context) {
             var deferred = $q.defer();

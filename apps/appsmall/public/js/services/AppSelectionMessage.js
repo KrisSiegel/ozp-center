@@ -133,8 +133,8 @@ var AppSelectionMessageService = ['$q', 'AppOrComponent', 'Tag', function($q, Ap
          * Retrieves a "message" object that contains a list of tags passed in, and apps that contain every tag passed in.
          * @method getTagFilterMessage
          * @param selectedTags {Array} a list of tag names to search on
-         * @return An object containing an filtering object and a list of all the tags passed in to be displayed on the AppsMall main page.
-         *         The return object is in the format: ``` filter: <shortname: <list of shortnames of apps that contain every tag passed in>>, selectedTags: <tags passed in> ```
+         * @return {PromiseObject} that, when invoked, passes filter result object as a parameter into then() callback.
+         *         The filter result object is in the format: ``` filter: <shortname: <list of shortnames of apps that contain every tag passed in>>, selectedTags: <tags passed in> ```
          */
         getTagFilterMessage: getTagFilterMessage,
         // See attribute above

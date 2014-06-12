@@ -40,7 +40,7 @@ var OzoneCommonService = [function() {
          * Get full URI from relative URI path passed in
          * @method getAmlUri
          * @param relativePath {String} the relative path for an app URI
-         * @returns the full URI
+         * @returns {String} the full URI
          */
         getAmlUri: function(relativePath) {
             // refactor if characters that need to be escaped (ex. space characters to '%20') become an issue.

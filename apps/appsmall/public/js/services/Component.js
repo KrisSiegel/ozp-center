@@ -29,7 +29,7 @@ var ComponentService = ['$q', function($q) {
              * @method save
              * @param component {Object} an Component object to be saved
              * @param [context] {Object} an object context for Ozone API call.  Uses Ozone API context if not defined.
-             * @return Angular promise that returns newly created/updated Component object in then() callback
+             * @return {PromiseObject} that, when invoked, passes newly created/updated Component object as a parameter into then() callback
              */
             save: function(component, context) { 
                 var deferred = $q.defer();
@@ -51,7 +51,7 @@ var ComponentService = ['$q', function($q) {
              * @param [selector] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
              *                 (Example: ```{shortname: 'Bob'}``` will query for all components with shortname equal to 'Bob'.)
              * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-             * @return Angular promise that returns query results as an array of Component objects in then() callback
+             * @return {PromiseObject} that, when invoked, passes query results as an array of Component objects as a parameter into then() callback
              */
             query: function(selector, context) {
                 var deferred = $q.defer();
@@ -64,7 +64,7 @@ var ComponentService = ['$q', function($q) {
              * @method get
              * @param id {String} the UUID (unique identifier) of the Component object to delete
              * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-             * @return Angular promise that returns Component object with id equal to parameter in then() callback
+             * @return {PromiseObject} that, when invoked, passes Component object with matching id as a parameter into then() callback
              */
             get: function(id, context) { 
                 var deferred = $q.defer();
@@ -77,7 +77,7 @@ var ComponentService = ['$q', function($q) {
              * @method delete
              * @param component {Object} an Component object to be deleted
              * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-             * @return Angular promise that returns newly deleted Component object in then() callback
+             * @return {PromiseObject} that, when invoked, passes newly deleted Component object as a parameter into then() callback
              */
             delete: function(component, context) { 
                 var deferred = $q.defer();
@@ -90,7 +90,7 @@ var ComponentService = ['$q', function($q) {
              * @method remove
              * @param component {Object} an Component object to be deleted
              * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
-             * @return Angular promise that returns newly deleted Component object in then() callback
+             * @return {PromiseObject} that, when invoked, passes newly deleted Component object as a parameter into then() callback
              */
             remove: function(component, context) { 
                 var deferred = $q.defer();
