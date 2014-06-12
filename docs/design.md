@@ -20,7 +20,7 @@ The Apps Mall project is comprised of several components all hosted by node.js w
     * [SSL Considerations](#ozoneHudSslCon)
 * [Ozone API](#ozoneApi)
     * [Overview](#ozoneApiOverview)
-    * [ozoneApiService](#ozoneApiService)
+    * [Ozone.Service](#ozoneApiService)
     * [Server-Side](#ozoneApiServer)
         * [Ozone.routing](#ozoneApiServerRouting)
         * [Ozone.load](#ozoneApiServerLoad)

@@ -4,13 +4,13 @@ The Apps Mall project provides access to, and facilitates the discovery of, web 
 ##Prerequisites
 The requirements below are required to go from cloning the repository to running the application and unit tests. The last 4 prerequisites (jasmine-node, karma, karma-jarmine and karma-chrome-launcher) are ONLY required if you wish you run the unit tests. The only exception in this list is MongoDB can be replaced with an in-memory mock data store.
 * node.js 0.10.x
-* bower (npm install -g bower)
-* grunt (npm install -g grunt-cli)
+* bower
+* grunt
 * MongoDB 2.4.x or higher with text searching enabled
-* jasmine-node (npm install -g jasmine-node)
-* karma (npm install -g karma)
-* karma-jasmine (npm install -g karma-jasmine)
-* karma-chrome-launcher (npm install -g karma-chrome-launcher)
+* jasmine-node
+* karma
+* karma-jasmine
+* karma-chrome-launcher
 
 ##Quick Start
 If the requirements are all installed then follow these 4 steps to quickly get up and running (if not then read the [Getting Started](docs/getting-started.md) to make sure your environment is setup).
