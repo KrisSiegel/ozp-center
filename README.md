@@ -8,6 +8,7 @@ An overarching project that contains the new Ozone Service Container, various Oz
 * grunt (npm install -g grunt-cli)
 * jasmine-node (npm install -g jasmine-node)
 * MongoDB 2.4.x with text searching enabled (mock data store can be used in place of MongoDB)
+    * echo "setParameter=textSearchEnabled=true" /etc/mongodb.conf
 
 ##Getting Started
 These steps will get you started from the git repo to a custom configured version running in your environment.
