@@ -1,4 +1,4 @@
-###Tag
+##Tagging Service
 Tags consist of two components: a tag topic and a tag. A tag should be looked at as a resource which has a piece of meta data attached to it. For example an application, person or a sentence inside of a report could have a tag. A topic should be looked at as a definition that further describes where a tag came from, what type of category or topic it belongs to, etc. A list of categories, agencies or any other way of grouping a type of tag is where a tag topic fits in.
 
 ####A Tag Topic's JSON Structure

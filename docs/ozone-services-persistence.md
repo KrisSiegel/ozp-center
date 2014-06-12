@@ -1,4 +1,4 @@
-###Persistence
+##Persistence Service
 The persistence service provides two implementations: a MongoDB and an in-memory mock implementation but the methods to access Persistence are the same regardless of the implementation.
 
 ####Configuration

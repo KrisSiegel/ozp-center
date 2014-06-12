@@ -1,4 +1,4 @@
-###Apps
+##Applications Service
 The Apps service provides persistence of application records and some basic metrics. There exists a server-side and client-side API along with a set of RESTful endpoints to using the Apps service.
 
 ####Application JSON Structure

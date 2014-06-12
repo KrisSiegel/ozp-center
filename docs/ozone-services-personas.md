@@ -1,4 +1,4 @@
-###Personas
+##Personas Service
 Personas is the user concept for Ozone Platform. Each user has a persona which has information regarding their authentication mechanism, preferences and other general user information.
 
 Since multiple authentication methods can be used with the Ozone Platform Personas will treat the combination of a user name and an authentication token as a unique pair to ensure both are required for login (for example this prevents users brought in via the mock security service from working with a real authentication service and vice versa).
