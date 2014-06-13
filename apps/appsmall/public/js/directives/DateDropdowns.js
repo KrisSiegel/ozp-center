@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<date-dropdowns></date-dropdowns>```
+ * 
  * @class DateDropdownsDirective
  * @static
  */ 

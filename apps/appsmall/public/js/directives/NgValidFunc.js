@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] ng-valid-func="[Function]"></[element]>```
+ *
  * @class NgValidFuncDirective
  * @static
  */ 

@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<markdown-text-area></markdown-text-area>```
+ * 
  * @class MarkdownTextAreaDirective
  * @static
  */ 

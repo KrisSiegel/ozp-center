@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<app-badges></app-badges>```,
+ *
  * @class AppBadgesDirective
  * @static
  */ 
@@ -17,6 +21,13 @@
  * @constructor
  * @param Dropdown {Object} an Angular-injected instance of {{#crossLink "DropdownService"}}{{/crossLink}}
  */
+
+/**
+ * 
+ * @attribute {String} dynbadges
+ * @optional
+ */
+
 var AppBadgesDirective = ['Dropdown', function(Dropdown) {
     var badgeNamesByLetter = {};
     return {

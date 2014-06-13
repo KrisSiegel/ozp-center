@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<form-validation-watcher></form-validation-watcher>```
+ * 
  * @class FormValidationWatcherDirective
  * @static
  */ 

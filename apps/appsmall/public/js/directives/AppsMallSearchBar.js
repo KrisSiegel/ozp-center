@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<appsmall-search-bar></appsmall-search-bar>```
+ *
  * @class AppsmallSearchBarDirective
  * @static
  */ 

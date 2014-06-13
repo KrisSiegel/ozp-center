@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] require-unique="[Function]"></[element]>```
+ *
  * @class RequireUniqueDirective
  * @static
  */ 

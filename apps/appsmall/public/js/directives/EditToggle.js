@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML class directive: 
+ *
+ * Usage: ```<[element] class="edit-toggle"></[element]>```
+ *
  * @class EditToggleDirective
  * @static
  */ 

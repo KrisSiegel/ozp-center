@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<menu-tabs-indicator></menu-tabs-indicator>```
+ * 
  * @class MenuTabsIndicatorDirective
  * @static
  */ 

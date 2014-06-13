@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<status-message></status-message>```
+ * 
  * @class StatusMessageDirective
  * @static
  */ 

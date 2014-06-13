@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] fade-show="[String]"></[element]>```
+ *
  * @class FadeShowDirective
  * @static
  */ 

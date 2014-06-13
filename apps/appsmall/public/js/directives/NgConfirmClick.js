@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] ng-confirm-click="[String]"></[element]>```
+ *
  * @class NgConfirmClickDirective
  * @static
  */ 

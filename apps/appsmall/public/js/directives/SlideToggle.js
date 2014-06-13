@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] slide-toggle="[String]"></[element]>```
+ *
  * @class SlideToggleDirective
  * @static
  */ 

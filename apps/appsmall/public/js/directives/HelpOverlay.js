@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<help-overlay></help-overlay>```
+ * 
  * @class HelpOverlayDirective
  * @static
  */ 

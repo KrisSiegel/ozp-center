@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] dynamic-carousel="[Boolean]"></[element]>```
+ *
  * @class DynamicCarouselDirective
  * @static
  */ 

@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML class directive: 
+ *
+ * Usage: ```<[element] class="slideable"></[element]>```
+ *
  * @class SlideableDirective
  * @static
  */ 

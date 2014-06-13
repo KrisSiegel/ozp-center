@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<file-upload></file-upload>```
+ * 
  * @class FileUploadDirective
  * @static
  */ 

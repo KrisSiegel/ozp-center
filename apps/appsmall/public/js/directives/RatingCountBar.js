@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<rating-count-bar></rating-count-bar>```
+ * 
  * @class RatingCountBarDirective
  * @static
  */ 

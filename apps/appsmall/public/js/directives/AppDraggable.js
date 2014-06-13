@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] app-draggable></[element]>```, 
+ *
  * @class AppDraggableDirective
  * @static
  */ 

@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] set-modal-dimensions modal-height="[Int]" modal-width="[Int]"></[element]>```
+ *
  * @class SetModalDimensionsDirective
  * @static
  */ 

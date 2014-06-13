@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<interactive-star-rating></interactive-star-rating>```
+ * 
  * @class InteractiveStarRatingDirective
  * @static
  */ 

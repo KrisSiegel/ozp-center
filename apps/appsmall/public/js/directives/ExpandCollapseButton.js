@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML class directive: 
+ *
+ * Usage: ```<[element] class="expand-collapse-button"></[element]>```
+ *
  * @class ExpandCollapseButtonDirective
  * @static
  */ 

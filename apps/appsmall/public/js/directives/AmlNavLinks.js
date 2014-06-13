@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: Renders HTML for navigation links dropdown menu.
+ *
+ * Usage: ```<aml-nav-links></aml-nav-links>```
+ * 
  * @class AmlNavLinksDirective
  * @static
  */ 
@@ -18,6 +22,14 @@
  * @param OzoneCommon {Object} an Angular-injected instance of {{#crossLink "OzoneCommonService"}}{{/crossLink}}
  * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
  */
+
+/**
+ * If set to true, then the navigation links will always display the Help page link.
+ * @attribute {Boolean} show-help
+ * @optional
+ */
+
+
 var AmlNavLinksDirective = ['OzoneCommon', 'Persona', function(OzoneCommon, Persona) {
     // HTML template for top-right navigation links.  Will add permission logic later.
     var htmlTemplate =

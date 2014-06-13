@@ -8,6 +8,10 @@
 'use strict';
 
 /**
+ * HTML element directive: 
+ *
+ * Usage: ```<interactive-app-badges></interactive-app-badges>```
+ * 
  * @class InteractiveAppBadgesDirective
  * @static
  */ 

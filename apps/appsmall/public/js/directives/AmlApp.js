@@ -18,6 +18,13 @@ function resetModalTabs() {
 };
 
 /**
+ * HTML element or attribute directive: Renders HTML for a single application on the AppsMall main page or App Management page.
+ *
+ * Usage: ```<amlapp></amlapp>```
+ * This directive uses the parent scope, and does not create its own scope.
+ *
+ * All attributes listed below are added to this directive as HTML attributes.
+ *
  * @class AmlAppDirective
  * @static
  */ 
@@ -29,6 +36,31 @@ function resetModalTabs() {
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
  */
  
+/**
+ * If set to true, then the app will always appear as standard (non-featured).
+ * @attribute {Boolean} no-featured
+ * @optional
+ * @deprecated
+ */
+
+/**
+ * If set to true, then the app HTML will not contain a launch button.
+ * @attribute {Boolean} no-launch
+ * @optional
+ */
+
+/**
+ * If set to true, then the app will not open a modal when clicked.
+ * @attribute {Boolean} no-click
+ * @optional
+ */
+
+/**
+ * If set to true, then the app will always appear as a featured app.
+ * @attribute {Boolean} featured-banner
+ * @optional
+ */
+
 var AmlAppDirective = ['FileUpload', 'Tag', function(FileUpload, Tag) {
     function getBannerIcon(app, isLargeBanner) {
         if (app && app.featured && isLargeBanner) {

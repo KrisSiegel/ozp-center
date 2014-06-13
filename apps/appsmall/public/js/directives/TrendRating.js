@@ -12,7 +12,11 @@
  * @static
  */ 
 
-/**
+ /**
+  * HTML element directive: 
+  *
+ * Usage: ```<trendrating></trendrating>```
+  * 
  * @class TrendratingDirective
  * @constructor
  */

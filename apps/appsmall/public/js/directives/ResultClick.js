@@ -8,6 +8,11 @@
 'use strict';
 
 /**
+ * HTML attribute or class directive: 
+ *
+ * Usage: ```<[element] result-click></[element]>```
+ * Alternate Usage: ```<[element] class="result-click"></[element]>```
+ *
  * @class ResultClickDirective
  * @static
  */ 
