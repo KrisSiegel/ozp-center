@@ -8,7 +8,9 @@
 'use strict';
 
 /**
+ * Assigns version number passed in to the DOM node text.
  * @class AppVersionDirective
+ * @deprecated
  * @static
  */ 
 

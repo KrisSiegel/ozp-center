@@ -8,9 +8,12 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Creates an array of clickable image viewing areas and corresponding HTML5 file input control to handle file uploading.
+ *    This array is always bound to ```currentApp.images.screenshots.length``` and will size dynamically based on that array value.
  *
  * Usage: ```<file-upload-array></file-upload-array>```
+
+
  * 
  * @class FileUploadArrayDirective
  * @static
@@ -23,6 +26,16 @@
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  */
+
+/**
+ * The App object containing an array of uploaded screenshot URLs
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Object} current-app
+ * @required
+ */
+
 var FileUploadArrayDirective = ['$compile', '$timeout', 'FileUpload', function($compile, $timeout, FileUpload) {
     var getScreenshotCount = function(currentApp) {
         return _.compact(currentApp.images.screenshots).length;

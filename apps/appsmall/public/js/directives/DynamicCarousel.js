@@ -8,9 +8,9 @@
 'use strict';
 
 /**
- * HTML attribute directive: 
+ * HTML attribute directive:
  *
- * Usage: ```<[element] dynamic-carousel="[Boolean]"></[element]>```
+ * Usage: ```<[element] dynamic-carousel="[Boolean]" num-items="[Int]" is-auto="[Boolean]" on-image-click="[Function]" width=[Int] height=[Int] timeout=[Int]></[element]>```
  *
  * @class DynamicCarouselDirective
  * @static
@@ -21,6 +21,70 @@
  * @constructor
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
  */
+
+/**
+ * Dynamic carousel functionality only gets added if true
+ *
+ * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
+ *
+ * @attribute {Boolean} dynamic-carousel
+ * @optional
+ */
+
+/**
+ * Method that gets called when users click on any image in carousel
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Function} on-image-click
+ * @optional
+ */
+
+/**
+ * Number of apps visible in carousel at any one time
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} num-items 
+ * @optional
+ */
+
+/**
+ * Boolean flag for determining whether carousel auto-scrolls
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Boolean} is-auto
+ * @optional
+ */
+
+/**
+ * If defined, the width of all apps will get set to this value.
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} width
+ * @optional
+ */
+
+/**
+ * If defined, the height of all apps will get set to this value.
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} height
+ * @optional
+ */
+
+/**
+ * Delays creation of dynamic carousel, so that pre-render methods can be called.
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} height
+ * @optional
+ */
+
 var DynamicCarouselDirective = ['$timeout', function($timeout) {
     return {
         restrict: 'A',

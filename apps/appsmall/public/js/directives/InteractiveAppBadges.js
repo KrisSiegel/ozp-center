@@ -8,9 +8,9 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders list of badges with interactive checkbox controls for selecting/deselecting badges
  *
- * Usage: ```<interactive-app-badges></interactive-app-badges>```
+ * Usage: ```<interactive-app-badges app-object="[Object]"></interactive-app-badges>```
  * 
  * @class InteractiveAppBadgesDirective
  * @static
@@ -20,6 +20,16 @@
  * @class InteractiveAppBadgesDirective
  * @constructor
  */
+
+/**
+ * Name of App object with user-interactive badges to be rendered.
+ *
+ * _**(static 1-way binding; object with this name must exist in parent scope)**_
+ *
+ * @attribute {Object} app-object
+ * @required
+ */
+
 var InteractiveAppBadgesDirective = [function(Dropdown) {
     var badgeNamesByLetter = {};
     return {

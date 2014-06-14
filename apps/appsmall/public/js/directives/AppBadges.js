@@ -8,9 +8,11 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders a visual list of badges corresponding to badges field.
  *
- * Usage: ```<app-badges></app-badges>```,
+ * Usage: ```<app-badges badges="[ArrayName]" dynbadges="[{{ArrayName}}]"></app-badges>```
+ *
+ * ...where {{ArrayName}} denotes that the array name is being evaluated via Handlebars.
  *
  * @class AppBadgesDirective
  * @static
@@ -23,10 +25,23 @@
  */
 
 /**
- * 
- * @attribute {String} dynbadges
+ * An array of badge names that is set once.  Badges do not change if modified.
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Array} badges
  * @optional
  */
+
+/**
+ * An array of badge names that can be dynamically refreshed via watch event
+ *
+ * _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Array} dynbadges 
+ * @optional
+ */
+
 
 var AppBadgesDirective = ['Dropdown', function(Dropdown) {
     var badgeNamesByLetter = {};

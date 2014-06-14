@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML class directive: 
+ * HTML class directive: Adds Chosen dropdown functionality to a ```<select>``` element, with default text.
  *
  * Usage: ```<[element] class="chosen-dropdown-active-text"></[element]>```
  *
@@ -32,7 +32,6 @@ var ChosenDropdownActiveTextDirective = [function() {
             });
             // get the chosen object
             var chosenObj = $element.data('chosen');
-
 
             if (attrs.chosenField) {
                 scope.$watch(attrs.chosenField, function() {

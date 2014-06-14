@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Form validation state watcher that sends Angular broadcast message when state changes
  *
  * Usage: ```<form-validation-watcher></form-validation-watcher>```
  * 
@@ -21,6 +21,25 @@
  * @constructor
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
  */
+
+/**
+ * Form validation state.  This directive sends a broadcast when this value changes from true to false, or vice versa.
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Boolean} form-valid-state
+ * @optional
+ */
+
+/**
+ * Name of tab page, which gets broadcast out in message when applicable
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {String} tab-page
+ * @optional
+ */
+
 var FormValidationWatcherDirective = ['$rootScope', function($rootScope) {
     return {
         restrict: 'E',

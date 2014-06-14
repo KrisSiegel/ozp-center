@@ -8,9 +8,9 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders clickable star rating that dynamically changes bound value
  *
- * Usage: ```<interactive-star-rating></interactive-star-rating>```
+ * Usage: ```<interactive-star-rating rating="[Int]"></interactive-star-rating>```
  * 
  * @class InteractiveStarRatingDirective
  * @static
@@ -20,6 +20,26 @@
  * @class InteractiveStarRatingDirective
  * @constructor
  */
+
+/**
+ * User-editable rating in stars.  Changes in both current and parent scope on change.
+ *
+ * _**(1-way binding attribute with scoped watcher event; must also exist in parent scope)**_
+ *
+ * @attribute {Int} rating
+ * @required
+ */
+
+/**
+ * Review text corresponding with star rating
+ *
+ * _**(1-way binding attribute with scoped watcher event; must also exist in parent scope)**_
+ *
+ * @attribute {String} reviewText
+ * @optional
+ * @deprecated
+ */
+
 var InteractiveStarRatingDirective = [function() {
     return {
         restrict: 'E',

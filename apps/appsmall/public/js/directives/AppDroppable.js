@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML attribute directive: 
+ * HTML attribute directive: Adds drop functionality to the element, so that elements with the app-draggable directive can be dropped.
  *
  * Usage: ```<[element] app-droppable></[element]>```
  *

@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML class directive: 
+ * HTML class directive: Adds Chosen dropdown functionality to a ```<select>``` element.  The element can be either single-select or multiple-select.
  *
  * Usage: ```<[element] class="chosen-dropdown"></[element]>```
  *

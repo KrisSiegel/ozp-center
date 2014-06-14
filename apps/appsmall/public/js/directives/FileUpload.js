@@ -8,9 +8,10 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders clickable image viewing area, and HTML5 file input control to handle file uploading.
  *
- * Usage: ```<file-upload></file-upload>```
+ * Usage: ```<file-upload app-object="[Object]" field="[String]" file-upload-id="[String]" field-name="[String]" min-height="[Int]" min-width="[Int]" max-height="[Int]" 
+ *           max-width="[Int]" valid-heights="[Array]" valid-widths="[Array]" delete-button="true"></file-upload>```
  * 
  * @class FileUploadDirective
  * @static
@@ -21,6 +22,106 @@
  * @constructor
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  */
+ 
+/**
+ * The App object containing the URL of the uploaded file
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Object} app-object
+ * @required
+ */
+
+/**
+ * App object-path field name where the URL will be saved to, using dot notation to denote sub-objects
+ *
+ * _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {String} field
+ * @required
+ */
+
+/**
+ * Relative name of file object, used by {{#crossLink "FileUploadService"}}{{/crossLink}} when resolving server file path
+ *
+ * _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {String} field-name
+ * @required
+ */
+
+/**
+ * Minimum height in pixels for uploaded file
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} min-height
+ * @optional
+ */
+
+/**
+ * Minimum width in pixels for uploaded file
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} min-width
+ * @optional
+ */
+
+/**
+ * Maximum height in pixels for uploaded file
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} max-height
+ * @optional
+ */
+
+/**
+ * Maximum width in pixels for uploaded file
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} max-width
+ * @optional
+ */
+
+/**
+ * ID of existing file to upload, if it exists
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} file-upload-id
+ * @optional
+ */
+
+/**
+ * Boolean flag to determine visibility of 'Delete Image' button
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Boolean} delete-button
+ * @optional
+ */
+
+/**
+ * An array of valid image height values, in array literal form.  Any value outside this list is invalid.
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Array} valid-heights
+ * @optional
+ */
+
+/**
+ * An array of valid image width values, in array literal form.  Any value outside this list is invalid.
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Array} valid-widths
+ * @optional
+ */
+
 var FileUploadDirective = ['FileUpload', function(FileUpload) {
     var setStatusMessage = function(msgFunc, msg, isError) {
         if (_.isFunction(msgFunc)) {

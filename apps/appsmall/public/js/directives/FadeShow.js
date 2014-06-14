@@ -10,7 +10,7 @@
 /**
  * HTML attribute directive: 
  *
- * Usage: ```<[element] fade-show="[String]"></[element]>```
+ * Usage: ```<[element] fade-show="[Boolean]"></[element]>```
  *
  * @class FadeShowDirective
  * @static
@@ -20,6 +20,16 @@
  * @class FadeShowDirective
  * @constructor
  */
+
+/**
+ * Boolean flag that performs animate-show when changed to True, and animate-fade when changed to False
+ *
+ *  _**(1-way binding attribute with scoped watcher event; responds to modification)**_
+ *
+ * @attribute {Boolean} fade-show
+ * @optional
+ */
+
 var FadeShowDirective = [function() {
     function link(scope, element, attr) {
         if (scope[attr.fadeShow]) {

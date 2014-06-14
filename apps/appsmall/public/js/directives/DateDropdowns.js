@@ -8,9 +8,9 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders form controls for month, day, and year.
  *
- * Usage: ```<date-dropdowns></date-dropdowns>```
+ * Usage: ```<date-dropdowns app="[app-name]" date-field="[app-date-field]"></date-dropdowns>```
  * 
  * @class DateDropdownsDirective
  * @static
@@ -22,6 +22,25 @@
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
  */
+
+ /**
+  * The App object with date field to be rendered
+  *
+  * _**(scoped to directive as 2-way binding)**_
+  *
+  * @attribute {Object} app
+  * @required
+  */
+
+ /**
+  * Date field of the app, to be bound to form controls
+  *
+  * _**(scoped to directive as 1-way binding)**_
+  *
+  * @attribute {String} date-field
+  * @required
+  */
+
 var DateDropdownsDirective = [function() {
     var monthsOfYear = {
         January: 31,

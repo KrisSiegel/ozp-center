@@ -10,7 +10,7 @@
 /**
  * HTML element directive: Renders HTML for navigation links dropdown menu.
  *
- * Usage: ```<aml-nav-links></aml-nav-links>```
+ * Usage: ```<aml-nav-links show-help="true"></aml-nav-links>```
  * 
  * @class AmlNavLinksDirective
  * @static
@@ -25,10 +25,12 @@
 
 /**
  * If set to true, then the navigation links will always display the Help page link.
- * @attribute {Boolean} show-help
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {String} show-help 
  * @optional
  */
-
 
 var AmlNavLinksDirective = ['OzoneCommon', 'Persona', function(OzoneCommon, Persona) {
     // HTML template for top-right navigation links.  Will add permission logic later.
@@ -48,8 +50,10 @@ var AmlNavLinksDirective = ['OzoneCommon', 'Persona', function(OzoneCommon, Pers
         restrict: 'E',
         scope: {showHelp: '='},
         template: htmlTemplate,
-        controller: function($scope){
-            $scope.toggleHelp = function(){$scope.showHelp = !$scope.showHelp;};
+        controller: function($scope) {
+            $scope.toggleHelp = function() {
+                $scope.showHelp = ($scope.showHelp ? undefined : true);
+            };
 
         },
         link: function(scope, element, attrs) {

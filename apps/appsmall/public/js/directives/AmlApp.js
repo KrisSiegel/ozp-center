@@ -18,12 +18,9 @@ function resetModalTabs() {
 };
 
 /**
- * HTML element or attribute directive: Renders HTML for a single application on the AppsMall main page or App Management page.
+ * HTML element directive: Renders HTML for a single application on the AppsMall main page or App Management page.
  *
- * Usage: ```<amlapp></amlapp>```
- * This directive uses the parent scope, and does not create its own scope.
- *
- * All attributes listed below are added to this directive as HTML attributes.
+ * Usage: ```<amlapp no-featured="false" featured-banner="false" no-click="false"></amlapp>```
  *
  * @class AmlAppDirective
  * @static
@@ -35,9 +32,21 @@ function resetModalTabs() {
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
  */
- 
+
+/**
+ * The App object to be displayed as HTML
+ *
+ * _**(must exist in parent scope)**_
+ *
+ * @attribute {Object} app
+ * @required
+ */
+
 /**
  * If set to true, then the app will always appear as standard (non-featured).
+ *
+ * _**(not scoped to directive)**_
+ *
  * @attribute {Boolean} no-featured
  * @optional
  * @deprecated
@@ -45,18 +54,27 @@ function resetModalTabs() {
 
 /**
  * If set to true, then the app HTML will not contain a launch button.
+ *
+ * _**(not scoped to directive)**_
+ *
  * @attribute {Boolean} no-launch
  * @optional
  */
 
 /**
  * If set to true, then the app will not open a modal when clicked.
+ *
+ * _**(not scoped to directive)**_
+ *
  * @attribute {Boolean} no-click
  * @optional
  */
 
 /**
  * If set to true, then the app will always appear as a featured app.
+ *
+ * _**(not scoped to directive)**_
+ *
  * @attribute {Boolean} featured-banner
  * @optional
  */
@@ -79,7 +97,7 @@ var AmlAppDirective = ['FileUpload', 'Tag', function(FileUpload, Tag) {
     }
 
     return {
-        restrict: 'EA',
+        restrict: 'E',
         replace: true,
         transclude: 'element',
         template: '<div class="single-app" ng-class="{\'featured\-app\': isFeatured(app)}">' +

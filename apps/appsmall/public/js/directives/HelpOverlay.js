@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders full help overlay on AppsMall main page, complete with keypress and button event bindings.
  *
  * Usage: ```<help-overlay></help-overlay>```
  * 

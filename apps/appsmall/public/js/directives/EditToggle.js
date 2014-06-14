@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML class directive: 
+ * HTML class directive: Toggles editmode class when button is clicked
  *
  * Usage: ```<[element] class="edit-toggle"></[element]>```
  *

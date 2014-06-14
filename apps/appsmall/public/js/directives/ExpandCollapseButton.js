@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML class directive: 
+ * HTML class directive: Adds toggle functionality to button, so that parent class with ```aml-custom-form``` tag expands and collapses.
  *
  * Usage: ```<[element] class="expand-collapse-button"></[element]>```
  *
