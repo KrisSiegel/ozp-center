@@ -10,7 +10,7 @@
 /**
  * HTML element directive: 
  *
- * Usage: ```<rating-count-bar></rating-count-bar>```
+ * Usage: ```<rating-count-bar app="[Object]"></rating-count-bar>```
  * 
  * @class RatingCountBarDirective
  * @static
@@ -20,6 +20,16 @@
  * @class RatingCountBarDirective
  * @constructor
  */
+
+/**
+ * The App object to reference for rating counts; uses ```app.ratings``` for ratings count.
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Object} app
+ * @required
+ */
+
 var RatingCountBarDirective = [function() {
     return {
         restrict: 'E',

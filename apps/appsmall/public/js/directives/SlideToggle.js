@@ -8,9 +8,9 @@
 'use strict';
 
 /**
- * HTML attribute directive: 
+ * HTML attribute directive: Toggles element(s) that match CSS selector in slide-toggle attribute value
  *
- * Usage: ```<[element] slide-toggle="[String]"></[element]>```
+ * Usage: ```<[element] slide-toggle="[String]" expanded="[Boolean]"></[element]>```
  *
  * @class SlideToggleDirective
  * @static
@@ -21,6 +21,25 @@
  * @constructor
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
  */
+
+/**
+ * CSS selector for element to get slide toggled
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {String} slide-toggle
+ * @required
+ */
+
+/**
+ * Boolean that determines whether element is getting expanded or contracted
+ *
+ * _**(2-way binding attribute with scoped watcher event; responds to modification)**_
+ *
+ * @attribute {Boolean} expanded
+ * @optional
+ */
+
 var SlideToggleDirective = ['$timeout', function($timeout) {
     return {
         restrict: 'A',

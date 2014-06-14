@@ -20,6 +20,17 @@
  * @class NgValidFuncDirective
  * @constructor
  */
+
+/**
+ * Function for performing form validation outside of ng-form scope.  Sets ```ng-invalid-custom``` CSS class 
+ * on form control if invalid.
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Function} ng-valid-func
+ * @optional
+ */
+
 var NgValidFuncDirective = [function() {
     return {
         require: 'ngModel',

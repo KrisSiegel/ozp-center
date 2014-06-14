@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML class directive: 
+ * HTML class directive: Resizes this element when parent resizes, so that other sibling elements do not change dimension.
  *
  * Usage: ```<[element] class="resizing"></[element]>```
  *

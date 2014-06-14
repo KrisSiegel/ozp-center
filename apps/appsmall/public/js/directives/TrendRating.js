@@ -12,14 +12,34 @@
  * @static
  */ 
 
- /**
-  * HTML element directive: 
-  *
- * Usage: ```<trendrating></trendrating>```
-  * 
+/**
+ * HTML element directive: Renders the trending rating trait as HTML, with 0-3 flames filled in depending on the rating number.
+ *
+ * Usage: ```<trendrating srating="[Int]" dynrating="[{{Int}}]"></trendrating>```
+ * 
  * @class TrendratingDirective
  * @constructor
+ * @deprecated
  */
+
+/**
+ * Trend rating that is set once, and does not change if modified.
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Int} srating
+ * @optional
+ */
+
+/**
+ * Trend rating that can be dynamically refreshed via watch event
+ *
+ * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
+ *
+ * @attribute {Int} dynrating
+ * @optional
+ */
+
 var TrendratingDirective = [function() {
     var trendingText = {
         0: 'Not Trending',

@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML attribute directive: 
+ * HTML attribute directive: Set dimensions of Bootstrap modal after it has been loaded.
  *
  * Usage: ```<[element] set-modal-dimensions modal-height="[Int]" modal-width="[Int]"></[element]>```
  *
@@ -21,6 +21,25 @@
  * @constructor
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
  */
+
+/**
+ * Width value that modal will get resized to when loaded
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Int} modal-width
+ * @required
+ */
+
+/**
+ * Height value that modal will get resized to when loaded
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Int} modal-height
+ * @required
+ */
+
 var SetModalDimensionsDirective = ['$timeout', function($timeout) {
     function link(scope, element, attrs){
         $timeout(function() {

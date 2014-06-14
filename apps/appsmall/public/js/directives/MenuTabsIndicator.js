@@ -8,7 +8,8 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Listens for changes on a scoped boolean attribute, and changes CSS classes based on
+ * validation state accordingly.
  *
  * Usage: ```<menu-tabs-indicator></menu-tabs-indicator>```
  * 
@@ -20,6 +21,29 @@
  * @class MenuTabsIndicatorDirective
  * @constructor
  */
+
+/**
+ * Validation state indicator.  If this value changes, then this element will change CSS classes from invalid
+ * to valid, or vice versa.
+ *
+ *_**(2-way binding attribute with scoped watcher event; responds to modification)**_
+ *
+ * @attribute {Boolean} validation-state
+ * @required
+ */
+
+/**
+ * The tab page that this element watches.  Previously used for field referencing; deprecated because the 
+ * watcher does all the work.
+ *
+ * _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Boolean} tab-page
+ * @optional
+ * @deprecated
+ */
+
+
 var MenuTabsIndicatorDirective = [function() {
     // validation state tracker for all tab indicators
 

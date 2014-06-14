@@ -36,7 +36,7 @@
 /**
  * An array of badge names that can be dynamically refreshed via watch event
  *
- * _**(scoped to directive as 1-way binding)**_
+ * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
  *
  * @attribute {Array} dynbadges 
  * @optional

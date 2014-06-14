@@ -4,13 +4,19 @@
  * @module directivesModule
  * @submodule MarkdownTextAreaModule
  * @requires amlApp.directives
+ * @requires Showdown
  */
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders textarea control for editing Markdown text, and buttons for editing selected
+ * text in textarea control: Header, Bold, Italic, Bulleted List, Numbered List, Undo, and Preview.
+ * The preview button toggles between edit and view mode, making this not a true WYSIWYG editor control.
+ * (That functionality may be added in a future version)
+ * 
+ * This directive uses the [Showdown](https://github.com/coreyti/showdown) library to convert Markdown into HTML.
  *
- * Usage: ```<markdown-text-area></markdown-text-area>```
+ * Usage: ```<markdown-text-area text="[String]"></markdown-text-area>```
  * 
  * @class MarkdownTextAreaDirective
  * @static
@@ -20,18 +26,40 @@
  * @class MarkdownTextAreaDirective
  * @constructor
  */
+
+/**
+ * Text loaded into textarea control
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {String} text
+ * @optional
+ */
+
 var MarkdownTextAreaDirective = [function() {
     var converter = new Showdown.converter();
 
-    // Markdown syntax patterns:
-    // Header: "# Level 1 Header", "##### Level 5 Header", and everything in between
-    // Bold: "**bold**" or "__bold__"
-    // Emphasis: "*emphasized*" -- make sure it matches one "*" or "_", and not two of either pattern.  (The italic pattern below performs lookahead
-    //           to ensure that only one of the "*" or "_" character type appears in the pattern, and that they can be combined such as "_**ItalicAndBold**_".)
-    // (NOTE: Bold and Italic patterns recognize whitespace boundaries, and will always enclose non-whitespace characters on either end of the pattern.
-    //        The '\s' parts of the bold and italic regexes below match the boundary whitespace.)
-    // Bullet: line starting with "* "
-    // Number: line starting with "# "
+    /**
+     * Markdown syntax patterns:
+     *
+     * Header: "# Level 1 Header", "##### Level 5 Header", and everything in between
+     * 
+     * Bold: "**bold**" or "__bold__"
+     * 
+     * Emphasis: "*emphasized*" -- make sure it matches one "*" or "_", and not two of either pattern.  
+     *           (The italic pattern below performs lookahead to ensure that only one of the "*" or "_"
+     *            character type appears in the pattern, and that they can be combined such as "_**ItalicAndBold**_".)
+     *
+     * (NOTE: Bold and Italic patterns recognize whitespace boundaries, and will always enclose non-whitespace 
+     *        characters on either end of the pattern.
+     *        The '\s' parts of the bold and italic regexes below match the boundary whitespace.)
+     *
+     * Bullet: line starting with "* "
+     *
+     * Number: line starting with "# "
+     * @attribute {Object} markdownToggleAddRegexes
+     * @private
+     */
     var markdownToggleAddRegexes = {
         header: {pattern: /^\n*(.*)$/, replacement: '\n### $1\n'},
         bold:   {pattern: /^(\s*)(.*[^\s])(\s*)$/, replacement: '$1**$2**$3'},
@@ -40,9 +68,16 @@ var MarkdownTextAreaDirective = [function() {
         number: {pattern: /^\n*\s*(.*)\s*$/, replacement: '\n\n1. $1\n\n'}
     };
 
-    // Patterns to convert markdown syntax patterns (above) back to the original pre-pattern text.
-    // (In some cases, such as the header pattern matcher, the pattern matches Markdown patterns that are not generated via this directive.)
-    // The italic pattern is especially hairy because it specifically avoids matching the bold pattern.
+    /**
+     * Patterns to convert markdown syntax patterns (above) back to the original pre-pattern text.
+     *
+     * (In some cases, such as the header pattern matcher, the pattern matches Markdown patterns 
+     * that are not generated via this directive.)
+     *
+     * The italic pattern is especially hairy because it specifically avoids matching the bold pattern.
+     * @attribute {Object} markdownToggleRemovalRegexes
+     * @private
+     */
     var markdownToggleRemovalRegexes = {
         header: {pattern: /\n*[\#]{1,5} ([^\n]+)\n*/g, replacement: "$1"},
         bold:   {pattern: /\*\*([^\*]+)\*\*|\_\_([^\_]+)\_\_/g, replacement: "$1$2"},
@@ -51,8 +86,13 @@ var MarkdownTextAreaDirective = [function() {
         number: {pattern: /^[0-9]+\. ([^\n]+)|\n+[0-9]+\. ([^\n]+)/g, replacement: "$1$2 "}
     };
 
-    // other patterns for cleaning up unsightly spaces in description text.
-    // Spaces in the beginning and end of the text are cleaned up, and any empty block of space more than 2 lines long is cleaned up.
+    /**
+     * Other patterns for cleaning up unsightly spaces in description text.
+     * Spaces in the beginning and end of the text are cleaned up, and any empty block 
+     * of space more than 2 lines long is cleaned up.
+     * @attribute {Object} miscPatterns
+     * @private
+     */
     var miscPatterns = [
         {pattern: /^\n+/, replacement: ''},
         {pattern: /\n+$/, replacement: '\n'},

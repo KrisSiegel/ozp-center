@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML attribute directive: 
+ * HTML attribute directive: Performs ngModel validation check by calling function from parent scope
  *
  * Usage: ```<[element] require-unique="[Function]"></[element]>```
  *
@@ -20,6 +20,16 @@
  * @class RequireUniqueDirective
  * @constructor
  */
+
+/**
+ * Validation function from parent scope used to determine uniqueness; return value gets boolean evaluated
+ *
+ * _**(must exist in parent scope)**_
+ *
+ * @attribute {Function} require-unique
+ * @required
+ */
+
 var RequireUniqueDirective = [function() {
     console.log('require unique hit');
     return {

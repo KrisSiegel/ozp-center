@@ -8,9 +8,9 @@
 'use strict';
 
 /**
- * HTML element directive: 
+ * HTML element directive: Renders the star rating trait as HTML, with 0-5 stars filled in depending on the rating number.
  *
- * Usage: ```<star-rating></star-rating>```
+ * Usage: ```<star-rating static-rating="[Int]" num-stars="[{{Int}}]"></star-rating>```
  * 
  * @class StarRatingDirective
  * @static
@@ -20,6 +20,25 @@
  * @class StarRatingDirective
  * @constructor
  */
+
+/**
+ * Star rating that is set once, and does not change if modified.
+ *
+ * _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Int} static-rating
+ * @optional
+ */
+
+/**
+ * Star rating that can be dynamically refreshed via watch event
+ *
+ * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
+ *
+ * @attribute {Int} num-stars 
+ * @optional
+ */
+
 var StarRatingDirective = [function() {
     return {
         restrict: 'E',

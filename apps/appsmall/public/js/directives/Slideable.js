@@ -8,9 +8,10 @@
 'use strict';
 
 /**
- * HTML class directive: 
+ * HTML class directive: Creates div element with slide functionality in browser.  Slide duration and easing 
+ * are set from attributes.
  *
- * Usage: ```<[element] class="slideable"></[element]>```
+ * Usage: ```<[element] class="slideable" duration="[Int]ms" easing="ease-in-out"></[element]>```
  *
  * @class SlideableDirective
  * @static
@@ -20,6 +21,25 @@
  * @class SlideableDirective
  * @constructor
  */
+
+/**
+ * Duration of slide event, as measured in milliseconds
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {Int} duration
+ * @required
+ */
+
+/**
+ * Easing type for slide event; defaults to 'ease-in-out'
+ *
+ * _**(static 1-way binding)**_
+ *
+ * @attribute {String} easing
+ * @required
+ */
+
 var SlideableDirective = [function() {
     return {
         restrict:'C',

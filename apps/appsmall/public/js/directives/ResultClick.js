@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * HTML attribute or class directive: 
+ * HTML attribute or class directive: Resets tabs when search results change
  *
  * Usage: ```<[element] result-click></[element]>```
  * Alternate Usage: ```<[element] class="result-click"></[element]>```
@@ -21,6 +21,34 @@
  * @class ResultClickDirective
  * @constructor
  */
+
+/**
+ * An App object from the parent scope
+ *
+ * _**(must exist in parent scope)**_
+ *
+ * @attribute {Object} currentApp
+ * @required
+ */
+
+/**
+ * Search results from parent scope
+ *
+ * _**(must exist in parent scope)**_
+ *
+ * @attribute {Array} searchResults
+ * @required
+ */
+
+/**
+ * Function in parent tabs to reset modal
+ *
+ * _**(must exist in parent scope)**_
+ *
+ * @attribute {Array} resetModalTabs
+ * @required
+ */
+
 var ResultClickDirective = [function() {
     return {
         link: function(scope, element, attrs) {
