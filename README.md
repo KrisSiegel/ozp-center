@@ -2,7 +2,7 @@
 The Apps Mall project provides access to, and facilitates the discovery of, web applications through a store front. Apps Mall is built on top of the Ozone Platform Service Container and various Ozone Services that provide modularity and an API all services can consume and export at each level (server-side, RESTful and client-side API levels).
 
 ##Prerequisites
-The requirements below are required to go from cloning the repository to running the application and unit tests. The last 4 prerequisites (jasmine-node, karma, karma-jarmine and karma-chrome-launcher) are ONLY required if you wish you run the unit tests. The only exception in this list is MongoDB can be replaced with an in-memory mock data store.
+The requirements below are required to go from cloning the repository to running the application and unit tests. The last 5 prerequisites (jasmine-node, karma, karma-jarmine, karma-chrome-launcher and yuidoc) are either required if you wish you run the unit tests or generate the related JavaScript documentation. The only exception in this list is MongoDB can be replaced with an in-memory mock data store.
 * node.js 0.10.x
 * bower
 * grunt
@@ -11,6 +11,7 @@ The requirements below are required to go from cloning the repository to running
 * karma
 * karma-jasmine
 * karma-chrome-launcher
+* yuidoc
 
 ##Quick Start
 If the requirements are all installed then follow these 4 steps to quickly get up and running (if not then read the [Getting Started](docs/getting-started.md) to make sure your environment is setup).

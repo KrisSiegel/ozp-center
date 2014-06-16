@@ -60,7 +60,6 @@ module.exports = (function () {
                 mock: { }
             },
             security: {
-                module: "ozone-services-security-mock",
                 disableSecurityCheckOnRoutes: false,
                 newUserRole: "/Ozone/Apps/App/AppsMall/User/",
                 firstNewUserRole: "/Ozone/Apps/App/AppsMall/MallModerator/",
@@ -71,7 +70,7 @@ module.exports = (function () {
             },
             ozoneModules: {
                 security: {
-                    module: "ozone-services-security",
+                    module: "ozone-services-security-mock",
                     services: ["Security"]
                 },
                 session: {

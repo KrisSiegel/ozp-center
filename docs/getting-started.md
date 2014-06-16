@@ -31,6 +31,7 @@ The remaining prerequisites are all installed via npm globally onto the system a
 * karma (npm install -g karma)
 * karma-jasmine (npm install -g karma-jasmine)
 * karma-chrome-launcher (npm install -g karma-chrome-launcher)
+* yuidoc (npm install -g yuidoc)
 
 ###Building
 Since Apps Mall and the Ozone Platform pieces are node.js components and thusly are entirely written in JavaScript there isn't a compile step but there is a concatenation and a minification set of steps contained with a build command.
