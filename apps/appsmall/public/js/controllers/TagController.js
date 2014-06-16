@@ -24,6 +24,19 @@
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
  * @param AppSelectionMessage {Object} an Angular-injected instance of {{#crossLink "AppSelectionMessageService"}}{{/crossLink}}
  */
+
+ /**
+  * Method called by ng-init directive when declaring controller in view page
+  * @method initializeController
+  */
+
+ /**
+  * Select tag passed in, and unselect all other tags
+  * @method selectTagFromMenu
+  * @param tag {String} name of tag to be selected
+  */
+
+
 var TagController = ['$rootScope', '$scope', '$q', '$timeout', 'AppOrComponent', 'Tag', 'AppSelectionMessage',  function($rootScope, $scope, $q, $timeout, AppOrComponent, Tag, AppSelectionMessage) {
 
      $scope.initializeController = function() {
@@ -115,7 +128,7 @@ var TagController = ['$rootScope', '$scope', '$q', '$timeout', 'AppOrComponent',
          });
      }
 
-     $scope.toggleMenuSelection = function(tag) {
+     $scope.selectTagFromMenu = function(tag) {
          //set all tags to be unselected
          _.each($scope.systemTags, function(sysTag){sysTag.selected = false;});
          _.each($scope.collectionTags, function(collectionTag){collectionTag.selected = false;});
@@ -164,6 +177,7 @@ var TagController = ['$rootScope', '$scope', '$q', '$timeout', 'AppOrComponent',
              });
          }
      }
+
 }];
 
 controllersModule.controller('TagController', TagController);

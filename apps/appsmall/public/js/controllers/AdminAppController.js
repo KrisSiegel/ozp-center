@@ -24,6 +24,106 @@
  * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppWorkflowService"}}{{/crossLink}}
  * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
  */
+
+ /**
+  * Description
+  * @attribute {Array} allApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} appsByWorkflowStatus
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} displayedApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getAppsFromServer
+  */
+
+ /**
+  * Description
+  * @method getShortDateUpdated
+  * @param app {Object} 
+  */
+
+ /**
+  * Description
+  * @method getViewState
+  */
+
+ /**
+  * Description
+  * @method getWorkflowStatusCount
+  * @param workflowStatus {String} 
+  */
+
+ /**
+  * Description
+  * @method isAppManagerMode
+  */
+
+ /**
+  * Description
+  * @method isEmpty
+  */
+
+ /**
+  * Description
+  * @method isHighlighted
+  * @param workflowStatus {String} 
+  */
+
+ /**
+  * Description
+  * @method isWorkflowStatusSelected
+  * @param workflowStatus {String} 
+  */
+
+ /**
+  * Description
+  * @method loadAppChildForm
+  * @param selectedApp {Object} 
+  */
+
+ /**
+  * Description
+  * @attribute {Object} personaData
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method toggleWorkflowStatusSelection
+  * @param workflowStatus {String} 
+  */
+
+ /**
+  * Description
+  * @attribute {Object} workflowStateActions
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} workflowStateTypes
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method workflowStatusClass
+  * @param workflowStatus {String} 
+  */
+
+
 var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrComponent', 'AppWorkflow', 'Persona', function($scope, $rootScope, $window, $q, AppOrComponent, AppWorkflow, Persona) {
 
     $scope.personaData = {};
@@ -210,6 +310,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
 
     // initializing controller
     $scope.getAppsFromServer();
+
 }];
 
 controllersModule.controller('AdminAppController', AdminAppController);

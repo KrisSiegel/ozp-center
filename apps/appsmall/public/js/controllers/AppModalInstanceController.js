@@ -29,6 +29,158 @@
  * @param {Array} currentTags
  * @param {Boolean} previewer
  */
+
+ /**
+  * Description
+  * @attribute {Array} allUserReviews
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Number} averageRating
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {String} averageStarRatingText
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method cancel
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} currentApp
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} favoriteApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method filterReviewsByRating
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {TrustedValueHolderType} fullDescriptionHtml
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getImage
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Boolean} hasUserReviews
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isBookmarked
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Boolean} isPreviewer
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Boolean} launchedByUser
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method openApp
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method openChildImageModal
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} personaData
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Number} rating
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} ratingScale
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {String} reviewText
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {undefined} reviews
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method reviewsAreFiltered
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method setBookmark
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method submitRating
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} tagsForApp
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} visibleUserReviews
+  * @optional
+  */
+
+
 var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootScope', '$sce', 'Persona', 'Review', 'Tag', 'AppOrComponent', 'FileUpload', 'OzoneCommon', 'currentApp', 'currentTags', 'previewer',  function($scope, $modal, $modalInstance, $rootScope, $sce, Persona, Review, Tag, AppOrComponent, FileUpload, OzoneCommon, currentApp, currentTags, previewer) {
 
      var converter = new Showdown.converter();
@@ -235,4 +387,5 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
              });
          }
      }
+
 }];

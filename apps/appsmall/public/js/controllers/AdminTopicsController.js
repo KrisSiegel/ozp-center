@@ -25,6 +25,248 @@
  * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
  */
+
+ /**
+  * Description
+  * @method addTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} allApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method anyApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method appInTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} appsByTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method checkUniqueName
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method clearContextMenu
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method createNewTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method deleteTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method displayAllApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Boolean} dragMode
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method draggableHoverState
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} dropStatus
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method dropfunction
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method expandGroup
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getTopicNames
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} groupedTopics
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method hasApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method hasPermission
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {String} hoverGroup
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method hoverIn
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method hoverOut
+  * @optional
+  */
+
+ /**
+  * Method called by ng-init directive when declaring controller in view page
+  * @method initializeController
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isSelected
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {String} openAppTopicMenu
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} personaData
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method refreshTopics
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method saveTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method searchTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {String} searchedTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method setActiveGroup
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method setSelected
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Boolean} showAllApps
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method showAppTopicMenu
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method startDragFunction
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method stopDragFunction
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method toggleAppTopic
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} topicModel
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Array} topics
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method updateTopic
+  * @optional
+  */
+
+
 var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComponent', 'AppWorkflow', 'Persona', 'Tag', function($scope, $rootScope, $q, $timeout, AppOrComponent, AppWorkflow, Persona, Tag) {
     var dropStatuses = {
         Success: 'icon-checkmark',
@@ -396,6 +638,7 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
             });
         }
     };
+
 }];
 
 controllersModule.controller('AdminTopicsController', AdminTopicsController);

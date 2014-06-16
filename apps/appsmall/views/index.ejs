@@ -30,7 +30,7 @@
                              style="overflow-y:hidden;">
                             <ul class="unstyled groupings" ng-repeat="systemTag in systemTags track by $id(systemTag)">
                                 <li>
-                                    <a href="#" ng-click="toggleMenuSelection(systemTag)"
+                                    <a href="#" ng-click="selectTagFromMenu(systemTag)"
                                        ng-class="{selected: systemTag.selected}" ng-attr-title="{{systemTag.tooltip}}"><span class="facets-indicator"></span>{{systemTag.name}}</a>
                                 </li>
                             </ul>
@@ -43,7 +43,7 @@
                                 <!-- <hr /> -->
                                 <ul class="unstyled groupings" ng-repeat="collectionTag in collectionTags track by $id(collectionTag)" >
                                     <li>
-                                        <a href="#" ng-click="toggleMenuSelection(collectionTag)"
+                                        <a href="#" ng-click="selectTagFromMenu(collectionTag)"
                                            ng-class="{selected: collectionTag.selected}" ng-attr-title="{{collectionTag.tooltip}}">{{collectionTag.name}}</a>
                                     </li>
                                 </ul>
@@ -53,7 +53,7 @@
                             <div class="facets-categories-container">
 	                            <ul class="unstyled categories" ng-repeat="categoryTag in categoryTags track by $id(categoryTag)">
 	                                <li>
-	                                    <a href="#" ng-click="toggleMenuSelection(categoryTag)"
+	                                    <a href="#" ng-click="selectTagFromMenu(categoryTag)"
 	                                       ng-class="{selected: categoryTag.selected}" ng-attr-title="{{categoryTag.tooltip}}"><span class="facets-indicator"></span>{{categoryTag.name}}</a>
 	                                </li>
 	                            </ul>

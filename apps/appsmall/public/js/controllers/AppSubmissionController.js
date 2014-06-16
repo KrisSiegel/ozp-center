@@ -29,6 +29,98 @@
  * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppWorkflowService"}}{{/crossLink}}
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  */
+
+ /**
+  * Description
+  * @method addSelectedItemToList
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method canAcceptOrRejectApp
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method close
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getCategoryDropdownSelection
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getCategoryField
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getShortDateUpdated
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getTagDropdownSelection
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getTagField
+  * @optional
+  */
+
+ /**
+  * Method called by ng-init directive when declaring controller in view page
+  * @method initializeController
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isExistingApp
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isTabInvalid
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method loadPreviewModal
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} personaData
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method removeItemFromList
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method workflowStatusClass
+  * @optional
+  */
+
+
 var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$window', '$modal', 'Persona', 'AppOrComponent', 'Dropdown', 'Tag', 'AppWorkflow', 'FileUpload',  function ($scope, $rootScope, $q, $location, $window, $modal, Persona, AppOrComponent, Dropdown, Tag, AppWorkflow, FileUpload) {
 
      var orgTag = null; // The tag that maps the current app to an organization
@@ -584,6 +676,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
      $scope.close = function() {
          $window.location = Ozone.utils.murl('amlUrl', '/manage/apps/');
      }
+
 }];
 
 controllersModule.controller('AppSubmissionController',  AppSubmissionController);

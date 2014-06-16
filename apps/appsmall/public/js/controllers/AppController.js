@@ -28,6 +28,158 @@
  * @param AppSelectionMessage {Object} an Angular-injected instance of {{#crossLink "AppSelectionMessageService"}}{{/crossLink}}
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
  */
+
+ /**
+  * Description
+  * @attribute {undefined} AllowComponents
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} ViewStates
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method clearSearch
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method executeSearch
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method executeTagRemovalSearch
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getAppsAndComponentsFromServer
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getSearchResultLimit
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getSearchResults
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getSelectedTagNames
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method getViewState
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method hasSelectedTags
+  * @optional
+  */
+
+ /**
+  * Method called by ng-init directive when declaring controller in view page
+  * @method initializeController
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isAppMode
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isBookmarked
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isEmpty
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isEmptyOrLoading
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isHome
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isSearchMode
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isSearchOrFilterMode
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isSearchPanelVisible
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method isTagFilterMode
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method loadAppChildForm
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method openApp
+  * @optional
+  */
+
+ /**
+  * Description
+  * @attribute {Object} personaData
+  * @optional
+  */
+
+ /**
+  * Description
+  * @method setBookmark
+  * @optional
+  */
+
+
 var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', 'FileUpload', 'Review', 'Persona', 'Search', 'AppSelectionMessage', 'Tag', function($scope, $rootScope, $modal, $q, AppOrComponent, FileUpload, Review, Persona, Search, AppSelectionMessage, Tag) {
 
     // If featured apps appear larger than non-featured apps in a standard app listing, then set this to True.
@@ -675,6 +827,7 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
             common.assignToObjectInPlace(objectList[oldObjectIndex], updatedObject);
         }
     }
+
 }];
 
 controllersModule.controller('AppController', AppController);
