@@ -17,6 +17,7 @@ The requirements below are required to go from cloning the repository to running
 If the requirements are all installed then follow these 4 steps to quickly get up and running (if not then read the [Getting Started](docs/getting-started.md) to make sure your environment is setup).
 * Run ```npm install```
 * Run ```bower install```
+* Run ```grunt build```
 * Ensure MongoDB is running (```grunt mongod``` is a quick shortcut to start mongod with text indexing)
 * Run ```npm start```
 * Verify your server is running by visiting http://localhost:3000/
