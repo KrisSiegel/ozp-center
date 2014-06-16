@@ -49,7 +49,7 @@ function amlService (callback, Ozone) {
                 function (callback) {
                     Persistence.Store(store).Collection(reviewCollection).addIndex({
                     	user: 1,
-                        reviewText: 'text'
+                        reviewText: 1
                     }, function (err, result) {
                         if (err) {
                             logger.error("AppsMallService-->Error while ensuring indexes: " + err);
@@ -62,7 +62,7 @@ function amlService (callback, Ozone) {
                 },
                 function (callback) {
                     Persistence.Store(store).Collection(reviewCollection).addIndex({
-                        reviewText: 'text'
+                        reviewText: 1
                     }, function (err, result) {
                         if (err) {
                             logger.error("AppsMallService-->Error while ensuring indexes: " + err);

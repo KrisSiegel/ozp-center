@@ -1,9 +1,18 @@
+/**
+    The mock security service ensures users are logged in but also registers routes to allow anyone to login as
+    any user and with any role they request.
+
+    @class Ozone.Service("Security")
+*/
 (function () {
     "use strict";
-    var constants = require('../../config/constants');
-
-    module.exports = function (Ozone) {
+    module.exports = function (callback, Ozone) {
         Ozone.Service("Security", {
+            /**
+                Returns the middleware method that handles authenticating requests and logging the user in.
+
+                @method getMiddleware
+            */
             getMiddleware: function () {
                 return function(req, res, next) {
                     Ozone.logger.info("Mock Security -> Inpecting route");
@@ -34,10 +43,11 @@
                 }
             }
         });
+
         Ozone.Service().on("ready", "ApplicationEngine", function () {
             Ozone.Service("ApplicationEngine").use(Ozone.Service("Security").getMiddleware());
         });
-        
+
         Ozone.Service().on("ready", "Personas", function () {
             require("./routes/index.js")(Ozone);
         });

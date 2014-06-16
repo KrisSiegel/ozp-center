@@ -15,6 +15,7 @@ npm-debug.log
 .project
 .project*~
 /.settings
+/out
 /lib
 /public/lib
 /nbproject
