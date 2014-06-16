@@ -9,6 +9,8 @@ The current application is built to require node.js 0.10.x; it does not function
 
 To install go to [nodejs.org](http://nodejs.org/) for installation instructions for your target environment.
 
+Once installed be sure to run ```npm install``` to grab the project's dependencies (including development dependencies) to continue with the instructions below.
+
 ####MongoDB
 MongoDB 2.4.x and above is required as Apps Mall makes use of its text indexing capabilities. Note that in 2.4.x and 2.5.x text indexing must be manually enabled; in 2.6.x it is enabled by default.
 
