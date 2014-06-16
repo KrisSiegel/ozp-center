@@ -96,11 +96,17 @@ module.exports = (function (environment) {
         app.use(require("./apps/appsmall")(Ozone));
 
         if (!Ozone.Utils.isUndefinedOrNull(Ozone.config().getServerProperty("ssl.port"))) {
-            var certs = {
-                key: Ozone.config().getServerProperty("ssl.key"),
-                ca: Ozone.config().getServerProperty("ssl.ca"),
-                cert: Ozone.config().getServerProperty("ssl.cert")
-            };
+            var fs = require("fs")
+            var certs = { };
+            if (Ozone.config().getServerProperty("ssl.key") !== undefined) {
+                certs.key = fs.readFileSync(Ozone.config().getServerProperty("ssl.key"));
+            }
+            if (Ozone.config().getServerProperty("ssl.cert") !== undefined) {
+                certs.cert = fs.readFileSync(Ozone.config().getServerProperty("ssl.cert"));
+            }
+            if (Ozone.config().getServerProperty("ssl.ca") !== undefined) {
+                certs.ca = fs.readFileSync(Ozone.config().getServerProperty("ssl.ca"));
+            }
             httpsServer = https.createServer(certs, app);
             httpsServer.listen(Ozone.config().getServerProperty("ssl.port"), Ozone.config().getServerProperty("host"), 511, function () {
                 Ozone.logger.info("Ozone Container --> main.js -> starting https on port " + Ozone.config().getServerProperty("ssl.port"));

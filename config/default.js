@@ -28,10 +28,10 @@ module.exports = (function () {
             port: 3000,
             expressLogger: "dev",
             ssl: {
-                port: undefined,
-                key: undefined,
+                port: 8443,
+                key: "/tmp/key.pem",
                 ca: undefined,
-                cert: undefined
+                cert: "/tmp/cert.pem"
             },
             requestSizeLimit: "100mb",
             uploadDir: require("os").tmpdir(),
