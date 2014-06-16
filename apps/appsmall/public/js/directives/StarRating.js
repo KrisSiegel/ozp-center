@@ -10,7 +10,7 @@
 /**
  * HTML element directive: Renders the star rating trait as HTML, with 0-5 stars filled in depending on the rating number.
  *
- * Usage: ```<star-rating static-rating="[Int]" num-stars="[{{Int}}]"></star-rating>```
+ * Usage: ```<star-rating static-rating="[Number]" num-stars="[{{Number}}]"></star-rating>```
  * 
  * @class StarRatingDirective
  * @static
@@ -26,7 +26,7 @@
  *
  * _**(scoped to directive as 2-way binding)**_
  *
- * @attribute {Int} static-rating
+ * @attribute {Number} static-rating
  * @optional
  */
 
@@ -35,7 +35,7 @@
  *
  * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
  *
- * @attribute {Int} num-stars 
+ * @attribute {Number} num-stars 
  * @optional
  */
 

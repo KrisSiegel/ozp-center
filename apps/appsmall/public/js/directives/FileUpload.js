@@ -10,8 +10,8 @@
 /**
  * HTML element directive: Renders clickable image viewing area, and HTML5 file input control to handle file uploading.
  *
- * Usage: ```<file-upload app-object="[Object]" field="[String]" file-upload-id="[String]" field-name="[String]" min-height="[Int]" min-width="[Int]" max-height="[Int]" 
- *           max-width="[Int]" valid-heights="[Array]" valid-widths="[Array]" delete-button="true"></file-upload>```
+ * Usage: ```<file-upload app-object="[Object]" field="[String]" file-upload-id="[String]" field-name="[String]" min-height="[Number]" min-width="[Number]" max-height="[Number]" 
+ *           max-width="[Number]" valid-heights="[Array]" valid-widths="[Array]" delete-button="true"></file-upload>```
  * 
  * @class FileUploadDirective
  * @static
@@ -55,7 +55,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} min-height
+ * @attribute {Number} min-height
  * @optional
  */
 
@@ -64,7 +64,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} min-width
+ * @attribute {Number} min-width
  * @optional
  */
 
@@ -73,7 +73,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} max-height
+ * @attribute {Number} max-height
  * @optional
  */
 
@@ -82,7 +82,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} max-width
+ * @attribute {Number} max-width
  * @optional
  */
 
@@ -91,7 +91,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} file-upload-id
+ * @attribute {Number} file-upload-id
  * @optional
  */
 

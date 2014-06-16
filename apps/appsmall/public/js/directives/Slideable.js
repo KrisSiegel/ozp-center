@@ -27,7 +27,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} duration
+ * @attribute {Number} duration
  * @required
  */
 

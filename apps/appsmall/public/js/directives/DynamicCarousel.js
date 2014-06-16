@@ -10,7 +10,7 @@
 /**
  * HTML attribute directive:
  *
- * Usage: ```<[element] dynamic-carousel="[Boolean]" num-items="[Int]" is-auto="[Boolean]" on-image-click="[Function]" width=[Int] height=[Int] timeout=[Int]></[element]>```
+ * Usage: ```<[element] dynamic-carousel="[Boolean]" num-items="[Number]" is-auto="[Boolean]" on-image-click="[Function]" width=[Int] height=[Int] timeout=[Int]></[element]>```
  *
  * @class DynamicCarouselDirective
  * @static
@@ -45,7 +45,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} num-items 
+ * @attribute {Number} num-items 
  * @optional
  */
 
@@ -63,7 +63,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} width
+ * @attribute {Number} width
  * @optional
  */
 
@@ -72,7 +72,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} height
+ * @attribute {Number} height
  * @optional
  */
 
@@ -81,7 +81,7 @@
  *
  * _**(static 1-way binding)**_
  *
- * @attribute {Int} height
+ * @attribute {Number} height
  * @optional
  */
 

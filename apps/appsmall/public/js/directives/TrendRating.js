@@ -15,7 +15,7 @@
 /**
  * HTML element directive: Renders the trending rating trait as HTML, with 0-3 flames filled in depending on the rating number.
  *
- * Usage: ```<trendrating srating="[Int]" dynrating="[{{Int}}]"></trendrating>```
+ * Usage: ```<trendrating srating="[Number]" dynrating="[{{Number}}]"></trendrating>```
  * 
  * @class TrendratingDirective
  * @constructor
@@ -27,7 +27,7 @@
  *
  * _**(scoped to directive as 2-way binding)**_
  *
- * @attribute {Int} srating
+ * @attribute {Number} srating
  * @optional
  */
 
@@ -36,7 +36,7 @@
  *
  * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
  *
- * @attribute {Int} dynrating
+ * @attribute {Number} dynrating
  * @optional
  */
 

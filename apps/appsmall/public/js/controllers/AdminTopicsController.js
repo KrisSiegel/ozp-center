@@ -29,25 +29,24 @@
  /**
   * Description
   * @method addTopic
-  * @optional
   */
 
  /**
   * Description
-  * @attribute {Array} allApps
+  * @attribute allApps {Array} 
   * @optional
   */
 
  /**
   * Description
   * @method anyApps
-  * @optional
   */
 
  /**
   * Description
   * @method appInTopic
-  * @optional
+  * @param app {Object} 
+  * @param topicName {String} 
   */
 
  /**
@@ -59,31 +58,28 @@
  /**
   * Description
   * @method checkUniqueName
-  * @optional
   */
 
  /**
   * Description
   * @method clearContextMenu
-  * @optional
+  * @param $event {Object} 
+  * (NOTE: NEEDS REFACTORING.  DOM MANIPULATION METHODS SHOULD NOT EXIST IN CONTROLLER)
   */
 
  /**
   * Description
   * @method createNewTopic
-  * @optional
   */
 
  /**
   * Description
   * @method deleteTopic
-  * @optional
   */
 
  /**
   * Description
   * @method displayAllApps
-  * @optional
   */
 
  /**
@@ -95,7 +91,7 @@
  /**
   * Description
   * @method draggableHoverState
-  * @optional
+  * @param group {String}
   */
 
  /**
@@ -107,19 +103,19 @@
  /**
   * Description
   * @method dropfunction
-  * @optional
+  * @param dropData {Object}
+  * @param dragData {Object}
   */
 
  /**
   * Description
   * @method expandGroup
-  * @optional
+  * @param group {String}
   */
 
  /**
   * Description
   * @method getTopicNames
-  * @optional
   */
 
  /**
@@ -131,13 +127,11 @@
  /**
   * Description
   * @method hasApps
-  * @optional
   */
 
  /**
   * Description
   * @method hasPermission
-  * @optional
   */
 
  /**
@@ -149,25 +143,25 @@
  /**
   * Description
   * @method hoverIn
-  * @optional
+  * @param group {String}
   */
 
  /**
   * Description
   * @method hoverOut
-  * @optional
   */
 
  /**
-  * Method called by ng-init directive when declaring controller in view page
+  * Method called by ng-init directive when declaring controller in view page.  The admin page type (Tag, Collection, or Category) is determined by the topic URI passed in
   * @method initializeController
-  * @optional
+  * @param topicUri {String} Determines admin page type (Tag, Collection, or Category) and must equal one of the following values:
+  *        '/AppsMall/App/' for Tag Management, '/AppsMall/Category/' for Category Management, or '/AppsMall/Collection/' for Collection Management.
   */
 
  /**
   * Description
   * @method isSelected
-  * @optional
+  * @param topicId {String} 
   */
 
  /**
@@ -185,67 +179,64 @@
  /**
   * Description
   * @method refreshTopics
-  * @optional
+  * @param [activeGroup] {String}
   */
 
  /**
   * Description
   * @method saveTopic
-  * @optional
   */
 
  /**
   * Description
   * @method searchTopic
-  * @optional
   */
 
  /**
   * Description
-  * @attribute {String} searchedTopic
+  * @attribute searchedTopic {String}
   * @optional
   */
 
  /**
   * Description
   * @method setActiveGroup
-  * @optional
+  * @attribute title {String}
   */
 
  /**
   * Description
   * @method setSelected
-  * @optional
+  * @attribute topicId {String}
   */
 
  /**
   * Description
-  * @attribute {Boolean} showAllApps
+  * @attribute showAllApps {Boolean}
   * @optional
   */
 
  /**
   * Description
   * @method showAppTopicMenu
-  * @optional
+  * @attribute appid {String}
   */
 
  /**
   * Description
   * @method startDragFunction
-  * @optional
   */
 
  /**
   * Description
   * @method stopDragFunction
-  * @optional
   */
 
  /**
   * Description
   * @method toggleAppTopic
-  * @optional
+  * @param app {Object}
+  * @param topicName {String}
   */
 
  /**
@@ -263,7 +254,6 @@
  /**
   * Description
   * @method updateTopic
-  * @optional
   */
 
 

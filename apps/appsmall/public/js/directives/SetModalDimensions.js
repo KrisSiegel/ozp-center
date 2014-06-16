@@ -10,7 +10,7 @@
 /**
  * HTML attribute directive: Set dimensions of Bootstrap modal after it has been loaded.
  *
- * Usage: ```<[element] set-modal-dimensions modal-height="[Int]" modal-width="[Int]"></[element]>```
+ * Usage: ```<[element] set-modal-dimensions modal-height="[Number]" modal-width="[Number]"></[element]>```
  *
  * @class SetModalDimensionsDirective
  * @static
@@ -27,7 +27,7 @@
  *
  * _**(scoped to directive as 2-way binding)**_
  *
- * @attribute {Int} modal-width
+ * @attribute {Number} modal-width
  * @required
  */
 
@@ -36,7 +36,7 @@
  *
  * _**(scoped to directive as 2-way binding)**_
  *
- * @attribute {Int} modal-height
+ * @attribute {Number} modal-height
  * @required
  */
 

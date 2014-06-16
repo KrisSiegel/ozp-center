@@ -44,127 +44,112 @@
  /**
   * Description
   * @method clearSearch
-  * @optional
   */
 
  /**
   * Description
   * @method executeSearch
-  * @optional
+  * @param searchObj {Object} 
   */
 
  /**
   * Description
   * @method executeTagRemovalSearch
-  * @optional
+  * @param tagToRemove {Object} 
   */
 
  /**
   * Description
   * @method getAppsAndComponentsFromServer
-  * @optional
   */
 
  /**
   * Description
   * @method getSearchResultLimit
-  * @optional
   */
 
  /**
   * Description
   * @method getSearchResults
-  * @optional
+  * @param term {String}
   */
 
  /**
   * Description
   * @method getSelectedTagNames
-  * @optional
   */
 
  /**
   * Description
   * @method getViewState
-  * @optional
   */
 
  /**
   * Description
   * @method hasSelectedTags
-  * @optional
   */
 
  /**
   * Method called by ng-init directive when declaring controller in view page
   * @method initializeController
-  * @optional
   */
 
  /**
   * Description
   * @method isAppMode
-  * @optional
   */
 
  /**
   * Description
   * @method isBookmarked
-  * @optional
+  * @param currentApp {Object} 
   */
 
  /**
   * Description
   * @method isEmpty
-  * @optional
   */
 
  /**
   * Description
   * @method isEmptyOrLoading
-  * @optional
   */
 
  /**
   * Description
   * @method isHome
-  * @optional
   */
 
  /**
   * Description
   * @method isSearchMode
-  * @optional
   */
 
  /**
   * Description
   * @method isSearchOrFilterMode
-  * @optional
   */
 
  /**
   * Description
   * @method isSearchPanelVisible
-  * @optional
   */
 
  /**
   * Description
   * @method isTagFilterMode
-  * @optional
   */
 
  /**
   * Description
   * @method loadAppChildForm
-  * @optional
+  * @param selectedApp {Object}
   */
 
  /**
   * Description
   * @method openApp
-  * @optional
+  * @param currentApp {Object}
   */
 
  /**
@@ -176,7 +161,7 @@
  /**
   * Description
   * @method setBookmark
-  * @optional
+  * @param currentApp {Object}
   */
 
 

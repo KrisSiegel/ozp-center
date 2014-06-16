@@ -33,73 +33,71 @@
  /**
   * Description
   * @method addSelectedItemToList
-  * @optional
+  * @param itemToAdd {String} 
+  * @param listScopeName {String} 
+  * @param itemConversionFunction {Function} 
   */
 
  /**
   * Description
   * @method canAcceptOrRejectApp
-  * @optional
   */
 
  /**
-  * Description
+  * Exits App Submission and redirects the user back to the App Management page
   * @method close
-  * @optional
   */
 
  /**
   * Description
   * @method getCategoryDropdownSelection
-  * @optional
+  * @param selectedText {String} 
   */
 
  /**
   * Description
   * @method getCategoryField
-  * @optional
+  * @param categoryObject {Object}
   */
 
  /**
   * Description
   * @method getShortDateUpdated
-  * @optional
+  * @param app {Object}
   */
 
  /**
   * Description
   * @method getTagDropdownSelection
-  * @optional
+  * @param selectedText {String} 
   */
 
  /**
   * Description
   * @method getTagField
-  * @optional
+  * @param tagObject {Object}
   */
 
  /**
   * Method called by ng-init directive when declaring controller in view page
   * @method initializeController
-  * @optional
   */
 
  /**
   * Description
   * @method isExistingApp
-  * @optional
   */
 
  /**
   * Description
   * @method isTabInvalid
-  * @optional
+  * @param tabName {String} 
   */
 
  /**
   * Description
   * @method loadPreviewModal
-  * @optional
+  * @param selectedApp {Object}
   */
 
  /**
@@ -111,13 +109,14 @@
  /**
   * Description
   * @method removeItemFromList
-  * @optional
+  * @param itemToRemove {String} 
+  * @param listScopeName {String} 
   */
 
  /**
   * Description
   * @method workflowStatusClass
-  * @optional
+  * @param workflowStatus {String}
   */
 
 

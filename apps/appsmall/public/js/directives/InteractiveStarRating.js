@@ -10,7 +10,7 @@
 /**
  * HTML element directive: Renders clickable star rating that dynamically changes bound value
  *
- * Usage: ```<interactive-star-rating rating="[Int]"></interactive-star-rating>```
+ * Usage: ```<interactive-star-rating rating="[Number]"></interactive-star-rating>```
  * 
  * @class InteractiveStarRatingDirective
  * @static
@@ -26,7 +26,7 @@
  *
  * _**(1-way binding attribute with scoped watcher event; must also exist in parent scope)**_
  *
- * @attribute {Int} rating
+ * @attribute {Number} rating
  * @required
  */
 

@@ -51,7 +51,6 @@
  /**
   * Description
   * @method cancel
-  * @optional
   */
 
  /**
@@ -69,7 +68,7 @@
  /**
   * Description
   * @method filterReviewsByRating
-  * @optional
+  * @param ratingNumber {Number}
   */
 
  /**
@@ -81,7 +80,7 @@
  /**
   * Description
   * @method getImage
-  * @optional
+  * @param imageName {String} 
   */
 
  /**
@@ -93,7 +92,7 @@
  /**
   * Description
   * @method isBookmarked
-  * @optional
+  * @param currentApp {Object} 
   */
 
  /**
@@ -111,13 +110,12 @@
  /**
   * Description
   * @method openApp
-  * @optional
   */
 
  /**
   * Description
   * @method openChildImageModal
-  * @optional
+  * @param imageUrl {String} 
   */
 
  /**
@@ -153,19 +151,17 @@
  /**
   * Description
   * @method reviewsAreFiltered
-  * @optional
   */
 
  /**
   * Description
   * @method setBookmark
-  * @optional
+  * @param currentApp {Object} 
   */
 
  /**
   * Description
   * @method submitRating
-  * @optional
   */
 
  /**
