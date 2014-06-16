@@ -1,8 +1,12 @@
+/**
+	Routes within the mock security service to handle login and logout.
+
+	@class Ozone.Service("Security")
+*/
 var Ozone = null,
 	securityConfig = null,
     baseURL = null,
-    authService = null,
-    constants = require('../../../config/constants');
+    authService = null;
 
 
 module.exports = exports = function (Ozone) {
@@ -40,5 +44,12 @@ module.exports = exports = function (Ozone) {
 				res.send(persona);
 			}
 		}, req, res);
+	});
+
+	routing.get("/security/logout", { loggedIn: true }, function (req, res, next) {
+		if (Ozone.utils.safe(req, "session.user") !== undefined) {
+			req.session.destroy();
+		}
+		res.send("Session terminated");
 	});
 };
