@@ -5,18 +5,18 @@ Ozone.extend(function () {
 
     var routing = {
         kill: {
-            notEnoughAccess: function (msg) {
+            notEnoughAccess: function (req, res, msg) {
                 Ozone.logger.info("Ozone.routing -> kill route due to not enough access.");
-                if (!Ozone.utils.isUndefinedOrNull(current.res)) {
-                    current.res.statusCode = 403;
-                    current.res.end(msg || "User does not have proper access to this function");
+                if (!Ozone.utils.isUndefinedOrNull(res)) {
+                    res.statusCode = 403;
+                    res.end(msg || "User does not have proper access to this function");
                 }
             },
-            notLoggedIn: function (msg) {
+            notLoggedIn: function (req, res, msg) {
                 Ozone.logger.info("Ozone.routing -> kill route due to not being logged in.");
-                if (!Ozone.utils.isUndefinedOrNull(current.res)) {
-                    current.res.statusCode = 401;
-                    current.res.end(msg || "User is not logged in");
+                if (!Ozone.utils.isUndefinedOrNull(res)) {
+                    res.statusCode = 401;
+                    res.end(msg || "User is not logged in");
                 }
             }
         },
@@ -37,46 +37,42 @@ Ozone.extend(function () {
         (function (meth) {
             routing[meth] = (function (path, access, callback, context) {
                 var finalPath = Ozone.utils.murl("apiBaseUrl", path, false);
-                if (Ozone.utils.isFunction(access)) {
-                    if (!Ozone.utils.isUndefinedOrNull(callback)) {
-                        context = callback;
-                        callback = access;
-                        access = undefined;
-                    } else {
-                        callback = access;
-                        access = undefined;
-                    }
-                }
-                if (Ozone.utils.isUndefinedOrNull(access)) {
-                    access = { loggedIn: false };
-                }
-                if (Ozone.utils.safe(access, "loggedIn") === undefined) {
-                    if (Ozone.utils.safe(access, "permissions") !== undefined) {
-                        access.loggedIn = true;
-                    } else {
-                        access.loggedIn = false;
-                    }
-                }
                 context = context || this;
                 Ozone.Service("ApplicationEngine")[meth].apply(Ozone.Service("ApplicationEngine"), [finalPath, function (req, res, next) {
-                    current = {
-                        req: req,
-                        res: res,
-                        next: next
-                    };
+                    if (Ozone.utils.isFunction(access)) {
+                        if (!Ozone.utils.isUndefinedOrNull(callback)) {
+                            context = callback;
+                            callback = access;
+                            access = undefined;
+                        } else {
+                            callback = access;
+                            access = undefined;
+                        }
+                    }
+                    if (Ozone.utils.isUndefinedOrNull(access)) {
+                        access = { loggedIn: false };
+                    }
+                    if (Ozone.utils.safe(access, "loggedIn") === undefined) {
+                        if (Ozone.utils.safe(access, "permissions") !== undefined) {
+                            access.loggedIn = true;
+                        } else {
+                            access.loggedIn = false;
+                        }
+                    }
+
                     Ozone.logger.debug("Ozone Routing -> " + meth + " -> " + finalPath);
                     var killed = false;
                     if (Ozone.config().getServerProperty("security.disableSecurityCheckOnRoutes") !== true) {
                         if (access.loggedIn === true && Ozone.utils.safe(req, "session.user.persona") === undefined) {
                             killed = true;
-                            routing.kill.notLoggedIn();
+                            routing.kill.notLoggedIn(req, res);
                         }
                         var currentPersona = Ozone.utils.safe(req, "session.user.persona");
                         if (access.loggedIn === true && !Ozone.utils.isUndefinedOrNull(access.permissions)) {
                             if (!Ozone.Service("Personas").persona.hasPermission(currentPersona, access.permissions)) {
                                 Ozone.logger.debug("Ozone Routing -> Checking Permissions: " + access.permissions)
                                 killed = true;
-                                routing.kill.notEnoughAccess();
+                                routing.kill.notEnoughAccess(req, res);
                             }
                         }
                     }

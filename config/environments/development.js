@@ -49,7 +49,12 @@ module.exports = (function () {
                 appBuilderUrl: "/AppBuilder/",
                 apiClientUrl: "/api/client/",
                 libUrl: "/lib/"
-            }
+            },
+            deployedTiers: [
+                "client",
+                "services",
+                "database"
+            ]
         }
     };
 }());

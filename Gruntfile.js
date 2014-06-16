@@ -79,6 +79,7 @@
                 start: "npm start",
                 startInTest: "npm test",
                 test: "npm test",
+                singletar: "./scripts/bundle-single.sh",
                 dropDb: ("mongo " + grunt.option("db") + " --eval 'db.dropDatabase()'")
             }
         });
@@ -88,6 +89,7 @@
         grunt.registerTask("mongod", ["exec:mongodWithText"]);
         grunt.registerTask("dropDb", ["exec:dropDb"]);
         grunt.registerTask("build", ["clean", "concat", "component-concat", "uglify:minify", "markdownpdf"]);
+        grunt.registerTask("bundle", ["exec:singletar"]);
         grunt.registerTask("test", ["exec:test"]);
     };
 }());

@@ -16,9 +16,6 @@ module.exports = (function (environment) {
     // Drop X-Powered-By header
     app.disable('x-powered-by');
 
-    // Load the appropriate session module
-    Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.session"));
-
     // Upload limit and upload directory settings
     app.use(express.bodyParser({
         limit: Ozone.config().getServerProperty("requestSizeLimit") || "25mb",
@@ -53,12 +50,24 @@ module.exports = (function (environment) {
         }
     });
 
-    // Load security module first
-    Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.security"));
+    var tiers = Ozone.config().getCommonProperty("deployedTiers");
+    function isClientTier (tier) {
+        return tier == "client";
+    }
 
-    // Load all other modules once the security module is registered and ready
-    Ozone.Service().on("ready", "Security", function () {
+    // If this is a client-only (i.e., quasi-static HTML, CSS and JS
+    // only), serve the following apps and skip the security step
+    if (tiers && tiers.some(isClientTier) && tiers.every(isClientTier)) {
+        app.use(require("./apps/ozone-hud")(Ozone));
+        app.use(require("./apps/appsmall")(Ozone));
+        standUpServer();
+        return Ozone;
+    };
 
+    // Load the appropriate session module
+    Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.session"));
+
+    function standUpServer () {
         // Load additional Ozone services
         Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.services"));
 
@@ -84,14 +93,18 @@ module.exports = (function (environment) {
 
         if (!Ozone.Utils.isUndefinedOrNull(Ozone.config().getServerProperty("port"))) {
             httpServer = http.createServer(app);
-            httpServer.listen(Ozone.config().getServerProperty("port"), Ozone.config().getServerProperty("host"), 511, function () {
-                Ozone.logger.info("Ozone Container --> main.js -> starting http on port " + Ozone.config().getServerProperty("port"));
+            var port = Ozone.config().getClientProperty("port") || Ozone.config().getServerProperty("port");
+            var host = Ozone.config().getClientProperty("host") || Ozone.config().getServerProperty("host");
+            httpServer.listen(port, host, 511, function () {
+                Ozone.logger.info("Ozone Container --> main.js -> starting http on port " + port);
             });
         }
 
-        app.use(require("./apps/ozone-hud")(Ozone));
-        //app.use(require("./apps/appbuilder")(Ozone));
-        app.use(require("./apps/appsmall")(Ozone));
+        if (typeof tiers == "undefined" || (tiers.indexOf("client") != -1)) {
+            app.use(require("./apps/ozone-hud")(Ozone));
+            //app.use(require("./apps/appbuilder")(Ozone));
+            app.use(require("./apps/appsmall")(Ozone));
+        }
 
         if (!Ozone.Utils.isUndefinedOrNull(Ozone.config().getServerProperty("ssl.port"))) {
             var fs = require("fs")
@@ -119,6 +132,14 @@ module.exports = (function (environment) {
                 return httpsServer;
             }
         });
+    };
+
+    // Load security module first
+    Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.security"));
+
+    // Load all other modules once the security module is registered and ready
+    Ozone.Service().on("ready", "Security", function () {
+        standUpServer();
     });
 
     return Ozone;

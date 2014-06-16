@@ -97,9 +97,12 @@ Ozone.extend(function () {
         if (isUndefinedOrNull(isClient)) {
             isClient = false;
         }
+
+        // Start building the URL
         var url = "";
+        // Just concatenate what you got
         if (!isUndefinedOrNull(urlProp)) {
-            url = url + Ozone.config().getCommonProperty("urls")[urlProp];
+            url = Ozone.config().getCommonProperty("urls")[urlProp];
 
             if (!isUndefinedOrNull(postfixes)) {
                 if (!isArray(postfixes)) {
@@ -116,6 +119,7 @@ Ozone.extend(function () {
             if (abs === undefined) {
                 abs = "";
             }
+            // prepend the absoluteBaseUrl, just don't duplicate the '/'
             if (abs[abs.length - 1] === "/" && url[0] === "/") {
                 url = abs.substring(0, abs.length - 1) + url;
             } else {

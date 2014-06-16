@@ -19,7 +19,7 @@ microXTag = (function ($) {
                 function adjustPath(el, attr) {
                     var src = el.getAttribute(attr);
                     if (!/^\//.test(src)) {
-                        el.setAttribute(attr, Ozone.utils.murl("hudUrl", [componentPath, src], true));
+                        el.setAttribute(attr, Ozone.utils.murl("hudUrl", [componentPath, src], false));
                     }
                 };
                 var $elements = $(fileItem.content);
