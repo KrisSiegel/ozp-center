@@ -59,7 +59,7 @@
   */
 
  /**
-  * Description
+  * Retrieves all apps and components from Ozone service
   * @method getAppsAndComponentsFromServer
   */
 

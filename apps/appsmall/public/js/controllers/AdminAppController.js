@@ -26,32 +26,33 @@
  */
 
  /**
-  * Description
+  * An array of every single app returned from the Ozone service, included apps not displayed in the AppsMall view.
   * @attribute {Array} allApps
   * @optional
   */
 
  /**
-  * Description
+  * object-of-arrays used to query apps by workflow state: [workflow state] -> [Array of apps with that workflow state]
   * @attribute {Object} appsByWorkflowStatus
   * @optional
   */
 
  /**
-  * Description
+  * An array of apps filtered by user-selected workflow state.  Contains all apps if no workflow state has been selected.
   * @attribute {Array} displayedApps
   * @optional
   */
 
  /**
-  * Description
+  * Retrieves all apps from Ozone service
   * @method getAppsFromServer
+  * @return {PromiseObject} used to query for apps
   */
 
  /**
-  * Description
+  * Gets formatted update date from app passed in
   * @method getShortDateUpdated
-  * @param app {Object} 
+  * @param app {Object} An App object with date fields
   */
 
  /**
@@ -60,31 +61,36 @@
   */
 
  /**
-  * Description
+  * Returns the number of apps with the workflow state passed in.
   * @method getWorkflowStatusCount
-  * @param workflowStatus {String} 
+  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+  * @return {Number} the number of apps with the workflow state passed in
   */
 
  /**
-  * Description
+  * Check whether App Manager is visible
   * @method isAppManagerMode
+  * @return {Boolean} true if in App Manager mode, and false otherwise
   */
 
  /**
-  * Description
+  * Check whether App Manager is displaying the empty message instead of displaying the App Manager main page
   * @method isEmpty
+  * @return {Boolean} true if empty message is displayed, and false for any other state (such as App Manager mode)
   */
 
  /**
-  * Description
+  * Check whether workflow state appears in red on the left panel
   * @method isHighlighted
-  * @param workflowStatus {String} 
+  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+  * @return {Boolean} true if workflow state is red-highlighted
   */
 
  /**
-  * Description
+  * Checks if workflow status passed in was last selected
   * @method isWorkflowStatusSelected
-  * @param workflowStatus {String} 
+  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+  * @return {Boolean} True if the workflow status passed in was last selected, and False otherwise.
   */
 
  /**
@@ -102,7 +108,7 @@
  /**
   * Description
   * @method toggleWorkflowStatusSelection
-  * @param workflowStatus {String} 
+  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
   */
 
  /**
@@ -120,7 +126,7 @@
  /**
   * Description
   * @method workflowStatusClass
-  * @param workflowStatus {String} 
+  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
   */
 
 
@@ -230,7 +236,11 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         }
     }
 
-    // View state "enumeration"
+    /**
+     * View state "enumeration" with display states as keys and stringified rpresentation of each key as values.  All keys and values must be unique.
+     * @attribute {Object} ViewStates
+     * @private
+     */
     var ViewStates = {
         Empty: 'empty',
         AppManager: 'manager'
