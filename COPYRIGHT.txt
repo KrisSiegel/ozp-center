@@ -35,6 +35,7 @@ The product further references the following libraries or capabilities which are
 * grunt-exec exec task for grunt, based on MIT license, https://raw.githubusercontent.com/jharding/grunt-exec/master/LICENSE-MIT
 * grunt-contrib-jshint jshint task for grunt, based on MIT license, https://raw.githubusercontent.com/gruntjs/grunt-contrib-jshint/master/LICENSE-MIT
 * grunt-markdown-pdf markdown to pdf grunt task, based on MIT license, https://raw.githubusercontent.com/treasonx/grunt-markdown/master/LICENSE-MIT
+* grunt-contrib-yuidoc, based on MIT license, https://raw.githubusercontent.com/gruntjs/grunt-contrib-yuidoc/master/LICENSE-MIT
 * cheerio jQuery implementation for node, based on MIT license, https://github.com/cheeriojs/cheerio
 * supertest unit testing framework, based on MIT license, https://raw.githubusercontent.com/visionmedia/supertest/master/LICENSE
 * jsdom browser DOM on the server, based on MIT license, https://raw.githubusercontent.com/tmpvar/jsdom/master/LICENSE.txt

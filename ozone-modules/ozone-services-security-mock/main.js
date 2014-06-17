@@ -2,7 +2,9 @@
     The mock security service ensures users are logged in but also registers routes to allow anyone to login as
     any user and with any role they request.
 
-    @class Ozone.Service("Security")
+    Accessible and registers at Ozone.Service("Security")
+
+    @class Ozone.Services.SecurityMock
 */
 (function () {
     "use strict";

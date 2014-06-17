@@ -6,6 +6,7 @@
         grunt.loadNpmTasks('grunt-exec');
         grunt.loadNpmTasks('grunt-contrib-jshint');
         grunt.loadNpmTasks('grunt-markdown-pdf');
+        grunt.loadNpmTasks('grunt-contrib-yuidoc');
         grunt.loadTasks('grunts');
 
         var pack = grunt.file.readJSON("package.json");
@@ -21,6 +22,7 @@
                 "ozone-modules/ozone-api/client-mock-api.min.js",
                 "ozone-modules/ozone-api/server-api.js",
                 "README.pdf",
+                "docs/code/",
                 (hudFileLocation + "*.*")
             ],
             concat: {
@@ -74,6 +76,18 @@
                     dest: "./"
                 }
             },
+            yuidoc: {
+                compile: {
+                    name: '<%= pkg.name %>',
+                    description: '<%= pkg.description %>',
+                    version: '<%= pkg.version %>',
+                    url: '<%= pkg.homepage %>',
+                    options: {
+                        paths: ".",
+                        outdir: "docs/code/"
+                    }
+                }
+            },
             exec: {
                 mongodWithText: "mongod --setParameter textSearchEnabled=true",
                 start: "npm start",
@@ -88,7 +102,7 @@
         grunt.registerTask("start-mongod", ["exec:mongodWithText"]);
         grunt.registerTask("mongod", ["exec:mongodWithText"]);
         grunt.registerTask("dropDb", ["exec:dropDb"]);
-        grunt.registerTask("build", ["clean", "concat", "component-concat", "uglify:minify", "markdownpdf"]);
+        grunt.registerTask("build", ["clean", "concat", "component-concat", "uglify:minify", "yuidoc"]);
         grunt.registerTask("bundle", ["exec:singletar"]);
         grunt.registerTask("test", ["exec:test"]);
     };

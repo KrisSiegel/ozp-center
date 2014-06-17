@@ -1,0 +1,10 @@
+{
+  "name": "ozone-services-persistence",
+  "description": "OZONE Persistence Service",
+  "version": "2.0.0",
+  "private": true,
+  "main": "main.js",
+  "dependencies": {
+    "mime": "1.2.x"
+  }
+}
