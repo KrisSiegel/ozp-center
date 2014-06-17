@@ -27,127 +27,136 @@
  */
 
  /**
-  * Description
+  * Creates a new topic from the created topic model
   * @method addTopic
+  * @return {PromiseObject} used for adding new topic
   */
 
  /**
-  * Description
-  * @attribute allApps {Array} 
+  * An array of every single app returned from the Ozone service, included apps not displayed in the AppsMall view.
+  * @attribute {Array} allApps
   * @optional
   */
 
  /**
-  * Description
+  * Checks whether any apps have been loaded into this controller
   * @method anyApps
+  * @return {Boolean} True if apps have finished loading with at least 1 app.
   */
 
  /**
-  * Description
+  * Checks whether the topic passed in contains the app passed in
   * @method appInTopic
   * @param app {Object} 
   * @param topicName {String} 
+  * @return {Boolean} True if the app passed in is contained within the topic passed in, or false otherwise.
   */
 
  /**
-  * Description
+  * An object that groups apps by topic name: [topic name] -> [list of apps with that topic]
   * @attribute {Object} appsByTopic
-  * @optional
+  * @required
   */
 
  /**
-  * Description
+  * Method to make sure that all topics are unique
   * @method checkUniqueName
+  * @return {Boolean} True if all topics are unique
   */
 
  /**
-  * Description
+  * Closes app context menu if it is open and click was not in app context menu or opening it
+  * _**(NEEDS REFACTORING.  DOM MANIPULATION METHODS SHOULD NOT EXIST IN CONTROLLER)**_
   * @method clearContextMenu
-  * @param $event {Object} 
-  * (NOTE: NEEDS REFACTORING.  DOM MANIPULATION METHODS SHOULD NOT EXIST IN CONTROLLER)
+  * @param $event {Object} a click event containing the clicked element as target
   */
 
  /**
-  * Description
+  * Creates new topic model in this controller
   * @method createNewTopic
   */
 
  /**
-  * Description
+  * Deletes topic model in this controller; deletes from database if loaded topic model exists in database
   * @method deleteTopic
   */
 
  /**
-  * Description
+  * Sets topic model so that all apps are displayed.
   * @method displayAllApps
   */
 
  /**
-  * Description
+  * True if user is dragging an item
   * @attribute {Boolean} dragMode
   * @optional
   */
 
  /**
-  * Description
+  * Checks whether the user is currently dragging a topic wiht the group passed in
   * @method draggableHoverState
   * @param group {String}
+  * @return {Boolean} True if the user is currently dragging a topic wiht the group passed in
   */
 
  /**
-  * Description
+  * Object that contains information on when an app was past dropped, and whether the drop action succeeded or failed
   * @attribute {Object} dropStatus
   * @optional
   */
 
  /**
-  * Description
+  * Called when an app is being dropped into a topic
   * @method dropfunction
-  * @param dropData {Object}
-  * @param dragData {Object}
+  * @param dropData {String} The id of the topic object that an app is being dropped into
+  * @param dragData {String} The id of the app object being dragged into the topic container
   */
 
  /**
-  * Description
+  * Checks whether group passed in is active and expanded
   * @method expandGroup
-  * @param group {String}
+  * @param group {String} a group name
+  * @return {Boolean} True if group passed in is active and expanded
   */
 
  /**
-  * Description
+  * Gets an array of topic names
   * @method getTopicNames
+  * @return {Array} an array of topic names
   */
 
  /**
-  * Description
+  * A collection object containing group names as keys and topics as values
   * @attribute {Object} groupedTopics
   * @optional
   */
 
  /**
-  * Description
+  * Returns True if the topic model contains apps
   * @method hasApps
+  * @return {Boolean} True if the topic model contains apps
   */
 
  /**
-  * Description
+  * Returns True if the persona logged in has the appropriate permission to access this page
   * @method hasPermission
+  * @return {Boolean} True if the persona logged in has the appropriate permission to access this page
   */
 
  /**
-  * Description
+  * The hover group attribute that denotes which group the user is hovering over
   * @attribute {String} hoverGroup
   * @optional
   */
 
  /**
-  * Description
+  * Sets the hover group to the value passed in
   * @method hoverIn
   * @param group {String}
   */
 
  /**
-  * Description
+  * Clears the hover group
   * @method hoverOut
   */
 
@@ -159,105 +168,116 @@
   */
 
  /**
-  * Description
+  * Compares the topid ID passed in to the topic model
   * @method isSelected
   * @param topicId {String} 
+  * @return {Boolean} True if the topic model ID equals the value passed in
   */
 
  /**
-  * Description
+  * Topic list dropdown menu is visible for the app id assigned to this value.  If empty or undefined, then no topic dropdown menus are visible.
   * @attribute {String} openAppTopicMenu
   * @optional
   */
 
  /**
-  * Description
+  * Persona data for the currently logged-in user
   * @attribute {Object} personaData
-  * @optional
+  * @required
   */
 
  /**
-  * Description
+  * Refreshes topics, tag, and associated apps
   * @method refreshTopics
-  * @param [activeGroup] {String}
+  * @param [activeGroup] {String} default group to set after all topics and tags have been refreshed
+  * @return {PromiseObject} that refreshes all topics, tag, and apps.  This object can be used to chain methods after all refresh actions
   */
 
  /**
-  * Description
+  * Saves new or existing topic model to database
   * @method saveTopic
+  * @return {PromiseObject} used for saving topic to database
   */
 
  /**
-  * Description
+  * Set topic to value in search field
   * @method searchTopic
   */
 
  /**
-  * Description
+  * Value in search bar used to set topic
   * @attribute searchedTopic {String}
   * @optional
   */
 
  /**
-  * Description
+  * Toggles active status of group
   * @method setActiveGroup
-  * @attribute title {String}
+  * @attribute title {String} the group to toggle active bit for
   */
 
  /**
-  * Description
+  * Set topic with id passed in to internal topic model
   * @method setSelected
-  * @attribute topicId {String}
+  * @attribute topicId {String} id of the topic to be set in topic model
   */
 
  /**
-  * Description
+  * Gets boolean state for whether all apps are displayed in view
   * @attribute showAllApps {Boolean}
   * @optional
+  * @return {Boolean} True if all apps are displayed in view
   */
 
  /**
-  * Description
+  * Topic list dropdown menu is visible for the app id passed in.
   * @method showAppTopicMenu
-  * @attribute appid {String}
+  * @attribute appid {String} the app to make dropdown menu visible for
   */
 
  /**
-  * Description
+  * Sets drag mode to true
   * @method startDragFunction
   */
 
  /**
-  * Description
+  * Sets drag mode to false
   * @method stopDragFunction
   */
 
  /**
-  * Description
+  * Toggles existance of app in topic: If app previously existed in topic then remove, and if did not exist in topic then add to topic.
   * @method toggleAppTopic
-  * @param app {Object}
-  * @param topicName {String}
+  * @param app {Object} The app to be added or removed from topic
+  * @param topicName {String} The topic to add/remove app from
   */
 
  /**
-  * Description
+  * An object that contains the user-selected topic, apps, and methods for rolling back the current topic to a previous value
   * @attribute {Object} topicModel
   * @optional
   */
 
  /**
-  * Description
+  * A list of all sorted topics
   * @attribute {Array} topics
   * @optional
   */
 
  /**
-  * Description
+  * Updates existing topic model selected by user
   * @method updateTopic
+  * @return {PromiseObject} used for updating topic
   */
 
 
 var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComponent', 'AppWorkflow', 'Persona', 'Tag', function($scope, $rootScope, $q, $timeout, AppOrComponent, AppWorkflow, Persona, Tag) {
+
+    /**
+     * A list of drop status values, with keys and stringified values.  All stringified values must be unique.
+     * @attribute {Array} dropStatuses
+     * @private
+     */
     var dropStatuses = {
         Success: 'icon-checkmark',
         Warning: 'icon-lightning',
@@ -448,7 +468,6 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
     //UI HELPERS
     ////////////
     $scope.clearContextMenu = function($event){
-        //closes app context menu if it is open and click was not in app context menu or opening it
         if(!_.isEmpty($scope.openAppTopicMenu) &&
             !($($event.target).is($('.context-menu-toggle')) || !_.isEmpty($('.context-menu-toggle').has($($event.target)))
                 || $($event.target).is($('.context-menu')) || !_.isEmpty($('.context-menu').has($($event.target)))))
@@ -542,9 +561,9 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
     //////////////////
     $scope.saveTopic = function () {
         if ($scope.topicModel.topic._id == "new") {//new topic
-            $scope.addTopic();
+            return $scope.addTopic();
         } else {//existing topic
-            $scope.updateTopic();
+            return $scope.updateTopic();
         }
     };
 
@@ -552,14 +571,14 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
         var topic = Ozone.utils.clone($scope.topicModel.topic);
         topic._id = null;
         topic.level = "Role"
-        Tag.createNewTopic(topic).then(function () {
+        return Tag.createNewTopic(topic).then(function () {
             var activeGroup = topic.tag[0].toUpperCase()
             $scope.refreshTopics(activeGroup);
         });
     };
 
     $scope.updateTopic = function(){
-        Tag.updateTopic($scope.topicModel.topic).then(function(data){
+        return Tag.updateTopic($scope.topicModel.topic).then(function(data){
             if(data && data.length !== 0){
                 //if the topic name changed must update appsByTopic to reflect change.
                 var newTag = $scope.topicModel.topic.tag;
@@ -571,7 +590,6 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
                 //update the backup
                 $scope.topicModel.backupTopic();
             }
-
         });
     };
 

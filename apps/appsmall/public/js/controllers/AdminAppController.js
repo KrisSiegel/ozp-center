@@ -53,11 +53,13 @@
   * Gets formatted update date from app passed in
   * @method getShortDateUpdated
   * @param app {Object} An App object with date fields
+  * @return {String} a stringified short date value for the app passed in
   */
 
  /**
-  * Description
+  * Returns the current view state
   * @method getViewState
+  * @return {String} the view state in stringified form
   */
 
  /**
@@ -94,39 +96,42 @@
   */
 
  /**
-  * Description
+  * Redirects to the App Submission form with the app passed in, or New App if no app is passed in.
   * @method loadAppChildForm
   * @param selectedApp {Object} 
   */
 
  /**
-  * Description
+  * Persona data for the currently logged-in user
   * @attribute {Object} personaData
-  * @optional
+  * @required
   */
 
  /**
-  * Description
+  * Sets selected workflow status:
+  * If user clicked on selected workflow status, then unselect tag.
+  * If user clicked on an unselected workflow status, then select the clicked status.
   * @method toggleWorkflowStatusSelection
   * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
   */
 
  /**
-  * Description
+  * Workflow state action lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateActions
   * @attribute {Object} workflowStateActions
   * @optional
   */
 
  /**
-  * Description
+  * Workflow state type lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
   * @attribute {Array} workflowStateTypes
   * @optional
   */
 
  /**
-  * Description
+  * Gets the CSS class used to visually display workflow state
   * @method workflowStatusClass
   * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+  * @return {String} the CSS class corresponding to workflow state passed in
   */
 
 
@@ -175,9 +180,6 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         return ($scope.userFilterSelection === workflowStatus);
     }
 
-    // Sets selected workflow status:
-    // If user clicked on selected workflow status, then unselect tag.
-    // If user clicked on an unselected workflow status, then select the clicked status.
     $scope.toggleWorkflowStatusSelection = function(workflowStatus) {
         var workflowStatusClicked = $scope.isWorkflowStatusSelected(workflowStatus);
         if (workflowStatusClicked) {

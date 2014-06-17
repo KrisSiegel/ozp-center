@@ -101,9 +101,9 @@
   */
 
  /**
-  * Description
+  * Persona data for the currently logged-in user
   * @attribute {Object} personaData
-  * @optional
+  * @required
   */
 
  /**
@@ -114,9 +114,10 @@
   */
 
  /**
-  * Description
+  * Gets the CSS class used to visually display workflow state
   * @method workflowStatusClass
-  * @param workflowStatus {String}
+  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+  * @return {String} the CSS class corresponding to workflow state passed in
   */
 
 

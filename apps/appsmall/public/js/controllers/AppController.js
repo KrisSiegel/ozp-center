@@ -153,9 +153,9 @@
   */
 
  /**
-  * Description
+  * Persona data for the currently logged-in user
   * @attribute {Object} personaData
-  * @optional
+  * @required
   */
 
  /**
