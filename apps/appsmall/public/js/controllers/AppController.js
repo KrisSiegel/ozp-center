@@ -30,63 +30,73 @@
  */
 
  /**
-  * Description
-  * @attribute {undefined} AllowComponents
-  * @optional
+  * Property from Ozone API to indicate whether components are loaded
+  * @attribute {Boolean} AllowComponents
+  * @required
   */
 
  /**
-  * Description
+  * An enumerated list of view states, with stringified values
   * @attribute {Object} ViewStates
-  * @optional
+  * @required
   */
 
  /**
-  * Description
+  * Clears search text and triggers the removal of search filters
   * @method clearSearch
   */
 
  /**
-  * Description
+  * Performs app and tag searches and loads results into controller, based on the parameter object passed in.
   * @method executeSearch
-  * @param searchObj {Object} 
+  * @param searchObj {Object} Object that may contain app and tag fields (ex. { ```app: <app_name>, tag: <tag_name>``` } ) for performing tag and/or app name searches.
+  *        If this parameter is a string or empty, then an app search is performed on the string or empty value passed in.
+  * @return {PromiseObject} used to perform app and/or tag search
   */
 
  /**
-  * Description
+  * Removes tag from selected list, then performs new search with updated tags
   * @method executeTagRemovalSearch
-  * @param tagToRemove {Object} 
+  * @param tagToRemove {Object} Tag object to be removed from search query
   */
 
  /**
   * Retrieves all apps and components from Ozone service
   * @method getAppsAndComponentsFromServer
+  * @return {PromiseObject} used for loading apps and components
   */
 
  /**
-  * Description
+  * Return search result limit: unlimited for one category, or 8 for each category in "All" setting.
+  * (The limit is set to a high number (100) instead of being truly unlimited.)
   * @method getSearchResultLimit
+  * @return {Number} search result limit based on search type
   */
 
  /**
-  * Description
+  * setting watch to check search results for full app name, and load that app modal if found.
+  * Filtering is performed on all apps that contain the search string in any part of the app (or component) name, not just the beginning.
   * @method getSearchResults
-  * @param term {String}
+  * @param term {String} search term
+  * @return {PromiseObject} used to search for tags and apps, and load controller with results.
   */
 
  /**
-  * Description
+  * Returns a list of names from all selected tags
   * @method getSelectedTagNames
+  * @return {Array} list of names from all selected tags
   */
 
  /**
-  * Description
+  * Returns the current view state, as described in the ViewStates enumeration
   * @method getViewState
+  * @return {String} stringified value of current view state from ViewStates enumeration
   */
 
  /**
-  * Description
+  * Checks whether at least one tag has been selected
   * @method hasSelectedTags
+  * @return {Boolean} True if one or more tags have been selected
   */
 
  /**
@@ -95,61 +105,70 @@
   */
 
  /**
-  * Description
+  * Checks whether Apps is the current view state
   * @method isAppMode
+  * @return {Boolean} True only if the current view state equals Apps
   */
 
  /**
-  * Description
+  * Checks whether the current app is bookmarked
   * @method isBookmarked
-  * @param currentApp {Object} 
+  * @param currentApp {Object} the app to check bookmark status
+  * @return {Boolean} True only if the app passed in is bookmarked
   */
 
  /**
-  * Description
+  * Checks if Empty is the current view state, signifying that no apps were found in database
   * @method isEmpty
+  * @return {Boolean} True only if the current view state equals Empty
   */
 
  /**
-  * Description
+  * Checks if Empty or Loading is the current view state, signifying that no apps have been loaded yet
   * @method isEmptyOrLoading
+  * @return {Boolean} True only if the current view is either Empty or Loading
   */
 
  /**
-  * Description
+  * Checks whether Home is the current view state, signifying that the main page was loaded
   * @method isHome
+  * @return {Boolean} True only if the current view state equals Home
   */
 
  /**
-  * Description
+  * Checks whether Search is the current view state
   * @method isSearchMode
+  * @return {Boolean} True only if the current view state equals Search
   */
 
  /**
-  * Description
+  * Checks whether the current view state is either Search or TagFilter
   * @method isSearchOrFilterMode
+  * @return {Boolean} True only if the current view is either Search or TagFilter
   */
 
  /**
-  * Description
+  * Checks whether the Search panel used for Home and Search view states is visible
   * @method isSearchPanelVisible
+  * @return {Boolean} True only if the current view is either Home or Search
   */
 
  /**
-  * Description
+  * Checks whether TagFilter is the current view state
   * @method isTagFilterMode
+  * @return {Boolean} True only if the current view is TagFilter
   */
 
  /**
-  * Description
+  * Load App Details page as Bootstrap modal within main page
   * @method loadAppChildForm
-  * @param selectedApp {Object}
+  * @param selectedApp {Object} app to display in details page
   */
 
  /**
-  * Description
+  * Launches the app passed in into a separate window
   * @method openApp
-  * @param currentApp {Object}
+  * @param currentApp {Object} the app to be launched
   */
 
  /**
@@ -159,9 +178,9 @@
   */
 
  /**
-  * Description
+  * Toggles bookmarked status for app passed in
   * @method setBookmark
-  * @param currentApp {Object}
+  * @param currentApp {Object} the app to toggle bookmark status for
   */
 
 
@@ -175,7 +194,6 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
     // flag for whether AppsMall uses components, from config file
     $scope.AllowComponents = Ozone.config().getProperty('allowComponents');
 
-    // View state "enumeration"
     $scope.ViewStates = {
         Empty: 'empty',
         Home: 'home',
@@ -441,8 +459,6 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         });
     };
 
-    // setting watch to check search results for full app name, and load that app modal if found.
-    // AMLUI-193: perform filtering on all apps that contain the search string in any part of the app (or component) name, not just the beginning.
     $scope.executeSearch = function(searchObj) {
         if (_.isEmpty(searchObj) || _.isString(searchObj)) {
              return displayAppSearchFromTagFilterResults(searchObj || '');
@@ -457,7 +473,6 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         }
     }
 
-    // removing tag from selected list and performing new search with updated tags
     $scope.executeTagRemovalSearch = function(tagToRemove) {
         //if(tagToRemove === undefined || tagToRemove === null) return loadHomePage();
         if(['/AppsMall/Collection/', '/AppsMall/Category/', 'System'].indexOf(tagToRemove.type) >= 0)
@@ -475,8 +490,7 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         }
     }
 
-    $scope.clearSearch = function(){
-        //clears search text and triggers the removal of search filters
+    $scope.clearSearch = function() {
         $scope.searchValue = '';
     }
     //--- Internal search functions ---//
@@ -590,8 +604,6 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
     //     }
     // }
 
-    // Return search result limit: unlimited for one category, or 8 for each category in "All" setting.
-    // (The limit is set to a high number (100) instead of being truly unlimited.)
     $scope.getSearchResultLimit = function() {
         if (($scope.filteredSearchResults || {}).filter === 'all') {
             return 8;

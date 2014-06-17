@@ -31,16 +31,17 @@
  */
 
  /**
-  * Description
+  * Adds item passed in to specified list name in scope, with option to invoke conversion function on item
   * @method addSelectedItemToList
-  * @param itemToAdd {String} 
-  * @param listScopeName {String} 
-  * @param itemConversionFunction {Function} 
+  * @param itemToAdd {String} item to add to list
+  * @param listScopeName {String} name of list in this scope that item will get added to
+  * @param [itemConversionFunction] {Function} Conversion function that is called on item parameter.  Does nothing if undefined.
   */
 
  /**
-  * Description
+  * Checks if currently logged in user has permission to accept or reject apps
   * @method canAcceptOrRejectApp
+  * @return {Boolean} True only if currently logged in user has permission to accept or reject apps
   */
 
  /**
@@ -49,33 +50,38 @@
   */
 
  /**
-  * Description
+  * Returns a list of categories that match selection text passed in
   * @method getCategoryDropdownSelection
-  * @param selectedText {String} 
+  * @param selectedText {String} text string used to match categories
+  * @return {Array} a list of categories that match selection text passed in
   */
 
  /**
-  * Description
+  * Get category field from object passed in
   * @method getCategoryField
-  * @param categoryObject {Object}
+  * @param categoryObject {Object} object containing category field
+  * @return {String} category field from object passed in
   */
 
  /**
-  * Description
+  * Gets formatted update date from app passed in
   * @method getShortDateUpdated
-  * @param app {Object}
+  * @param app {Object} An App object with date fields
+  * @return {String} a stringified short date value for the app passed in
   */
 
  /**
-  * Description
+  * Get a list of objects, where each object contains a tag and new flag indicating whether this will be a new tag.
   * @method getTagDropdownSelection
-  * @param selectedText {String} 
+  * @param [selectedText] {String} user-selected text that, if defined, will get added to top of returned list
+  * @return {Array} list of objects to be displayed as dropdown list
   */
 
  /**
-  * Description
+  * Get tag field from object passed in
   * @method getTagField
-  * @param tagObject {Object}
+  * @param tagObject {Object} object containing tag field
+  * @return {String} tag field from object passed in
   */
 
  /**
@@ -84,20 +90,22 @@
   */
 
  /**
-  * Description
+  * Check whether currently loaded app exists in database
   * @method isExistingApp
+  * @return {Boolean} True only if currently loaded app exists in database
   */
 
  /**
-  * Description
+  * Explicitly checking for false on tabValidationState tri-state flag (true, false, undefined) for the tab passed in
   * @method isTabInvalid
-  * @param tabName {String} 
+  * @param tabName {String} tab name to check validation state for
+  * @return {Boolean} True only if tab passed in is invalid.  Empty or clean tab pages will return False.
   */
 
  /**
-  * Description
+  * Load App Preview modal page so that user can preview app as it would look on AppsMall main page
   * @method loadPreviewModal
-  * @param selectedApp {Object}
+  * @param selectedApp {Object} the app to display in previewer
   */
 
  /**
@@ -107,10 +115,10 @@
   */
 
  /**
-  * Description
+  * Removes item passed in to specified list name in scope
   * @method removeItemFromList
-  * @param itemToRemove {String} 
-  * @param listScopeName {String} 
+  * @param itemToRemove {String} item to remove from list
+  * @param listScopeName {String} name of list in this scope that item will get removed from
   */
 
  /**
@@ -411,7 +419,6 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          }
      };
 
-     // explicitly checking for false on tabValidationState tri-state flag (true, false, undefined)
      $scope.isTabInvalid = function(tabName) {
          return (($scope.tabValidationState || {})[tabName] === false);
      }

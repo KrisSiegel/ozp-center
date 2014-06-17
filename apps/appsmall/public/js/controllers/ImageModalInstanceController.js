@@ -22,32 +22,33 @@
  */
 
  /**
-  * Description
+  * Closes the modal form
   * @method cancel
   */
 
  /**
-  * Description
+  * Get full path for the image name passed in, via Ozone API
   * @method getImage
   * @param imageName {String} 
+  * @return {String} full URI path for image name passed in
   */
 
  /**
-  * Description
+  * Height of the image displayed
   * @attribute {Number} imageHeight
-  * @optional
+  * @required
   */
 
  /**
-  * Description
+  * URL of the image displayed, as passed in from parent controller
   * @attribute {String} imageUrl
-  * @optional
+  * @required
   */
 
  /**
-  * Description
+  * Width of the image displayed
   * @attribute {Number} imageWidth
-  * @optional
+  * @required
   */
 
 

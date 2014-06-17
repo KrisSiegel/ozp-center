@@ -31,91 +31,94 @@
  */
 
  /**
-  * Description
+  * A list of all reviews loaded for this app, which may or may not all be visible.
   * @attribute {Array} allUserReviews
   * @optional
   */
 
  /**
-  * Description
+  * Average star rating of all visible reviews
   * @attribute {Number} averageRating
   * @optional
   */
 
  /**
-  * Description
+  * Stringified numeric value of all visible reviews
   * @attribute {String} averageStarRatingText
   * @optional
   */
 
  /**
-  * Description
+  * Closes the modal form
   * @method cancel
   */
 
  /**
-  * Description
+  * The app passed in by the parent controller
   * @attribute {Object} currentApp
-  * @optional
+  * @required
   */
 
  /**
-  * Description
+  * A list of all favorite apps from Persona object of logged-in user
   * @attribute {Array} favoriteApps
   * @optional
   */
 
  /**
-  * Description
+  * Filters visible reviews so that only apps with the rating number passed in are visible
   * @method filterReviewsByRating
-  * @param ratingNumber {Number}
+  * @param ratingNumber {Number} a star rating number.  Only apps with this star rating will be visible.
   */
 
  /**
-  * Description
+  * Description text after converting from Markdown to HTML and marking HTML as safe
   * @attribute {TrustedValueHolderType} fullDescriptionHtml
   * @optional
   */
 
  /**
-  * Description
-  * @method getImage
+  * Get full path for the image name passed in, via Ozone API
+  * @method getImage the local-path image name
   * @param imageName {String} 
+  * @return {String} full URI path for image name passed in
   */
 
  /**
-  * Description
+  * Indicates whether the app has user reviews, regardless of visibility
   * @attribute {Boolean} hasUserReviews
   * @optional
   */
 
  /**
-  * Description
+  * Checks whether the current app is bookmarked
   * @method isBookmarked
-  * @param currentApp {Object} 
+  * @param currentApp {Object} the app to check bookmark status
+  * @return {Boolean} True only if the app passed in is bookmarked
   */
 
  /**
-  * Description
+  * Indicates whether this modal was launched by AppsMall main page or App Submission previewer, and is True only for the latter.
   * @attribute {Boolean} isPreviewer
   * @optional
   */
 
  /**
-  * Description
+  * Indicates whether this modal was launched by the user
   * @attribute {Boolean} launchedByUser
   * @optional
   */
 
  /**
-  * Description
+  * Launches the app passed in into a separate window
   * @method openApp
+  * @param currentApp {Object} the app to be launched
   */
 
  /**
-  * Description
+  * Launches child modal to display screenshot image
   * @method openChildImageModal
-  * @param imageUrl {String} 
+  * @param imageUrl {String} full path URL for image to be viewed in child modal
   */
 
  /**
@@ -125,53 +128,53 @@
   */
 
  /**
-  * Description
+  * Star rating as entered by user
   * @attribute {Number} rating
   * @optional
   */
 
  /**
-  * Description
+  * Star rating scale from {{#crossLink "ReviewService"}}{{/crossLink}}.getRatings
   * @attribute {Array} ratingScale
   * @optional
   */
 
  /**
-  * Description
+  * Review text as entered by user
   * @attribute {String} reviewText
   * @optional
   */
 
  /**
-  * Description
-  * @attribute {undefined} reviews
+  * List of user reviews from the database
+  * @attribute {Array} reviews
   * @optional
   */
 
  /**
-  * Description
+  * Checks whether all user reviews for the currently loaded app are visible
   * @method reviewsAreFiltered
   */
 
  /**
-  * Description
+  * Toggles bookmarked status for app passed in
   * @method setBookmark
-  * @param currentApp {Object} 
+  * @param currentApp {Object} the app to toggle bookmark status for
   */
 
  /**
-  * Description
+  * Submits user rating to the database and refreshes user ratings
   * @method submitRating
   */
 
  /**
-  * Description
+  * List of tag names, for all tags tagged to the current app
   * @attribute {Array} tagsForApp
   * @optional
   */
 
  /**
-  * Description
+  * A list of only visible reviews loaded for this app
   * @attribute {Array} visibleUserReviews
   * @optional
   */
