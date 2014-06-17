@@ -52,7 +52,7 @@ cp -R ozone-modules/ozone-services-client-configuration ../$UI_BUILD_DIR/ozone-m
 
 #Fix config for server installation
 cd config/environments
-CUSTOM_CONFIG=development.js
+CUSTOM_CONFIG=$(awk '/"environment" *:/ { print substr($2, 2, length($2) - 3) }' $STARTDIR/package.json).js
 DEFAULT_CONFIG=default.js # Not currently used for server, but used for client
 mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
 $STARTDIR/scripts/service-custom-config.awk orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
