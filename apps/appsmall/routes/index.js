@@ -13,6 +13,7 @@ module.exports = function (Ozone) {
                 bundleComponents: bundle,
                 searchBar: true,
                 angularIncludes: includes,
+                Ozone: Ozone,
                 minifiedIncludes: minifiedIncludes
             });
         },
