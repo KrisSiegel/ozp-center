@@ -20,6 +20,7 @@ module.exports = function (Ozone) {
         manage: function (req, res) {
             var innerRenderPath = req.params.service;
             var opts = {
+                Ozone: Ozone,
                 bundleComponents: bundle,
                 searchBar: false,
                 groupedFacets: innerRenderPath == "tags",
