@@ -1,6 +1,5 @@
 module.exports = exports = function (Ozone) {
-
-    var baseURL = require('../config/version.json').rest.url,
+    var baseURL = require('../constants').rest.url,
         routing = Ozone.Routing,
         logger = Ozone.logger,
         Persistence = Ozone.Service('Persistence');

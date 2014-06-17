@@ -41,7 +41,8 @@
     "cheerio": "0.14.x",
     "supertest": "^0.10.0",
     "jsdom": "^0.10.5",
-    "grunt-markdown-pdf": "^2.1.1"
+    "grunt-markdown-pdf": "^2.1.1",
+    "grunt-contrib-yuidoc": "^0.5.2"
   },
   "scripts": {
     "start": "node main.js",
