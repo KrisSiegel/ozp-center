@@ -2,7 +2,7 @@ Applications Mall (AML) Center
 
 Portions of this software were developed under contract to the U.S. Government, and are made available pursuant to the DFARS clauses cited below.
 
-Copyright 2012-2014, Computer Sciences Corporation.
+Copyright 2013-2014, Computer Sciences Corporation.
 The U.S. Government has Unlimited Rights in this computer software pursuant to
 the clause DFARS 252.227-7014 of contract no. HHM402-10-D-0020/0003. Any
 reproduction of this computer software, or portions thereof, marked with this
