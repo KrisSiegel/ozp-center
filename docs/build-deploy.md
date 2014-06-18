@@ -69,3 +69,8 @@ It also moves the node_modules over, since that is very large and doing a recurs
   * removes all tiers from the "deployedTiers" list except "client"
 
 ##Deploying Apps Mall
+To deploy any of the bundles above, simply extract the files in a suitable location on each machine:
+```
+tar zxvf ozone-ui.tgz # or whatever the name is
+```
+The machine should have Node.js installed and runnable.
