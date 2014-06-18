@@ -24,7 +24,7 @@
 /**
  * Boolean flag that performs animate-show when changed to True, and animate-fade when changed to False
  *
- *  _**(1-way binding attribute with scoped watcher event; responds to modification)**_
+ *  {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter, with bound watcher event) **_
  *
  * @attribute {Boolean} fade-show
  * @optional

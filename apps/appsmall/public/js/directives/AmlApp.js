@@ -36,7 +36,7 @@ function resetModalTabs() {
 /**
  * The App object to be displayed as HTML
  *
- * _**(must exist in parent scope)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
  *
  * @attribute {Object} app
  * @required
@@ -45,7 +45,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app will always appear as standard (non-featured).
  *
- * _**(not scoped to directive)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} no-featured
  * @optional
@@ -55,7 +55,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app HTML will not contain a launch button.
  *
- * _**(not scoped to directive)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} no-launch
  * @optional
@@ -64,7 +64,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app will not open a modal when clicked.
  *
- * _**(not scoped to directive)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} no-click
  * @optional
@@ -73,7 +73,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app will always appear as a featured app.
  *
- * _**(not scoped to directive)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} featured-banner
  * @optional

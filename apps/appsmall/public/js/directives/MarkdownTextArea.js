@@ -30,7 +30,7 @@
 /**
  * Text loaded into textarea control
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {String} text
  * @optional

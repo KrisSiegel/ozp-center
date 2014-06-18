@@ -25,7 +25,7 @@
 /**
  * Width value that modal will get resized to when loaded
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Number} modal-width
  * @required
@@ -34,7 +34,7 @@
 /**
  * Height value that modal will get resized to when loaded
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Number} modal-height
  * @required

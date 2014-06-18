@@ -26,7 +26,7 @@
  /**
   * The App object with date field to be rendered
   *
-  * _**(scoped to directive as 2-way binding)**_
+  * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
   *
   * @attribute {Object} app
   * @required
@@ -35,7 +35,7 @@
  /**
   * Date field of the app, to be bound to form controls
   *
-  * _**(scoped to directive as 1-way binding)**_
+  * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
   *
   * @attribute {String} date-field
   * @required

@@ -24,7 +24,7 @@
 /**
  * The App object to reference for rating counts; uses ```app.ratings``` for ratings count.
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Object} app
  * @required

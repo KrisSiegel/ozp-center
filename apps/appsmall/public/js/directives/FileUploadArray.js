@@ -30,7 +30,7 @@
 /**
  * The App object containing an array of uploaded screenshot URLs
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Object} current-app
  * @required

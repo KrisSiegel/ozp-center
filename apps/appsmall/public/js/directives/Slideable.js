@@ -25,7 +25,7 @@
 /**
  * Duration of slide event, as measured in milliseconds
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Number} duration
  * @required
@@ -34,7 +34,7 @@
 /**
  * Easing type for slide event; defaults to 'ease-in-out'
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {String} easing
  * @required

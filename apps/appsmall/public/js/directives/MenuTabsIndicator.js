@@ -26,7 +26,7 @@
  * Validation state indicator.  If this value changes, then this element will change CSS classes from invalid
  * to valid, or vice versa.
  *
- *_**(2-way binding attribute with scoped watcher event; responds to modification)**_
+ *{{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding plus scoped watcher event)**_
  *
  * @attribute {Boolean} validation-state
  * @required
@@ -36,7 +36,7 @@
  * The tab page that this element watches.  Previously used for field referencing; deprecated because the 
  * watcher does all the work.
  *
- * _**(scoped to directive as 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Boolean} tab-page
  * @optional

@@ -26,7 +26,7 @@
 /**
  * If set to true, then the navigation links will always display the Help page link.
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {String} show-help 
  * @optional

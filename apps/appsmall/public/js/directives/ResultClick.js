@@ -25,7 +25,7 @@
 /**
  * An App object from the parent scope
  *
- * _**(must exist in parent scope)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
  *
  * @attribute {Object} currentApp
  * @required
@@ -34,7 +34,7 @@
 /**
  * Search results from parent scope
  *
- * _**(must exist in parent scope)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
  *
  * @attribute {Array} searchResults
  * @required
@@ -43,7 +43,7 @@
 /**
  * Function in parent tabs to reset modal
  *
- * _**(must exist in parent scope)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
  *
  * @attribute {Array} resetModalTabs
  * @required

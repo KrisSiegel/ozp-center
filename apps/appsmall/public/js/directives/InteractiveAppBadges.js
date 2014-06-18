@@ -24,7 +24,7 @@
 /**
  * Name of App object with user-interactive badges to be rendered.
  *
- * _**(static 1-way binding; object with this name must exist in parent scope)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way name binding to ```attrs``` parameter; object with this name must exist in parent scope)**_
  *
  * @attribute {Object} app-object
  * @required

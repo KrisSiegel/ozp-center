@@ -24,7 +24,7 @@
 /**
  * Validation function from parent scope used to determine uniqueness; return value gets boolean evaluated
  *
- * _**(must exist in parent scope)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
  *
  * @attribute {Function} require-unique
  * @required

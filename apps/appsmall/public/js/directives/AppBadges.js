@@ -27,7 +27,7 @@
 /**
  * An array of badge names that is set once.  Badges do not change if modified.
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Array} badges
  * @optional
@@ -36,7 +36,7 @@
 /**
  * An array of badge names that can be dynamically refreshed via watch event
  *
- * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
  *
  * @attribute {Array} dynbadges 
  * @optional

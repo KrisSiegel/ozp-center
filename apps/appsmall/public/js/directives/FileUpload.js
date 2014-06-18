@@ -26,7 +26,7 @@
 /**
  * The App object containing the URL of the uploaded file
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Object} app-object
  * @required
@@ -35,7 +35,7 @@
 /**
  * App object-path field name where the URL will be saved to, using dot notation to denote sub-objects
  *
- * _**(scoped to directive as 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {String} field
  * @required
@@ -44,7 +44,7 @@
 /**
  * Relative name of file object, used by {{#crossLink "FileUploadService"}}{{/crossLink}} when resolving server file path
  *
- * _**(scoped to directive as 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {String} field-name
  * @required
@@ -53,7 +53,7 @@
 /**
  * Minimum height in pixels for uploaded file
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Number} min-height
  * @optional
@@ -62,7 +62,7 @@
 /**
  * Minimum width in pixels for uploaded file
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Number} min-width
  * @optional
@@ -71,7 +71,7 @@
 /**
  * Maximum height in pixels for uploaded file
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Number} max-height
  * @optional
@@ -80,7 +80,7 @@
 /**
  * Maximum width in pixels for uploaded file
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Number} max-width
  * @optional
@@ -89,7 +89,7 @@
 /**
  * ID of existing file to upload, if it exists
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Number} file-upload-id
  * @optional
@@ -98,7 +98,7 @@
 /**
  * Boolean flag to determine visibility of 'Delete Image' button
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Boolean} delete-button
  * @optional
@@ -107,7 +107,7 @@
 /**
  * An array of valid image height values, in array literal form.  Any value outside this list is invalid.
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Array} valid-heights
  * @optional
@@ -116,7 +116,7 @@
 /**
  * An array of valid image width values, in array literal form.  Any value outside this list is invalid.
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Array} valid-widths
  * @optional

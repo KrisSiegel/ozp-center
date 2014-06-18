@@ -24,7 +24,7 @@
 /**
  * Star rating that is set once, and does not change if modified.
  *
- * _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Number} static-rating
  * @optional
@@ -33,7 +33,7 @@
 /**
  * Star rating that can be dynamically refreshed via watch event
  *
- * _**(1-way binding attribute with scoped watcher event; responds to modification)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
  *
  * @attribute {Number} num-stars 
  * @optional

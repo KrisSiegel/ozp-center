@@ -25,7 +25,7 @@
 /**
  * CSS selector for element to get slide toggled
  *
- * _**(static 1-way binding)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {String} slide-toggle
  * @required
@@ -34,7 +34,7 @@
 /**
  * Boolean that determines whether element is getting expanded or contracted
  *
- * _**(2-way binding attribute with scoped watcher event; responds to modification)**_
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding plus scoped watcher event)**_
  *
  * @attribute {Boolean} expanded
  * @optional
