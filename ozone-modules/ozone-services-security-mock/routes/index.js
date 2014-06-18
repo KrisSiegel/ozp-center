@@ -1,7 +1,9 @@
 /**
 	Routes within the mock security service to handle login and logout.
 
-	@class Ozone.Services.SecurityMock
+	@module Ozone.Services.Security
+	@class Ozone.Services.Security.Mock
+	@submodule Server-Side
 */
 var Ozone = null,
 	securityConfig = null,
