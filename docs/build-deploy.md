@@ -60,4 +60,12 @@ After you have responded to the prompts, the script will create a sister directo
 Note that the bundle-tiered.sh script is destructive to the starting directory.  It creates a sister directory, ozone-ui-build and moves the apps and public/lib directories over to that directory, since they are not needed by the API server.
 It also moves the node_modules over, since that is very large and doing a recursive copy would take a long time.  Finally, it modifies the custom config script indicated by package.json.
 
+####How does the bundle-tiered.sh script modify the configs?
+* **Custom script on API side:** removes "client" from the "deployedTiers" list
+* **Default script on client (UI) side:** removes references to all ozone modules except ozone-api and ozone-services-client-configuration
+* **Default script on client (UI) side:** 
+  * sets absoluteBaseUrl to the URL you set at the prompt
+  * adds the port value you entered at the second prompt at client.port
+  * removes all tiers from the "deployedTiers" list except "client"
+
 ##Deploying Apps Mall
