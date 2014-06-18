@@ -15,8 +15,10 @@ npm-debug.log
 .project
 .project*~
 /.settings
+/out
 /lib
 /public/lib
+/docs/code
 /nbproject
 /util/certificateGeneration
 auto-save-list

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>App Management - Application Submission</title>
-    <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', true) %>"></script>
-    <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', true) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', true) %>"></script>
+    <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', false) %>"></script>
+    <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', false) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', false) %>"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -22,15 +22,15 @@
         });
     </script>
 
-    <link href="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/css/bootstrap.min.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('amlUrl', '/css/aml.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('amlUrl', '/css/app-additional-icons.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('amlUrl', '/css/app-settings.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('amlUrl', '/css/icomoon.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('amlUrl', '/css/rslides.css', true) %>" rel="stylesheet">
-    <link href="<%- Ozone.utils.murl('amlUrl', '/css/ubuntu.css', true) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/css/bootstrap.min.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/aml.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/app-additional-icons.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/app-settings.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/icomoon.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/rslides.css', false) %>" rel="stylesheet">
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/ubuntu.css', false) %>" rel="stylesheet">
 
 </head>
 <body ng-cloak id="app-submission-form">
@@ -39,7 +39,7 @@
 
         <div class="top-bar">
             <div class="logo-container">
-                <a id="appsmall-logo-link"><img src="<%- Ozone.utils.murl('amlUrl', '/img/appsmall-logo.png', true) %>" /></a>
+                <a id="appsmall-logo-link"><img src="<%- Ozone.utils.murl('amlUrl', '/img/appsmall-logo.png', false) %>" /></a>
             </div>
             <!-- Hide search for now; will add to admin pages eventually
             <div class="app-search-input-container" ng-cloak>
@@ -722,31 +722,31 @@
     </div>
 </body>
 
-<script src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.custom.min.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/jquery-mousestop/jquery.event.mousestop.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/js/bootstrap.min.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.min.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/carouFredSel/carouFredSel.min.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.jquery.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/moment/moment.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/showdown/src/showdown.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('amlUrl', '/js/common.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.custom.min.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/jquery-mousestop/jquery.event.mousestop.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/js/bootstrap.min.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.min.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/carouFredSel/carouFredSel.min.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.jquery.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/moment/moment.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/showdown/src/showdown.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/js/common.js', false) %>"></script>
 
-<script src="<%- Ozone.utils.murl('libUrl', '/lodash/dist/lodash.compat.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/angular-bootstrap/ui-bootstrap-tpls.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/handlebars/handlebars.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('libUrl', '/angular-chosen-localytics/chosen.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput.js', true) %>"></script>
-<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput-angular.js', true) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/lodash/dist/lodash.compat.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-bootstrap/ui-bootstrap-tpls.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/handlebars/handlebars.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('libUrl', '/angular-chosen-localytics/chosen.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput.js', false) %>"></script>
+<script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput-angular.js', false) %>"></script>
 
 <% if (bundleComponents) { %>
-<script src="<%= Ozone.utils.murl('amlUrl', minifiedIncludes[0], true) %>"></script>
+<script src="<%= Ozone.utils.murl('amlUrl', minifiedIncludes[0], false) %>"></script>
 <% } else { %>
 <% for (var i = 0; i < angularIncludes.length; i++) {%>
-    <script src="<%= Ozone.utils.murl('amlUrl', angularIncludes[i], true) %>"></script>
+    <script src="<%= Ozone.utils.murl('amlUrl', angularIncludes[i], false) %>"></script>
 <% } // end for %>
 <% } // end if %>
 </html>

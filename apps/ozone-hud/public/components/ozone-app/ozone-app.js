@@ -1,7 +1,7 @@
 (function () {
 
 	var reservedAppShortNames = {
-		"AppsMall": Ozone.utils.murl("amlUrl", undefined, true),
+		"AppsMall": Ozone.utils.murl("amlUrl", undefined, false),
 		"AppBuilder": Ozone.utils.murl("appBuilderUrl", undefined, true)
 	};
 

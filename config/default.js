@@ -54,13 +54,11 @@ module.exports = (function () {
                 Tags: {'tag': [], 'topic': []}
             },
             persistence: {
-                module: "ozone-services-persistence-mock",
                 store: "Ozone",
                 mongo: { },
                 mock: { }
             },
             security: {
-                module: "ozone-services-security-mock",
                 disableSecurityCheckOnRoutes: false,
                 newUserRole: "/Ozone/Apps/App/AppsMall/User/",
                 firstNewUserRole: "/Ozone/Apps/App/AppsMall/MallModerator/",
@@ -71,7 +69,7 @@ module.exports = (function () {
             },
             ozoneModules: {
                 security: {
-                    module: "ozone-services-security",
+                    module: "ozone-services-security-mock",
                     services: ["Security"]
                 },
                 session: {
@@ -83,7 +81,7 @@ module.exports = (function () {
                     { module: "applications-mall-services", services: [] },
                     { module: "ozone-services-tagging", services: ["Tag", "TagTopic"] },
                     { module: "ozone-services-applications", services: ["App"] },
-                    { module: "ozone-services-persistence", services: ["Persistence"] },
+                    { module: "ozone-services-persistence-common", services: ["PersistenceCommon"] },
                     { module: "ozone-services-personas", services: ["Personas"] },
                     { module: "ozone-services-messaging", services: [] },
                     { module: "ozone-services-client-configuration", services: [] },

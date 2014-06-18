@@ -1,8 +1,0 @@
-{
-	"software": {
-		"version": 1	
-	},
-	"rest":{
-		"url": "persistence"
-	} 
-}

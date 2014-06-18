@@ -35,7 +35,10 @@ module.exports = (function () {
                 session: {
                     module: "ozone-session-memory",
                     services: []
-                }
+                },
+                services: [
+                    { module: "ozone-services-persistence-mongo", services: ["Persistence"] },
+                ]
             }
         },
         common: {
@@ -49,7 +52,12 @@ module.exports = (function () {
                 appBuilderUrl: "/AppBuilder/",
                 apiClientUrl: "/api/client/",
                 libUrl: "/lib/"
-            }
+            },
+            deployedTiers: [
+                "client",
+                "services",
+                "database"
+            ]
         }
     };
 }());

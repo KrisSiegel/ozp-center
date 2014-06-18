@@ -13,12 +13,14 @@ module.exports = function (Ozone) {
                 bundleComponents: bundle,
                 searchBar: true,
                 angularIncludes: includes,
+                Ozone: Ozone,
                 minifiedIncludes: minifiedIncludes
             });
         },
         manage: function (req, res) {
             var innerRenderPath = req.params.service;
             var opts = {
+                Ozone: Ozone,
                 bundleComponents: bundle,
                 searchBar: false,
                 groupedFacets: innerRenderPath == "tags",
