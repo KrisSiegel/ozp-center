@@ -1,10 +1,36 @@
+/**
+ * Service object for performing CRUD operations on Component Mongo collection
+ *
+ * @module servicesModule
+ * @submodule ComponentModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
-servicesModule.factory('Component', function($q) {
+/**
+ * Performs querying and data modification on Component objects
+ *
+ * @class ComponentService
+ * @static
+ */ 
+
+/**
+ * @class ComponentService
+ * @constructor
+ * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
+ */
+var ComponentService = ['$q', function($q) {
 
     // return resource object if AppsMall uses components, or an empty object if AppsMall does not use components
     if (Ozone.config().getClientProperty('allowComponents')) {
         return {
+            /**
+             * @method save
+             * @param component {Object} an Component object to be saved
+             * @param [context] {Object} an object context for Ozone API call.  Uses Ozone API context if not defined.
+             * @return {PromiseObject} that, when invoked, passes newly created/updated Component object as a parameter into then() callback
+             */
             save: function(component, context) { 
                 var deferred = $q.defer();
                 // call save function (create or update, depending on whether _id exists)
@@ -20,6 +46,13 @@ servicesModule.factory('Component', function($q) {
                 }
                 return deferred.promise;
             },
+            /**
+             * @method query
+             * @param [selector] {Object} a list of attributes and values to be queried on; if empty all values will be returned.
+             *                 (Example: ```{shortname: 'Bob'}``` will query for all components with shortname equal to 'Bob'.)
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+             * @return {PromiseObject} that, when invoked, passes query results as an array of Component objects as a parameter into then() callback
+             */
             query: function(selector, context) {
                 var deferred = $q.defer();
                 Ozone.Service("Components").query((selector || {}), function() {
@@ -27,6 +60,12 @@ servicesModule.factory('Component', function($q) {
                 }, context);
                 return deferred.promise;
             },
+            /**
+             * @method get
+             * @param id {String} the UUID (unique identifier) of the Component object to delete
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+             * @return {PromiseObject} that, when invoked, passes Component object with matching id as a parameter into then() callback
+             */
             get: function(id, context) { 
                 var deferred = $q.defer();
                 Ozone.Service("Components").get(id, function() {
@@ -34,6 +73,12 @@ servicesModule.factory('Component', function($q) {
                 }, context);
                 return deferred.promise;
             },
+            /**
+             * @method delete
+             * @param component {Object} an Component object to be deleted
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+             * @return {PromiseObject} that, when invoked, passes newly deleted Component object as a parameter into then() callback
+             */
             delete: function(component, context) { 
                 var deferred = $q.defer();
                 Ozone.Service("Components").delete(component, function() {
@@ -41,6 +86,12 @@ servicesModule.factory('Component', function($q) {
                 }, context);
                 return deferred.promise;
             },
+            /**
+             * @method remove
+             * @param component {Object} an Component object to be deleted
+             * @param [context] {Object} an object to act as the context for the Ozone API call.  Uses Ozone API context if not defined.
+             * @return {PromiseObject} that, when invoked, passes newly deleted Component object as a parameter into then() callback
+             */
             remove: function(component, context) { 
                 var deferred = $q.defer();
                 Ozone.Service("Components").delete(component, function() {
@@ -52,23 +103,30 @@ servicesModule.factory('Component', function($q) {
     }
     else {
         return {
+            // see save method in (allowComponents) section above
             save: function(component, context) { 
                 return $q.reject();
             },
+            // see query method in (allowComponents) section above
             query: function(selector, context) {
                 var deferred = $q.defer();
                 deferred.resolve([]);
                 return deferred.promise;
             },
+            // see get method in (allowComponents) section above
             get: function(id, context) { 
                 return $q.reject();
             },
+            // see delete method in (allowComponents) section above
             delete: function(component, context) { 
                 return $q.reject();
             },
+            // see remove method in (allowComponents) section above
             remove: function(component, context) { 
                 return $q.reject();
             }
         };
     }
-});
+}];
+
+servicesModule.factory('Component', ComponentService);

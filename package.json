@@ -107,7 +107,6 @@
     "js/directives/AppDroppable.js",
     "js/directives/AppVersion.js",
     "js/directives/AppsMallSearchBar.js",
-    "js/directives/AutoformatPhoneNumber.js",
     "js/directives/ChosenDropdown.js",
     "js/directives/ChosenDropdownActiveText.js",
     "js/directives/DateDropdowns.js",

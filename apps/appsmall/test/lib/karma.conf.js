@@ -52,7 +52,6 @@ module.exports = function(config) {
             'apps/appsmall/public/js/directives/AppDroppable.js',
             'apps/appsmall/public/js/directives/AppVersion.js',
             'apps/appsmall/public/js/directives/AppsMallSearchBar.js',
-            'apps/appsmall/public/js/directives/AutoformatPhoneNumber.js',
             'apps/appsmall/public/js/directives/ChosenDropdown.js',
             'apps/appsmall/public/js/directives/ChosenDropdownActiveText.js',
             'apps/appsmall/public/js/directives/DateDropdowns.js',

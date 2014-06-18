@@ -1,6 +1,46 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule InteractiveStarRatingModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('interactiveStarRating', function() {
+/**
+ * HTML element directive: Renders clickable star rating that dynamically changes bound value
+ *
+ * Usage: ```<interactive-star-rating rating="[Number]"></interactive-star-rating>```
+ * 
+ * @class InteractiveStarRatingDirective
+ * @static
+ */ 
+
+/**
+ * @class InteractiveStarRatingDirective
+ * @constructor
+ */
+
+/**
+ * User-editable rating in stars.  Changes in both current and parent scope on change.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope, with bound watcher event)**_
+ *
+ * @attribute {Number} rating
+ * @required
+ */
+
+/**
+ * Review text corresponding with star rating
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope, with bound watcher event)**_
+ *
+ * @attribute {String} reviewText
+ * @optional
+ * @deprecated
+ */
+
+var InteractiveStarRatingDirective = [function() {
     return {
         restrict: 'E',
         replace: true,
@@ -35,7 +75,7 @@ directivesModule.directive('interactiveStarRating', function() {
             });
         }
     };
-});
+}];
 
 // CLEANUP: MOVE TO SERVICE AND INJECT SERVICE INTO DIRECTIVE
 function getRatingText(ratingScale, rating) {
@@ -48,3 +88,5 @@ function getRatingText(ratingScale, rating) {
         return "None";
     }
 }
+
+directivesModule.directive('interactiveStarRating', InteractiveStarRatingDirective);

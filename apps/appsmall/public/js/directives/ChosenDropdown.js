@@ -1,6 +1,26 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule ChosenDropdownModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('chosenDropdown', function() {
+/**
+ * HTML class directive: Adds Chosen dropdown functionality to a ```<select>``` element.  The element can be either single-select or multiple-select.
+ *
+ * Usage: ```<[element] class="chosen-dropdown"></[element]>```
+ *
+ * @class ChosenDropdownDirective
+ * @static
+ */ 
+
+/**
+ * @class ChosenDropdownDirective
+ * @constructor
+ */
+var ChosenDropdownDirective = [function() {
     return {
         restrict: 'C',
         link: function(scope, element, attrs) {
@@ -63,4 +83,6 @@ directivesModule.directive('chosenDropdown', function() {
             }
         }
     };
-});
+}];
+
+directivesModule.directive('chosenDropdown', ChosenDropdownDirective);

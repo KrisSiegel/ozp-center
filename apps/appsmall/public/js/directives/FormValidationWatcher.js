@@ -1,6 +1,46 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule FormValidationWatcherModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('formValidationWatcher', function($rootScope) {
+/**
+ * HTML element directive: Form validation state watcher that sends Angular broadcast message when state changes
+ *
+ * Usage: ```<form-validation-watcher></form-validation-watcher>```
+ * 
+ * @class FormValidationWatcherDirective
+ * @static
+ */ 
+
+/**
+ * @class FormValidationWatcherDirective
+ * @constructor
+ * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
+ */
+
+/**
+ * Form validation state.  This directive sends a broadcast when this value changes from true to false, or vice versa.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Boolean} form-valid-state
+ * @optional
+ */
+
+/**
+ * Name of tab page, which gets broadcast out in message when applicable
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {String} tab-page
+ * @optional
+ */
+
+var FormValidationWatcherDirective = ['$rootScope', function($rootScope) {
     return {
         restrict: 'E',
         replace: true,
@@ -19,4 +59,6 @@ directivesModule.directive('formValidationWatcher', function($rootScope) {
             scope.$watch('formValidState', watchFunction);
         }
     };
-});
+}];
+
+directivesModule.directive('formValidationWatcher', FormValidationWatcherDirective);

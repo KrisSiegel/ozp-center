@@ -1,6 +1,45 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule StarRatingModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('starRating', function() {
+/**
+ * HTML element directive: Renders the star rating trait as HTML, with 0-5 stars filled in depending on the rating number.
+ *
+ * Usage: ```<star-rating static-rating="[Number]" num-stars="[{{Number}}]"></star-rating>```
+ * 
+ * @class StarRatingDirective
+ * @static
+ */ 
+
+/**
+ * @class StarRatingDirective
+ * @constructor
+ */
+
+/**
+ * Star rating that is set once, and does not change if modified.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Number} static-rating
+ * @optional
+ */
+
+/**
+ * Star rating that can be dynamically refreshed via watch event
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
+ *
+ * @attribute {Number} num-stars 
+ * @optional
+ */
+
+var StarRatingDirective = [function() {
     return {
         restrict: 'E',
         replace: true,
@@ -34,7 +73,7 @@ directivesModule.directive('starRating', function() {
             }
         }
     };
-});
+}];
 
 // CLEANUP: MOVE TO SERVICE AND INJECT SERVICE INTO DIRECTIVE
 function getRatingText(ratingScale, rating) {
@@ -47,3 +86,5 @@ function getRatingText(ratingScale, rating) {
         return "None";
     }
 }
+
+directivesModule.directive('starRating', StarRatingDirective);

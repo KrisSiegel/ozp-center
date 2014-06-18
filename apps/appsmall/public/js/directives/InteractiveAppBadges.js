@@ -1,6 +1,36 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule InteractiveAppBadgesModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('interactiveAppBadges', function(Dropdown) {
+/**
+ * HTML element directive: Renders list of badges with interactive checkbox controls for selecting/deselecting badges
+ *
+ * Usage: ```<interactive-app-badges app-object="[Object]"></interactive-app-badges>```
+ * 
+ * @class InteractiveAppBadgesDirective
+ * @static
+ */ 
+
+/**
+ * @class InteractiveAppBadgesDirective
+ * @constructor
+ */
+
+/**
+ * Name of App object with user-interactive badges to be rendered.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way name binding to ```attrs``` parameter; object with this name must exist in parent scope)**_
+ *
+ * @attribute {Object} app-object
+ * @required
+ */
+
+var InteractiveAppBadgesDirective = [function(Dropdown) {
     var badgeNamesByLetter = {};
     return {
         restrict: 'E',
@@ -48,4 +78,6 @@ directivesModule.directive('interactiveAppBadges', function(Dropdown) {
             });
         }
     };
-});
+}];
+
+directivesModule.directive('interactiveAppBadges', InteractiveAppBadgesDirective);

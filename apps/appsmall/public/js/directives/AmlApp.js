@@ -1,6 +1,85 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AmlAppModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('amlapp', ['$compile', '$timeout', 'FileUpload', 'Tag', function(compile, $timeout, FileUpload, Tag) {
+function getId(theObject) {
+    return theObject._id;
+};
+
+function resetModalTabs() {
+    $(".detailed-app-0").find(".nav-tabs").find(".active").removeClass("active");
+    $(".detailed-app-0").find(".tab-content").find(".active").removeClass("active");
+    $(".overview-tab, .overview-content").addClass("active");
+};
+
+/**
+ * HTML element directive: Renders HTML for a single application on the AppsMall main page or App Management page.
+ *
+ * Usage: ```<amlapp no-featured="false" featured-banner="false" no-click="false"></amlapp>```
+ *
+ * @class AmlAppDirective
+ * @static
+ */ 
+
+/**
+ * @class AmlAppDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ */
+
+/**
+ * The App object to be displayed as HTML
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
+ *
+ * @attribute {Object} app
+ * @required
+ */
+
+/**
+ * If set to true, then the app will always appear as standard (non-featured).
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Boolean} no-featured
+ * @optional
+ * @deprecated
+ */
+
+/**
+ * If set to true, then the app HTML will not contain a launch button.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Boolean} no-launch
+ * @optional
+ */
+
+/**
+ * If set to true, then the app will not open a modal when clicked.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Boolean} no-click
+ * @optional
+ */
+
+/**
+ * If set to true, then the app will always appear as a featured app.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Boolean} featured-banner
+ * @optional
+ */
+
+var AmlAppDirective = ['FileUpload', 'Tag', function(FileUpload, Tag) {
     function getBannerIcon(app, isLargeBanner) {
         if (app && app.featured && isLargeBanner) {
             var bannerId = ((app && app.images) || {}).featuredBannerId;
@@ -18,7 +97,7 @@ directivesModule.directive('amlapp', ['$compile', '$timeout', 'FileUpload', 'Tag
     }
 
     return {
-        restrict: 'EA',
+        restrict: 'E',
         replace: true,
         transclude: 'element',
         template: '<div class="single-app" ng-class="{\'featured\-app\': isFeatured(app)}">' +
@@ -127,14 +206,6 @@ directivesModule.directive('amlapp', ['$compile', '$timeout', 'FileUpload', 'Tag
             }
         }
     };
-}]);
+}];
 
-var getId = function(theObject) {
-    return theObject._id;
-};
-
-var resetModalTabs = function() {
-    $(".detailed-app-0").find(".nav-tabs").find(".active").removeClass("active");
-    $(".detailed-app-0").find(".tab-content").find(".active").removeClass("active");
-    $(".overview-tab, .overview-content").addClass("active");
-};
+directivesModule.directive('amlapp', AmlAppDirective);

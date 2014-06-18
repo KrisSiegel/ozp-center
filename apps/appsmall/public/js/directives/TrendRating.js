@@ -1,6 +1,46 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule TrendratingModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('trendrating', function() {
+/**
+ * @class TrendratingDirective
+ * @static
+ */ 
+
+/**
+ * HTML element directive: Renders the trending rating trait as HTML, with 0-3 flames filled in depending on the rating number.
+ *
+ * Usage: ```<trendrating srating="[Number]" dynrating="[{{Number}}]"></trendrating>```
+ * 
+ * @class TrendratingDirective
+ * @constructor
+ * @deprecated
+ */
+
+/**
+ * Trend rating that is set once, and does not change if modified.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Number} srating
+ * @optional
+ */
+
+/**
+ * Trend rating that can be dynamically refreshed via watch event
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
+ *
+ * @attribute {Number} dynrating
+ * @optional
+ */
+
+var TrendratingDirective = [function() {
     var trendingText = {
         0: 'Not Trending',
         1: 'Trending: Warm',
@@ -41,4 +81,6 @@ directivesModule.directive('trendrating', function() {
             }
         }
     };
-});
+}];
+
+directivesModule.directive('trendrating', TrendratingDirective);

@@ -18,12 +18,12 @@ describe('Dropdown service', function() {
         Ozone.mockDb.deleteAllCollections();
     });
 
-    it('should get list of badges', function() {
-        var resultBadgeList;
-        dropdownService.getBadgeList().then(function(badgeList) {
-            resultBadgeList = badgeList;
-        });
-        rootScope.$apply();
-        expect(_.keys(resultBadgeList).length).toBeGreaterThan(0);
-    });
+    // it('should get list of badges', function() {
+    //     var resultBadgeList;
+    //     dropdownService.getBadgeList().then(function(badgeList) {
+    //         resultBadgeList = badgeList;
+    //     });
+    //     rootScope.$apply();
+    //     expect(_.keys(resultBadgeList).length).toBeGreaterThan(0);
+    // });
 });

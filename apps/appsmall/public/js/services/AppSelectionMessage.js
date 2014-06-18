@@ -1,18 +1,56 @@
+/**
+ * 
+ *
+ * @module servicesModule
+ * @submodule AppSelectionMessageModule
+ * @requires amlApp.services
+ */
+
 'use strict';
 
-servicesModule.factory('AppSelectionMessage', function($q, AppOrComponent, Tag) {
+/**
+ * @class AppSelectionMessageService
+ * @static
+ */ 
 
+/**
+ * @class AppSelectionMessageService
+ * @constructor
+ * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
+ * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ */
+var AppSelectionMessageService = ['$q', 'AppOrComponent', 'Tag', function($q, AppOrComponent, Tag) {
+
+    /**
+     * Default categories used when loading the Home setting on the AppsMall main page.
+     * @attribute HomeCategories
+     * @writeOnce
+     */
+    var HomeCategories = ['Featured', 'New Arrivals', 'Most Popular'];
+
+    /**
+     * An object with categories as keys and corresponding sort functions as values.
+     * @attribute AppSortCategories
+     * @private
+     * @writeOnce
+     */
     var AppSortCategories = {};
-    var AppFilterCategories = {};
-
     AppSortCategories['Featured'] = common.getDateSorterFunction('createdOn', true);
     AppSortCategories['New Arrivals'] = common.getDateSorterFunction('createdOn', true);
     AppSortCategories['Most Popular'] = common.getSorterFunction('launchedCount', 0, true);
 
+    /**
+     * An object with categories as keys and corresponding filtering functions (that return boolean values) as values.
+     * All selections made on this category will be filtered by this function.
+     * @attribute AppFilterCategories
+     * @private
+     * @writeOnce
+     */
+    var AppFilterCategories = {};
     AppFilterCategories['Featured'] = function(app) { return (app.featured); };
 
-    var HomeCategories = ['Featured', 'New Arrivals', 'Most Popular'];
-
+    // See return object for documentation
     var getHomeAppSelectionMessage = function() {
         var deferred = $q.defer();
         AppOrComponent.query({type: 'app', workflowState: 'Published'}).then(function(appData) {
@@ -52,6 +90,7 @@ servicesModule.factory('AppSelectionMessage', function($q, AppOrComponent, Tag) 
         return deferred.promise;
     };
 
+    // See return object for documentation
     var getTagFilterMessage = function(selectedTags) {
         var deferred = $q.defer();
         selectedTags = _.isArray(selectedTags) ? selectedTags : [selectedTags]
@@ -82,9 +121,25 @@ servicesModule.factory('AppSelectionMessage', function($q, AppOrComponent, Tag) 
     }
 
     return {
+        /**
+         * Retrieves a "message" array-of-objects containing every row on the AppsMall home page, and every app displayed within a given row.
+         * @method getHomeAppSelectionMessage
+         * @return An array of objects, where each array element contains object data for an app listing row on the AppsMall main page.
+         *         App listing objects are in this format: ``` appShortNames: <array of shortnames of all apps in this row>, header: <header string>, 
+         *         carousel: <true if this is a carousel row>, featuredBanner: <true if this is the Featured Apps carousel row, which has custom logic> ```
+         */
         getHomeAppSelectionMessage: getHomeAppSelectionMessage,
+        /**
+         * Retrieves a "message" object that contains a list of tags passed in, and apps that contain every tag passed in.
+         * @method getTagFilterMessage
+         * @param selectedTags {Array} a list of tag names to search on
+         * @return {PromiseObject} that, when invoked, passes filter result object as a parameter into then() callback.
+         *         The filter result object is in the format: ``` filter: <shortname: <list of shortnames of apps that contain every tag passed in>>, selectedTags: <tags passed in> ```
+         */
         getTagFilterMessage: getTagFilterMessage,
+        // See attribute above
         HomeCategories: HomeCategories
     };
+}];
 
-});
+servicesModule.factory('AppSelectionMessage', AppSelectionMessageService);

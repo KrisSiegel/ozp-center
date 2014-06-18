@@ -24,7 +24,9 @@ npm-debug.log
 auto-save-list
 bower_components/
 hud-components.*
+node_modules/
 ozone-modules/ozone-api/client*
 ozone-modules/ozone-api/server*
 README.pdf
-node_modules
+apps/appsmall/public/js/out/
+

@@ -1,6 +1,28 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AppDraggableModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('appDraggable', ['FileUpload', function(FileUpload){
+/**
+ * HTML attribute directive: Adds drag functionality to the element.  Elements with the app-draggable directive can be dropped into
+ * any element with the app-droppable directive.
+ *
+ * Usage: ```<[element] app-draggable></[element]>```, 
+ *
+ * @class AppDraggableDirective
+ * @static
+ */ 
+
+/**
+ * @class AppDraggableDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ */
+var AppDraggableDirective = ['FileUpload', function(FileUpload) {
     function getSquareIcon(app) {
         return FileUpload.getFileUrl((app.images || { }).iconId, "icon");
     }
@@ -37,4 +59,6 @@ directivesModule.directive('appDraggable', ['FileUpload', function(FileUpload){
         },
         link: link
     };
-}]);
+}];
+
+directivesModule.directive('appDraggable', AppDraggableDirective);

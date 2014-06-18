@@ -1,7 +1,37 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule NgValidFuncModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-// controller function based validation.  (RWP: currently not hooked into app submission page, but here just in case we need this directive in the future.)
-directivesModule.directive('ngValidFunc', function() {
+/**
+ * HTML attribute directive: 
+ *
+ * Usage: ```<[element] ng-valid-func="[Function]"></[element]>```
+ *
+ * @class NgValidFuncDirective
+ * @static
+ */ 
+
+/**
+ * @class NgValidFuncDirective
+ * @constructor
+ */
+
+/**
+ * Function for performing form validation outside of ng-form scope.  Sets ```ng-invalid-custom``` CSS class 
+ * on form control if invalid.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Function} ng-valid-func
+ * @optional
+ */
+
+var NgValidFuncDirective = [function() {
     return {
         require: 'ngModel',
         link: function(scope, element, attrs, ctrl) {
@@ -15,4 +45,7 @@ directivesModule.directive('ngValidFunc', function() {
             });
         }
     };
-});
+}];
+
+// controller function based validation.  (RWP: currently not hooked into app submission page, but here just in case we need this directive in the future.)
+directivesModule.directive('ngValidFunc', NgValidFuncDirective);

@@ -1,6 +1,26 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule AppDroppableModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('appDroppable', ['$parse', function($parse){
+/**
+ * HTML attribute directive: Adds drop functionality to the element, so that elements with the app-draggable directive can be dropped.
+ *
+ * Usage: ```<[element] app-droppable></[element]>```
+ *
+ * @class AppDroppableDirective
+ * @static
+ */ 
+
+/**
+ * @class AppDroppableDirective
+ * @constructor
+ */
+var AppDroppableDirective = [function() {
     function link(scope, element, attrs){
         function drop(event, ui ){
             var dragData = $(ui.draggable[0]).data('drag');
@@ -15,5 +35,6 @@ directivesModule.directive('appDroppable', ['$parse', function($parse){
         },
         link: link
     };
+}];
 
-}]);
+directivesModule.directive('appDroppable', AppDroppableDirective);

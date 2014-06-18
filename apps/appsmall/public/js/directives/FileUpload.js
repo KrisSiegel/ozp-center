@@ -1,6 +1,128 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule FileUploadModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('fileUpload', function(FileUpload) {
+/**
+ * HTML element directive: Renders clickable image viewing area, and HTML5 file input control to handle file uploading.
+ *
+ * Usage: ```<file-upload app-object="[Object]" field="[String]" file-upload-id="[String]" field-name="[String]" min-height="[Number]" min-width="[Number]" max-height="[Number]" 
+ *           max-width="[Number]" valid-heights="[Array]" valid-widths="[Array]" delete-button="true"></file-upload>```
+ * 
+ * @class FileUploadDirective
+ * @static
+ */ 
+
+/**
+ * @class FileUploadDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ */
+ 
+/**
+ * The App object containing the URL of the uploaded file
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Object} app-object
+ * @required
+ */
+
+/**
+ * App object-path field name where the URL will be saved to, using dot notation to denote sub-objects
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {String} field
+ * @required
+ */
+
+/**
+ * Relative name of file object, used by {{#crossLink "FileUploadService"}}{{/crossLink}} when resolving server file path
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {String} field-name
+ * @required
+ */
+
+/**
+ * Minimum height in pixels for uploaded file
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Number} min-height
+ * @optional
+ */
+
+/**
+ * Minimum width in pixels for uploaded file
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Number} min-width
+ * @optional
+ */
+
+/**
+ * Maximum height in pixels for uploaded file
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Number} max-height
+ * @optional
+ */
+
+/**
+ * Maximum width in pixels for uploaded file
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Number} max-width
+ * @optional
+ */
+
+/**
+ * ID of existing file to upload, if it exists
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Number} file-upload-id
+ * @optional
+ */
+
+/**
+ * Boolean flag to determine visibility of 'Delete Image' button
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Boolean} delete-button
+ * @optional
+ */
+
+/**
+ * An array of valid image height values, in array literal form.  Any value outside this list is invalid.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Array} valid-heights
+ * @optional
+ */
+
+/**
+ * An array of valid image width values, in array literal form.  Any value outside this list is invalid.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Array} valid-widths
+ * @optional
+ */
+
+var FileUploadDirective = ['FileUpload', function(FileUpload) {
     var setStatusMessage = function(msgFunc, msg, isError) {
         if (_.isFunction(msgFunc)) {
             if (isError) {
@@ -181,4 +303,6 @@ directivesModule.directive('fileUpload', function(FileUpload) {
             }); // end $fileInput.bind('change', ...)
         }
     }
-});
+}];
+
+directivesModule.directive('fileUpload', FileUploadDirective);

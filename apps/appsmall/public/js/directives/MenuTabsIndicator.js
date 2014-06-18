@@ -1,6 +1,50 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule MenuTabsIndicatorModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('menuTabsIndicator', function($rootScope) {
+/**
+ * HTML element directive: Listens for changes on a scoped boolean attribute, and changes CSS classes based on
+ * validation state accordingly.
+ *
+ * Usage: ```<menu-tabs-indicator></menu-tabs-indicator>```
+ * 
+ * @class MenuTabsIndicatorDirective
+ * @static
+ */ 
+
+/**
+ * @class MenuTabsIndicatorDirective
+ * @constructor
+ */
+
+/**
+ * Validation state indicator.  If this value changes, then this element will change CSS classes from invalid
+ * to valid, or vice versa.
+ *
+ *{{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding plus scoped watcher event)**_
+ *
+ * @attribute {Boolean} validation-state
+ * @required
+ */
+
+/**
+ * The tab page that this element watches.  Previously used for field referencing; deprecated because the 
+ * watcher does all the work.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ *
+ * @attribute {Boolean} tab-page
+ * @optional
+ * @deprecated
+ */
+
+
+var MenuTabsIndicatorDirective = [function() {
     // validation state tracker for all tab indicators
 
     return {
@@ -26,4 +70,6 @@ directivesModule.directive('menuTabsIndicator', function($rootScope) {
             scope.$watch('validationState', changeValidationState)
         }
     };
-});
+}];
+
+directivesModule.directive('menuTabsIndicator', MenuTabsIndicatorDirective);

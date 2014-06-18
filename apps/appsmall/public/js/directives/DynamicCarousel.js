@@ -1,7 +1,91 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule DynamicCarouselModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('dynamicCarousel', function($timeout) {
+/**
+ * HTML attribute directive:
+ *
+ * Usage: ```<[element] dynamic-carousel="[Boolean]" num-items="[Number]" is-auto="[Boolean]" on-image-click="[Function]" width=[Int] height=[Int] timeout=[Int]></[element]>```
+ *
+ * @class DynamicCarouselDirective
+ * @static
+ */ 
 
+/**
+ * @class DynamicCarouselDirective
+ * @constructor
+ * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
+ */
+
+/**
+ * Dynamic carousel functionality only gets added if true
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter, with bound watcher event) **_
+ *
+ * @attribute {Boolean} dynamic-carousel
+ * @optional
+ */
+
+/**
+ * Method that gets called when users click on any image in carousel
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Function} on-image-click
+ * @optional
+ */
+
+/**
+ * Number of apps visible in carousel at any one time
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Number} num-items 
+ * @optional
+ */
+
+/**
+ * Boolean flag for determining whether carousel auto-scrolls
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Boolean} is-auto
+ * @optional
+ */
+
+/**
+ * If defined, the width of all apps will get set to this value.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Number} width
+ * @optional
+ */
+
+/**
+ * If defined, the height of all apps will get set to this value.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Number} height
+ * @optional
+ */
+
+/**
+ * Delays creation of dynamic carousel, so that pre-render methods can be called.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Number} timeout
+ * @optional
+ */
+
+var DynamicCarouselDirective = ['$timeout', function($timeout) {
     return {
         restrict: 'A',
         scope: {
@@ -170,4 +254,7 @@ directivesModule.directive('dynamicCarousel', function($timeout) {
             });
         }
     };
-});
+}];
+
+
+directivesModule.directive('dynamicCarousel', DynamicCarouselDirective);

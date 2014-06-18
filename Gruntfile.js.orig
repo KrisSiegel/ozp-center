@@ -93,8 +93,11 @@
                 start: "npm start",
                 startInTest: "npm test",
                 test: "npm test",
+<<<<<<< HEAD
                 angularTest: "./apps/appsmall/test/test.sh",
+=======
                 singletar: "./scripts/bundle-single.sh",
+>>>>>>> master
                 dropDb: ("mongo " + grunt.option("db") + " --eval 'db.dropDatabase()'")
             }
         });

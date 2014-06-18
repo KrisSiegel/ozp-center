@@ -1,6 +1,46 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule SlideToggleModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('slideToggle', ['$timeout', function($timeout) {
+/**
+ * HTML attribute directive: Toggles element(s) that match CSS selector in slide-toggle attribute value
+ *
+ * Usage: ```<[element] slide-toggle="[String]" expanded="[Boolean]"></[element]>```
+ *
+ * @class SlideToggleDirective
+ * @static
+ */ 
+
+/**
+ * @class SlideToggleDirective
+ * @constructor
+ * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
+ */
+
+/**
+ * CSS selector for element to get slide toggled
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {String} slide-toggle
+ * @required
+ */
+
+/**
+ * Boolean that determines whether element is getting expanded or contracted
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding plus scoped watcher event)**_
+ *
+ * @attribute {Boolean} expanded
+ * @optional
+ */
+
+var SlideToggleDirective = ['$timeout', function($timeout) {
     return {
         restrict: 'A',
         scope: {expanded: '='},
@@ -37,4 +77,6 @@ directivesModule.directive('slideToggle', ['$timeout', function($timeout) {
             toggleExpand();
         }
     }
-}]);
+}];
+
+directivesModule.directive('slideToggle', SlideToggleDirective);

@@ -1,6 +1,26 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule ExpandCollapseButtonModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('expandCollapseButton', function() {
+/**
+ * HTML class directive: Adds toggle functionality to button, so that parent class with ```aml-custom-form``` tag expands and collapses.
+ *
+ * Usage: ```<[element] class="expand-collapse-button"></[element]>```
+ *
+ * @class ExpandCollapseButtonDirective
+ * @static
+ */ 
+
+/**
+ * @class ExpandCollapseButtonDirective
+ * @constructor
+ */
+var ExpandCollapseButtonDirective = [function() {
     return {
         restrict: 'C',
         link: function(scope, element, attrs) {
@@ -18,4 +38,6 @@ directivesModule.directive('expandCollapseButton', function() {
             });
         }
     }
-});
+}];
+
+directivesModule.directive('expandCollapseButton', ExpandCollapseButtonDirective);

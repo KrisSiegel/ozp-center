@@ -53,9 +53,29 @@ var amlApp = angular.module('amlApp', ['amlApp.filters', 'amlApp.services', 'aml
 
 
 // contains variable declaration -- this must be the first controller loaded from script tags
+
+/**
+ * Object for managing Angular controllers
+ *
+ * @module controllersModule
+ * @requires amlApp.controllers
+ */
 var controllersModule = angular.module('amlApp.controllers', ['ui.bootstrap']);
 
+/**
+ * Object for managing Angular services
+ *
+ * @module servicesModule
+ * @requires amlApp.services
+ */
 var servicesModule = angular.module('amlApp.services', ['ngResource']).value('version', '0.1');
 
+/**
+ * Object for managing Angular directives
+ *
+ * @module directivesModule
+ * @requires amlApp.directives
+ */
 var directivesModule = angular.module('amlApp.directives', []);
+
 

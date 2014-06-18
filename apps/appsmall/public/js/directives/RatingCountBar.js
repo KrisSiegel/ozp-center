@@ -1,6 +1,36 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule RatingCountBarModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('ratingCountBar', function() {
+/**
+ * HTML element directive: 
+ *
+ * Usage: ```<rating-count-bar app="[Object]"></rating-count-bar>```
+ * 
+ * @class RatingCountBarDirective
+ * @static
+ */ 
+
+/**
+ * @class RatingCountBarDirective
+ * @constructor
+ */
+
+/**
+ * The App object to reference for rating counts; uses ```app.ratings``` for ratings count.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ *
+ * @attribute {Object} app
+ * @required
+ */
+
+var RatingCountBarDirective = [function() {
     return {
         restrict: 'E',
         replace: true,
@@ -21,4 +51,6 @@ directivesModule.directive('ratingCountBar', function() {
             $(element).text(appRatingText);
         }
     }
-});
+}];
+
+directivesModule.directive('ratingCountBar', RatingCountBarDirective);

@@ -1,6 +1,47 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule DateDropdownsModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('dateDropdowns', function() {
+/**
+ * HTML element directive: Renders form controls for month, day, and year.
+ *
+ * Usage: ```<date-dropdowns app="[app-name]" date-field="[app-date-field]"></date-dropdowns>```
+ * 
+ * @class DateDropdownsDirective
+ * @static
+ */ 
+
+/**
+ * @class DateDropdownsDirective
+ * @constructor
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ */
+
+ /**
+  * The App object with date field to be rendered
+  *
+  * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+  *
+  * @attribute {Object} app
+  * @required
+  */
+
+ /**
+  * Date field of the app, to be bound to form controls
+  *
+  * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+  *
+  * @attribute {String} date-field
+  * @required
+  */
+
+var DateDropdownsDirective = [function() {
     var monthsOfYear = {
         January: 31,
         February: function(year) { return ((year % 4 === 0) ? 29 : 28); },
@@ -70,4 +111,6 @@ directivesModule.directive('dateDropdowns', function() {
 
         }
     };
-});
+}];
+
+directivesModule.directive('dateDropdowns', DateDropdownsDirective);

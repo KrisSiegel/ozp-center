@@ -1,6 +1,48 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule NgConfirmClickModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('ngConfirmClick', [function() {
+/**
+ * HTML attribute directive: Adds a confirmation dialog to a button element.
+ * 
+ *
+ * Usage: ```<[element] ng-confirm-click="[String]" confirmed-click="[Function]()"></[element]>```
+ *
+ * The Function in the confirmed-click attribute is actually a function call expression such as "save()"
+ *
+ * @class NgConfirmClickDirective
+ * @static
+ */ 
+
+/**
+ * @class NgConfirmClickDirective
+ * @constructor
+ */
+
+/**
+ * Message text for confirmation dialog; defaults to "Are you sure?" if empty.
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {String} ng-confirm-click
+ * @optional
+ */
+
+/**
+ * Method called only if user selects Confirm/OK in confirmation dialog
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(function call expression, must exist in parent scope)**_
+ *
+ * @attribute {Function} confirmed-click
+ * @required
+ */
+
+var NgConfirmClickDirective = [function() {
     function link(scope, element, attr) {
         var msg = attr.ngConfirmClick || "Are you sure?";
         var clickAction = attr.confirmedClick;
@@ -13,4 +55,6 @@ directivesModule.directive('ngConfirmClick', [function() {
     return {
         link: link
     }
-}]);
+}];
+
+directivesModule.directive('ngConfirmClick', NgConfirmClickDirective);

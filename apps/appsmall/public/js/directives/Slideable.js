@@ -1,6 +1,46 @@
+/**
+ * 
+ *
+ * @module directivesModule
+ * @submodule SlideableModule
+ * @requires amlApp.directives
+ */
 'use strict';
 
-directivesModule.directive('slideable', function () {
+/**
+ * HTML class directive: Creates div element with slide functionality in browser.  Slide duration and easing 
+ * are set from attributes.
+ *
+ * Usage: ```<[element] class="slideable" duration="[Int]ms" easing="ease-in-out"></[element]>```
+ *
+ * @class SlideableDirective
+ * @static
+ */ 
+
+/**
+ * @class SlideableDirective
+ * @constructor
+ */
+
+/**
+ * Duration of slide event, as measured in milliseconds
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {Number} duration
+ * @required
+ */
+
+/**
+ * Easing type for slide event; defaults to 'ease-in-out'
+ *
+ * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ *
+ * @attribute {String} easing
+ * @required
+ */
+
+var SlideableDirective = [function() {
     return {
         restrict:'C',
         compile: function (element, attr) {
@@ -23,4 +63,6 @@ directivesModule.directive('slideable', function () {
             };
         }
     };
-});
+}];
+
+directivesModule.directive('slideable', SlideableDirective);
