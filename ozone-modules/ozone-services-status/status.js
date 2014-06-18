@@ -1,3 +1,10 @@
+/**
+    Gathers the status information regarding the various services and configurations upon access.
+
+    @module Ozone.Services.Status
+    @class Ozone.Services.Status
+    @submodule Server-Side
+*/
 module.exports = (function (Ozone) {
     var status = {
         state: "Starting"

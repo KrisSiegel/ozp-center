@@ -4,7 +4,9 @@
 
     Accessible and registers at Ozone.Service("Security")
 
-    @class Ozone.Services.SecurityMock
+    @module Ozone.Services.Security
+    @class Ozone.Services.Security.Mock
+    @submodule Server-Side
 */
 (function () {
     "use strict";
