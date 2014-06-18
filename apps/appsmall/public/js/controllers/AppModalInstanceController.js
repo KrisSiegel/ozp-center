@@ -44,49 +44,49 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
      /**
       * A list of all reviews loaded for this app, which may or may not all be visible.
       * @attribute {Array} allUserReviews
-      * @optional
+      * @required
       */
      $scope.allUserReviews = [];
 
      /**
       * A list of only visible reviews loaded for this app
       * @attribute {Array} visibleUserReviews
-      * @optional
+      * @required
       */
      $scope.visibleUserReviews = [];
 
      /**
       * Star rating scale from {{#crossLink "ReviewService"}}{{/crossLink}}.getRatings
       * @attribute {Array} ratingScale
-      * @optional
+      * @required
       */
      $scope.ratingScale = Review.getRatings();
 
      /**
       * Star rating as entered by user
       * @attribute {Number} rating
-      * @optional
+      * @required
       */
      $scope.rating = 0;
 
      /**
       * Review text as entered by user
       * @attribute {String} reviewText
-      * @optional
+      * @required
       */
      $scope.reviewText = '';
 
      /**
       * A list of all favorite apps from Persona object of logged-in user
       * @attribute {Array} favoriteApps
-      * @optional
+      * @required
       */
      $scope.favoriteApps = [];
 
      /**
       * Indicates whether this modal was launched by AppsMall main page or App Submission previewer, and is True only for the latter.
       * @attribute {Boolean} isPreviewer
-      * @optional
+      * @required
       */
      $scope.isPreviewer = previewer;
 
@@ -121,35 +121,35 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
      /**
       * Indicates whether this modal was launched by the user
       * @attribute {Boolean} launchedByUser
-      * @optional
+      * @required
       */
      $scope.launchedByUser = true;
 
      /**
       * Indicates whether the app has user reviews, regardless of visibility
       * @attribute {Boolean} hasUserReviews
-      * @optional
+      * @required
       */
      $scope.hasUserReviews = false;
 
      /**
       * Stringified numeric value of all visible reviews
       * @attribute {String} averageStarRatingText
-      * @optional
+      * @required
       */
      $scope.averageStarRatingText = "";
 
      /**
       * Average star rating of all visible reviews
       * @attribute {Number} averageRating
-      * @optional
+      * @required
       */
      $scope.averageRating = 0;
 
      /**
       * List of tag names, for all tags tagged to the current app
       * @attribute {Array} tagsForApp
-      * @optional
+      * @required
       */
      $scope.tagsForApp = currentTags || [];
 
@@ -163,14 +163,14 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
      /**
       * List of user reviews from the database
       * @attribute {Array} reviews
-      * @optional
+      * @required
       */
      $scope.reviews = [];
 
      /**
       * Description text after converting from Markdown to HTML and marking HTML as safe
       * @attribute {TrustedValueHolderType} fullDescriptionHtml
-      * @optional
+      * @required
       */
      $scope.fullDescriptionHtml = '';
 

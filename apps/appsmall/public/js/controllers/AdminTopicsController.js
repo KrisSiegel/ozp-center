@@ -56,14 +56,14 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
     /**
      * A list of all sorted topics
      * @attribute {Array} topics
-     * @optional
+     * @required
      */
     $scope.topics = [];
 
     /**
      * Value in search bar used to set topic
      * @attribute searchedTopic {String}
-     * @optional
+     * @required
      */
     $scope.searchedTopic = '';
 
@@ -77,14 +77,14 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
     /**
      * An array of every single app returned from the Ozone service, included apps not displayed in the AppsMall view.
      * @attribute {Array} allApps
-     * @optional
+     * @required
      */
     $scope.allApps = [];
 
     /**
      * Gets boolean state for whether all apps are displayed in view
      * @attribute showAllApps {Boolean}
-     * @optional
+     * @required
      * @return {Boolean} True if all apps are displayed in view
      */
     $scope.showAllApps = true;
@@ -92,14 +92,14 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
     /**
      * True if user is dragging an item
      * @attribute {Boolean} dragMode
-     * @optional
+     * @required
      */
     $scope.dragMode = false;
 
     /**
      * Object that contains information on when an app was past dropped, and whether the drop action succeeded or failed
      * @attribute {Object} dropStatus
-     * @optional
+     * @required
      */
     $scope.dropStatus = {
         topic: '',
@@ -116,28 +116,28 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
     /**
      * Topic list dropdown menu is visible for the app id assigned to this value.  If empty or undefined, then no topic dropdown menus are visible.
      * @attribute {String} openAppTopicMenu
-     * @optional
+     * @required
      */
     $scope.openAppTopicMenu = "";
 
     /**
      * A collection object containing group names as keys and topics as values
      * @attribute {Object} groupedTopics
-     * @optional
+     * @required
      */
     $scope.groupedTopics = {};
 
     /**
      * The hover group attribute that denotes which group the user is hovering over
      * @attribute {String} hoverGroup
-     * @optional
+     * @required
      */
     $scope.hoverGroup = "";
 
     /**
      * An object that contains the user-selected topic, apps, and methods for rolling back the current topic to a previous value
      * @attribute {Object} topicModel
-     * @optional
+     * @required
      */
     $scope.topicModel = {
         topic: {tag: "", description: "", _id: ""},

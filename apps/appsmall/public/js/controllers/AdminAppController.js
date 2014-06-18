@@ -50,36 +50,35 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     /**
      * An array of apps filtered by user-selected workflow state.  Contains all apps if no workflow state has been selected.
      * @attribute {Array} displayedApps
-     * @optional
+     * @required
      */
-    
     $scope.displayedApps = [];
 
     /**
      * An array of every single app returned from the Ozone service, included apps not displayed in the AppsMall view.
      * @attribute {Array} allApps
-     * @optional
+     * @required
      */
     $scope.allApps = [];
 
     /**
      * Workflow state type lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
      * @attribute {Array} workflowStateTypes
-     * @optional
+     * @required
      */
      $scope.workflowStateTypes = AppWorkflow.workflowStateTypes;
 
     /**
      * Workflow state action lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateActions
      * @attribute {Object} workflowStateActions
-     * @optional
+     * @required
      */
     $scope.workflowStateActions = AppWorkflow.workflowStateActions;
 
     /**
      * object-of-arrays used to query apps by workflow state: [workflow state] -> [Array of apps with that workflow state]
      * @attribute {Object} appsByWorkflowStatus
-     * @optional
+     * @required
      */
     $scope.appsByWorkflowStatus = {};
 
