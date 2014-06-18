@@ -39,7 +39,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
      * @required
      * @private
      */
-     var orgTag = null; // 
+     var orgTag = null;
 
      /**
       * Persona data for the currently logged-in user
@@ -359,17 +359,34 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
 
      //--- validation methods ---//
 
-     // validation for saving app as draft.
+     /**
+      * Performs validation for saving app as draft.
+      * @method appNameValidation
+      * @return {Boolean} True only if attributes necessary to save App object as draft are valid
+      * @private
+      */
      var appNameValidation = function(app) {
          return (!_.isEmpty(app.name) && /^[A-Za-z0-9]+$/.test(app.shortname || '') && !_.isEmpty(app.type));
      };
 
+     /**
+      * Performs validation for saving app as draft.
+      * @method appNameValidation
+      * @return {Boolean} True only if attributes necessary to save App object as draft are valid
+      * @private
+      */
      var isPublishedOrDirty = function() {
          return ($scope.hasInvalidPublishAttempt || ((($scope.currentApp || {}).workflowState || '').toLowerCase() === 'published'));
      }
 
-     // Set tabValidationState based on validation state: complete, incomplete, or error.
-     // Tri-state flags (true, false, undefined) are used for each tab, where true = complete and false = error.
+     /**
+      * Set tabValidationState based on validation state: complete, incomplete, or error.
+      * Tri-state flags (true, false, undefined) are used for each tab, where true = complete and false = error.
+      * @method formValidReceiveFunction
+      * @param [event] {Object} Event object sent from {{#crossLink "FormValidationWatcherDirective"}}{{/crossLink}} -- _**deprecated**_ and no longer used
+      * @param msg {Object} Tab validation message sent from {{#crossLink "FormValidationWatcherDirective"}}{{/crossLink}}
+      * @private
+      */
      var formValidReceiveFunction = function(event, msg) {
          var tabName = (msg || {}).tabPage;
          if (tabName) {
@@ -409,6 +426,11 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
 
      //--- scope methods initialized after querying for app info ---//
 
+     /**
+      * Adds app modification methods to controller after apps have been loaded.
+      * @method postInitialize
+      * @private
+      */
      var postInitialize = function() {
 
          formValidReceiveFunction();
@@ -422,7 +444,12 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              }
          });
 
-         // cleans up app object before saving
+         /**
+          * Cleans up current app object before saving
+          * @method getSafeClonedApp
+          * @return {Object} App object without any Angular framework attributes
+          * @private
+          */
          var getSafeClonedApp = function() {
              var clonedApp = angular.copy($scope.currentApp);
              // getting rid of empty screenshot used as placeholder
@@ -430,9 +457,11 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              return clonedApp;
          }
 
-          //--- save / update/ delete routines ---
-
-         // function to create a new App
+         /**
+          * Performs validation on current app, and saves all App data (including tags) to database if valid.
+          * @method saveApp
+          * @param workflowAction {String} The workflow action button clicked on by the user, as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateActions
+          */
          $scope.saveApp = function(workflowAction) {
              var params = {};
              var isPublishOrSubmitAction = _.contains(['publish', 'submit'], (workflowAction || '').toLowerCase());
@@ -517,6 +546,11 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              };
          }
 
+         /**
+          * Saves all tags added by user, and deletes all tags removed by user -- all done as per tag and topic type.
+          * @method saveApp
+          * @param callback {Function} Callback to get invoked after all tags have been successfully updated and/or deleted
+          */
          $scope.saveTags = function(callback) {
              var tagsByType = _.groupBy($scope.initialTagObjects, function(tag){
                  return tag.topic;
@@ -581,7 +615,11 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              $q.all(_.map(tasks, function(task){return task.fn.apply(this, task.args)})).then(deleteTagsFunction);
          }
 
-         // deleting application passed in
+         /**
+          * Deletes app passed in from database
+          * @method deleteApp
+          * @param app {Object} App object to delete from database
+          */
          $scope.deleteApp = function(app) {
              app = app || $scope.currentApp;
              var deleteParams = {
@@ -595,6 +633,12 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              });
          }
 
+         /**
+          * Visually display message passed in, handling both success and error messages.
+          * @method setStatusMessage
+          * @param message {Object} object containing status message, containing either a success or error message:
+          *        On success: { ``` successMessage: "Success!" ``` }; on error: { ``` errorMessage: "Fail!" ``` }; 
+          */
          $scope.setStatusMessage = function(message) {
              message = message || {};
              // setting success or error message fields that will trigger watch in directive
@@ -610,14 +654,30 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              }
          }
 
+         /**
+          * Clears field in current app object
+          * @method setFieldToEmpty
+          * @param field {String} field (attribute) of current app object to clear
+          */
          $scope.setFieldToEmpty = function(field) {
              $scope.currentApp[field] = '';
          }
 
+         /**
+          * Checks if field exists in current app object
+          * @method fieldExistsInCurrentApp
+          * @param field {String} field (attribute) of current app object to check for
+          * @return {Boolean} True if field exists in App object
+          */
          $scope.fieldExistsInCurrentApp = function(field) {
              return _.has($scope.currentApp, field);
          }
 
+         /**
+          * Adds new object element to array-of-objects field of current app object
+          * @method addNewEmptyField
+          * @param field {String} field (attribute) of current app object to add object to
+          */
          $scope.addNewEmptyField = function(field) {
              if (_.isArray($scope.currentApp[field])) {
 

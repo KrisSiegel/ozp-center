@@ -33,6 +33,12 @@
 
 var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootScope', '$sce', 'Persona', 'Review', 'Tag', 'AppOrComponent', 'FileUpload', 'OzoneCommon', 'currentApp', 'currentTags', 'previewer',  function($scope, $modal, $modalInstance, $rootScope, $sce, Persona, Review, Tag, AppOrComponent, FileUpload, OzoneCommon, currentApp, currentTags, previewer) {
 
+    /**
+     * [Showdown](https://github.com/coreyti/showdown) conversion object used to convert Markdown into HTML
+     * @attribute {Object} converter
+     * @private
+     * @writeOnce
+     */
      var converter = new Showdown.converter();
 
      /**
@@ -84,6 +90,12 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
       */
      $scope.isPreviewer = previewer;
 
+     /**
+      * A list of all valid numerical ratings
+      * @attribute {Array} ratingNumbers
+      * @private
+      * @writeOnce
+      */
      var ratingNumbers = _.pluck($scope.ratingScale, 'rating');
 
      /**
@@ -93,6 +105,10 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
       */
      $scope.personaData = {};
 
+     /**
+      * Angular Promise object used to query for persona data
+      * @attribute {PromiseObject} userNamePromise
+      */
      var userNamePromise = Persona.getCurrentPersonaData().then(function(currentPersonaData) {
          console.log('Persona data: ' + JSON.stringify(currentPersonaData));
          $scope.userName = currentPersonaData.username;
@@ -327,6 +343,12 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
          return ($scope.visibleUserReviews !== $scope.allUserReviews);
      }
 
+     /**
+      * Load user reviews for app passed in
+      * @method getUserReviewFromServer
+      * @param appId {String} ID of selected App object, used to query for reviews
+      * @private
+      */
      function getUserReviewFromServer(appId) {
          if (appId) {
              // querying for a single review with unique (appId, userName) value.
@@ -339,6 +361,11 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
          }
      }
 
+     /**
+      * Load all user reviews for currently selected app, and gets rating counts for all reviews
+      * @method getReviewsFromServer
+      * @private
+      */
      function getReviewsFromServer() {
          var appId = $scope.currentApp._id;
          if (appId) {

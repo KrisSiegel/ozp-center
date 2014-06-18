@@ -35,6 +35,10 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
      */
     $scope.personaData = {};
 
+    /**
+     * Angular Promise object used to query for persona data
+     * @attribute {PromiseObject} personaDataPromise
+     */
     var personaDataPromise = Persona.getCurrentPersonaData().then(function(currentPersonaData) {
         console.log('Persona data: ' + JSON.stringify(currentPersonaData));
         $scope.userName = currentPersonaData.username;
@@ -259,6 +263,12 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         this.className = ''; return false;
     };
 
+    /**
+     * Displays import success message
+     * @method importSuccessFunction
+     * @param status {Number} HTTP status code
+     * @param response {Object} Import action response, as a list of App objects imported
+     */
     var importSuccessFunction = function(status, response) {
         if (_.isArray(response)) {
             if (response.length > 0) {
@@ -276,6 +286,12 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         $scope.getAppsFromServer();
     };
 
+    /**
+     * Displays import error message
+     * @method importErrorFunction
+     * @param status {Number} HTTP status code
+     * @param response {Object} Error message response from server
+     */
     var importErrorFunction = function(status, response) {
         alert("Error importing apps to Apps Mall.");
     };

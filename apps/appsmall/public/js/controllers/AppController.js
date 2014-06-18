@@ -444,7 +444,11 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
     }
     //--- Internal search functions ---//
 
-    // load the Home (default) app selection page by getting message, then calling post-message callback
+    /**
+     * Load the Home (default) app selection page by getting message, then calling post-message callback
+     * @method loadHomePage
+     * @private
+     */
     function loadHomePage() {
         //clear Organization filter on homepage load
         $scope.selectedOrganization = null;
@@ -453,7 +457,11 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         });
     }
 
-    // loading Home (default) page from AppSelectionMessage parameters
+    /**
+     * loading Home (default) page from {{#crossLink "AppSelectionMessageService"}}{{/crossLink}} parameters
+     * @method loadHomePageFromMessage
+     * @private
+     */
     function loadHomePageFromMessage(homeAppsMessage) {
         //clear Organization filter on homepage load
         $scope.selectedOrganization = null;
@@ -471,14 +479,26 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         $scope.homeSearchResults = _.clone($scope.searchResults);
     }
 
-    // loading tag filter page by getting message, then calling post-message callback
+    /**
+     * Loading tag filter page by getting message, then calling post-message callback
+     * @method loadTagFilterPage
+     * @param newTagSelection {Array} a list of all selected tags to be filtered on
+     * @return {PromiseObject} used to load search results onto main page
+     * @private
+     */
     function loadTagFilterPage(newTagSelection) {
         return AppSelectionMessage.getTagFilterMessage(newTagSelection).then(function(tagFilterMessage) {
             return loadTagFilterPageFromMessage(tagFilterMessage);
         });
     }
 
-    // loading tag filter page from AppSelectionMessage parameters
+    /**
+     * Loading tag filter page from AppSelectionMessage parameters
+     * @method loadTagFilterPageFromMessage
+     * @param tagFilterMessage {Object} a 'message' object that describes the tag-filtering layout on main page
+     * @return {PromiseObject} used to load search results onto main page
+     * @private
+     */
     function loadTagFilterPageFromMessage(tagFilterMessage) {
         $scope.selectedTags = tagFilterMessage.selectedTags; // RWP: change when multiple tags can be selected at once
         if ($scope.selectedTags.length > 0) {
@@ -496,7 +516,13 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         return displayAppSearchFromTagFilterResults($scope.searchText);
     }
 
-    // executing search for app
+    /**
+     * Executing search for app
+     * @method displayAppSearchFromTagFilterResults
+     * @param searchValue {String} a text string for searching apps by name
+     * @return {PromiseObject} used to load search results onto main page
+     * @private
+     */
     var displayAppSearchFromTagFilterResults = function(searchValue) {
         $scope.searchText = searchValue;
         $scope.filteredSearchResults.apps = [];
@@ -657,7 +683,14 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         }
     }
 
-    // Loading search results into scope that will show up on the search results subpage.
+    /**
+     * Loading search results into scope that will show up on the search results subpage.
+     * @method createSearchResultAppObjects
+     * @param searchResultAppNames {Array} an array of objects, where each array element contains object data for an app listing row on the AppsMall main page.
+     * @return {Array} an array of objects with more detailed information on listing apps: contains actual App objects instead of app names, and detailed rendering information such
+     *         as banner height, items per row, and scrollable items per row
+     * @private
+     */
     function createSearchResultAppObjects(searchResultAppNames) {
         if (_.isArray(searchResultAppNames) && !isArrayOfObjectsWithAttribute(searchResultAppNames)) {
             // turn into a single row category "Search Results", with 
@@ -683,8 +716,14 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         return searchResultAppNames;
     }
 
-    // Checks if the array contains objects with the given attribute, or merely that the array elements are objects if no attribute value is passed in.
-    // Returns false if the array is empty.
+    /**
+     * Checks if the array contains objects with the given attribute, or merely that the array elements are objects if no attribute value is passed in.
+     * @method isArrayOfObjectsWithAttribute
+     * @param array {Array} The array to check; should be an array of objects
+     * @param attribute {String} The attribute to check on each object within the array 
+     * @return True only if every Object element of the array contains the attribute passed in.  Returns False if the array contains non-objects or is empty.
+     * @private
+     */
     function isArrayOfObjectsWithAttribute(array, attribute) {
         if (!_.isArray(array) || (array.length === 0)) {
             return false;
@@ -694,10 +733,20 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         });
     }
 
-    // Method for filtering apps based on filtering parameters of the form {categories: ['a','b','c'], groupings: ['d','e']}.
-    // Apps are filtered out of the array unless the app contains values in the filter parameter array, for all values
-    // passed in as parameter keys.
-    // If sorting parameters are non-null, then sorting will be performed on the filtered app array.
+    /**
+     * Method for filtering apps based on filtering parameters of the form ``` {categories: ['a','b','c'], groupings: ['d','e']} ```.
+     * Apps are filtered out of the array unless the app contains values in the filter parameter array, for all values
+     * passed in as parameter keys.
+     * If sorting parameters are non-null, then sorting will be performed on the filtered app array.
+     * @method filterApps
+     * @param currentApps {Array} The array of App objects to filter and sort on
+     * @param filterParameters {Object} An object of arrays used for filtering, with app attributes (fields) to be filtered on as keys and a list of valid attribute values as values.
+     *        (Ex. { ``` shortname: ['foo', 'bar'] ``` } will filter out apps that don't have ```foo``` or ```bar``` as their shortname).
+     * @param [sortField] {Function} A sorting function that, if defined, is called to sort on the result array
+     * @param [isDescending] {String} If a sorting function is passed in, this is used to determine whether sorting is ascending or descending
+     * @return {Array} A sorted and filtered array of App objects, based on the parameters passed in
+     * @private 
+     */
     function filterApps(currentApps, filterParameters, sortField, isDescending) {
         if (_.isEmpty(filterParameters)) {
             return currentApps;
@@ -721,9 +770,23 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         }
     }
 
+    /**
+     * A list of all App object attributes that contain numeric values, and thus must be sorted numerically instead of by stringified value.
+     * @attribute {Array} numericalFields
+     * @private
+     * @final
+     */
     var numericalFields = ['users', 'rating', 'ratings', 'launchedCount'];
 
-    // Method for sorting apps by the field name passed in.
+    /**
+     * Method for sortApps apps by the field name passed in.
+     * @method sortApps
+     * @param currentApps {Array} The array of App objects to sort on
+     * @param sortField {Function} A sorting function that, if defined, is called to sort on the array passed in
+     * @param [isDescending] {String} Used to determine whether sorting is ascending or descending
+     * @return {Array} A sorted array of App objects, based on the parameters passed in
+     * @private 
+     */
     function sortApps(currentApps, sortField, isDescending) {
         var sortFunction = null;
         if (_.contains(['createdOn', 'updatedOn', 'softwareUpdatedOn'], sortField)) {
@@ -738,6 +801,13 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         return (currentApps || []).sort(sortFunction);
     }
 
+    /**
+     * Performs name search based on name passed in, and returns the id of the matched App object if found.
+     * @method getAppIdFromFindByName
+     * @param appName {String} the app name to perform name search on
+     * @return {String} The id of the matched App object, or undefined if no match is found
+     * @private 
+     */
     function getAppIdFromFindByName(appName) {
         var appWithMatchedName = _.find($scope.visibleApps, function(app) {
             return (app.name === appName);
@@ -747,12 +817,31 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         }
     }
 
-    // "constants" used to align apps into rows and columns
+    /**
+     * Number of non-featured apps grouped together
+     * @attribute {Number} NonFeaturedAppGroupingSize
+     * @private
+     * @final
+     */
     var NonFeaturedAppGroupingSize = 4;
+
+    /**
+     * Number of grouping columns on AppsMall main page, where a grouping consists of either one featured app or 
+     * NonFeaturedAppGroupingSize number of non-featured apps.
+     * @attribute {Number} GroupingsPerLine
+     * @private
+     * @final
+     */
     var GroupingsPerLine = 2;
 
-    // function to order apps so that non-featured apps are grouped together in a manner to 
-    // reduce empty space on Apps main page
+    /**
+     * Function to order apps so that non-featured apps are grouped together in a manner to reduce empty space on Apps main page
+     * @method createAppGroupingList
+     * @param appList {Array} An array of App objects to be sorted and grouped
+     * @return {Array} An array-of-array of App objects where featured apps and non-featured apps are grouped in separate arrays, such as:
+     *         ``` [[APP_F1], [APP_NF1, APP_NF2], [APP_F2], [APP_NF3, APP_NF4]] ```
+     * @private 
+     */
     function createAppGroupingList(appList) {
         var featuredApps = _.filter(appList, function(app) { return app.featured; });
         var nonFeaturedApps = _.reject(appList, function(app) { return app.featured; });
@@ -780,7 +869,13 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         return appGroupingList;
     }
 
-    // creating visual structure for displaying apps on main page
+    /**
+     * Creating visual structure for displaying apps on main page
+     * @method createVisualAppRows
+     * @param appList {Array} An array of App objects to be grouped
+     * @return {Array} An array of App objects where non-featured apps are grouped together
+     * @private 
+     */
     function createVisualAppRows(appList) {
         var reverseOrderRow = false;
         var groupingList = createAppGroupingList(appList);
@@ -797,7 +892,15 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
         return appRows;
     }
 
-    // Replace object in an array where the id field matches from the new (updated) object matches the first value found in the object array.
+    /**
+     * Replace object in an array where the id field matches from the new (updated) object matches the first value found in the object array.
+     * @method replaceById
+     * @param objectList {Array} An array of data objects to be updated with data from updatedObject
+     * @param updatedObject {Object} A single data object with fields to be assigned to an element in objectList
+     * @param idField {String} The id field of the objects in list; defaults to ``` _id ``` as used in MongoDB
+     * @private 
+     */
+    // 
     function replaceById(objectList, updatedObject, idField) {
         if (!idField) {
             idField = '_id';
