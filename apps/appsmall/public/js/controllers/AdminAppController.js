@@ -25,118 +25,14 @@
  * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
  */
 
- /**
-  * An array of every single app returned from the Ozone service, included apps not displayed in the AppsMall view.
-  * @attribute {Array} allApps
-  * @optional
-  */
-
- /**
-  * object-of-arrays used to query apps by workflow state: [workflow state] -> [Array of apps with that workflow state]
-  * @attribute {Object} appsByWorkflowStatus
-  * @optional
-  */
-
- /**
-  * An array of apps filtered by user-selected workflow state.  Contains all apps if no workflow state has been selected.
-  * @attribute {Array} displayedApps
-  * @optional
-  */
-
- /**
-  * Retrieves all apps from Ozone service
-  * @method getAppsFromServer
-  * @return {PromiseObject} used to query for apps
-  */
-
- /**
-  * Gets formatted update date from app passed in
-  * @method getShortDateUpdated
-  * @param app {Object} An App object with date fields
-  * @return {String} a stringified short date value for the app passed in
-  */
-
- /**
-  * Returns the current view state
-  * @method getViewState
-  * @return {String} the view state in stringified form
-  */
-
- /**
-  * Returns the number of apps with the workflow state passed in.
-  * @method getWorkflowStatusCount
-  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
-  * @return {Number} the number of apps with the workflow state passed in
-  */
-
- /**
-  * Check whether App Manager is visible
-  * @method isAppManagerMode
-  * @return {Boolean} true if in App Manager mode, and false otherwise
-  */
-
- /**
-  * Check whether App Manager is displaying the empty message instead of displaying the App Manager main page
-  * @method isEmpty
-  * @return {Boolean} true if empty message is displayed, and false for any other state (such as App Manager mode)
-  */
-
- /**
-  * Check whether workflow state appears in red on the left panel
-  * @method isHighlighted
-  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
-  * @return {Boolean} true if workflow state is red-highlighted
-  */
-
- /**
-  * Checks if workflow status passed in was last selected
-  * @method isWorkflowStatusSelected
-  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
-  * @return {Boolean} True if the workflow status passed in was last selected, and False otherwise.
-  */
-
- /**
-  * Redirects to the App Submission form with the app passed in, or New App if no app is passed in.
-  * @method loadAppChildForm
-  * @param selectedApp {Object} 
-  */
-
- /**
-  * Persona data for the currently logged-in user
-  * @attribute {Object} personaData
-  * @required
-  */
-
- /**
-  * Sets selected workflow status:
-  * If user clicked on selected workflow status, then unselect tag.
-  * If user clicked on an unselected workflow status, then select the clicked status.
-  * @method toggleWorkflowStatusSelection
-  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
-  */
-
- /**
-  * Workflow state action lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateActions
-  * @attribute {Object} workflowStateActions
-  * @optional
-  */
-
- /**
-  * Workflow state type lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
-  * @attribute {Array} workflowStateTypes
-  * @optional
-  */
-
- /**
-  * Gets the CSS class used to visually display workflow state
-  * @method workflowStatusClass
-  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
-  * @return {String} the CSS class corresponding to workflow state passed in
-  */
-
 
 var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrComponent', 'AppWorkflow', 'Persona', function($scope, $rootScope, $window, $q, AppOrComponent, AppWorkflow, Persona) {
 
+    /**
+     * Persona data for the currently logged-in user
+     * @attribute {Object} personaData
+     * @required
+     */
     $scope.personaData = {};
 
     var personaDataPromise = Persona.getCurrentPersonaData().then(function(currentPersonaData) {
@@ -147,15 +43,40 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         $scope.personaData = currentPersonaData;
     });
 
-    // list of apps within view objects, where view objects contain status messages and the current app.
+    /**
+     * An array of apps filtered by user-selected workflow state.  Contains all apps if no workflow state has been selected.
+     * @attribute {Array} displayedApps
+     * @optional
+     */
+    
     $scope.displayedApps = [];
+
+    /**
+     * An array of every single app returned from the Ozone service, included apps not displayed in the AppsMall view.
+     * @attribute {Array} allApps
+     * @optional
+     */
     $scope.allApps = [];
 
-    // workflow status-related
-    $scope.workflowStateTypes = AppWorkflow.workflowStateTypes;
+    /**
+     * Workflow state type lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @attribute {Array} workflowStateTypes
+     * @optional
+     */
+     $scope.workflowStateTypes = AppWorkflow.workflowStateTypes;
+
+    /**
+     * Workflow state action lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateActions
+     * @attribute {Object} workflowStateActions
+     * @optional
+     */
     $scope.workflowStateActions = AppWorkflow.workflowStateActions;
 
-    // a list of all apps grouped by workflow status, so that filtering does not require an Ajax call
+    /**
+     * object-of-arrays used to query apps by workflow state: [workflow state] -> [Array of apps with that workflow state]
+     * @attribute {Object} appsByWorkflowStatus
+     * @optional
+     */
     $scope.appsByWorkflowStatus = {};
 
     $rootScope.$on('refreshApps', function(event) {
@@ -163,23 +84,54 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         $scope.getAppsFromServer();
     });
 
+    /**
+     * Gets the CSS class used to visually display workflow state
+     * @method workflowStatusClass
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @return {String} the CSS class corresponding to workflow state passed in
+     */
     $scope.workflowStatusClass = function(workflowStatus) {
         return AppWorkflow.workflowStateColorClasses[workflowStatus] || '';
     }
 
+    /**
+     * Check whether workflow state appears in red on the left panel
+     * @method isHighlighted
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @return {Boolean} true if workflow state is red-highlighted
+     */
     $scope.isHighlighted = function(workflowStatus) {
         return AppWorkflow.isRedHighlighted(workflowStatus);
     }
 
+    /**
+     * Gets formatted update date from app passed in
+     * @method getShortDateUpdated
+     * @param app {Object} An App object with date fields
+     * @return {String} a stringified short date value for the app passed in
+     */
     $scope.getShortDateUpdated = function(app) {
         var date = new Date(app.updatedOn);
         return (isNaN(date.getYear())) ? '' : moment(date).format('MM-DD-YYYY');
     }
 
+    /**
+     * Checks if workflow status passed in was last selected
+     * @method isWorkflowStatusSelected
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @return {Boolean} True if the workflow status passed in was last selected, and False otherwise.
+     */
     $scope.isWorkflowStatusSelected = function(workflowStatus) {
         return ($scope.userFilterSelection === workflowStatus);
     }
 
+    /**
+     * Sets selected workflow status:
+     * If user clicked on selected workflow status, then unselect tag.
+     * If user clicked on an unselected workflow status, then select the clicked status.
+     * @method toggleWorkflowStatusSelection
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     */
     $scope.toggleWorkflowStatusSelection = function(workflowStatus) {
         var workflowStatusClicked = $scope.isWorkflowStatusSelected(workflowStatus);
         if (workflowStatusClicked) {
@@ -191,11 +143,21 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         }
     }
 
+    /**
+     * Returns the number of apps with the workflow state passed in.
+     * @method getWorkflowStatusCount
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @return {Number} the number of apps with the workflow state passed in
+     */
     $scope.getWorkflowStatusCount = function(workflowStatus) {
         return ($scope.appsByWorkflowStatus[workflowStatus] || []).length;
     }
 
-    // make async call to get currently active apps, based on user permissions
+    /**
+     * Retrieves all apps from Ozone service, based on user permissions
+     * @method getAppsFromServer
+     * @return {PromiseObject} used to query for apps
+     */
     $scope.getAppsFromServer = function() {
         personaDataPromise.then(function() {
             if ($scope.personaData.hasAppManagerAccess) {
@@ -227,6 +189,13 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     }
 
     var oldModals = false;
+
+
+    /**
+     * Redirects to the App Submission form with the app passed in, or New App if no app is passed in.
+     * @method loadAppChildForm
+     * @param selectedApp {Object} 
+     */
     $scope.loadAppChildForm = function(selectedApp) {
         if ($scope.personaData.hasAppManagerAccess) {
             if (_.isEmpty(selectedApp)) {
@@ -248,7 +217,11 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         AppManager: 'manager'
     }
 
-    // Method to retrieve application view state, and used  internally by the shortcut methods directly below.
+    /**
+     * Method to retrieve application view state, and used internally by several shortcut methods.
+     * @method getViewState
+     * @return {String} the view state in stringified form
+     */
     $scope.getViewState = function() {
         if ($scope.allApps.length === 0 && $scope.appsLoaded) {
             return ViewStates.Empty;
@@ -256,10 +229,20 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
         return ViewStates.AppManager;
     }
 
+    /**
+     * Check whether App Manager is displaying the empty message instead of displaying the App Manager main page
+     * @method isEmpty
+     * @return {Boolean} true if empty message is displayed, and false for any other state (such as App Manager mode)
+     */
     $scope.isEmpty = function() {
         return ($scope.getViewState() === ViewStates.Empty);
     }
 
+    /**
+     * Check whether App Manager is visible
+     * @method isAppManagerMode
+     * @return {Boolean} true if in App Manager mode, and false otherwise
+     */
     $scope.isAppManagerMode = function() {
         return ($scope.getViewState() === ViewStates.AppManager);
     }

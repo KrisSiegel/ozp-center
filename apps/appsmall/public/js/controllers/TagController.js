@@ -25,20 +25,13 @@
  * @param AppSelectionMessage {Object} an Angular-injected instance of {{#crossLink "AppSelectionMessageService"}}{{/crossLink}}
  */
 
- /**
-  * Method called by ng-init directive when declaring controller in view page
-  * @method initializeController
-  */
-
- /**
-  * Select tag passed in, and unselect all other tags
-  * @method selectTagFromMenu
-  * @param tag {String} name of tag to be selected
-  */
-
 
 var TagController = ['$rootScope', '$scope', '$q', '$timeout', 'AppOrComponent', 'Tag', 'AppSelectionMessage',  function($rootScope, $scope, $q, $timeout, AppOrComponent, Tag, AppSelectionMessage) {
 
+    /**
+     * Method called by ng-init directive when declaring controller in view page
+     * @method initializeController
+     */
      $scope.initializeController = function() {
          $scope.organizationTag = null;
          $scope.defaultTag = 'Home'
@@ -128,6 +121,11 @@ var TagController = ['$rootScope', '$scope', '$q', '$timeout', 'AppOrComponent',
          });
      }
 
+     /**
+      * Select tag passed in, and unselect all other tags
+      * @method selectTagFromMenu
+      * @param tag {String} name of tag to be selected
+      */
      $scope.selectTagFromMenu = function(tag) {
          //set all tags to be unselected
          _.each($scope.systemTags, function(sysTag){sysTag.selected = false;});
@@ -135,11 +133,17 @@ var TagController = ['$rootScope', '$scope', '$q', '$timeout', 'AppOrComponent',
          _.each($scope.categoryTags, function(categoryTag){categoryTag.selected = false;});
          //select the current tag
          tag.selected = true;
+
          //send broadcast based on type
          sendAppFilterBroadcast(tag)
-
      }
 
+     /**
+      * Send broadcast to load tag passed in on AppsMall main page
+      * @method sendAppFilterBroadcast
+      * @param tag {String} name of tag to be selected
+      * @private
+      */
      function sendAppFilterBroadcast(tag) {
          if (tag.type === 'System' && tag.name === $scope.defaultTag) {
              // get array of {tagname => [app_names]} association objects, one element for each unique tagname.

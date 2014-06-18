@@ -30,110 +30,28 @@
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  */
 
- /**
-  * Adds item passed in to specified list name in scope, with option to invoke conversion function on item
-  * @method addSelectedItemToList
-  * @param itemToAdd {String} item to add to list
-  * @param listScopeName {String} name of list in this scope that item will get added to
-  * @param [itemConversionFunction] {Function} Conversion function that is called on item parameter.  Does nothing if undefined.
-  */
-
- /**
-  * Checks if currently logged in user has permission to accept or reject apps
-  * @method canAcceptOrRejectApp
-  * @return {Boolean} True only if currently logged in user has permission to accept or reject apps
-  */
-
- /**
-  * Exits App Submission and redirects the user back to the App Management page
-  * @method close
-  */
-
- /**
-  * Returns a list of categories that match selection text passed in
-  * @method getCategoryDropdownSelection
-  * @param selectedText {String} text string used to match categories
-  * @return {Array} a list of categories that match selection text passed in
-  */
-
- /**
-  * Get category field from object passed in
-  * @method getCategoryField
-  * @param categoryObject {Object} object containing category field
-  * @return {String} category field from object passed in
-  */
-
- /**
-  * Gets formatted update date from app passed in
-  * @method getShortDateUpdated
-  * @param app {Object} An App object with date fields
-  * @return {String} a stringified short date value for the app passed in
-  */
-
- /**
-  * Get a list of objects, where each object contains a tag and new flag indicating whether this will be a new tag.
-  * @method getTagDropdownSelection
-  * @param [selectedText] {String} user-selected text that, if defined, will get added to top of returned list
-  * @return {Array} list of objects to be displayed as dropdown list
-  */
-
- /**
-  * Get tag field from object passed in
-  * @method getTagField
-  * @param tagObject {Object} object containing tag field
-  * @return {String} tag field from object passed in
-  */
-
- /**
-  * Method called by ng-init directive when declaring controller in view page
-  * @method initializeController
-  */
-
- /**
-  * Check whether currently loaded app exists in database
-  * @method isExistingApp
-  * @return {Boolean} True only if currently loaded app exists in database
-  */
-
- /**
-  * Explicitly checking for false on tabValidationState tri-state flag (true, false, undefined) for the tab passed in
-  * @method isTabInvalid
-  * @param tabName {String} tab name to check validation state for
-  * @return {Boolean} True only if tab passed in is invalid.  Empty or clean tab pages will return False.
-  */
-
- /**
-  * Load App Preview modal page so that user can preview app as it would look on AppsMall main page
-  * @method loadPreviewModal
-  * @param selectedApp {Object} the app to display in previewer
-  */
-
- /**
-  * Persona data for the currently logged-in user
-  * @attribute {Object} personaData
-  * @required
-  */
-
- /**
-  * Removes item passed in to specified list name in scope
-  * @method removeItemFromList
-  * @param itemToRemove {String} item to remove from list
-  * @param listScopeName {String} name of list in this scope that item will get removed from
-  */
-
- /**
-  * Gets the CSS class used to visually display workflow state
-  * @method workflowStatusClass
-  * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
-  * @return {String} the CSS class corresponding to workflow state passed in
-  */
-
 
 var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$window', '$modal', 'Persona', 'AppOrComponent', 'Dropdown', 'Tag', 'AppWorkflow', 'FileUpload',  function ($scope, $rootScope, $q, $location, $window, $modal, Persona, AppOrComponent, Dropdown, Tag, AppWorkflow, FileUpload) {
 
-     var orgTag = null; // The tag that maps the current app to an organization
+    /**
+     * The tag that maps the current app to an organization
+     * @attribute {Object} orgTag
+     * @required
+     * @private
+     */
+     var orgTag = null; // 
+
+     /**
+      * Persona data for the currently logged-in user
+      * @attribute {Object} personaData
+      * @required
+      */
      $scope.personaData = {};
 
+     /**
+      * Method called by ng-init directive when declaring controller in view page
+      * @method initializeController
+      */
      $scope.initializeController = function() {
          // resolving shortname from path, from one of two formats:
          // html5Mode: <url>?name=<shortname>
@@ -297,18 +215,34 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              console.log('changed screenshots: newValue = ' + newValue + ', count = ' + $scope.screenshotCount);
          });
 
-
      } // end initializeController()
 
+     /**
+      * Gets the CSS class used to visually display workflow state
+      * @method workflowStatusClass
+      * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+      * @return {String} the CSS class corresponding to workflow state passed in
+      */
      $scope.workflowStatusClass = function(workflowStatus) {
           return AppWorkflow.workflowStateColorClasses[workflowStatus] || '';
      }
 
+     /**
+      * Gets formatted update date from app passed in
+      * @method getShortDateUpdated
+      * @param app {Object} An App object with date fields
+      * @return {String} a stringified short date value for the app passed in
+      */
      $scope.getShortDateUpdated = function(app) {
           var date = new Date(app.updatedOn);
           return (isNaN(date.getYear())) ? '' : moment(date).format('MMDDYYYY');
      }
 
+     /**
+      * Check whether currently loaded app exists in database
+      * @method isExistingApp
+      * @return {Boolean} True only if currently loaded app exists in database
+      */
      $scope.isExistingApp = function() {
          if (_.isObject($scope.currentApp)) {
              return !(_.isEmpty($scope.currentApp._id) && $scope.AllowComponents);
@@ -318,7 +252,11 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          }
      }
 
-     // True if user can accept or reject app
+     /**
+      * Checks if currently logged in user has permission to accept or reject apps
+      * @method canAcceptOrRejectApp
+      * @return {Boolean} True only if currently logged in user has permission to accept or reject apps
+      */
      $scope.canAcceptOrRejectApp = function() {
          if (!(_.isObject($scope.currentApp) && _.isObject($scope.personaData))) {
              return false;
@@ -331,6 +269,12 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          }
      }
 
+     /**
+      * Get a list of objects, where each object contains a tag and new flag indicating whether this will be a new tag.
+      * @method getTagDropdownSelection
+      * @param [selectedText] {String} user-selected text that, if defined, will get added to top of returned list
+      * @return {Array} list of objects to be displayed as dropdown list
+      */
      $scope.getTagDropdownSelection = function(selectedText) {
          // creating array into (x,x) key-value pairs
          // var dropdownList = _.reduce($scope.allTags, function(memo,v) { memo[v] = v; return memo; }, {});
@@ -348,6 +292,12 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          return dropdownList;
      }
 
+     /**
+      * Returns a list of categories that match selection text passed in
+      * @method getCategoryDropdownSelection
+      * @param selectedText {String} text string used to match categories
+      * @return {Array} a list of categories that match selection text passed in
+      */
      $scope.getCategoryDropdownSelection = function(selectedText) {
          var dropdownList =
              _.chain($scope.allCategories)
@@ -360,6 +310,13 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          return dropdownList;
      }
 
+     /**
+      * Adds item passed in to specified list name in scope, with option to invoke conversion function on item
+      * @method addSelectedItemToList
+      * @param itemToAdd {String} item to add to list
+      * @param listScopeName {String} name of list in this scope that item will get added to
+      * @param [itemConversionFunction] {Function} Conversion function that is called on item parameter.  Does nothing if undefined.
+      */
      $scope.addSelectedItemToList = function(itemToAdd, listScopeName, itemConversionFunction) {
          if (_.isFunction(itemConversionFunction)) {
              itemToAdd = itemConversionFunction(itemToAdd);
@@ -371,14 +328,32 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          }
      }
 
+     /**
+      * Removes item passed in to specified list name in scope
+      * @method removeItemFromList
+      * @param itemToRemove {String} item to remove from list
+      * @param listScopeName {String} name of list in this scope that item will get removed from
+      */
      $scope.removeItemFromList = function(itemToRemove, listScopeName) {
          if (_.isArray($scope[listScopeName])) {
              $scope[listScopeName] = _.reject($scope[listScopeName], function(item) { return (item === itemToRemove); });
          }
      }
 
-     // functions to retrieve tag and category fields, passed in to addTagToList()
+     /**
+      * Get tag field from object passed in
+      * @method getTagField
+      * @param tagObject {Object} object containing tag field
+      * @return {String} tag field from object passed in
+      */
      $scope.getTagField = function(tagObject) { return tagObject.tag; };
+
+     /**
+      * Get category field from object passed in
+      * @method getCategoryField
+      * @param categoryObject {Object} object containing category field
+      * @return {String} category field from object passed in
+      */
      $scope.getCategoryField = function(categoryObject) { return categoryObject.category; };
 
 
@@ -419,6 +394,12 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          }
      };
 
+     /**
+      * Explicitly checking for false on tabValidationState tri-state flag (true, false, undefined) for the tab passed in
+      * @method isTabInvalid
+      * @param tabName {String} tab name to check validation state for
+      * @return {Boolean} True only if tab passed in is invalid.  Empty or clean tab pages will return False.
+      */
      $scope.isTabInvalid = function(tabName) {
          return (($scope.tabValidationState || {})[tabName] === false);
      }
@@ -650,7 +631,11 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
 
      } // end postInitialize()
 
-     // load app into previewer modal
+     /**
+      * Load App Preview modal page so that user can preview app as it would look on AppsMall main page
+      * @method loadPreviewModal
+      * @param selectedApp {Object} the app to display in previewer
+      */
      $scope.loadPreviewModal = function(selectedApp) {
          selectedApp = angular.copy(selectedApp);
          selectedApp.images.featuredBannerUrl = FileUpload.getFileUrl(selectedApp.images.featuredBannerId, "featuredBanner");
@@ -680,6 +665,10 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          });
      }
 
+     /**
+      * Exits App Submission and redirects the user back to the App Management page
+      * @method close
+      */
      $scope.close = function() {
          $window.location = Ozone.utils.murl('amlUrl', '/manage/apps/');
      }
