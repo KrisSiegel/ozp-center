@@ -12,10 +12,10 @@ cd appsmall-build
 git clone git@github.com:ozone-development/aml-center.git
 cd aml-center
 
- # or....
-mkdir aml-api-server
-cd aml-center
-unzip AppsMall-2.0.0-sprint-8-beta.zip
+# or if you're using the ZIP file...
+mkdir -p appsmall-build/aml-center
+cd appsmall-build/aml-center
+unzip ~/Downloads/AppsMall-2.0.0-sprint-8-beta.zip
 ```
 
 ###Single Installation
