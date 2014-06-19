@@ -2,19 +2,19 @@
  * Service object for accessing persona data through the Ozone API
  *
  * @module AppsMallUI.servicesModule
- * @submodule AppsMallUI. PersonaModule
+ * @submodule AppsMallUI.PersonaModule
  * @requires amlApp.services
  */
 
 'use strict';
 
 /**
- * @class AppsMallUI. PersonaService
+ * @class AppsMallUI.PersonaService
  * @static
  */ 
 
 /**
- * @class AppsMallUI. PersonaService
+ * @class AppsMallUI.PersonaService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  */

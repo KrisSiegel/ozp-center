@@ -2,19 +2,19 @@
  * Service object for getting and submitting user reviews
  *
  * @module AppsMallUI.servicesModule
- * @submodule AppsMallUI. ReviewModule
+ * @submodule AppsMallUI.ReviewModule
  * @requires amlApp.services
  */
 
 'use strict';
 
 /**
- * @class AppsMallUI. ReviewService
+ * @class AppsMallUI.ReviewService
  * @static
  */ 
 
 /**
- * @class AppsMallUI. ReviewService
+ * @class AppsMallUI.ReviewService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  */

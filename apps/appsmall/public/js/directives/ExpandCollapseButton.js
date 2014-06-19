@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. ExpandCollapseButtonModule
+ * @submodule AppsMallUI.ExpandCollapseButtonModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] class="expand-collapse-button"></[element]>```
  *
- * @class AppsMallUI. ExpandCollapseButtonDirective
+ * @class AppsMallUI.ExpandCollapseButtonDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. ExpandCollapseButtonDirective
+ * @class AppsMallUI.ExpandCollapseButtonDirective
  * @constructor
  */
 var ExpandCollapseButtonDirective = [function() {

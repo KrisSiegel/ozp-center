@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. NgValidFuncModule
+ * @submodule AppsMallUI.NgValidFuncModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] ng-valid-func="[Function]"></[element]>```
  *
- * @class AppsMallUI. NgValidFuncDirective
+ * @class AppsMallUI.NgValidFuncDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. NgValidFuncDirective
+ * @class AppsMallUI.NgValidFuncDirective
  * @constructor
  */
 

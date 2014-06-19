@@ -7,12 +7,12 @@
 'use strict';
 
 /**
- * @class AppsMallUI. AppModalInstanceController
+ * @class AppsMallUI.AppModalInstanceController
  * @static
  */ 
 
 /**
- * @class AppsMallUI. AppModalInstanceController
+ * @class AppsMallUI.AppModalInstanceController
  * @constructor
  * @param $scope {ChildScope} Child scope that provides context for this controller - [API Documentation](https://docs.angularjs.org/api/ng/type/$rootScope.Scope) 
  * @param $modal {Object} Angular service that creates modal instances - [API Documentation](http://angular-ui.github.io/bootstrap/#/modal) 

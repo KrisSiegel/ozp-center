@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. MarkdownTextAreaModule
+ * @submodule AppsMallUI.MarkdownTextAreaModule
  * @requires amlApp.directives
  * @requires Showdown
  */
@@ -18,12 +18,12 @@
  *
  * Usage: ```<markdown-text-area text="[String]"></markdown-text-area>```
  * 
- * @class AppsMallUI. MarkdownTextAreaDirective
+ * @class AppsMallUI.MarkdownTextAreaDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. MarkdownTextAreaDirective
+ * @class AppsMallUI.MarkdownTextAreaDirective
  * @constructor
  */
 

@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. AmlNavLinksModule
+ * @submodule AppsMallUI.AmlNavLinksModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<aml-nav-links show-help="true"></aml-nav-links>```
  * 
- * @class AppsMallUI. AmlNavLinksDirective
+ * @class AppsMallUI.AmlNavLinksDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. AmlNavLinksDirective
+ * @class AppsMallUI.AmlNavLinksDirective
  * @constructor
  * @param OzoneCommon {Object} an Angular-injected instance of {{#crossLink "OzoneCommonService"}}{{/crossLink}}
  * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}

@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. EditToggleModule
+ * @submodule AppsMallUI.EditToggleModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] class="edit-toggle"></[element]>```
  *
- * @class AppsMallUI. EditToggleDirective
+ * @class AppsMallUI.EditToggleDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. EditToggleDirective
+ * @class AppsMallUI.EditToggleDirective
  * @constructor
  */
 var EditToggleDirective = [function() {

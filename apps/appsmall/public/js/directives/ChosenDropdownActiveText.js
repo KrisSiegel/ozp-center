@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. ChosenDropdownActiveTextModule
+ * @submodule AppsMallUI.ChosenDropdownActiveTextModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] class="chosen-dropdown-active-text"></[element]>```
  *
- * @class AppsMallUI. ChosenDropdownActiveTextDirective
+ * @class AppsMallUI.ChosenDropdownActiveTextDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. ChosenDropdownActiveTextDirective
+ * @class AppsMallUI.ChosenDropdownActiveTextDirective
  * @constructor
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}

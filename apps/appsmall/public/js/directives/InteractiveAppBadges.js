@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. InteractiveAppBadgesModule
+ * @submodule AppsMallUI.InteractiveAppBadgesModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<interactive-app-badges app-object="[Object]"></interactive-app-badges>```
  * 
- * @class AppsMallUI. InteractiveAppBadgesDirective
+ * @class AppsMallUI.InteractiveAppBadgesDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. InteractiveAppBadgesDirective
+ * @class AppsMallUI.InteractiveAppBadgesDirective
  * @constructor
  */
 

@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. RequireUniqueModule
+ * @submodule AppsMallUI.RequireUniqueModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] require-unique="[Function]"></[element]>```
  *
- * @class AppsMallUI. RequireUniqueDirective
+ * @class AppsMallUI.RequireUniqueDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. RequireUniqueDirective
+ * @class AppsMallUI.RequireUniqueDirective
  * @constructor
  */
 

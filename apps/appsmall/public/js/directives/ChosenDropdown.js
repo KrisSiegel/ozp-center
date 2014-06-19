@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. ChosenDropdownModule
+ * @submodule AppsMallUI.ChosenDropdownModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] class="chosen-dropdown"></[element]>```
  *
- * @class AppsMallUI. ChosenDropdownDirective
+ * @class AppsMallUI.ChosenDropdownDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. ChosenDropdownDirective
+ * @class AppsMallUI.ChosenDropdownDirective
  * @constructor
  */
 var ChosenDropdownDirective = [function() {

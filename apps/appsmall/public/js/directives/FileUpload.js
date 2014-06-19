@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. FileUploadModule
+ * @submodule AppsMallUI.FileUploadModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -13,12 +13,12 @@
  * Usage: ```<file-upload app-object="[Object]" field="[String]" file-upload-id="[String]" field-name="[String]" min-height="[Number]" min-width="[Number]" max-height="[Number]" 
  *           max-width="[Number]" valid-heights="[Array]" valid-widths="[Array]" delete-button="true"></file-upload>```
  * 
- * @class AppsMallUI. FileUploadDirective
+ * @class AppsMallUI.FileUploadDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. FileUploadDirective
+ * @class AppsMallUI.FileUploadDirective
  * @constructor
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  */

@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. AppsmallSearchBarModule
+ * @submodule AppsMallUI.AppsmallSearchBarModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<appsmall-search-bar></appsmall-search-bar>```
  *
- * @class AppsMallUI. AppsmallSearchBarDirective
+ * @class AppsMallUI.AppsmallSearchBarDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. AppsmallSearchBarDirective
+ * @class AppsMallUI.AppsmallSearchBarDirective
  * @constructor
  */
 var AppsmallSearchBarDirective = [function() {

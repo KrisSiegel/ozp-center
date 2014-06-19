@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. RatingCountBarModule
+ * @submodule AppsMallUI.RatingCountBarModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<rating-count-bar app="[Object]"></rating-count-bar>```
  * 
- * @class AppsMallUI. RatingCountBarDirective
+ * @class AppsMallUI.RatingCountBarDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. RatingCountBarDirective
+ * @class AppsMallUI.RatingCountBarDirective
  * @constructor
  */
 

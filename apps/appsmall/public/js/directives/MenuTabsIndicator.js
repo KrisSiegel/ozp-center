@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. MenuTabsIndicatorModule
+ * @submodule AppsMallUI.MenuTabsIndicatorModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -13,12 +13,12 @@
  *
  * Usage: ```<menu-tabs-indicator></menu-tabs-indicator>```
  * 
- * @class AppsMallUI. MenuTabsIndicatorDirective
+ * @class AppsMallUI.MenuTabsIndicatorDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. MenuTabsIndicatorDirective
+ * @class AppsMallUI.MenuTabsIndicatorDirective
  * @constructor
  */
 

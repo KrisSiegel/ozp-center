@@ -3,7 +3,7 @@
  * Use this service when querying for a combined list of App and Component objects.
  *
  * @module AppsMallUI.servicesModule
- * @submodule AppsMallUI. AppOrComponentModule
+ * @submodule AppsMallUI.AppOrComponentModule
  * @requires amlApp.services
  */
 
@@ -13,12 +13,12 @@
  * Performs querying and data modification on either App or Component objects.
  * The 'type' object attribute is used to differentiate between apps and components.
  *
- * @class AppsMallUI. AppOrComponentService
+ * @class AppsMallUI.AppOrComponentService
  * @static
  */ 
 
 /**
- * @class AppsMallUI. AppOrComponentService
+ * @class AppsMallUI.AppOrComponentService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  * @param App {Object} an Angular-injected instance of {{#crossLink "AppService"}}{{/crossLink}}

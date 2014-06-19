@@ -2,18 +2,18 @@
  * Controller object for displaying tags on left panel of AppsMall home page
  *
  * @module AppsMallUI.controllersModule
- * @submodule AppsMallUI. TagControllerModule
+ * @submodule AppsMallUI.TagControllerModule
  */
 
 'use strict';
 
 /**
- * @class AppsMallUI. TagController
+ * @class AppsMallUI.TagController
  * @static
  */
 
 /**
- * @class AppsMallUI. TagController
+ * @class AppsMallUI.TagController
  * @constructor
  * @requires amlApp.controllers
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 

@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. AppBadgesModule
+ * @submodule AppsMallUI.AppBadgesModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -14,12 +14,12 @@
  *
  * ...where {{ArrayName}} denotes that the array name is being evaluated via Handlebars.
  *
- * @class AppsMallUI. AppBadgesDirective
+ * @class AppsMallUI.AppBadgesDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. AppBadgesDirective
+ * @class AppsMallUI.AppBadgesDirective
  * @constructor
  * @param Dropdown {Object} an Angular-injected instance of {{#crossLink "DropdownService"}}{{/crossLink}}
  */

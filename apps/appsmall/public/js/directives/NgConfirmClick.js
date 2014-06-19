@@ -2,7 +2,7 @@
  * 
  *
  * @module AppsMallUI.directivesModule
- * @submodule AppsMallUI. NgConfirmClickModule
+ * @submodule AppsMallUI.NgConfirmClickModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -15,12 +15,12 @@
  *
  * The Function in the confirmed-click attribute is actually a function call expression such as "save()"
  *
- * @class AppsMallUI. NgConfirmClickDirective
+ * @class AppsMallUI.NgConfirmClickDirective
  * @static
  */ 
 
 /**
- * @class AppsMallUI. NgConfirmClickDirective
+ * @class AppsMallUI.NgConfirmClickDirective
  * @constructor
  */
 

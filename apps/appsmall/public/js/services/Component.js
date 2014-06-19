@@ -2,7 +2,7 @@
  * Service object for performing CRUD operations on Component Mongo collection
  *
  * @module AppsMallUI.servicesModule
- * @submodule AppsMallUI. ComponentModule
+ * @submodule AppsMallUI.ComponentModule
  * @requires amlApp.services
  */
 
@@ -11,12 +11,12 @@
 /**
  * Performs querying and data modification on Component objects
  *
- * @class AppsMallUI. ComponentService
+ * @class AppsMallUI.ComponentService
  * @static
  */ 
 
 /**
- * @class AppsMallUI. ComponentService
+ * @class AppsMallUI.ComponentService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  */

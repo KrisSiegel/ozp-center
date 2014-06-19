@@ -2,19 +2,19 @@
  * Controller object for displaying the AppsMall home page main panel
  *
  * @module AppsMallUI.controllersModule
- * @submodule AppsMallUI. AppSubmissionControllerModule
+ * @submodule AppsMallUI.AppSubmissionControllerModule
  * @requires amlApp.controllers
  */
 
 'use strict';
 
 /**
- * @class AppsMallUI. AppSubmissionController
+ * @class AppsMallUI.AppSubmissionController
  * @static
  */ 
 
 /**
- * @class AppsMallUI. AppSubmissionController
+ * @class AppsMallUI.AppSubmissionController
  * @constructor
  * @param $scope {ChildScope} Child scope that provides context for this controller - [API Documentation](https://docs.angularjs.org/api/ng/type/$rootScope.Scope) 
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
