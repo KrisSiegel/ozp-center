@@ -196,11 +196,13 @@ describe('App Submission Controller', function() {
     });
 
     // APPSMALL-526: Organization should always update when creating a new app in App Submission
-    // RWP 5/15/14: FAILING TEST - NOT FIXED DUE TO CODE FREEZE
     it('should save Organization when creating a new app', function() {
         var appName = Ozone.mockHelper.getRandomString(12);
         var orgName = Ozone.mockHelper.getRandomString(12);
         var oldAppId, newAppId;
+
+        initializeControllerAndSetPersona();
+
         scope.currentApp.name = appName;
         scope.currentApp.shortname = appName;
         scope.currentOrgTag = orgName;
@@ -217,10 +219,44 @@ describe('App Submission Controller', function() {
 
         // re-load newly created app make sure Organization gets set to saved value
         initializeControllerAndSetPersona(null, appName);
+
         expect(scope.currentApp).toBeRecordWithIdField();
         expect(scope.currentApp.shortname).toEqual(appName);
         expect(scope.currentOrgTag).toEqual(orgName);
     });
 
+    it('should save Organization when editing an existing app', function() {
+        var appName = Ozone.mockHelper.getRandomString(12);
+        var orgName = Ozone.mockHelper.getRandomString(12);
+        var oldAppId, newAppId;
+
+        initializeControllerAndSetPersona();
+
+        scope.currentApp.name = appName;
+        scope.currentApp.shortname = appName;
+
+        scope.saveApp('save');
+        rootScope.$apply();
+
+        // re-load newly created app make sure Organization gets set to saved value
+        initializeControllerAndSetPersona(null, appName);
+        scope.currentOrgTag = orgName;
+
+        scope.saveApp('save');
+        rootScope.$apply();
+
+        appService.query({shortname: appName}).then(function(appList) {
+            expect(appList).toBeAnArrayOfSize(1);
+            expect(appList[0]).toBeRecordWithIdField();
+            oldAppId = appList[0]._id;
+        });
+        rootScope.$apply();
+
+        initializeControllerAndSetPersona(null, appName);
+
+        expect(scope.currentApp).toBeRecordWithIdField();
+        expect(scope.currentApp.shortname).toEqual(appName);
+        expect(scope.currentOrgTag).toEqual(orgName);
+    });
 
 });

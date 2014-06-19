@@ -470,7 +470,7 @@ describe('App Controller', function() {
             expect(scope.getSelectedTagNames()).toBeEmpty();
 
             // starting with name search, on substring of first app name (this should also match the corresponding tag)
-            var nameSearchString = (initialApps.first.name || '').substring(0,5);
+            var nameSearchString = initialApps.first.name;
 
             scope.getSearchResults(nameSearchString).then(function(results) {
                 selectedSearchStringObj = _.find(results, function(resultObj) { return resultObj.searchString; });
@@ -562,7 +562,7 @@ describe('App Controller', function() {
 
             // adding name search to tag search: name search is substring of first app name (this should also match the corresponding tag)
             // Search results should equal (tag search) AND (name search)
-            var nameSearchString = (initialApps.first.name || '').substring(0,5);
+            var nameSearchString = initialApps.first.name;
 
             scope.getSearchResults(nameSearchString).then(function(results) {
                 selectedSearchStringObj = _.find(results, function(resultObj) { return resultObj.searchString; });
