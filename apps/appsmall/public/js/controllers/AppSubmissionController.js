@@ -164,7 +164,6 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
                   orgTag = null;
                   $scope.currentOrgTag = null;
               }
-              console.log('+++ LOADED ORG TAG:' + $scope.currentOrgTag + ', tagsByType = ' + JSON.stringify(tagsByType));
               
               //set tags
               if(tags){
@@ -555,7 +554,6 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              var updateOrgTag = function() {
                  if (!_.isObject(orgTag)) {
                      if (!_.isEmpty($scope.currentOrgTag)) {
-                         //console.log('+++ CREATE NEW ORG TAG: s.cot = ' + $scope.currentOrgTag + ' ,s.a.cot=' + $scope.currentApp.currentOrgTag + ' ,sn = ' + JSON.stringify($scope.currentApp.shortname));
                          Tag.createNewTag($scope.currentOrgTag, '/AppsMall/Apps/' + $scope.currentApp.shortname, '/AppsMall/Organization/');
                      };
                  } else if (orgTag.tag != $scope.currentOrgTag) {
