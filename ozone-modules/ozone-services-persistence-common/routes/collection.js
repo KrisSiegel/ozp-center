@@ -1,3 +1,10 @@
+/**
+    Provides the common RESTful endpoints for Collection
+
+    @module Ozone.Services.PersistenceCommon
+    @class Ozone.Services.PersistenceCommon.Collection
+    @submodule Server-Side
+*/
 module.exports = exports = function (Ozone) {
     var baseURL = require('../constants').rest.url,
         routing = Ozone.Routing,
@@ -43,6 +50,13 @@ module.exports = exports = function (Ozone) {
         }
     };
 
+    /**
+        Allows PUT or POST operations to store data.
+
+        @method /api/persistence/store/:store/collection/:collection
+        @param {String} store the store to use
+        @param {String} collection the collection to use
+    */
     routing.post(baseURL + '/store/:store/collection/:collection', putPostCollection);
     routing.put(baseURL + '/store/:store/collection/:collection', putPostCollection);
 
@@ -73,6 +87,14 @@ module.exports = exports = function (Ozone) {
 
     };
 
+    /**
+        Allows GET operation to fetch data from the collection.
+
+        @method /api/persistence/store/:store/collection/:collection/:id
+        @param {String} store the store to use
+        @param {String} collection the collection to use
+        @param {String} id the id of the data to fetch
+    */
     routing.get(baseURL + '/store/:store/collection/:collection/:id', function (req, res, next) {
         // req.params.id is either an array or a string id
         var obj = Ozone.Utils.convertStringToObject(req.params.id);
@@ -124,6 +146,15 @@ module.exports = exports = function (Ozone) {
 
     });
 
+    /**
+        Allows DELETE of a specific file
+
+        @method /api/persistence/store/:store/collection/:collection
+        @param {String} store the store to use
+        @param {String} collection the collection to use
+        @param {String} id the id of the data to delete
+    */
+    // Remove Drives
     // Remove collections
     routing.delete(baseURL + '/store/:store/collection/:collection/:id', function (req, res, next) {
         var store = req.params.store,
