@@ -1,3 +1,6 @@
+/**
+	Helper methods for handling drives within the mock store
+*/
 var Ozone = null,
 	logger = null,
     mockHelper = require('./mockHelper');

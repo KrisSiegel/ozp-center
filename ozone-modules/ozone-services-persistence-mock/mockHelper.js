@@ -1,3 +1,6 @@
+/**
+	Helper methods for mock
+*/
 var Ozone = null,
 	logger = null,
     async = require('async'),
@@ -38,7 +41,7 @@ module.exports = {
         var elements = [];
         if (database[store] && database[store][collection]) {
 
-            if (ids == null) { // get all 
+            if (ids == null) { // get all
                 for (var key in database[store][collection]) {
                 	if (database[store][collection].hasOwnProperty(key)) {
                 		var obj = database[store][collection][key];
@@ -72,7 +75,7 @@ module.exports = {
         var elements = [];
         if (database[store] && database[store][collection]) {
 
-            if (Ozone.Utils.isEmptyObject(selector)) { // get all 
+            if (Ozone.Utils.isEmptyObject(selector)) { // get all
                 for (var key in database[store][collection]) {
                 	if (database[store][collection].hasOwnProperty(key)) {
                 		var obj = database[store][collection][key];
@@ -85,7 +88,7 @@ module.exports = {
         			if (database[store][collection].hasOwnProperty(id)) {
         				var obj = database[store][collection][id],
         					matched = true;
-        				
+
         				for (var field in selector) {
         					if (selector.hasOwnProperty(field)) {
         						var searchValue = selector[field];
@@ -93,7 +96,7 @@ module.exports = {
                         		if (searchValue['$regex']) {
                         			var options = searchValue['$options'] || 'i'; // case insensitive by default
                         			var pattern = new RegExp(searchValue['$regex'], options);
-                        			
+
                         			matched = matched && pattern.test(obj[field]);
                         		} else {
                         			matched = matched && obj[field] === selector[field];
@@ -124,7 +127,7 @@ module.exports = {
         var elements = [];
         if (database[store] && database[store][drive]) {
 
-            if (ids === null) { // get all 
+            if (ids === null) { // get all
                 for (var key in database[store][drive]) {
                 	if (database[store][drive].hasOwnProperty(key)) {
                 		var obj = database[store][drive][key];
@@ -159,32 +162,32 @@ module.exports = {
         if (database['appsmall'] !== undefined) {
         	logger.debug("database[appsmall][review]: " + JSON.stringify(database['appsmall']['review'], null ,3));
         }
-        
+
         // initialize database obj if undefined
         initDatabase(store, collection);
 
         var updatedResults = [];
         var context = this;
-        
+
         var setFunction = function (obj, cb) {
             logger.debug("mockHelper-->set-->obj: " + JSON.stringify(obj));
 
             var id = Object.keys(obj)[0],
             	idObj = Ozone.Utils.convertStringToObject(id);
-            
+
             logger.debug("mockHelper-->set-->id: " + id);
             if (Ozone.Utils.isObject(idObj)) {
             	logger.debug("mockHelper-->set-->id is an object, use it as a selector and query for it");
             	context.query(store, collection, idObj, null, function(err, results) {
             		logger.debug("mockHelper-->set-->query results: " + JSON.stringify(results));
-            		
+
             		var existingRecordId;
             		if (results.length === 1) {
             			existingRecordId = results[0]._id;
             		} else {
             			existingRecordId = 'null';
             		}
-            		
+
             		// save the field values from idObj (selector)
             		for (var key in idObj) {
             			if (idObj.hasOwnProperty(key)) {
@@ -196,12 +199,12 @@ module.exports = {
             } else {
             	process(id, null, obj, null, cb);
             }
-            
+
             function process(id, origId, obj, existingObj, cb) {
-            	var value = obj[id]; 
+            	var value = obj[id];
             	if (origId !== null) {
             		value = obj[origId];
-            		
+
             		// restore any old values that we didn't update
             		if (existingObj !== null) {
             			for (var key in existingObj) {
@@ -210,7 +213,7 @@ module.exports = {
                 			}
                 		}
             		}
-            		
+
             		// also put the field values from idObj (selector) that we saved
             		for (var key in obj) {
             			if (obj.hasOwnProperty(key) && key !== origId) {
@@ -233,16 +236,16 @@ module.exports = {
                     }
 
                     selectiveUpdate(value);
-                    
+
                     logger.debug("mockHelper-->set-->create-->using id: " + id);
-                    
+
                     // insert value to in-memory database object
                     database[store][collection][id] = value;
-                    
+
                     logger.debug("mockHelper-->set-->create-->in callback-->created " + JSON.stringify(value, null, 3));
                     //logger.debug("mockHelper-->set-->create-->database: " + JSON.stringify(database, null, 3));
 
-                    updatedResults.push(value); 
+                    updatedResults.push(value);
                     cb();
                 } else { // upserting
                     var obj = database[store][collection][id];
@@ -262,8 +265,8 @@ module.exports = {
 
                         database[store][collection][id] = value;
                     }
-                    
-                    updatedResults.push(value); 
+
+                    updatedResults.push(value);
                     cb();
                 }
             }
@@ -292,7 +295,7 @@ module.exports = {
         var setFileFunction = function (obj, cb) {
             var id = Object.keys(obj)[0],
                 value = obj[id];
-            
+
             // determine the file type if it's not specified
     		if (Ozone.Utils.isUndefinedOrNull(value.contentType)) {
     			var mimeType = require('mime').lookup(value.fileName);
@@ -300,7 +303,7 @@ module.exports = {
     			value.contentType = !Ozone.Utils.isUndefinedOrNull(mimeType) ? mimeType : 'binary/octet-stream';
     			logger.debug("mongoHelper-->setToGridFS-->contentType was not set, now set to: " + mimeType);
     		}
-    		
+
             logger.debug("mockHelper-->setFile-->going to set obj w/ id: " + id); //" value: " + JSON.stringify(value));
 
             if (id === 'null') {
@@ -380,7 +383,7 @@ module.exports = {
 
 var selectiveUpdate = function(value) {
 	var updated = false;
-	
+
 	if (value["$set"] !== undefined) {
     	var setValues = value["$set"];
     	for (key in setValues) {
@@ -403,6 +406,6 @@ var selectiveUpdate = function(value) {
     	delete value["$setOnInsert"];
     	updated = true;
     }
-    
+
     return updated;
 }

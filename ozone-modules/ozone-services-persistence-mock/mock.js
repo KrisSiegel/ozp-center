@@ -1,3 +1,6 @@
+/**
+    Provides the implementation for the PersistenceCommon interface.
+*/
 module.exports = (function (Ozone) {
     "use strict";
     var logger = Ozone.logger,

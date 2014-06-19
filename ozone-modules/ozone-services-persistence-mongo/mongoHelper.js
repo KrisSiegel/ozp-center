@@ -1,3 +1,6 @@
+/**
+	Mongo helper methods
+*/
 var logger = null,
 	Ozone = null,
 	mongo = require('mongodb'),

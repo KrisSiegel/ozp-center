@@ -1,3 +1,6 @@
+/**
+	Helper methods for dealing with collections within mongo
+*/
 var mongoHelper = require('./mongoHelper');
 
 module.exports = function (Ozone) {
