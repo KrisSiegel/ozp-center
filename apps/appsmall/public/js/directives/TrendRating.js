@@ -1,14 +1,14 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule TrendratingModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.TrendratingModule
  * @requires amlApp.directives
  */
 'use strict';
 
 /**
- * @class TrendratingDirective
+ * @class AppsMallUI.TrendratingDirective
  * @static
  */ 
 
@@ -17,7 +17,7 @@
  *
  * Usage: ```<trendrating srating="[Number]" dynrating="[{{Number}}]"></trendrating>```
  * 
- * @class TrendratingDirective
+ * @class AppsMallUI.TrendratingDirective
  * @constructor
  * @deprecated
  */

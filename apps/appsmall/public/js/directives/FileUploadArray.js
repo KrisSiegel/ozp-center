@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule FileUploadArrayModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.FileUploadArrayModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -15,12 +15,12 @@
 
 
  * 
- * @class FileUploadArrayDirective
+ * @class AppsMallUI.FileUploadArrayDirective
  * @static
  */ 
 
 /**
- * @class FileUploadArrayDirective
+ * @class AppsMallUI.FileUploadArrayDirective
  * @constructor
  * @param {Object} $compile
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 

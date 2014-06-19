@@ -1,5 +1,7 @@
+/**
+	Helper methods for dealing with drives within mongo
+*/
 var mongoHelper = require('./mongoHelper');
-
 
 module.exports = function (Ozone) {
 	var logger = Ozone.logger;
@@ -70,7 +72,7 @@ module.exports = function (Ozone) {
                     logger.error("driveImp.remove()-->error: " + err);
                     return callback(err);
                 }
-                
+
                 callback(err, obj);
             });
         }

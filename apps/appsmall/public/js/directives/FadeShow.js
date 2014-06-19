@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule FadeShowModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.FadeShowModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] fade-show="[Boolean]"></[element]>```
  *
- * @class FadeShowDirective
+ * @class AppsMallUI.FadeShowDirective
  * @static
  */ 
 
 /**
- * @class FadeShowDirective
+ * @class AppsMallUI.FadeShowDirective
  * @constructor
  */
 

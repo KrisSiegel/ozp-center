@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule ResizingModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.ResizingModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] class="resizing"></[element]>```
  *
- * @class ResizingDirective
+ * @class AppsMallUI.ResizingDirective
  * @static
  */ 
 
 /**
- * @class ResizingDirective
+ * @class AppsMallUI.ResizingDirective
  * @constructor
  */
 var ResizingDirective = [function() {

@@ -1,8 +1,8 @@
 /**
  * Service object for handling file uploads and retrieving URLs of previously uploaded files
  *
- * @module servicesModule
- * @submodule FileUploadModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI.FileUploadModule
  * @requires amlApp.services
  */
 
@@ -16,12 +16,12 @@ var defaultImageTypes = {
 };
 
 /**
- * @class FileUploadService
+ * @class AppsMallUI.FileUploadService
  * @static
  */ 
 
 /**
- * @class FileUploadService
+ * @class AppsMallUI.FileUploadService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  */

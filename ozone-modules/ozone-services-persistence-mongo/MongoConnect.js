@@ -1,3 +1,6 @@
+/**
+	Provides basic mongo connectivity through connection strings (will automatically generate one if not supplied).
+*/
 var Ozone = null,
 	logger = null,
 	mongo = require('mongodb'),

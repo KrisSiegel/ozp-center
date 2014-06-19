@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule ResultClickModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.ResultClickModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -13,12 +13,12 @@
  * Usage: ```<[element] result-click></[element]>```
  * Alternate Usage: ```<[element] class="result-click"></[element]>```
  *
- * @class ResultClickDirective
+ * @class AppsMallUI.ResultClickDirective
  * @static
  */ 
 
 /**
- * @class ResultClickDirective
+ * @class AppsMallUI.ResultClickDirective
  * @constructor
  */
 

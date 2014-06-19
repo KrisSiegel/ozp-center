@@ -1,4 +1,10 @@
+/**
+	Implements the redis session store provider; simply sets up the application engine (express.js) to use redis's session store.
 
+	@module Ozone.Sessions.Redis
+	@class Ozone.Sessions.Redis
+	@submodule Server-Side
+*/
 module.exports = (function (callback, Ozone) {
 	var express = require("express");
 	var RedisStore = require("connect-redis")(express);

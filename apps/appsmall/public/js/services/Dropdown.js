@@ -1,8 +1,8 @@
 /**
  * Service object for populating dropdown lists with default data
  *
- * @module servicesModule
- * @submodule DropdownModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI.DropdownModule
  * @requires amlApp.services
  */
 
@@ -10,12 +10,12 @@
 
 /**
  * Contains static lists used to populate dropdowns; currently empty.
- * @class DropdownService
+ * @class AppsMallUI.DropdownService
  * @static
  */ 
 
 /**
- * @class DropdownService
+ * @class AppsMallUI.DropdownService
  * @constructor
  */
 var DropdownService = [function() { return {}; }];

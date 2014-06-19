@@ -1,18 +1,18 @@
 /**
  * Controller object for displaying the AppsMall home page main panel
  *
- * @module ImageModalInstanceController
+ * @module AppsMallUI.ImageModalInstanceController
  */
 
 'use strict';
 
 /**
- * @class ImageModalInstanceController
+ * @class AppsMallUI.ImageModalInstanceController
  * @static
  */ 
 
 /**
- * @class ImageModalInstanceController
+ * @class AppsMallUI.ImageModalInstanceController
  * @constructor
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
  * @param $scope {ChildScope} Child scope that provides context for this controller - [API Documentation](https://docs.angularjs.org/api/ng/type/$rootScope.Scope) 

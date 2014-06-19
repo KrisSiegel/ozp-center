@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule SlideableModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.SlideableModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -13,12 +13,12 @@
  *
  * Usage: ```<[element] class="slideable" duration="[Int]ms" easing="ease-in-out"></[element]>```
  *
- * @class SlideableDirective
+ * @class AppsMallUI.SlideableDirective
  * @static
  */ 
 
 /**
- * @class SlideableDirective
+ * @class AppsMallUI.SlideableDirective
  * @constructor
  */
 
