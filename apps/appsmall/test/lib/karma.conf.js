@@ -83,7 +83,7 @@ module.exports = function(config) {
             'apps/appsmall/test/controllers/**/*.js',
             'apps/appsmall/test/directives/**/*.js',
             'apps/appsmall/test/services/**/*.js',
-            // 'apps/appsmall/test/controllers/AppModalInstanceControllerSpec.js'
+            // 'apps/appsmall/test/controllers/AppSubmissionControllerSpec.js'
         ],
 
         autoWatch : true,

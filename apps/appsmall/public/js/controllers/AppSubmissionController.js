@@ -104,7 +104,11 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              }
          };
 
-         // load persona and tag data from server into local scope, to be called after loading app data
+         /**
+          * Load persona and tag data from server into local scope, to be called after loading app data
+          * @method loadTagAndPersonaData
+          * @private
+          */
          var loadTagAndPersonaData = function() {
              $q.all([
                  Persona.getCurrentPersonaData(),
@@ -136,10 +140,53 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              });
          };
 
+         /**
+          * Loads tags for the selected app.
+          * @method initializeTagAndPersonaData
+          * @param tagObjects {Array} an array of Tag objects to be loaded
+          * @private
+          */
+         var initializeTagAndPersonaData = function(tagObjects) {
+              $scope.initialTagObjects = tagObjects;
+              var tagsByType = _.groupBy(tagObjects, function(tag){
+                  return tag.topic;
+              });
+              var orgs = tagsByType['/AppsMall/Organization/'];
+              var tags = tagsByType['/AppsMall/App/'];
+              var cats = tagsByType['/AppsMall/Category/'];
+              //set organization
+              if(orgs){
+                  if (orgs.length > 1)
+                      Ozone.logger.warning("App " + appShortnameFromUrl + " has more than one organization associated with it");
+                  orgTag = orgs[0];
+                  $scope.currentOrgTag = orgTag.tag;
+              } else {
+                  orgTag = null;
+                  $scope.currentOrgTag = null;
+              }
+              console.log('+++ LOADED ORG TAG:' + $scope.currentOrgTag + ', tagsByType = ' + JSON.stringify(tagsByType));
+              
+              //set tags
+              if(tags){
+                  $scope.selectedTags = _.chain(tags).pluck('tag').uniq().value();
+              } else {
+                  $scope.selectedTags = []
+              }
 
+              //set categories
+              if(cats){
+                  $scope.selectedCategories = _.chain(cats).pluck('tag').uniq().value();
+              } else {
+                  $scope.selectedCategories = [];
+              }
+
+              loadTagAndPersonaData();
+         };
+
+         // load all data: apps, tags, and persona
          if (_.isEmpty(appShortnameFromUrl)) {
              $scope.currentApp = defaultAppValues;
-             loadTagAndPersonaData();
+             initializeTagAndPersonaData([]);
          }
          else {
              AppOrComponent.query({shortname: appShortnameFromUrl}).then(function(appList) {
@@ -158,41 +205,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
                      $scope.currentApp = tmpApp;
 
                      //set tags for app
-                     Tag.getTags({ uri: AppOrComponent.getUri($scope.currentApp) }).then(function(tagObjects) {
-                         $scope.initialTagObjects = tagObjects;
-                         var tagsByType = _.groupBy(tagObjects, function(tag){
-                             return tag.topic;
-                         });
-                         var orgs = tagsByType['/AppsMall/Organization/'];
-                         var tags = tagsByType['/AppsMall/App/'];
-                         var cats = tagsByType['/AppsMall/Category/'];
-                         //set organization
-                         if(orgs){
-                             if (orgs.length > 1)
-                                 Ozone.logger.warning("App " + appShortnameFromUrl + " has more than one organization associated with it");
-                             orgTag = orgs[0];
-                             $scope.currentOrgTag = orgTag.tag;
-                         } else {
-                             orgTag = null;
-                             $scope.currentOrgTag = null;
-                         }
-
-                         //set tags
-                         if(tags){
-                             $scope.selectedTags = _.chain(tags).pluck('tag').uniq().value();
-                         } else {
-                             $scope.selectedTags = []
-                         }
-
-                         //set categories
-                         if(cats){
-                             $scope.selectedCategories = _.chain(cats).pluck('tag').uniq().value();
-                         } else {
-                             $scope.selectedCategories = [];
-                         }
-
-                         loadTagAndPersonaData();
-                     });
+                     return Tag.getTags({ uri: AppOrComponent.getUri($scope.currentApp) }).then(initializeTagAndPersonaData);
                  }
              });
          }
@@ -216,6 +229,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          });
 
      } // end initializeController()
+
 
      /**
       * Gets the CSS class used to visually display workflow state
@@ -508,7 +522,6 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
 
              // saving app to server
              AppOrComponent.save(getSafeClonedApp($scope.currentApp)).then(function(savedAppData) {
-                 console.log('+++SAVED APP:' + JSON.stringify(savedAppData));
                  if ((savedAppData || {}).error) {
                      $scope.setStatusMessage({errorMessage: savedAppData.error});
                  } else {
@@ -529,21 +542,6 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              }, function(data, status, headers, config) {
                  $scope.setStatusMessage({errorMessage: data});
              });
-
-             // Create or update Organization tag for this app
-             if (!_.isObject(orgTag)) {
-                 if (!_.isEmpty($scope.currentOrgTag)) {
-                     Tag.createNewTag($scope.currentApp.currentOrgTag, '/AppsMall/Apps/' + $scope.currentApp.shortname, '/AppsMall/Organization/');
-                 };
-             } else if (orgTag.tag != $scope.currentOrgTag) {
-                 if(_.isEmpty($scope.currentOrgTag)) return; //cannot save an app such that there is no orgTag if it had one.
-                 // organization has been changed on the app
-                 orgTag.tag = $scope.currentOrgTag;
-                 Tag.updateTag(orgTag).then(function (tagUpdate) {
-                     Ozone.logger.info("tag updated");
-                     orgTag = tagUpdate[0];
-                 });
-             };
          }
 
          /**
@@ -552,6 +550,25 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
           * @param callback {Function} Callback to get invoked after all tags have been successfully updated and/or deleted
           */
          $scope.saveTags = function(callback) {
+
+             // Create or update Organization tag for this app
+             var updateOrgTag = function() {
+                 if (!_.isObject(orgTag)) {
+                     if (!_.isEmpty($scope.currentOrgTag)) {
+                         //console.log('+++ CREATE NEW ORG TAG: s.cot = ' + $scope.currentOrgTag + ' ,s.a.cot=' + $scope.currentApp.currentOrgTag + ' ,sn = ' + JSON.stringify($scope.currentApp.shortname));
+                         Tag.createNewTag($scope.currentOrgTag, '/AppsMall/Apps/' + $scope.currentApp.shortname, '/AppsMall/Organization/');
+                     };
+                 } else if (orgTag.tag != $scope.currentOrgTag) {
+                     if(_.isEmpty($scope.currentOrgTag)) return; //cannot save an app such that there is no orgTag if it had one.
+                     // organization has been changed on the app
+                     orgTag.tag = $scope.currentOrgTag;
+                     Tag.updateTag(orgTag).then(function (tagUpdate) {
+                         Ozone.logger.info("tag updated");
+                         orgTag = tagUpdate[0];
+                     });
+                 };
+             };
+
              var tagsByType = _.groupBy($scope.initialTagObjects, function(tag){
                  return tag.topic;
              });
@@ -612,7 +629,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
                  tasks.push({fn: Tag.updateTags, args: [updateList]})
              }
 
-             $q.all(_.map(tasks, function(task){return task.fn.apply(this, task.args)})).then(deleteTagsFunction);
+             $q.all(_.map(tasks, function(task){return task.fn.apply(this, task.args)})).then(updateOrgTag).then(deleteTagsFunction);
          }
 
          /**
