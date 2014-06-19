@@ -1,3 +1,6 @@
+/**
+    The unit tests for the RESTful endpoint exposed by the example service.
+*/
 module.exports = (function (Ozone) {
     describe("ozone-example-module", function (done) {
         var url = "http://" + Ozone.config().getServerProperty("host");

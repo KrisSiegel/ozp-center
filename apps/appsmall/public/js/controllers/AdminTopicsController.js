@@ -1,20 +1,20 @@
 /**
  * Controller object for displaying tags on left panel of AppsMall home page
  *
- * @module controllersModule
- * @submodule AdminTopicsControllerModule
+ * @module AppsMallUI.controllersModule
+ * @submodule AppsMallUI.AdminTopicsControllerModule
  * @requires amlApp.controllers
  */
 
 'use strict';
 
 /**
- * @class AdminTopicsController
+ * @class AppsMallUI.AdminTopicsController
  * @static
  */ 
 
 /**
- * @class AdminTopicsController
+ * @class AppsMallUI.AdminTopicsController
  * @constructor
  * @param $scope {ChildScope} Child scope that provides context for this controller - [API Documentation](https://docs.angularjs.org/api/ng/type/$rootScope.Scope) 
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 

@@ -1,21 +1,21 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule AppVersionModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.AppVersionModule
  * @requires amlApp.directives
  */
 'use strict';
 
 /**
  * Assigns version number passed in to the DOM node text.
- * @class AppVersionDirective
+ * @class AppsMallUI.AppVersionDirective
  * @deprecated
  * @static
  */ 
 
 /**
- * @class AppVersionDirective
+ * @class AppsMallUI.AppVersionDirective
  * @constructor
  * @param {Number} version
  */

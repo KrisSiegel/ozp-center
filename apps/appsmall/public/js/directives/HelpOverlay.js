@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule HelpOverlayModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.HelpOverlayModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<help-overlay></help-overlay>```
  * 
- * @class HelpOverlayDirective
+ * @class AppsMallUI.HelpOverlayDirective
  * @static
  */ 
 
 /**
- * @class HelpOverlayDirective
+ * @class AppsMallUI.HelpOverlayDirective
  * @constructor
  * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
  */

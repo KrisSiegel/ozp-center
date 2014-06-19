@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule SlideToggleModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.SlideToggleModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] slide-toggle="[String]" expanded="[Boolean]"></[element]>```
  *
- * @class SlideToggleDirective
+ * @class AppsMallUI.SlideToggleDirective
  * @static
  */ 
 
 /**
- * @class SlideToggleDirective
+ * @class AppsMallUI.SlideToggleDirective
  * @constructor
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
  */

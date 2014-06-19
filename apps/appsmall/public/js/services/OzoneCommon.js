@@ -1,20 +1,20 @@
 /**
  * Service object for accessing Ozone API settings
  *
- * @module servicesModule
- * @submodule OzoneCommonModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI.OzoneCommonModule
  * @requires amlApp.services
  */
 
 'use strict';
 
 /**
- * @class OzoneCommonService
+ * @class AppsMallUI.OzoneCommonService
  * @static
  */ 
 
 /**
- * @class OzoneCommonService
+ * @class AppsMallUI.OzoneCommonService
  * @constructor
  */
 var OzoneCommonService = [function() {

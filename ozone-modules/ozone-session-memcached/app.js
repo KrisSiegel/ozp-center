@@ -1,4 +1,10 @@
+/**
+	Implements the memcached session store provider; simply sets up the application engine (express.js) to use memcached's session store.
 
+	@module Ozone.Sessions.Memcached
+	@class Ozone.Sessions.Memcached
+	@submodule Server-Side
+*/
 module.exports = (function (callback, Ozone) {
 	var express = require("express");
 	var MemcachedStore = require('connect-memcached')(express);

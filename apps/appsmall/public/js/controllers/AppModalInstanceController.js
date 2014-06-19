@@ -1,18 +1,18 @@
 /**
  * Controller object for displaying the AppsMall home page main panel
  *
- * @module AppModalInstanceController
+ * @module AppsMallUI.AppModalInstanceController
  */
 
 'use strict';
 
 /**
- * @class AppModalInstanceController
+ * @class AppsMallUI.AppModalInstanceController
  * @static
  */ 
 
 /**
- * @class AppModalInstanceController
+ * @class AppsMallUI.AppModalInstanceController
  * @constructor
  * @param $scope {ChildScope} Child scope that provides context for this controller - [API Documentation](https://docs.angularjs.org/api/ng/type/$rootScope.Scope) 
  * @param $modal {Object} Angular service that creates modal instances - [API Documentation](http://angular-ui.github.io/bootstrap/#/modal) 

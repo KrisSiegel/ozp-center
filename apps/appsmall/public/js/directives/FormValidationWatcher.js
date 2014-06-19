@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule FormValidationWatcherModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.FormValidationWatcherModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<form-validation-watcher></form-validation-watcher>```
  * 
- * @class FormValidationWatcherDirective
+ * @class AppsMallUI.FormValidationWatcherDirective
  * @static
  */ 
 
 /**
- * @class FormValidationWatcherDirective
+ * @class AppsMallUI.FormValidationWatcherDirective
  * @constructor
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
  */

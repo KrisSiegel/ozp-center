@@ -45,5 +45,5 @@
  * * Difference between Angular scope and directive scope: (http://www.thinkster.io/angularjs/aw9kWmdnik/angularjs-scope-vs-scope)
  *
  *
- * @module AngularScope
+ * @module AppsMallUI.AngularScope
  */

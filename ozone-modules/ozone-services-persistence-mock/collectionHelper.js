@@ -1,3 +1,6 @@
+/**
+	Helper methods for handling collections within the mock store
+*/
 var Ozone = null,
 	logger = null,
     mockHelper = require('./mockHelper');

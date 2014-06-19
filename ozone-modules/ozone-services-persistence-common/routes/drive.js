@@ -1,3 +1,10 @@
+/**
+    Provides the common RESTful endpoints for Drive
+
+    @module Ozone.Services.PersistenceCommon
+    @class Ozone.Services.PersistenceCommon.Drive
+    @submodule Server-Side
+*/
 module.exports = exports = function (Ozone) {
     var baseURL = require('../constants').rest.url,
         routing = Ozone.Routing,
@@ -60,6 +67,13 @@ module.exports = exports = function (Ozone) {
     	});
     };
 
+    /**
+        Allows PUT or POST operations to store data.
+
+        @method /api/persistence/store/:store/drive/:drive
+        @param {String} store the store to use
+        @param {String} drive the drive to use
+    */
     routing.post(baseURL + '/store/:store/drive/:drive', putPostDrive);
     routing.put(baseURL + '/store/:store/drive/:drive', putPostDrive);
 
@@ -119,6 +133,14 @@ module.exports = exports = function (Ozone) {
 
     };
 
+    /**
+        Allows GET operation to fetch blob from the drive.
+
+        @method /api/persistence/store/:store/drive/:drive/:id
+        @param {String} store the store to use
+        @param {String} drive the drive to use
+        @param {String} id the id of the blob to fetch
+    */
     routing.get(baseURL + '/store/:store/drive/:drive/:id', function (req, res, next) {
     	// req.params.id is either an array or a string id
     	var obj = Ozone.Utils.convertStringToObject(req.params.id);
@@ -132,6 +154,14 @@ module.exports = exports = function (Ozone) {
     });
 
 
+    /**
+        Allows DELETE of a specific file
+
+        @method /api/persistence/store/:store/drive/:drive
+        @param {String} store the store to use
+        @param {String} drive the drive to use
+        @param {String} id the id of the blob to delete
+    */
     // Remove Drives
     routing.delete(baseURL + '/store/:store/drive/:drive/:id', function (req, res, next) {
     	var store = req.params.store,

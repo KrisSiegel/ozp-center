@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule AppDroppableModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.AppDroppableModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] app-droppable></[element]>```
  *
- * @class AppDroppableDirective
+ * @class AppsMallUI.AppDroppableDirective
  * @static
  */ 
 
 /**
- * @class AppDroppableDirective
+ * @class AppsMallUI.AppDroppableDirective
  * @constructor
  */
 var AppDroppableDirective = [function() {

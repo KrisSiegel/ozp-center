@@ -1,3 +1,10 @@
+/**
+	Provides some basic Apps Mall services. Note: this module has a bit of old code from the previous maintainers that hasn't been prioritized for clean-up; this should be done at some point in the near future to maintain good maintainability.
+
+	@module AppsMall.Services.AppsMall
+	@class AppsMall.Services.AppsMall
+	@submodule Server-Side
+*/
 var PORT = 3000,
 	logger;
 
@@ -100,28 +107,3 @@ function amlService (callback, Ozone) {
 };
 
 module.exports = amlService;
-
-// starting up web server on specified port
-if (require.main === module) {
-	var webServer = require('./ozoneServer'),
-		app = webServer.init(),
-		Ozone = require('../ozone-api')(app),
-		logger = Ozone.logger;
-
-    Ozone.configuration = {
-        "Persistence": {
-            "Module": "ozone-services-persistence-mongo",
-            "Server": "localhost",
-            "Port": 27017
-        }
-    };
-
-    // also import Persistence Services when running as stand-alone here, since it's not running as part of the Container.
-    require('ozone-services-persistence')(function () {
-    	amlService(function() {
-    		// Kick start REST controller process.
-    	    app.listen(PORT);
-    	    logger.info('AML Node.js API on port ' + PORT + '.');
-    	});
-    });
-};

@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule StarRatingModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.StarRatingModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<star-rating static-rating="[Number]" num-stars="[{{Number}}]"></star-rating>```
  * 
- * @class StarRatingDirective
+ * @class AppsMallUI.StarRatingDirective
  * @static
  */ 
 
 /**
- * @class StarRatingDirective
+ * @class AppsMallUI.StarRatingDirective
  * @constructor
  */
 

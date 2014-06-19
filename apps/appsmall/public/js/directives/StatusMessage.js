@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule StatusMessageModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI.StatusMessageModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -13,12 +13,12 @@
  * Usage: ```<status-message success-message=[{{String}}] error-message=[{{String}}] 
  *                           highlighted="true" highlighted-parent-class="container-class"></status-message>```
  * 
- * @class StatusMessageDirective
+ * @class AppsMallUI.StatusMessageDirective
  * @static
  */ 
 
 /**
- * @class StatusMessageDirective
+ * @class AppsMallUI.StatusMessageDirective
  * @constructor
  */
 

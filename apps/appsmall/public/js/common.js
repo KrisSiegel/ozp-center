@@ -1,7 +1,7 @@
 /**
  * Provides common utility functions for application.
  *
- * @module common
+ * @module AppsMallUI.common
  */
 var common = (function () {
 
