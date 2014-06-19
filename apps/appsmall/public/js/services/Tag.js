@@ -1,20 +1,20 @@
 /**
  * Service object for performing simple CRUD operations and advanced searches on the Tag Mongo collection
  *
- * @module servicesModule
- * @submodule TagModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI. TagModule
  * @requires amlApp.services
  */
 
 'use strict';
 
 /**
- * @class TagService
+ * @class AppsMallUI. TagService
  * @static
  */ 
 
 /**
- * @class TagService
+ * @class AppsMallUI. TagService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}

@@ -57,7 +57,7 @@ var amlApp = angular.module('amlApp', ['amlApp.filters', 'amlApp.services', 'aml
 /**
  * Object for managing Angular controllers
  *
- * @module controllersModule
+ * @module AppsMallUI.controllersModule
  * @requires amlApp.controllers
  */
 var controllersModule = angular.module('amlApp.controllers', ['ui.bootstrap']);
@@ -65,7 +65,7 @@ var controllersModule = angular.module('amlApp.controllers', ['ui.bootstrap']);
 /**
  * Object for managing Angular services
  *
- * @module servicesModule
+ * @module AppsMallUI.servicesModule
  * @requires amlApp.services
  */
 var servicesModule = angular.module('amlApp.services', ['ngResource']).value('version', '0.1');
@@ -73,9 +73,7 @@ var servicesModule = angular.module('amlApp.services', ['ngResource']).value('ve
 /**
  * Object for managing Angular directives
  *
- * @module directivesModule
+ * @module AppsMallUI.directivesModule
  * @requires amlApp.directives
  */
 var directivesModule = angular.module('amlApp.directives', []);
-
-

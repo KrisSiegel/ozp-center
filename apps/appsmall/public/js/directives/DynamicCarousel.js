@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule DynamicCarouselModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI. DynamicCarouselModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] dynamic-carousel="[Boolean]" num-items="[Number]" is-auto="[Boolean]" on-image-click="[Function]" width=[Int] height=[Int] timeout=[Int]></[element]>```
  *
- * @class DynamicCarouselDirective
+ * @class AppsMallUI. DynamicCarouselDirective
  * @static
  */ 
 
 /**
- * @class DynamicCarouselDirective
+ * @class AppsMallUI. DynamicCarouselDirective
  * @constructor
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
  */

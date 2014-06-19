@@ -1,20 +1,20 @@
 /**
  * 
  *
- * @module servicesModule
- * @submodule AppSelectionMessageModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI. AppSelectionMessageModule
  * @requires amlApp.services
  */
 
 'use strict';
 
 /**
- * @class AppSelectionMessageService
+ * @class AppsMallUI. AppSelectionMessageService
  * @static
  */ 
 
 /**
- * @class AppSelectionMessageService
+ * @class AppsMallUI. AppSelectionMessageService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}

@@ -3,7 +3,7 @@
 /**
  * Internal documentation for AngularJS quirks that could use additional documentation
  *
- * @module AngularMiscellaneous
+ * @module AppsMallUI.AngularMiscellaneous
  */
 
 /**
@@ -22,7 +22,7 @@
  * The then() method typically takes one or two parameters: the first parameter is a Function object that gets called on success, and
  * the second parameter is a Function object that gets called if the async call throws an error. (such as any HTTP status code 400 or greater)
  *
- * @class PromiseObject
+ * @class AppsMallUI. PromiseObject
  */
 var PromiseObject = {};
 

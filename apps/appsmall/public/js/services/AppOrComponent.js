@@ -2,8 +2,8 @@
  * Service object that acts as intermediaries for services that perform CRUD operations on either App or Collection Mongo collections.
  * Use this service when querying for a combined list of App and Component objects.
  *
- * @module servicesModule
- * @submodule AppOrComponentModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI. AppOrComponentModule
  * @requires amlApp.services
  */
 
@@ -13,12 +13,12 @@
  * Performs querying and data modification on either App or Component objects.
  * The 'type' object attribute is used to differentiate between apps and components.
  *
- * @class AppOrComponentService
+ * @class AppsMallUI. AppOrComponentService
  * @static
  */ 
 
 /**
- * @class AppOrComponentService
+ * @class AppsMallUI. AppOrComponentService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  * @param App {Object} an Angular-injected instance of {{#crossLink "AppService"}}{{/crossLink}}

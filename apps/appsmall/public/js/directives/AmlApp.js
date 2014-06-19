@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule AmlAppModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI. AmlAppModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -22,12 +22,12 @@ function resetModalTabs() {
  *
  * Usage: ```<amlapp no-featured="false" featured-banner="false" no-click="false"></amlapp>```
  *
- * @class AmlAppDirective
+ * @class AppsMallUI. AmlAppDirective
  * @static
  */ 
 
 /**
- * @class AmlAppDirective
+ * @class AppsMallUI. AmlAppDirective
  * @constructor
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}

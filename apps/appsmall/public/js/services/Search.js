@@ -1,20 +1,20 @@
 /**
  * Service object for performing search operations on apps, components, and tags.
  *
- * @module servicesModule
- * @submodule SearchModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI. SearchModule
  * @requires amlApp.services
  */
 
 'use strict';
 
 /**
- * @class SearchService
+ * @class AppsMallUI. SearchService
  * @static
  */ 
 
 /**
- * @class SearchService
+ * @class AppsMallUI. SearchService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}

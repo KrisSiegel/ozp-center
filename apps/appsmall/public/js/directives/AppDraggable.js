@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule AppDraggableModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI. AppDraggableModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -13,12 +13,12 @@
  *
  * Usage: ```<[element] app-draggable></[element]>```, 
  *
- * @class AppDraggableDirective
+ * @class AppsMallUI. AppDraggableDirective
  * @static
  */ 
 
 /**
- * @class AppDraggableDirective
+ * @class AppsMallUI. AppDraggableDirective
  * @constructor
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  */

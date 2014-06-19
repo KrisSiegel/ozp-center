@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule SetModalDimensionsModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI. SetModalDimensionsModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<[element] set-modal-dimensions modal-height="[Number]" modal-width="[Number]"></[element]>```
  *
- * @class SetModalDimensionsDirective
+ * @class AppsMallUI. SetModalDimensionsDirective
  * @static
  */ 
 
 /**
- * @class SetModalDimensionsDirective
+ * @class AppsMallUI. SetModalDimensionsDirective
  * @constructor
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
  */

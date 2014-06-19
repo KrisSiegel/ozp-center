@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module directivesModule
- * @submodule DateDropdownsModule
+ * @module AppsMallUI.directivesModule
+ * @submodule AppsMallUI. DateDropdownsModule
  * @requires amlApp.directives
  */
 'use strict';
@@ -12,12 +12,12 @@
  *
  * Usage: ```<date-dropdowns app="[app-name]" date-field="[app-date-field]"></date-dropdowns>```
  * 
- * @class DateDropdownsDirective
+ * @class AppsMallUI. DateDropdownsDirective
  * @static
  */ 
 
 /**
- * @class DateDropdownsDirective
+ * @class AppsMallUI. DateDropdownsDirective
  * @constructor
  * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
  * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}

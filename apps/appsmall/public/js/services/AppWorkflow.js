@@ -1,8 +1,8 @@
 /**
  * 
  *
- * @module servicesModule
- * @submodule AppWorkflowModule
+ * @module AppsMallUI.servicesModule
+ * @submodule AppsMallUI. AppWorkflowModule
  * @requires amlApp.services
  */
 
@@ -42,12 +42,12 @@ var workflowStateActions = {
 var redHighlighted = ["Action Needed"];
 
 /**
- * @class AppWorkflowService
+ * @class AppsMallUI. AppWorkflowService
  * @static
  */ 
 
 /**
- * @class AppWorkflowService
+ * @class AppsMallUI. AppWorkflowService
  * @constructor
  */
 
