@@ -1,4 +1,10 @@
+/**
+	Implements the in-memory session store provider; simply sets up the application engine (express.js) to use express.js's default session store.
 
+	@module Ozone.Sessions.Memory
+	@class Ozone.Sessions.Memory
+	@submodule Server-Side
+*/
 module.exports = (function (callback, Ozone) {
 	var express = require("express");
 
