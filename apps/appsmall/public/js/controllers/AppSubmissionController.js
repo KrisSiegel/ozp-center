@@ -480,6 +480,8 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              var isPublishOrSubmitAction = _.contains(['publish', 'submit'], (workflowAction || '').toLowerCase());
              var isValidForWorkflowState = isPublishOrSubmitAction ? _($scope.tabValidationState).values().all() : true;
 
+console.log(' ++++++++++++++++ TAB VALIDATION = ' + JSON.stringify($scope.tabValidationState));
+
              // perform basic save validation on app name and shortname, regardless of workflow state;
              // also checks for full-field validation if submitting or publishing.
              // If valid, set workflow state for app based on action type passed in.

@@ -65,6 +65,10 @@ describe('App Submission Controller', function() {
                 scope.initializeController();
             }
             rootScope.$apply();
+
+            // stubbing close() method that normally manipulates $window.location and messes up tests 
+            scope.close = function() { return true; };
+
         });
     }
 
@@ -246,6 +250,7 @@ describe('App Submission Controller', function() {
         rootScope.$apply();
 
         appService.query({shortname: appName}).then(function(appList) {
+            console.log('QUERY RESULTS: ' + JSON.stringify(appList));
             expect(appList).toBeAnArrayOfSize(1);
             expect(appList[0]).toBeRecordWithIdField();
             oldAppId = appList[0]._id;
@@ -258,5 +263,85 @@ describe('App Submission Controller', function() {
         expect(scope.currentApp.shortname).toEqual(appName);
         expect(scope.currentOrgTag).toEqual(orgName);
     });
+
+    it('should not publish apps that do not contain all required fields', function() {
+        initializeControllerAndSetPersona();
+        
+        var appName = Ozone.mockHelper.getRandomString(12);
+        var oldAppId, newAppId;
+        scope.currentApp.name = appName;
+        scope.currentApp.shortname = appName;
+
+        scope.saveApp('publish');
+        rootScope.$apply();
+
+        var allAppsList;
+        appService.query().then(function(appList) {
+            allAppsList = appList;
+        });
+        rootScope.$apply();
+
+        expect(allAppsList).toBeAnArrayOfSize(preLoadedIds.Apps.length);
+
+        appService.query({shortname: appName}).then(function(appList) {
+            expect(appList).toBeAnArrayOfSize(0);
+        });
+        rootScope.$apply();
+    });
+
+    // APPSMALL-526: Organization should always update when publishing a new app in App Submission
+    it('should save Organization when publishing a new app', function() {
+        var appName = Ozone.mockHelper.getRandomString(12);
+        var orgName = Ozone.mockHelper.getRandomString(12);
+        var oldAppId, newAppId;
+
+        initializeControllerAndSetPersona();
+
+        scope.currentApp.name = appName;
+        scope.currentApp.shortname = appName;
+        scope.currentApp.appUrl = "http://www.bing.com";
+        scope.currentApp.descriptionShort = Ozone.mockHelper.getRandomString(15);
+        scope.currentApp.description = Ozone.mockHelper.getRandomString(15);
+        scope.currentApp.version = "4";
+        scope.currentApp.supportWebsite = "http://www.bing.com";
+        scope.currentApp.feedbackContact = "admin@test.com";
+        scope.currentApp.developmentTeamWebsite = "http://www.bing.com";
+        scope.categoryDropdownText = "Business";
+        scope.tagDropdownText = "TestTag";
+        scope.currentApp.images.featuredBannerId = "";
+        scope.currentApp.images.smallBannerId = "";
+        scope.currentApp.images.iconId = "";
+        scope.screenshotCount = "";
+        scope.currentApp.subOrganization = Ozone.mockHelper.getRandomString(8);
+        scope.currentApp.organizationOnlyApp = false;
+        scope.currentApp.featured = false;
+        scope.currentApp.owner.name = "Test Owner";
+        scope.currentApp.owner.email = "owner@test.com";
+        scope.currentApp.owner.phone = "555-5555";
+        scope.currentApp.poc.name = "Test POC";
+        scope.currentApp.poc.email = "poc@test.com";
+        scope.currentApp.poc.phone = "555-5555";
+
+        scope.currentOrgTag = orgName;
+        rootScope.$apply();
+
+        scope.saveApp('publish');
+        rootScope.$apply();
+
+        appService.query({shortname: appName}).then(function(appList) {
+            expect(appList).toBeAnArrayOfSize(1);
+            expect(appList[0]).toBeRecordWithIdField();
+            oldAppId = appList[0]._id;
+        });
+        rootScope.$apply();
+        
+        // re-load newly created app make sure Organization gets set to saved value
+        initializeControllerAndSetPersona(null, appName);
+
+        expect(scope.currentApp).toBeRecordWithIdField();
+        expect(scope.currentApp.shortname).toEqual(appName);
+        expect(scope.currentOrgTag).toEqual(orgName);
+    });
+
 
 });
