@@ -1,6 +1,17 @@
+/**
+    @module Ozone
+    @submodule Server-Side
+    @class Ozone
+*/
 Ozone.extend(function () {
-
     return {
+        /**
+            Loads the specified Ozone Modules and passes in the Ozone API to each module.
+
+            @method Ozone.load
+            @param {String} appBasePath the base path of the service container itself.
+            @param {Array} modules an array of modules to load.
+        */
         load: function (appBasePath, modules) {
             // Load ozone modules
             if (!Ozone.utils.isUndefinedOrNull(modules)) {
