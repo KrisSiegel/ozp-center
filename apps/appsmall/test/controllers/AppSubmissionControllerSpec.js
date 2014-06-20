@@ -308,10 +308,10 @@ describe('App Submission Controller', function() {
         scope.currentApp.developmentTeamWebsite = "http://www.bing.com";
         scope.categoryDropdownText = "Business";
         scope.tagDropdownText = "TestTag";
-        scope.currentApp.images.featuredBannerId = "";
-        scope.currentApp.images.smallBannerId = "";
-        scope.currentApp.images.iconId = "";
-        scope.screenshotCount = "";
+        scope.currentApp.images.featuredBannerId = common.generateId();
+        scope.currentApp.images.smallBannerId = common.generateId();
+        scope.currentApp.images.iconId = common.generateId();
+        scope.screenshotCount = 1;
         scope.currentApp.subOrganization = Ozone.mockHelper.getRandomString(8);
         scope.currentApp.organizationOnlyApp = false;
         scope.currentApp.featured = false;
@@ -324,6 +324,15 @@ describe('App Submission Controller', function() {
 
         scope.currentOrgTag = orgName;
         rootScope.$apply();
+
+        // mock sending broadcasts indicating that all tab page fields are valid
+        _({Info: undefined, Artwork: undefined, Owner: undefined}).keys().each(function(tabPage) {
+            rootScope.$broadcast('formValidState', {
+                tabPage: tabPage,
+                valid: true
+            });
+            rootScope.$apply();
+        });
 
         scope.saveApp('publish');
         rootScope.$apply();

@@ -80,7 +80,17 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          $scope.isSaving = false;
          $scope.hasInvalidPublishAttempt = false;
          $scope.hasInvalidSaveAttempt = false;
-         $scope.tabValidationState = {};
+
+         /**
+          * Tab validation object that stores tri-state validation flag for each tab page: complete, incomplete, or error.
+          * True, undefined, and false are used for these states, respectively.
+          *
+          * All tab pages are initialized to incomplete (undefined), and all tab page keys must match ```form-validation-watcher``` directive attributes.
+          *
+          * @attribute tabValidationState {Object}
+          * @required
+          */
+         $scope.tabValidationState = {Info: undefined, Artwork: undefined, Owner: undefined};
 
          //clear out orgTag
          orgTag = null;
@@ -479,8 +489,6 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              var params = {};
              var isPublishOrSubmitAction = _.contains(['publish', 'submit'], (workflowAction || '').toLowerCase());
              var isValidForWorkflowState = isPublishOrSubmitAction ? _($scope.tabValidationState).values().all() : true;
-
-console.log(' ++++++++++++++++ TAB VALIDATION = ' + JSON.stringify($scope.tabValidationState));
 
              // perform basic save validation on app name and shortname, regardless of workflow state;
              // also checks for full-field validation if submitting or publishing.
