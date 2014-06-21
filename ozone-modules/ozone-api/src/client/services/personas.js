@@ -1,3 +1,8 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Personas
+	@submodule Client-Side
+*/
 Ozone.Service("Personas", (function () {
 
 	var personaAccessor = function (obj) {

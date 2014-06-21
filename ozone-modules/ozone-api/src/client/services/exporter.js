@@ -1,3 +1,8 @@
+/**
+    @module Ozone.Services
+    @class Ozone.Services.Exporter
+    @submodule Client-Side
+*/
 Ozone.Service("Exporter", (function () {
     var service = {
         getServicePath: function () {

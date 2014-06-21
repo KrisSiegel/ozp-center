@@ -1,3 +1,8 @@
+/**
+    @module Ozone.Services
+    @class Ozone.Services.Topics
+    @submodule Client-Side
+*/
 (function () {
 
     var api = Ozone.Service("Tags");

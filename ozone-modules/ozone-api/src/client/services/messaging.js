@@ -1,3 +1,8 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Messaging
+	@submodule Client-Side
+*/
 var Messenger;
 
 (function () {

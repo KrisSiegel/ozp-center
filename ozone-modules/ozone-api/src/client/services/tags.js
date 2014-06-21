@@ -1,3 +1,8 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Tags
+	@submodule Client-Side
+*/
 Ozone.Service("Tags", (function () {
 	var api = {
         getServicePath: function () {

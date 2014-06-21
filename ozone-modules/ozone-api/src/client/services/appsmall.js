@@ -1,3 +1,8 @@
+//**
+	@module Ozone.Services
+	@class Ozone.Services.AppsMall
+	@submodule Client-Side
+*/
 Ozone.Service("AppsMall", (function () {
 	return {
 		getServicePath: function () {

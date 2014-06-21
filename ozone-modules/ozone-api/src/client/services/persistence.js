@@ -1,3 +1,8 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Persistence
+	@submodule Client-Side
+*/
 Ozone.Service("Persistence", (function () {
 	return {
 		getServicePath: function () {

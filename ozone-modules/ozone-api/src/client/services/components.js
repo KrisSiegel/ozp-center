@@ -1,3 +1,8 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Components
+	@submodule Client-Side
+*/
 Ozone.Service("Components", (function () {
 	var service = {
 		getServicePath: function () {
