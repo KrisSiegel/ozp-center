@@ -26,6 +26,20 @@ Ozone.extend(function () {
 			error -> a callback that returns the error upon failure
 			failure -> an alias to error
 
+			Example:
+			Ozone.ajax({
+				url: "http://localhost:3000/api/helloWorld",
+				method: "GET",
+				timeout: 2000,
+				withCredentials: true,
+				type: "json",
+				context: this,
+				data: { text: "Hello, World!" },
+				success: function (status, response) { },
+				error: function (status, response) { },
+				failure: function (status, response) { }
+			});
+
 			@method ajax
 			@param {Object} options a complex object that contains various options outlined in the function description
 		*/
