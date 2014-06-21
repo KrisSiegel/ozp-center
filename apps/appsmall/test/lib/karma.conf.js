@@ -82,8 +82,7 @@ module.exports = function(config) {
             'apps/appsmall/test/matchers.js',
             'apps/appsmall/test/controllers/**/*.js',
             'apps/appsmall/test/directives/**/*.js',
-            'apps/appsmall/test/services/**/*.js',
-            // 'apps/appsmall/test/controllers/AppSubmissionControllerSpec.js'
+            'apps/appsmall/test/services/**/*.js'
         ],
 
         autoWatch : true,
