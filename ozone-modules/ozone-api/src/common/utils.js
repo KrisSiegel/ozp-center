@@ -1,3 +1,7 @@
+/**
+    @module Ozone
+    @class Ozone
+*/
 Ozone.extend(function () {
     var isUndefinedOrNull = function (value) {
 		if (value === undefined || value === null) {
@@ -136,19 +140,61 @@ Ozone.extend(function () {
 
 	return {
 		utils: {
+            /**
+                @method utils.murl
+            */
             murl: murl,
+            /**
+                @method utils.isUndefinedOrNull
+            */
 			isUndefinedOrNull: isUndefinedOrNull,
+            /**
+                @method utils.isNullOrUndefined
+            */
 			isNullOrUndefined: isUndefinedOrNull,
+            /**
+                @method utils.isObject
+            */
 			isObject: isObject,
+            /**
+                @method utils.isArray
+            */
 			isArray: isArray,
+            /**
+                @method utils.isString
+            */
             isString: isString,
+            /**
+                @method utils.isServerSide
+            */
 			isServerSide: isServerSide,
+            /**
+                @method utils.isClientSide
+            */
 			isClientSide: isClientSide,
+            /**
+                @method utils.compareArray
+            */
 			compareArray: compareArray,
+            /**
+                @method utils.arrayContains
+            */
 			arrayContains: arrayContains,
+            /**
+                @method utils.isFunction
+            */
 			isFunction: isFunction,
+            /**
+                @method utils.isEmptyObject
+            */
 			isEmptyObject: isEmptyObject,
+            /**
+                @method utils.clone
+            */
 			clone: clone,
+            /**
+                @method utils.capitalizeWord
+            */
             capitalizeWord: capitalizeWord,
             argumentsToArray: function (args) {
 				return Array.prototype.slice.call(args, 0);

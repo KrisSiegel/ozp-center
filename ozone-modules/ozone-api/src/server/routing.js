@@ -1,5 +1,6 @@
 /**
-    Provides routing capabilities with a similar method signature to express.js.
+    Provides routing capabilities with a similar method signature to express.js. All http verbs provides by
+    express.js are also available here with the same function signature.
 
     @module Ozone
     @submodule Server-Side
@@ -68,6 +69,15 @@ Ozone.extend(function () {
             }
         }
     }
+    /**
+        Methods for accessing
+
+        @method Ozone.routing.<verb>
+        @param {String} path the path to access the RESTful endpoint (this is automatically prepended with apiBaseUrl)
+        @param {Object} access (optional) an object that can specify what's requested to access this resource. It can contain a loggedIn key with a boolean value and a permissions array which can be an array of permissions required.
+        @param {Method} callback the callback to call should the consumer be granted access to the endpoint. Includes req, res and next parameters just like express.js
+        @param {Object} context (optional) the context in which the callback is run can be optionally specified though is rarely necessary.
+    */
     for (var i = 0; i < methods.length; ++i) {
         (function (meth) {
             routing[meth] = (function (path, access, callback, context) {
