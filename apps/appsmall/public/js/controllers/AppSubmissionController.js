@@ -80,7 +80,17 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          $scope.isSaving = false;
          $scope.hasInvalidPublishAttempt = false;
          $scope.hasInvalidSaveAttempt = false;
-         $scope.tabValidationState = {};
+
+         /**
+          * Tab validation object that stores tri-state validation flag for each tab page: complete, incomplete, or error.
+          * True, undefined, and false are used for these states, respectively.
+          *
+          * All tab pages are initialized to incomplete (undefined), and all tab page keys must match ```form-validation-watcher``` directive attributes.
+          *
+          * @attribute tabValidationState {Object}
+          * @required
+          */
+         $scope.tabValidationState = {Info: undefined, Artwork: undefined, Owner: undefined};
 
          //clear out orgTag
          orgTag = null;
