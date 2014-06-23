@@ -93,9 +93,9 @@ Ozone.extend(function () {
         return temp;
     }
 
-    var murl = function (urlProp, postfixes, isClient) {
-        if (isUndefinedOrNull(isClient)) {
-            isClient = false;
+    var murl = function (urlProp, postfixes, hostRole) {
+        if (isUndefinedOrNull(hostRole)) {
+            hostRole = "";
         }
 
         // Start building the URL
@@ -114,8 +114,8 @@ Ozone.extend(function () {
             }
         }
         url = url.replace("//", "/");
-        if (isClient) {
-            var abs = Ozone.config().getClientProperty("absoluteBaseUrl");
+        if (hostRole) {
+            var abs = Ozone.config().getClientProperty(hostRole);
             if (abs === undefined) {
                 abs = "";
             }

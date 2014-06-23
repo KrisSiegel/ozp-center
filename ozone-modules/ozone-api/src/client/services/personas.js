@@ -235,7 +235,7 @@ Ozone.Service("Personas", (function () {
 
 	var api = {
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/personas/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/personas/", "servicesHost");
 		},
 		export: function (callback) {
 			Ozone.Service("Exporter").exportService("Personas", callback);

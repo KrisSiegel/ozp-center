@@ -1,7 +1,7 @@
 Ozone.Service("Persistence", (function () {
 	return {
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/persistence/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/persistence/", "servicesHost");
 		},
 		Store: function (store) {
 			return {

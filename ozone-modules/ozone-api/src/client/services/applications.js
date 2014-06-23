@@ -1,7 +1,7 @@
 Ozone.Service("Apps", (function () {
 	var service = {
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/apps/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/apps/", "servicesHost");
 		},
 		getRedirectUrl: function (shortname) {
 			return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"], false);
