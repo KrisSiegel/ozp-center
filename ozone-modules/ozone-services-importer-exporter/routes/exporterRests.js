@@ -1,4 +1,12 @@
-
+/**
+ *  The Import/Export module performs JSON serialization and deserialization of all module data and metadata
+ *
+ *  Contents only accessible via RESTful APIs.
+ *
+ *  @module Ozone.Services.ImportExport
+ *  @class Ozone.Services.ImportExport
+ *  @submodule Server-Side
+ */
 module.exports = (function (Ozone) {
     var consts = require("../config/constants.json");
 
