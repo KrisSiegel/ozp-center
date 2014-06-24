@@ -4,7 +4,7 @@
 
     var genericService = {
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", this.controller, true);
+			return Ozone.utils.murl("apiBaseUrl", this.controller, 'servicesHost');
 		},
         export: function (callback) {
             Ozone.Service("Exporter").exportService("TagTopic", callback);
