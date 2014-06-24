@@ -4,7 +4,7 @@ Ozone.Service("Apps", (function () {
 			return Ozone.utils.murl("apiBaseUrl", "/apps/", "servicesHost");
 		},
 		getRedirectUrl: function (shortname) {
-			return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"], false);
+			return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"], "");
 		},
 		redirectIntoHudWithoutLogging: function (shortname) {
 			location.href = this.getRedirectUrl(shortname);

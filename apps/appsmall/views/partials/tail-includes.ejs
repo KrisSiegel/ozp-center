@@ -1,27 +1,27 @@
 <!--*-HTML-*-->
-    <script src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/jquery-ui.custom.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/jquery-mousestop/jquery.event.mousestop.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/js/bootstrap.min.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.min.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/carouFredSel/carouFredSel.min.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.jquery.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/../lib/showdown/src/showdown.js', false) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/jquery-ui.custom.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/jquery-mousestop/jquery.event.mousestop.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/bootstrap-2/js/bootstrap.min.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/responsiveslides/responsiveslides.min.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/carouFredSel/carouFredSel.min.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/chosen/chosen/chosen.jquery.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/../lib/showdown/src/showdown.js', 'staticHost') %>"></script>
 
-    <script src="<%- Ozone.utils.murl('libUrl', '/lodash/dist/lodash.compat.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/angular-bootstrap/ui-bootstrap-tpls.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/handlebars/handlebars.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('libUrl', '/angular-chosen-localytics/chosen.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput.js', false) %>"></script>
-    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput-angular.js', false) %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/lodash/dist/lodash.compat.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular/angular.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-route/angular-route.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-resource/angular-resource.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-bootstrap/ui-bootstrap-tpls.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/handlebars/handlebars.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('libUrl', '/angular-chosen-localytics/chosen.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput.js', 'staticHost') %>"></script>
+    <script src="<%- Ozone.utils.murl('amlUrl', '/ext-lib/bootstrap-tagsinput/bootstrap-tagsinput-angular.js', 'staticHost') %>"></script>
 
     <% if (bundleComponents) { %>
-      <script src="<%= Ozone.utils.murl('amlUrl', minifiedIncludes[0], false) %>"></script>
+      <script src="<%= Ozone.utils.murl('amlUrl', minifiedIncludes[0], 'staticHost') %>"></script>
     <% } else { %>
       <% for (var i = 0; i < angularIncludes.length; i++) {%>
-         <script src="<%= Ozone.utils.murl('amlUrl', angularIncludes[i], false) %>"></script>
+         <script src="<%= Ozone.utils.murl('amlUrl', angularIncludes[i], 'staticHost') %>"></script>
       <% } // end for %>
    <% } // end if %>
