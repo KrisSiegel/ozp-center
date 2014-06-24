@@ -6,16 +6,16 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/reset.css', false) %>" />
-<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-global.css', false) %>">
-<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-icons-additional.css', false) %>">
-<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('libUrl', '/msDropdown/css/msdropdown/dd.css', false) %>">
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/reset.css', 'staticHost') %>" />
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-global.css', 'staticHost') %>">
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-icons-additional.css', 'staticHost') %>">
+<link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('libUrl', '/msDropdown/css/msdropdown/dd.css', 'staticHost') %>">
 
-<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', false) %>"></script>
-<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.min.js', false) %>"></script>
-<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/msDropdown/js/msdropdown/jquery.dd.min.js', false) %>"></script>
-<script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', false) %>"></script>
-<script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', false) %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', 'staticHost') %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.min.js', 'staticHost') %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/msDropdown/js/msdropdown/jquery.dd.min.js', 'staticHost') %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', 'staticHost') %>"></script>
+<script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js') %>"></script>
 <script type="text/javascript">
     $(function () {
         $("#username").focus();
@@ -81,7 +81,7 @@
 
     <div class="login-wrapper">
         <div class="login-container">
-            <img src="<%- Ozone.utils.murl('hudUrl', '/assets/images/login-logo.png', false) %>" />
+            <img src="<%- Ozone.utils.murl('hudUrl', '/assets/images/login-logo.png', 'staticHost') %>" />
             <div class="input-container">
                 <span class="input-icon ozone-user"></span>
                 <input type="text" name="username" id="username" placeholder="Enter Username" />

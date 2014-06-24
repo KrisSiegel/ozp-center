@@ -10,7 +10,7 @@ microXTag = (function ($) {
     function loadImports(importList, loaded) {
         var loadedCount = 0;
         var importSuperList = $.map(importList, function (importFile) {
-            return { path: importFile, content: null}
+            return { path: Ozone.utils.murl("hudUrl", importFile, "staticHost"), content: null}
         });
         var $html = $(document.childNodes[1]);
         $.each(importSuperList, function (index, fileItem) {
@@ -18,8 +18,8 @@ microXTag = (function ($) {
                 var componentPath = fileItem.path.replace(/[^\/]*$/, '');
                 function adjustPath(el, attr) {
                     var src = el.getAttribute(attr);
-                    if (!/^\//.test(src)) {
-                        el.setAttribute(attr, Ozone.utils.murl("hudUrl", [componentPath, src], false));
+                    if (!/^\//.test(src) && !/^https*\/\//.test(src)) {
+                        el.setAttribute(attr, componentPath + src);
                     }
                 };
                 var $elements = $(fileItem.content);
@@ -196,6 +196,20 @@ microXTag = (function ($) {
         var text = $template.html();
         var div = document.createElement('div');
         div.innerHTML = text;
+
+        function adjustPath(el, attr) {
+            var src = el.getAttribute(attr);
+            if (!/^https*\/\//.test(src)) {
+                if (!/^\//.test(src)) {
+                    Ozone.logger.warn("Oh, shit");
+                }
+                el.setAttribute(attr, Ozone.utils.murl("hudUrl", src, "staticHost"));
+            }
+        };
+
+        $(div).find('img').each(function () {
+            adjustPath(this, 'src');
+        });
         var df = document.createDocumentFragment();
         while (div.firstChild) {
             df.appendChild(div.firstChild);

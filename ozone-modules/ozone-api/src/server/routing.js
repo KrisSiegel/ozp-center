@@ -36,7 +36,7 @@ Ozone.extend(function () {
     for (var i = 0; i < methods.length; ++i) {
         (function (meth) {
             routing[meth] = (function (path, access, callback, context) {
-                var finalPath = Ozone.utils.murl("apiBaseUrl", path, false);
+                var finalPath = Ozone.utils.murl("apiBaseUrl", path, "");
                 context = context || this;
                 Ozone.Service("ApplicationEngine")[meth].apply(Ozone.Service("ApplicationEngine"), [finalPath, function (req, res, next) {
                     if (Ozone.utils.isFunction(access)) {
