@@ -45,8 +45,10 @@ microXTag = (function ($) {
                         $.each(importSuperList, function (index, fileItem) {
                             addImportContent(fileItem);
                         });
-                        scriptsReady();
-                        loaded && loaded();
+                        setTimeout(function () {
+                            scriptsReady();
+                            loaded && loaded();
+                        }, 500);
                     };
                     //}, 100 * Math.random());
                 })
