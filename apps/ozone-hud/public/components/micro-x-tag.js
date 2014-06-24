@@ -199,19 +199,13 @@ microXTag = (function ($) {
         var div = document.createElement('div');
         div.innerHTML = text;
 
-        function adjustPath(el, attr) {
-            var src = el.getAttribute(attr);
-            if (!/^https*\/\//.test(src)) {
-                if (!/^\//.test(src)) {
-                    Ozone.logger.warn("Oh, shit");
-                }
-                el.setAttribute(attr, Ozone.utils.murl("hudUrl", src, "staticHost"));
-            }
-        };
-
         $(div).find('img').each(function () {
-            adjustPath(this, 'src');
+            var src = this.getAttribute('src');
+            if (!/^https?\/\//.test(src)) {
+                this.setAttribute('src', Ozone.utils.murl("hudUrl", src, "staticHost"));
+            }            
         });
+
         var df = document.createDocumentFragment();
         while (div.firstChild) {
             df.appendChild(div.firstChild);
