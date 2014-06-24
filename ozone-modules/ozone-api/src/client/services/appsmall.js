@@ -1,7 +1,7 @@
 Ozone.Service("AppsMall", (function () {
 	return {
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/aml/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/aml/", 'servicesHost');
 		},
 		export: function (callback) {
 			Ozone.Service("Exporter").exportService("AppsMall", callback);
