@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Application Management</title>
     <% include ../../partials/head-includes %>
-    <script src="../../../lib/moment/moment.js"></script>
-    <link href="../../css/app-settings.css" rel="stylesheet">
+    <script src="<%- Ozone.utils.murl('libUrl', '/moment/moment.js', 'staticHost') %>"></script>
+    <link href="<%- Ozone.utils.murl('amlUrl', '/css/app-settings.css', 'staticHost') %>" rel="stylesheet">
 
 </head>
 <body ng-cloak>

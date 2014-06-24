@@ -10,9 +10,9 @@
 
 // file upload service
 var defaultImageTypes = {
-    icon: Ozone.utils.murl("amlUrl", '/img/app-icon-not-available-hires.png'),
-    smallBanner: Ozone.utils.murl("amlUrl", '/img/banner-sml-not-available-hires.png'),
-    featuredBanner: Ozone.utils.murl("amlUrl", '/img/banner-lg-not-available-hires.png'),
+    icon: Ozone.utils.murl("amlUrl", '/img/app-icon-not-available-hires.png', 'staticHost'),
+    smallBanner: Ozone.utils.murl("amlUrl", '/img/banner-sml-not-available-hires.png', 'staticHost'),
+    featuredBanner: Ozone.utils.murl("amlUrl", '/img/banner-lg-not-available-hires.png', 'staticHost'),
 };
 
 /**
