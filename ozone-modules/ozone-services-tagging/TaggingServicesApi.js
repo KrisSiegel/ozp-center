@@ -1,6 +1,25 @@
+/**
+ *  The Tagging module handles all RESTful calls for Tag and Topic objects.
+ *
+ *  Contents only accessible via RESTful APIs.
+ *
+ *  @module Ozone.Services.Tagging
+ *  @class Ozone.Services.Tagging
+ *  @submodule Server-Side
+ *  @requires async
+ */
 var PORT = 3000,
     logger;
 
+/**
+ * get URI from app data. (TO DO: apps and components might have different URI path components, if applicable.)
+ * @method getShortnameFromUri
+ * @param uri {String} the full or relative path for an app
+ * @param [tagObj] {Object} a tag object used as a search constraint that, if defined, must contain a tag from allTags with uri equal to the uri passed in
+ * @param Ozone {Object} an array of Tag objects that, if defined, must contain a tag with tagObj's tag name
+ * @public
+ * @return {String} the shortname parsed from the uri passed in, or the empty string of the uri was not contained in the tag object and tag list parameters
+ */
 function setup(callback, Ozone) {
 
     var Persistence = Ozone.Service('Persistence'),
@@ -13,10 +32,22 @@ function setup(callback, Ozone) {
     var constants = require('./config/constants'),
         taggingService = require('./service/TaggingService');
 
+    /**
+     * 
+     * @method setupTagRouting
+     * @private
+     * @return {Object} 
+     */
     function setupTagRouting() {
         logger.debug("TaggingService-->setup-->setupTagRouting()");
         taggingService.init(Ozone);
 
+        /**
+         * 
+         * @method createTagQueryObject
+         * @private
+         * @return {Object} 
+         */
         var createTagQueryObject = function (query) {
             var item = {};
             if (query.id) item._id = query.id;
@@ -40,6 +71,11 @@ function setup(callback, Ozone) {
         Ozone.Service(constants.TaggingService, taggingService);
     };
 
+    /**
+     * 
+     * @attribute tagIndexers {Array}
+     * @private
+     */
     var tagIndexers = [
         {
             _id: 1,
@@ -86,7 +122,11 @@ function setup(callback, Ozone) {
         }
     });
 
-
+    /**
+     * 
+     * @attribute topicIndexers {Array}
+     * @private
+     */
     var topicIndexers = [
         {
             _id: 1,
@@ -118,6 +158,11 @@ function setup(callback, Ozone) {
         }
     });
 
+    /**
+     * 
+     * @method setupTagRouting
+     * @private
+     */
     function createIndexes() {
         Ozone.Service().on("ready", "Persistence", function(){
             Persistence = Ozone.Service('Persistence');
