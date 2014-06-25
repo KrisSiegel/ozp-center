@@ -37,11 +37,12 @@ var exporting = {
             }
         });
     },
-    import: function(data, callback, path){
+    import: function(data, callback, path, autoImporting){
         var importReport = { successful: 0, failed: 0 };
         if(!data){
             return callback(importReport);
         }
+
         async.parallel(data.map(function(app){
             return function(callback){
                 app.images = {};
