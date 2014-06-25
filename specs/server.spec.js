@@ -1,3 +1,21 @@
+/**
+    The entry point for running the unit tests contained within the service container and all ozone modules.
+    The main goal of this custom way of running unit tests is to allow server-side, RESTful and client-side unit tests
+    to exist in all modules and to be automatically discovered and run in the correct context.
+
+    Therefore the structure of unit tests in all ozone modules must be in the correct directory (./ozone-modules/<module>/specs/)
+    and must use one of the following naming conventions:
+
+    *.node.spec.js -> signifies a set of unit tests to be run in a node.js context
+    *.restful.spec.js -> signifies a set of unit tests to be run against a running server with RESTful services registered
+    *.client.spec.js -> signifies a set of unit tests that must be run within a browser context
+
+    This file calls server.js, tells it to load the testEnvironment configuration, starts up the server as normal,
+    locates all unit tests to run then runs them in the order indicated above (node then restful then client).
+
+    TODO: The client-side currently does not function. Ideally we would use karma to run a browser instance but the
+    combining and taking of files from services for client side hasn't happened yet.
+*/
 (function () {
     var pack = require("../package.json");
     var Ozone = require("../server")(pack.testEnvironment);

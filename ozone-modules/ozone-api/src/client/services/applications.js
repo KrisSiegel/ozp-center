@@ -1,23 +1,54 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Apps
+	@submodule Client-Side
+*/
 Ozone.Service("Apps", (function () {
 	var service = {
+		/**
+			@method getServicePath
+		*/
 		getServicePath: function () {
 			return Ozone.utils.murl("apiBaseUrl", "/apps/", "servicesHost");
 		},
+		/**
+			@method getRedirectUrl
+			@param {String} shortname the shortname of the application
+		*/
 		getRedirectUrl: function (shortname) {
 			return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"], "");
 		},
+		/**
+			@method redirectIntoHudWithoutLogging
+			@param {String} shortname the shortname of the application
+		*/
 		redirectIntoHudWithoutLogging: function (shortname) {
 			location.href = this.getRedirectUrl(shortname);
 		},
+		/**
+			@method launchAppByShortname
+			@param {String} shortname the shortname of the application
+			@param {Method} postUpdateCallback the callback to execute after the launch count is updated
+		*/
 		launchAppByShortname: function (shortname, postUpdateCallback) {
 			var win = window.open(this.getRedirectUrl(shortname));
 			// AMLUI-182: removed onload event call that wasn't getting invoked in Chrome or FF.
 			Ozone.logger.debug("application.js-->launchAppByShortname-->callback after window.open");
 			Ozone.Service("Apps").updateLaunchedCount(shortname, postUpdateCallback);
 		},
+		/**
+			@method export
+			@param {Method} callback the callback to execute upon export finishing
+		*/
 		export: function (callback) {
 			Ozone.Service("Exporter").exportService("Apps", callback);
 		},
+		/**
+			@method get
+			@param {String} id the id of the application to fetch
+			@param {Method} callback the callback to execute when the result is fetched
+			@param {Object} context (optional) the context in which to execute the callback if desired
+		*/
 		get: function (id, callback, context) {
 			if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) { // get all
 				context = callback;
@@ -48,6 +79,12 @@ Ozone.Service("Apps", (function () {
 				context: (context || this)
 			});
 		},
+		/**
+			@method query
+			@param {Object} selector the keys and values to query against
+			@param {Method} callback the callback to execute with the query result
+			@param {Object} context (optional) the context in which to execute the callback if desired
+		*/
 		query: function (selector, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";
@@ -91,6 +128,12 @@ Ozone.Service("Apps", (function () {
 				context: (context || this)
 			});
 		},
+		/**
+			@method create
+			@param {Object} app an application's object structure
+			@param {Method} callback the callback to execute when the creation has been completed
+			@param {Object} context (optional) the context in which to execute the callback if desired
+		*/
 		create: function (app, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";
@@ -115,6 +158,12 @@ Ozone.Service("Apps", (function () {
 				context: (context || this)
 			});
 		},
+		/**
+			@method update
+			@param {Object} app an application's object structure
+			@param {Method} callback the callback to execute when the update has been completed
+			@param {Object} context (optional) the context in which to execute the callback if desired
+		*/
 		update: function (app, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";
@@ -143,6 +192,12 @@ Ozone.Service("Apps", (function () {
 				context: (context || this)
 			});
 		},
+		/**
+			@method delete
+			@param {Object} app an application's object structure; only need the id from this object
+			@param {Method} callback the callback to execute when the deletion has been completed
+			@param {Object} context (optional) the context in which to execute the callback if desired
+		*/
 		del: function (app, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";
@@ -170,6 +225,11 @@ Ozone.Service("Apps", (function () {
 				context: (context || this)
 			});
 		},
+		/**
+			@method updateLaunchedCount
+			@param {String} shortname the shortname of the application
+			@param {Method} postUpdateCallback the callback that is executed upon update
+		*/
 		updateLaunchedCount: function(shortname, postUpdateCallback) {
 			var selector = {
 				shortname: shortname
@@ -213,39 +273,11 @@ Ozone.Service("Apps", (function () {
 					Ozone.logger.debug("Apps.updateLaunchedCount-->no app found with shortname: " + shortname);
 				}
 			});
-		},
-		imp: function (file, callback, context) {
-			if (!Ozone.utils.isFunction(callback)) {
-            	throw "No callback defined";
-            }
-			if (Ozone.utils.isUndefinedOrNull(file)) {
-            	throw "No file defined";
-            }
-
-			var formData = new FormData();
-        	formData.append(file.name, file);
-
-			var url = this.getServicePath() + "import";
-			Ozone.ajax({
-				method: "POST",
-				url: url,
-				data: formData,
-				success: function (status, response) {
-					Ozone.logger.debug("Apps.import-->success");
-					callback.apply((context || this), [response]);
-				},
-				error: function (status, response) {
-					Ozone.logger.debug("Apps.import-->error, status: " + status);
-					callback.apply((context || this), [response]);
-				},
-				context: (context || this)
-			});
-		},
+		}
 	};
 
 	// Support of IE8 and it's terrible understanding of ECMAScript
 	service["delete"] = service.del;
-	service["import"] = service.imp;
 
 	return service;
 }()));

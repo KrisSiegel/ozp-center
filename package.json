@@ -60,8 +60,7 @@
     "ozone-modules/ozone-api/src/common/logger.js",
     "ozone-modules/ozone-api/src/common/service.js",
     "ozone-modules/ozone-api/src/client/ajax.js",
-    "ozone-modules/ozone-api/src/client/services/*.js",
-    "ozone-modules/ozone-api/src/client/legacy/*.js"
+    "ozone-modules/ozone-api/src/client/services/*.js"
   ],
   "clientMockApiPaths": [
     "node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js",
@@ -72,8 +71,7 @@
     "ozone-modules/ozone-api/src/common/logger.js",
     "ozone-modules/ozone-api/src/common/service.js",
     "ozone-modules/ozone-api/src/client/mocks/fixtures/*.js",
-    "ozone-modules/ozone-api/src/client/mocks/*.js",
-    "ozone-modules/ozone-api/src/client/legacy/*.js"
+    "ozone-modules/ozone-api/src/client/mocks/*.js"
   ],
   "serverApiPaths": [
     "ozone-modules/ozone-api/src/main.js",

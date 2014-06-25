@@ -1,3 +1,7 @@
+/**
+	@module Ozone.Services
+	@submodule Client-Side
+*/
 Ozone.Service("Personas", (function () {
 
 	var personaAccessor = function (obj) {
@@ -7,19 +11,37 @@ Ozone.Service("Personas", (function () {
         };
 		var persona = obj;
 
+		/**
+			@class Ozone.Services.Personas.Persona
+		*/
 		return {
+			/**
+				Gets the current persona object
+
+				@method get
+			*/
 			get: function () {
 				return persona;
 			},
+			/**
+				@method getId
+			*/
 			getId: function () {
 				return persona._id;
 			},
+			/**
+				@method getViewedHelpPage
+			*/
             getViewedHelpPage: function() {
                 if(Ozone.utils.safe(persona, "meta.viewedHelpPage")){
                     return persona.meta.viewedHelpPage;
                 }
                 return false;
             },
+			/**
+				@method setViewedHelpPage
+				@param {Boolean} boolViewedHelpPage a boolean value representing whether the help overlay has been viewed or not
+			*/
             setViewedHelpPage: function(boolViewedHelpPage){
                 if (Ozone.utils.isUndefinedOrNull(persona.meta)) {
                     persona.meta = { };
@@ -27,9 +49,16 @@ Ozone.Service("Personas", (function () {
                 persona.meta.viewedHelpPage = !!boolViewedHelpPage;
                 Ozone.Service("Personas").persona.update(persona, function(response) { });
             },
+			/**
+				@method getPermissions
+			*/
 			getPermissions: function () {
 				return Ozone.utils.safe(persona, "meta.permissions");
 			},
+			/**
+				@method addPermission
+				@param {String} perm the permission to add
+			*/
 			addPermission: function (perm) {
 				if (Ozone.utils.isUndefinedOrNull(persona.meta)) {
 					persona.meta = { };
@@ -45,6 +74,11 @@ Ozone.Service("Personas", (function () {
 
 				});
 			},
+
+			/**
+				@method removePermission
+				@param {String} perm the permission to remove
+			*/
 			removePermission: function (perm) {
 				if (Ozone.utils.isUndefinedOrNull(Ozone.utils.safe(persona, "meta.permissions"))) {
 					throw "No permissions to remove";
@@ -55,6 +89,10 @@ Ozone.Service("Personas", (function () {
 					});
 				}
 			},
+			/**
+				@method removeAllPermissions
+				@param {Boolean} delaySave (optional) delays saving until another action occurs if true
+			*/
 			removeAllPermissions: function (delaySave) {
 				persona.meta.permissions = [];
 				if (!delaySave) {
@@ -63,18 +101,36 @@ Ozone.Service("Personas", (function () {
 					});
 				}
 			},
+			/**
+				@method hasPermission
+				@param {String} perm the permission to check for
+			*/
 			hasPermission: function (perm) {
 				return ((Ozone.utils.safe(persona, "meta.permissions") || []).indexOf(perm) !== -1);
 			},
-			getRoles: function (perm) {
+			/**
+				@method getRoles
+			*/
+			getRoles: function () {
 				return Ozone.utils.safe(persona, "meta.role");
 			},
+			/**
+				@method getUsername
+			*/
 			getUsername: function () {
 				return persona.username;
 			},
+			/**
+				@method getFavoriteApps
+			*/
 			getFavoriteApps: function () {
 				return (persona.meta || { }).favoriteApps;
 			},
+			/**
+				@method addFavoriteApp
+				@param {Object} favoriteApp the application to add to favorites
+				@param {Method} callback the callback to execute upon completion
+			*/
 			addFavoriteApp: function (favoriteApp, callback) {
 				if (Ozone.utils.isUndefinedOrNull(favoriteApp)) {
 					throw "No favoriteApp defined";
@@ -98,6 +154,11 @@ Ozone.Service("Personas", (function () {
                 	return callback(response.getFavoriteApps());
 				});
 			},
+			/**
+				@method removeFavoriteApp
+				@param {Object} favoriteApp the application to remove from favorites
+				@param {Method} callback the callback to execute upon completion
+			*/
 			removeFavoriteApp: function (favoriteApp, callback) {
 				if (Ozone.utils.isUndefinedOrNull(favoriteApp)) {
 					throw "No favoriteApp defined";
@@ -119,9 +180,15 @@ Ozone.Service("Personas", (function () {
                 	return callback(response.getFavoriteApps());
 				});
 			},
+			/**
+				@method getLaunchedApps
+			*/
 			getLaunchedApps: function () {
 				return (persona.meta || { }).launchedApps;
 			},
+			/**
+				@method getLaunchedAppsArray
+			*/
 			getLaunchedAppsArray: function () {
 				var launchedApps = this.getLaunchedApps() || { },
 					array = [ ];
@@ -133,6 +200,11 @@ Ozone.Service("Personas", (function () {
 
 				return array;
 			},
+			/**
+				@method addLaunchedApp
+				@param {Object} launchedApp the application launched
+				@param {Method} callback the callback to execute upon execution
+			*/
 			addLaunchedApp: function (launchedApp, callback) {
 				if (!Ozone.utils.isObject(launchedApp)) {
 					throw "No launchedApp defined";
@@ -152,6 +224,11 @@ Ozone.Service("Personas", (function () {
                 	return callback(response.getLaunchedApps());
 				});
 			},
+			/**
+				@method setProfileImage
+				@param {String} fileId the id of the file associated with the profile's image
+				@param {Method} callback the callback to execute upon completion
+			*/
 			setProfileImage: function (fileId, callback) {
 				if (Ozone.utils.isUndefinedOrNull(fileId)) {
 					throw "Invalid fileId";
@@ -167,6 +244,10 @@ Ozone.Service("Personas", (function () {
 					return callback(response);
 				});
 			},
+			/**
+				@method getCollections
+				@param {String} id the id of the collection to get
+			*/
 			getCollections: function (id) {
 				var collections = (persona.meta || { }).collections || [ ];
 				if (Ozone.utils.isUndefinedOrNull(id)) {
@@ -175,6 +256,12 @@ Ozone.Service("Personas", (function () {
 
 				return Ozone.utils.getFromArrayWithField(collections, "id", id);
 			},
+			/**
+				@method setColletion
+				@param {String} id the id of the collection
+				@param {Object} collection the collection object itself
+				@param {Method} callback the callback to execute upon completion
+			*/
 			setCollection: function (id, collection, callback) { // create or update
 				if (Ozone.utils.isUndefinedOrNull(callback)) { // create
 					callback = collection;
@@ -209,6 +296,11 @@ Ozone.Service("Personas", (function () {
                 	return callback(response.getCollections());
 				});
 			},
+			/**
+				@method removeCollection
+				@param {String} id the id of the collection to remove
+				@param {Method} callback the callback to execute upon completion
+			*/
 			removeCollection: function (id, callback) {
 				if (Ozone.utils.isUndefinedOrNull(id)) {
 					throw "No id defined";
@@ -233,17 +325,39 @@ Ozone.Service("Personas", (function () {
 		};
 	};
 
+	/**
+		@class Ozone.Services.Personas
+	*/
 	var api = {
+		/**
+			Gets the service path
+
+			@method getServicePath
+		*/
 		getServicePath: function () {
 			return Ozone.utils.murl("apiBaseUrl", "/personas/", "servicesHost");
 		},
+		/**
+			@method export
+			@param {Method} callback the callback to execute upon completion
+		*/
 		export: function (callback) {
 			Ozone.Service("Exporter").exportService("Personas", callback);
 		},
 		persona: {
+			/**
+				@method persona.envelop
+				@param {Object} obj the object to envelop within the persona wrapper
+			*/
 			envelop: function (obj) {
 				return personaAccessor(obj);
 			},
+			/**
+				Gets the currently logged in user and returns a persona object.
+
+				@method persona.getCurrent
+				@param {Method} callback executes callback upon completion
+			*/
 			getCurrent: function (callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -265,6 +379,13 @@ Ozone.Service("Personas", (function () {
 					context: this
 				});
 			},
+			/**
+				Updates a persona
+
+				@method persona.update
+				@param {Object} persona the persona object to update
+				@param {Method} callback the callback to execute upon completion
+			*/
 			update: function (persona, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -290,6 +411,11 @@ Ozone.Service("Personas", (function () {
 					data: persona
 				});
 			},
+			/**
+				@method persona.getPersonaById
+				@param {String} userId the user id to fetch
+				@param {Method} callback the callback to execute upon completion
+			*/
 			getPersonaById: function (userId, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -314,6 +440,11 @@ Ozone.Service("Personas", (function () {
 					context: this
 				});
 			},
+			/**
+				@method persona.query
+				@param {Object} selector the selector to use when querying for persona objects
+				@param {Method} callback the callback to be executed upon completion
+			*/
 			query: function (selector, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -355,6 +486,11 @@ Ozone.Service("Personas", (function () {
 					context: this
 				});
 			},
+			/**
+				@method persona.create
+				@param {Object} data the persona object to create
+				@param {Method} callback the callback to execute upon creation
+			*/
 			create: function (data, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -380,6 +516,11 @@ Ozone.Service("Personas", (function () {
 					data: data
 				});
 			},
+			/**
+				@method persona.delete
+				@param {String} userId the user id to delete
+				@param {Method} callback the callback to execute upon deletion
+			*/
 			del: function (userId, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -406,6 +547,11 @@ Ozone.Service("Personas", (function () {
 			}
 		},
 		permissions: {
+			/**
+				@method permissions.get
+				@param {String} permissionId the permission id to fetch
+				@param {Method} callback the callback to execute upon completion
+			*/
 			get: function (permissionId, callback) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -430,6 +576,11 @@ Ozone.Service("Personas", (function () {
 					context: this
 				});
 			},
+			/**
+				@method permissions.query
+				@param {Object} selector the selector to use when querying permissions
+				@param {Method} callback the callback to execute upon completion
+			*/
 			query: function (selector, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -464,9 +615,11 @@ Ozone.Service("Personas", (function () {
 			}
 		},
 		roles: {
-			get: function (id, callback) {
-
-			},
+			/**
+				@method roles.query
+				@param {Object} selector the selector object to use when querying roles
+				@param {Method} callback the callback to execute upon completion
+			*/
 			query: function (selector, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";

@@ -1,11 +1,23 @@
+/**
+ *  The Tagging module handles all RESTful calls for Tag and Topic objects.
+ *
+ *  Contents only accessible via RESTful APIs.
+ *
+ *  @module Ozone.Services.Tagging
+ *  @class Ozone.Services.Tagging
+ *  @submodule Server-Side
+ */
 module.exports = exports = function (taggingService, baseURL, createQueryObject, Ozone) {
 
     var routing = Ozone.Routing,
         logger = Ozone.logger,
         taggingService = baseURL === require('../config/version.json').rest.url.tag ? taggingService.tag : taggingService.topic;
 
-
-    /* GET, DELETE, PUT, POST /api/tags/tag */
+    /**
+     *  Get a single tag with id matching the URL route pattern
+     *
+     *  @method /api/tags/tag/:id_GET
+     */
     routing.get(baseURL + "/:id", function (req, res, next) {
         req.url = decodeURI(req.url);
         logger.debug("Routes(TaggingService)-->GetById-->req.url: " + req.url);
@@ -28,6 +40,11 @@ module.exports = exports = function (taggingService, baseURL, createQueryObject,
         });
     });
 
+    /**
+     *  Get all tags, or query for tags based on query parameters passed in.
+     *
+     *  @method /api/tags/tag_GET
+     */
     routing.get(baseURL, function (req, res, next) {
         req.url = decodeURI(req.url);
         logger.debug("Routes(TaggingService)-->GetByQuery-->req.url: " + req.url);
@@ -54,7 +71,11 @@ module.exports = exports = function (taggingService, baseURL, createQueryObject,
         });
     });
 
-    // Inserts a set of tags via URI
+    /*
+     *  Creates one new tag from parameters in the request body (typically form fields)
+     *
+     *  @method /api/tags/tag_POST
+     */
     routing.post(baseURL, function (req, res, next) {
         req.url = decodeURI(req.url);
         logger.debug("Routes(TaggingService)-->Post-->req.url: " + req.url);
@@ -82,6 +103,11 @@ module.exports = exports = function (taggingService, baseURL, createQueryObject,
 
     });
 
+    /**
+     *  Updates a single tag with id matching the URL route pattern, with the fields contained in the request body (typically form fields)
+     *
+     *  @method /api/tags/tag/:id_PUT
+     */
     routing.put(baseURL + "/:id", function (req, res, next) {
         req.url = decodeURI(req.url);
         logger.debug("Routes(TaggingService)-->Put-->req.url: " + req.url);
@@ -114,6 +140,11 @@ module.exports = exports = function (taggingService, baseURL, createQueryObject,
 
     });
 
+    /**
+     *  Delets a single tag with id matching the URL route pattern.
+     *
+     *  @method /api/tags/tag/:id_DELETE
+     */
     routing.delete(baseURL + "/:id", function (req, res, next) {
         req.url = decodeURI(req.url);
         logger.debug("Routes(TaggingService)-->Delete-->req.url: " + req.url);

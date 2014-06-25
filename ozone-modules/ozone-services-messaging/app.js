@@ -1,3 +1,19 @@
+/**
+    The Messaging service was originally designed as part of the development of the Ozone Platform v2.
+    The development was then halted to focus on Apps Mall v2. This means the messaging service is still
+    in a state of 'prototype'. It's functional but doesn't have a finalized API around it (it's kinda wonky)
+    and there is many aspects that are still very specific for testing.
+
+    This service essentially wraps socket.io to create a channel between the client and server to allow async
+    communication between the two. This also supports multiple screens.
+
+    By default this module is disabled.
+
+    @module Ozone.Services.Messaging
+    @class Ozone.Services.Messaging
+    @submodule Server-side
+    @deprecated
+*/
 var PORT = 3000,
     logger;
 

@@ -1,3 +1,20 @@
+/**
+    Grunt tasks are strictly used for tasking and not regular usage of the application.
+    Therefore this file is mostly comprised of tasks that assist in building, generating documentation
+    and some basic shortcuts to make development life easier.
+
+    The following tasks are explicitly exposed and are useful:
+
+    grunt start-mongod (or grunt mongod): starts a MongoDB 2.4.x or 2.5.x instant with text indexing enabled. This DOES NOT work with MongoDB 2.6.x.
+
+    grunt dropDb --db=database: a shortcut task to drop a database within MongoDB.
+
+    grunt build: Combines the clean, yuidoc, concat, and minify tasks into a single task to support a build.
+
+    grunt test: simply an alias that runs npm test.
+
+    grunt angularTest: an alias that runs the bash script to start-up karma and run the unit tests against the Apps Mall frontend.
+*/
 (function () {
     module.exports = function (grunt) {
         grunt.loadNpmTasks('grunt-contrib-clean');

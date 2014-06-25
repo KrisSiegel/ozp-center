@@ -1,5 +1,15 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Tags
+	@submodule Client-Side
+*/
 Ozone.Service("Tags", (function () {
 	var api = {
+		/**
+			Gets the service path
+
+			@method getServicePath
+		*/
         getServicePath: function () {
 			return Ozone.utils.murl("apiBaseUrl", "/tags/", 'servicesHost');
 	    },
@@ -7,6 +17,11 @@ Ozone.Service("Tags", (function () {
 			throw "Method not implemented";
 		},
 		tag: {
+			/**
+				@method tag.get
+				@param {String} id the id to get
+				@param {Method} callback the callback to execute with a result
+			*/
 			get: function (id, callback, context) {
 				if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) { // get all
 					context = callback;
@@ -36,6 +51,12 @@ Ozone.Service("Tags", (function () {
 					context: (context || this)
 				});
 			},
+			/**
+				@method tag.query
+				@param {Object} selector the selector object to query with
+				@param {Method} callback the callback to execute with a result
+				@param {Object} context (optional) the context to execute the callback within if desired
+			*/
 			query: function (selector, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -85,6 +106,11 @@ Ozone.Service("Tags", (function () {
 					context: (context || this)
 				});
 			},
+			/**
+				@method tag.create
+				@param {Object} tag the tag to create
+				@param {Method} callback the callback to execute upon completion
+			*/
 			create: function (tag, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -109,6 +135,11 @@ Ozone.Service("Tags", (function () {
 					context: (context || this)
 				});
 			},
+			/**
+				@method tag.update
+				@param {Object} tag the tag object to update
+				@param {Method} callback the callback to execute upon completion
+			*/
 			update: function (tag, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";
@@ -137,6 +168,11 @@ Ozone.Service("Tags", (function () {
 					context: (context || this)
 				});
 			},
+			/**
+				@method tag.delete
+				@param {Object} tag the tag to delete
+				@param {Method} callback the callback to execute upon completion
+			*/
 			del: function (tag, callback, context) {
 				if (!Ozone.utils.isFunction(callback)) {
 	            	throw "No callback defined";

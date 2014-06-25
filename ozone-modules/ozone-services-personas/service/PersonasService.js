@@ -1,3 +1,10 @@
+/**
+    The Personas serivce allows access to manage users, permissions and roles.
+
+    @module Ozone.Services.Personas
+    @module Ozone.Services.Personas
+    @submodule Server-Side
+*/
 (function () {
     var constants = require('../config/constants'),
     	store = constants.database.store.personas,
@@ -120,6 +127,12 @@
     };
 
     var exporting = {
+        /**
+            Initializes the Personas Service
+
+            @method init
+            @param {Object} _ozone the Ozone API object
+        */
     	init: function (_ozone) {
     			Ozone = _ozone;
     			logger = Ozone.logger;
@@ -129,9 +142,26 @@
                 });
     	},
         persona: {
+            /**
+                Deletes the currently authenticated user within the session. This should be called from a security service.
+
+                @method persona.logout
+                @param {Object} req the http request object
+                @param {Object} res the http response object
+                @param {Method} next the next method to continue routing
+            */
             logout: function (req, res, next) {
                 delete req.session.user;
             },
+            /**
+                Logs a persona into the current session. This should be called from a security service.
+
+                @method persona.login
+                @param {Object} obj the persona object to log into the system
+                @param {Object} req the http request object
+                @param {Object} res the http response object
+                @param {Method} next the next method to continue routing
+            */
             login: function (obj, req, res, next) {
                 var personaName = Ozone.utils.safe(obj, "username");
                 var personaAuthToken = Ozone.utils.safe(obj, "auth_token");
@@ -238,6 +268,11 @@
                     }
                 });
             },
+            /**
+                @method persona.getById
+                @param {String} userId the user id to fetch
+                @param {Method} callback the callback to execute upon completion
+            */
             getById: function(userId, callback) {
                 Persistence.Store(store).Collection(collection).get(userId, function (err, result) {
                     exporting.roles.calculate(result[0].meta.permissions, function (role) {
@@ -246,6 +281,11 @@
                     });
                 });
             },
+            /**
+                @method persona.hasPermission
+                @param {Object} persona the persona to check
+                @param {Array} permission the single or multiple permissions to check
+            */
             hasPermission: function(persona, permission) {
                 logger.debug("Personas Service -> hasPermission -> permission: " + permission);
                 logger.debug("Personas Service -> hasPermission -> persona's permissions: " + Ozone.utils.safe(persona, "meta.permissions"));
@@ -265,6 +305,11 @@
                 }
                 return has;
             },
+            /**
+                @method persona.query
+                @param {Object} selector the selector to use when querying for persona objects
+                @param {Method} callback the callback to be executed upon completion
+            */
             query: function(selector, callback) {
                 Persistence.Store(store).Collection(collection).query(selector, function (err, result) {
                     var applyRole = function (index) {
@@ -276,6 +321,11 @@
                     callback(err, result);
                 });
             },
+            /**
+                @method persona.create
+                @param {Object} data the persona object to create
+                @param {Method} callback the callback to execute upon creation
+            */
             create: function(persona, callback) {
                 if (!Ozone.utils.isUndefinedOrNull(persona) && !Ozone.utils.isUndefinedOrNull(persona.meta) && !Ozone.utils.isUndefinedOrNull(persona.meta.role)) {
                     delete persona.meta.role;
@@ -290,6 +340,13 @@
                     callback(err, result);
                 });
             },
+            /**
+                Updates a persona
+
+                @method persona.update
+                @param {Object} persona the persona object to update
+                @param {Method} callback the callback to execute upon completion
+            */
             update: function(personaId, persona, callback) {
                 delete persona.meta.role;
                 Persistence.Store(store).Collection(collection).set(personaId, persona, function (err, result) {
@@ -297,6 +354,11 @@
                     callback(err, persona);
                 });
             },
+            /**
+                @method persona.delete
+                @param {String} userId the user id to delete
+                @param {Method} callback the callback to execute upon deletion
+            */
             delete: function(userId, callback) {
                 Persistence.Store(store).Collection(collection).remove(userId, function (err, result) {
                     callback(err, result.removed);
@@ -304,26 +366,52 @@
             }
         },
         permissions: {
+            /**
+                @method permissions.getById
+                @param {String} permissionId the permission id to fetch
+                @param {Method} callback the callback to execute upon completion
+            */
             getById: function(permissionId, callback) {
                 Persistence.Store(store).Collection(permissions).get(permissionId, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method permissions.query
+                @param {Object} selector the selector to use when querying permissions
+                @param {Method} callback the callback to execute upon completion
+            */
             query: function(selector, callback) {
                 Persistence.Store(store).Collection(permissions).query(selector, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method permissions.create
+                @param {String} permission the permission to store
+                @param {Method} callback the callback to execute upon completion
+            */
             create: function(permission, callback) {
                 Persistence.Store(store).Collection(permissions).set(null, permission, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method permissions.update
+                @param {String} permissionId the permission's id to update
+                @param {String} permission the permission to store
+                @param {Method} callback the callback to execute upon completion
+            */
             update: function(permissionId, permission, callback) {
                 Persistence.Store(store).Collection(permissions).set(permissionId, permission, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method permissions.delete
+                @param {String} permissionId the permission's id to delete
+                @param {Method} callback the callback to execute upon completion
+            */
             delete: function(permissionId, callback) {
                 Persistence.Store(store).Collection(permissions).remove(permissionId, function (err, result) {
                     callback(err, result.removed);
@@ -331,6 +419,14 @@
             }
         },
         roles: {
+            /**
+                @method calculate
+                @param {Array} userPermissions the user's permissions
+                @param {Method} callback the callback that's executed upon completion of calculations
+                @param {Array} fullPermissions (optional) the array of full permissions to use instead of the cached permissions of the system
+                @param {Array} fullRoles (optional) the array of full roles to use instead of the cached roles of the system
+                @param {Boolean} forceSync (optional) forces the method to return in sync rather than async
+            */
             calculate: function (userPermissions, callback, fullPermissions, fullRoles, forceSync) {
                 // Data should exist; run the calculations!
                 var calcWithData = function (err, results) {
@@ -417,6 +513,12 @@
                     calcWithData();
                 }
             },
+            /**
+                @method calculateSync
+                @param {Array} userPermissions the user's permissions
+                @param {Array} fullPermissions (optional) the array of full permissions to use instead of the cached permissions of the system
+                @param {Array} fullRoles (optional) the array of full roles to use instead of the cached roles of the system
+            */
             calculateSync: function (userPermissions, fullPermissions, fullRoles) {
                 var result;
                 exporting.roles.calculate(userPermissions, function (role) {
@@ -424,32 +526,63 @@
                 }, fullPermissions, fullRoles, true);
                 return result;
             },
+            /**
+                @method roles.getById
+                @param {String} roleId the role's id to fetch
+                @param {Method} callback the callback to execute upon completion
+            */
             getById: function(roleId, callback) {
                 Persistence.Store(store).Collection(roles).get(roleId, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method roles.query
+                @param {Object} selector the selector object to use when querying roles
+                @param {Method} callback the callback to execute upon completion
+            */
             query: function(selector, callback) {
                 Persistence.Store(store).Collection(roles).query(selector, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method roles.create
+                @param {String} role the role to store
+                @param {Method} callback the callback to execute upon completion
+            */
             create: function(role, callback) {
                 Persistence.Store(store).Collection(roles).set(null, role, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method roles.update
+                @param {String} roleId the role's id to update
+                @param {String} role the role to store
+                @param {Method} callback the callback to execute upon completion
+            */
             update: function(roleId, role, callback) {
                 Persistence.Store(store).Collection(roles).set(roleId, role, function (err, result) {
                     callback(err, result);
                 });
             },
+            /**
+                @method roles.delete
+                @param {String} roleId the role's id to delete
+                @param {Method} callback the callback to execute upon completion
+            */
             delete: function(roleId, callback) {
                 Persistence.Store(store).Collection(roles).remove(roleId, function (err, result) {
                     callback(err, result);
                 });
             }
         },
+        /**
+            @method import
+            @param {Object} data the data to attempt to import
+            @param {Method} callback the callback to execute upon completion
+        */
         import: function(data, callback){
             var importReport = { persona: { successful: 0, failed: 0 }, permissions: { successful: 0, failed: 0 }, roles: { successful: 0, failed: 0 } }
             var importPersona = function (person, callback) {
@@ -583,6 +716,10 @@
             });
 
         },
+        /**
+            @method export
+            @param {Method} callback the callback to execute upon completion of the export
+        */
         export: function (callback) {
             var exp = { };
             exporting.persona.query({}, function (err1, personaResult) {

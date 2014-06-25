@@ -1,14 +1,33 @@
+/**
+    @module Ozone.Services
+    @class Ozone.Services.Topics
+    @submodule Client-Side
+*/
 (function () {
 
     var api = Ozone.Service("Tags");
 
     var genericService = {
+        /**
+            Gets the service path
+
+            @method getServicePath
+        */
 		getServicePath: function () {
 			return Ozone.utils.murl("apiBaseUrl", this.controller, 'servicesHost');
 		},
+        /**
+            @method export
+            @param {Method} callback the callback to execute upon completion
+        */
         export: function (callback) {
             Ozone.Service("Exporter").exportService("TagTopic", callback);
         },
+        /**
+            @method get
+            @param {String} id the id to get
+            @param {Method} callback the callback to execute with a result
+        */
 		get: function (id, callback, context) {
 			if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) { // get all
 				context = callback;
@@ -38,6 +57,12 @@
 				context: (context || this)
 			});
 		},
+        /**
+            @method query
+            @param {Object} selector the selector object to query with
+            @param {Method} callback the callback to execute with a result
+            @param {Object} context (optional) the context to execute the callback within if desired
+        */
 		query: function (selector, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";
@@ -71,6 +96,11 @@
 				context: (context || this)
 			});
 		},
+        /**
+            @method create
+            @param {Object} newItem the topic to create
+            @param {Method} callback the callback to execute upon completion
+        */
 		create: function (newItem, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";
@@ -95,6 +125,11 @@
 				context: (context || this)
 			});
 		},
+        /**
+            @method update
+            @param {Object} updateItem the topic object to update
+            @param {Method} callback the callback to execute upon completion
+        */
 		update: function (updateItem, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";
@@ -129,6 +164,11 @@
 				context: (context || this)
 			});
 		},
+        /**
+            @method delete
+            @param {Object} deleteItem the topic to delete
+            @param {Method} callback the callback to execute upon completion
+        */
 		del: function (deleteItem, callback, context) {
 			if (!Ozone.utils.isFunction(callback)) {
             	throw "No callback defined";

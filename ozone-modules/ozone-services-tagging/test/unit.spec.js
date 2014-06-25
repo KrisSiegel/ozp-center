@@ -1,3 +1,10 @@
+/**
+ *  Unit tests for Ozone Tagging services
+ *
+ *  @module Ozone.Services.Tagging
+ *  @class Ozone.Services.Tagging.UnitTest
+ *  @submodule Server-Side
+ */
 var assert = require("assert"),
     expect = require("expect.js"),
     request = require("supertest"),
@@ -21,11 +28,11 @@ var assert = require("assert"),
 if (typeof jasmine !== 'undefined') {
 	beforeEach(function (done) {
 	    setup(done);
-	})
+	});
 } else {
 	before(function (done) {
 	    setup(done);
-	})
+	});
 }
 
 function setup(done) {
@@ -75,10 +82,10 @@ beforeEach(function () {
 		title = this.currentTest.title;
 	}
     logger.info("=============== Running test: " + title + " =============== ")
-})
+});
 
-describe('Create tags', function () {
-    describe('create a tag via POST', function () {
+describe('Creating tags', function () {
+    describe('via POST', function () {
         it('will create a tag in the "tag" collection in MongoDB', function (done) {
             logger.debug(sampleTag1);
 
@@ -94,9 +101,9 @@ describe('Create tags', function () {
                     sampleTag1._id = res.body.Created[0]._id;
                     done();
                 });
-        })
-    })
-    describe('create a tag (that has an _id) via POST', function () {
+        });
+    });
+    describe('with an existing id via POST', function () {
         it('will create a tag (that already had an _id)', function (done) {
             logger.debug('sampleTag2: ' + JSON.stringify(sampleTag2));
 
@@ -109,10 +116,9 @@ describe('Create tags', function () {
                     expect(res.body).not.to.have.property('error');
                     done();
                 });
-        })
-    })
-    describe('create another tag (that has the same _id) via POST', function () {
-        it('will not create a tag in the "tag" collection in MongoDB, due to duplicate level/topic/uri/tag/creatorUserId', function (done) {
+        });
+
+        it('will not create a tag if a record with the same id already exists in the database, due to duplicate level/topic/uri/tag/creatorUserId', function (done) {
             logger.debug('sampleTag3: ' + JSON.stringify(sampleTag3));
 
             request(app)
@@ -125,13 +131,13 @@ describe('Create tags', function () {
                     expect(res.body.error).to.contain("duplicate key error");
                     done();
                 });
-        })
-    })
-})
+        });
+    });
+});
 
 describe('Update tags', function () {
-    describe('update a tag ', function () {
-        it('update the ' + sampleTag2._id + ' tag', function (done) {
+    describe('when updating a tag ', function () {
+        it('should update tags with existing ids', function (done) {
             request(app)
                 .put(baseTagURL + '/' + sampleTag2._id)
                 .send(updatedTag2)
@@ -145,12 +151,12 @@ describe('Update tags', function () {
                     done();
                 });
 
-        })
-    })
-})
+        });
+    });
+});
 
 describe('Get Tags', function () {
-    describe('get all tags', function () {
+    describe('when getting all tags', function () {
         it('should return at least one tag', function (done) {
             request(app)
                 .get(baseTagURL)
@@ -163,11 +169,11 @@ describe('Get Tags', function () {
                     logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
 
-    describe('get one tag by id', function () {
-        it('should return one tag by id', function (done) {
+    describe('when getting one tag by id', function () {
+        it('should return one tag', function (done) {
             request(app)
                 .get(baseTagURL + "/" + sampleTag2._id)
                 .end(function (err, res) {
@@ -177,10 +183,10 @@ describe('Get Tags', function () {
                     logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-    describe('get a tag by query - id', function () {
-        it('should return one tag by query - id', function (done) {
+        });
+    });
+    describe('when getting a tag by querying on id', function () {
+        it('should return one tag', function (done) {
             request(app)
                 .get(baseTagURL + '?id=' + sampleTag2._id)
                 .end(function (err, res) {
@@ -191,10 +197,10 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-    describe('get a tag by query - id & level', function () {
-        it('should return one tag by query - id & level', function (done) {
+        });
+    });
+    describe('when getting a tag by querying on id and level', function () {
+        it('should return one tag', function (done) {
             request(app)
                 .get(baseTagURL + '?id=' + sampleTag2._id + "&level=" + updatedTag2.level)
                 .end(function (err, res) {
@@ -205,10 +211,10 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-    describe('get a tag by query - id & wrong level', function () {
-        it('should not return any tags by query - id & wrong level', function (done) {
+        });
+    });
+    describe('when getting a tag by querying on id and an invalid level', function () {
+        it('should not return any tags', function (done) {
             request(app)
                 .get(baseTagURL + '?id=' + sampleTag2._id + "&level=" + sampleTag2.level)
                 .end(function (err, res) {
@@ -219,10 +225,10 @@ describe('Get Tags', function () {
                     logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-    describe('get a tag by query - id & level & topic', function () {
-        it('should return one tag by query - id & level & topic', function (done) {
+        });
+    });
+    describe('when getting a tag by querying on id, level, and topic', function () {
+        it('should return one tag', function (done) {
             request(app)
                 .get(baseTagURL + '?id=' + sampleTag2._id + "&level=" + updatedTag2.level + "&topic=" + sampleTag2.topic)
                 .end(function (err, res) {
@@ -233,10 +239,10 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-    describe('get a tag by query - id & level & topic & uri', function () {
-        it('should return one tag by query - id & level & topic & uri', function (done) {
+        });
+    });
+    describe('when getting a tag by querying on id, level, topic, and uri', function () {
+        it('should return one ta', function (done) {
             request(app)
                 .get(baseTagURL + '?id=' + sampleTag2._id + "&level=" + updatedTag2.level +
                     "&topic=" + sampleTag2.topic + "&uri=" + sampleTag2.uri)
@@ -248,10 +254,10 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-    describe('get a tag by query - uri', function () {
-        it('should return one tag by query - uri', function (done) {
+        });
+    });
+    describe('when getting a tag by querying on uri', function () {
+        it('should return one tag', function (done) {
             request(app)
                 .get(baseTagURL + '?&uri=' + sampleTag2.uri)
                 .end(function (err, res) {
@@ -262,15 +268,15 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-})
+        });
+    });
+});
 
 
 
 describe('Delete tags', function () {
-    describe('delete the first tag by the id', function () {
-        it('delete the first tag: ' + sampleTag1._id, function (done) {
+    describe('when deleting the first tag by the id', function () {
+        it('should delete only the first tag', function (done) {
             request(app)
                 .del(baseTagURL + '/' + sampleTag1._id)
                 .end(function (err, res) {
@@ -281,10 +287,10 @@ describe('Delete tags', function () {
                     expect(res.body["Deleted"]).to.be(1);
                     done();
                 });
-        })
-    })
-    describe('delete the second tag by the id', function () {
-        it('delete the second tag: ' + sampleTag2._id, function (done) {
+        });
+    });
+    describe('when deleting the second tag by the id', function () {
+        it('should delete only the second tag', function (done) {
             request(app)
                 .del(baseTagURL + '/' + sampleTag2._id)
                 .end(function (err, res) {
@@ -295,13 +301,13 @@ describe('Delete tags', function () {
                     expect(res.body["Deleted"]).to.be(1);
                     done();
                 });
-        })
-    })
-})
+        });
+    });
+});
 
 describe('Create topics', function () {
-    describe('create a topic via POST', function () {
-        it('will create a topic in the "topic" collection in MongoDB', function (done) {
+    describe('when creating a topic via POST', function () {
+        it('should create a topic in the "topic" collection in MongoDB', function (done) {
             logger.debug(sampleTopic1);
 
             request(app)
@@ -316,18 +322,18 @@ describe('Create topics', function () {
                     //sampleTag1._id = res.body.Created[0]._id;
                     done();
                 });
-        })
+        });
     });
 });
 
 
 xdescribe('Mass import tags', function () {
-    describe('import a json using import service', function () {
-        it('should import the json using import service', function (done) {
+    describe('when importing a json using import service', function () {
+        it('should import all tags in the JSON block', function (done) {
             
         	TaggingService.import(['injectableTagRecords.json'], '../test/data/', function() {
                 done();
             });
-        })
-    })
-})
+        });
+    });
+});

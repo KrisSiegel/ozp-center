@@ -1,5 +1,48 @@
+/**
+	@module Ozone
+	@class Ozone
+*/
 Ozone.extend(function () {
 	return {
+		/**
+			In order to provide an API with little to no dependencies on another libraries a dedicated
+			and custom ajax method was created that's very similar to the one found within jQuery in interface.
+			It provides several defaults including redirection to a login page should a mock security service be used.
+
+			The object passed in can contain the following properties:
+
+			method -> the HTTP verb to use
+			url -> the URL to use
+			retries -> the number of times a retry should be attempted before giving up
+			data -> the data to send
+			type -> the data of the data being sent; defaults to json
+			context -> the execution context if necessary
+			query -> a set of keys and values to be turned into a query string
+			timeout -> the timeout value
+			allowCaching -> boolean specified whether caching is okay or not. Cache busting is employed when false
+			withCredentials -> calls should contain credentials or not
+			success -> a callback that returns the response upon success
+			progress -> a callback that gets executed as progress occurs
+			error -> a callback that returns the error upon failure
+			failure -> an alias to error
+
+			Example:
+			Ozone.ajax({
+				url: "http://localhost:3000/api/helloWorld",
+				method: "GET",
+				timeout: 2000,
+				withCredentials: true,
+				type: "json",
+				context: this,
+				data: { text: "Hello, World!" },
+				success: function (status, response) { },
+				error: function (status, response) { },
+				failure: function (status, response) { }
+			});
+
+			@method ajax
+			@param {Object} options a complex object that contains various options outlined in the function description
+		*/
 		ajax: function (options) {
 			if (options === undefined || options.method === undefined || options.url === undefined) {
 				return;

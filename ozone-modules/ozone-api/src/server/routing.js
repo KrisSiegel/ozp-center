@@ -1,3 +1,11 @@
+/**
+    Provides routing capabilities with a similar method signature to express.js. All http verbs provides by
+    express.js are also available here with the same function signature.
+
+    @module Ozone
+    @submodule Server-Side
+    @class Ozone.routing
+*/
 Ozone.extend(function () {
     var methods = require("methods");
     var mime = require("mime");
@@ -5,6 +13,14 @@ Ozone.extend(function () {
 
     var routing = {
         kill: {
+            /**
+                This is a simple helper method that ends a request and sends back the HTTP 403 status code along with a custom message if specified.
+
+                @method kill.notEnoughAccess
+                @param {Object} req the incoming request object
+                @param {Object} res the outgoing response object
+                @param {String} msn (optional) the message to display when sending back a 403
+            */
             notEnoughAccess: function (req, res, msg) {
                 Ozone.logger.info("Ozone.routing -> kill route due to not enough access.");
                 if (!Ozone.utils.isUndefinedOrNull(res)) {
@@ -12,6 +28,14 @@ Ozone.extend(function () {
                     res.end(msg || "User does not have proper access to this function");
                 }
             },
+            /**
+                This is a simple helper method that ends a request and sends back the HTTP 401 status code along with a custom message if specified.
+
+                @method kill.notLoggedIn
+                @param {Object} req the incoming request object
+                @param {Object} res the outgoing response object
+                @param {String} msn (optional) the message to display when sending back a 401
+            */
             notLoggedIn: function (req, res, msg) {
                 Ozone.logger.info("Ozone.routing -> kill route due to not being logged in.");
                 if (!Ozone.utils.isUndefinedOrNull(res)) {
@@ -21,6 +45,18 @@ Ozone.extend(function () {
             }
         },
         helpers: {
+            /**
+                Provides a wrapper around the typical res.send(data) method call. If a query string key value of export=true is attached to a request
+                then this method will automatically export it as whatever file type and file name the consuming service tells it do. Basically a little
+                shortcut to handling file names and data types at one location versus each service itself.
+
+                @method helpers.send
+                @param {Object} req the incoming request object
+                @param {Object} res the outgoing response object
+                @param {Object} data the data to send in the response
+                @param {String} fileName (optional) the filename to send in the response
+                @param {String} mimeType (optional) the mime type of a file to send back
+            */
             send: function (req, res, data, fileName, mimeType) {
                 if (!Ozone.utils.isUndefinedOrNull(res)) {
                     if (Ozone.utils.safe(current, "req.query.export") !== undefined && req.query.export === "true") {
@@ -33,6 +69,15 @@ Ozone.extend(function () {
             }
         }
     }
+    /**
+        Methods for accessing
+
+        @method Ozone.routing.<verb>
+        @param {String} path the path to access the RESTful endpoint (this is automatically prepended with apiBaseUrl)
+        @param {Object} access (optional) an object that can specify what's requested to access this resource. It can contain a loggedIn key with a boolean value and a permissions array which can be an array of permissions required.
+        @param {Method} callback the callback to call should the consumer be granted access to the endpoint. Includes req, res and next parameters just like express.js
+        @param {Object} context (optional) the context in which the callback is run can be optionally specified though is rarely necessary.
+    */
     for (var i = 0; i < methods.length; ++i) {
         (function (meth) {
             routing[meth] = (function (path, access, callback, context) {
