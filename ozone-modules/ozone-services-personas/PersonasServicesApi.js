@@ -1,3 +1,7 @@
+/**
+    The personas service enabled access to persona, permissions and roles.
+    This file initialized the service and ensures all necessary indexes.
+*/
 var PORT = 3000,
     logger;
 
