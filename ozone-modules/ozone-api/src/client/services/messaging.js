@@ -1,7 +1,13 @@
 /**
+	This module is DEPRECATED. It was originally created as part of the Ozone V2 work before direction
+	changed to focus on Apps Mall completion instead of Ozone V2 finalizing. Due to this the Messenger
+	service has not been tested or used since December of 2013 and is unlikely to work perfectly
+	as it was originally a prototype.
+
 	@module Ozone.Services
 	@class Ozone.Services.Messaging
 	@submodule Client-Side
+	@deprecated
 */
 var Messenger;
 

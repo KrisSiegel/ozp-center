@@ -1,13 +1,13 @@
 /**
     @module Ozone
-    @class Ozone
+    @class Ozone.utils
 */
 Ozone.extend(function () {
     return {
         utils: {
             dom: {
                 /**
-                    @method utils.dom.removeAllChildrenNodes
+                    @method dom.removeAllChildrenNodes
                     @param {HTMLElement} element the parent where all children linked to must be removed
                 */
                 removeAllChildrenNodes: function (element) {

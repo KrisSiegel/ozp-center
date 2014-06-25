@@ -1,7 +1,12 @@
 /**
+	This module is DEPRECATED. It may still function and its original intent was to store components separately
+	from applications for composite applications. Since the team was directed to not work on this it isn't as up to date
+	as the application service.
+
 	@module Ozone.Services
 	@class Ozone.Services.Components
 	@submodule Client-Side
+	@deprecated
 */
 Ozone.Service("Components", (function () {
 	var service = {
