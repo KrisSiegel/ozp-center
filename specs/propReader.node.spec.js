@@ -1,3 +1,6 @@
+/**
+    Unit tests for the property reader.
+*/
 module.exports = (function (Ozone) {
     describe("Property Reader", function () {
         it("propReader.js", function () {

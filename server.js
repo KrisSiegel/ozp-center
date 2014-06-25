@@ -1,3 +1,14 @@
+/**
+    This file is where we start-up the server itself. A rough order of loading is as follows:
+
+    configuration
+    CORS setup
+    session provider
+    security module
+    Ozone services
+    auto imports
+    http / https start
+*/
 module.exports = (function (environment) {
     var pack = require("./package.json");
     var express = require("express");
@@ -71,6 +82,7 @@ module.exports = (function (environment) {
         // Load additional Ozone services
         Ozone.load(__dirname, Ozone.config().getServerProperty("ozoneModules.services"));
 
+        // Run the auto imports to load data upon start-up
         var imports = Ozone.config().getServerProperty("autoImport");
         if (!Ozone.Utils.isUndefinedOrNull(imports)) {
             Ozone.Service().on('ready', 'Importer', function () {
@@ -91,6 +103,7 @@ module.exports = (function (environment) {
 
         var httpServer, httpsServer;
 
+        // Start-up the http server
         if (!Ozone.Utils.isUndefinedOrNull(Ozone.config().getServerProperty("port"))) {
             httpServer = http.createServer(app);
             var port = Ozone.config().getClientProperty("port") || Ozone.config().getServerProperty("port");
@@ -100,12 +113,15 @@ module.exports = (function (environment) {
             });
         }
 
+        // Server the frontend projects if we're NOT in a tiered deployment
+        // OR we are serving only client data with this server.
         if (typeof tiers == "undefined" || (tiers.indexOf("client") != -1)) {
             app.use(require("./apps/ozone-hud")(Ozone));
             //app.use(require("./apps/appbuilder")(Ozone));
             app.use(require("./apps/appsmall")(Ozone));
         }
 
+        // Start-up the https server
         if (!Ozone.Utils.isUndefinedOrNull(Ozone.config().getServerProperty("ssl.port"))) {
             var fs = require("fs")
             var certs = { };
@@ -124,6 +140,7 @@ module.exports = (function (environment) {
             });
         }
 
+        // Register the http and https servers to allow module access if desired
         Ozone.Service("Server", {
             getHttpServer: function () {
                 return httpServer;

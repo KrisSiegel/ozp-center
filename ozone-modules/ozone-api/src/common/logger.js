@@ -1,5 +1,8 @@
+/**
+    @module Ozone
+    @class Ozone
+*/
 Ozone.extend(function () {
-
     var levels = {
         "debug": 0,
         "info": 1,
@@ -10,6 +13,9 @@ Ozone.extend(function () {
 
     var clientImpCache, serverImpCache;
 
+    /**
+        The implementation of the debug, info, warning and error methods for the client
+    */
     var clientImp = (function () {
         return {
             debug: function (args) {
@@ -27,6 +33,9 @@ Ozone.extend(function () {
         };
     });
 
+    /**
+        The implementation of the debug, info, warning and error methods for the server
+    */
     var serverImp = (function () {
         var winston = require('winston');
         var winstonColors = {
@@ -83,18 +92,38 @@ Ozone.extend(function () {
     };
 
     var logger = {
+        /**
+            @method logger.debug
+            @param {Object} obj an n number of parameters of various types to be logged.
+        */
         debug: function () {
             callCorrectImp("debug", Ozone.utils.argumentsToArray(arguments));
         },
+        /**
+            @method logger.info
+            @param {Object} obj an n number of parameters of various types to be logged.
+        */
         info: function () {
             callCorrectImp("info", Ozone.utils.argumentsToArray(arguments));
         },
+        /**
+            @method logger.warning
+            @param {Object} obj an n number of parameters of various types to be logged.
+        */
         warning: function () {
             callCorrectImp("warning", Ozone.utils.argumentsToArray(arguments));
         },
+        /**
+            @method logger.warn
+            @param {Object} obj an n number of parameters of various types to be logged.
+        */
         warn: function () {
             callCorrectImp("warning", Ozone.utils.argumentsToArray(arguments));
         },
+        /**
+            @method logger.error
+            @param {Object} obj an n number of parameters of various types to be logged.
+        */
         error: function () {
             callCorrectImp("error", Ozone.utils.argumentsToArray(arguments));
         }

@@ -1,18 +1,53 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.Persistence
+	@submodule Client-Side
+*/
 Ozone.Service("Persistence", (function () {
 	return {
+		/**
+			Gets the service path
+
+			@method getServicePath
+		*/
 		getServicePath: function () {
 			return Ozone.utils.murl("apiBaseUrl", "/persistence/", true);
 		},
+		/**
+			The Store method starts the chain for accessing data and blobs; it accepts a name to use as a store which can be thought of as a database.
+
+			@method Store
+			@param {String} store the store name to use.
+		*/
 		Store: function (store) {
 			return {
+				/**
+					@method Store(store).getStorePath
+				*/
 				getStorePath: function () {
 					return Ozone.Service("Persistence").getServicePath() + "store/" + store + "/";
 				},
+				/**
+					Collection branches off of a specific store and can be thought of as a "table" in some sense; it is a bucket for data to live in.
+
+					@method Store(store).Collection
+					@param {String} collection the name of the collection to use.
+				*/
 				Collection: function (collection) {
 					return {
+						/**
+							@method Store(store).Collection(collection).getCollectionPath
+						*/
 						getCollectionPath: function () {
 							return Ozone.Service("Persistence").Store(store).getStorePath() + "collection/" + collection + "/";
 						},
+						/**
+							Takes a key and returns the object in the callback.
+
+							@method Store(store).Collection(collection).get
+							@param {String} key the id of the value to fetch.
+							@param {Function} callback with the get result.
+						*/
 						get: function (key, callback, context) {
 							//Ozone.logger.debug("in store.collection.get, key: " + key + " callback: " + callback + " context: " + context);
 							var keys;
@@ -51,6 +86,14 @@ Ozone.Service("Persistence", (function () {
 								context: (context || this)
 							});
 						},
+						/**
+							Takes a selector, options (if available) and returns the result in the callback
+
+							@method Store(store).Collection(collection).query
+							@param {Object} selector an object that contains all selectors to be used.
+							@param {Object} options options to be used with the query.
+							@param {Function} callback with the query result.
+						*/
 						query: function (selector, options, callback, context) {
 							if (!Ozone.utils.isObject(selector)) {
                             	throw "No selector defined";
@@ -88,6 +131,14 @@ Ozone.Service("Persistence", (function () {
 							});
 
 						},
+						/**
+							Takes a key and value and sets the data within the database with errors being reported via the callback.
+
+							@method Store(store).Collection(collection).set
+							@param {String} key the name of the method to test.
+							@param {Object} value the value to set.
+							@param {Function} callback containing any errors or status codes.
+						*/
 						set: function (key, value, callback, context) {
 							//Ozone.logger.debug("in store.collection.set, url: " + url + " key: " + JSON.stringify(key) + " value: " + JSON.stringify(value));
 
@@ -125,6 +176,13 @@ Ozone.Service("Persistence", (function () {
 								data: array
 							});
                         },
+						/**
+							Takes a key and deletes the object.
+
+							@method Store(store).Collection(collection).remove
+							@param {String} key the name of the method to test.
+							@param {Function} callback to return the result.
+						*/
                         remove: function (key, callback, context) {
                         	if (Ozone.utils.isUndefinedOrNull(key)) {
                                 throw "No key defined";
@@ -158,14 +216,30 @@ Ozone.Service("Persistence", (function () {
 
 					}
 				},
+				/**
+					Takes a string to name a specific drive in which blob data will be stored.
+
+					@method Store(store).Drive
+					@param {String} drive the name of the 'drive' to use for storing blobs.
+				*/
 				Drive: function (drive) {
 					return {
+						/**
+							@method Store(store).Drive(drive).getDrivePath
+						*/
 						getDrivePath: function (id) {
 						    if (Ozone.utils.isUndefinedOrNull(id)) {
 						        id = '';
 						    }
 							return Ozone.Service("Persistence").Store(store).getStorePath() + "drive/" + drive + "/" + id;
 						},
+						/**
+							Takes a key and returns the blob in the callback.
+
+							@method Store(store).Drive(drive).get
+							@param {String} key the blobs's id to fetch
+							@param {Function} callback with the get result.
+						*/
 						get: function (key, callback, context) {
 							//Ozone.logger.debug("in store.drive.get, key: " + key + " callback: " + callback + " context: " + context);
 							var keys;
@@ -204,6 +278,14 @@ Ozone.Service("Persistence", (function () {
 								context: (context || this)
 							});
 						},
+						/**
+							Takes a key and value and sets the blob within the database with errors being reported via the callback.
+
+							@method Store(store).Drive(drive).set
+							@param {String} key the name of the method to test.
+							@param {Object} value the blob to set.
+							@param {Function} callback containing any errors or status codes.
+						*/
 						set: function (key, value, callback, context) {
 							//Ozone.logger.debug("in store.drive.set, url: " + url + " key: " + JSON.stringify(key) + " value: " + JSON.stringify(value));
 
@@ -253,6 +335,13 @@ Ozone.Service("Persistence", (function () {
 								context: (context || this)
 							});
                         },
+						/**
+							Takes a key and deletes the blob.
+
+							@method Store(store).Drive(drive).remove
+							@param {String} key the name of the method to test.
+							@param {Function} callback to return the result.
+						*/
                         remove: function (key, callback, context) {
                         	if (!Ozone.utils.isFunction(callback)) {
                                 throw "No callback defined";
