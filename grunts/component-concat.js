@@ -1,3 +1,7 @@
+/**
+    This task provides web component combination for the Ozone HUD; it combines the HTML of multiple
+    web components into a single html file for inclusion.
+*/
 function catComponents () {
 
     var fs = require('fs'),

@@ -1,3 +1,6 @@
+/**
+    Provides the default configuration.
+*/
 module.exports = (function () {
     var pack = require('../package.json');
 

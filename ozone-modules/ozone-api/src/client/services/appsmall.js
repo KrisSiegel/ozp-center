@@ -1,11 +1,29 @@
+/**
+	@module Ozone.Services
+	@class Ozone.Services.AppsMall
+	@submodule Client-Side
+*/
 Ozone.Service("AppsMall", (function () {
 	return {
+		/**
+			@method getServicePath
+		*/
 		getServicePath: function () {
 			return Ozone.utils.murl("apiBaseUrl", "/aml/", true);
 		},
+		/**
+			@method export
+			@param {Method} callback the callback to execute upon completion
+		*/
 		export: function (callback) {
 			Ozone.Service("Exporter").exportService("AppsMall", callback);
 		},
+		/**
+			@method getReviews
+			@param {String} appId the application's id
+			@param {String} the username
+			@param {Method} the callback to execute upon completion
+		*/
 		getReviews: function (appId, username, callback, context) {
 			var user = username;
 
@@ -47,6 +65,14 @@ Ozone.Service("AppsMall", (function () {
 				context: (context || this)
 			});
 		},
+		/**
+			@method addReview
+			@param {Object} app the application
+			@param {Number} ratingAsNumber the rating number
+			@param {String} username the username
+			@param {String} reviewText the review itself
+			@param {Method} callback the callback to execute upon completion
+		*/
 		addReview: function (app, ratingAsNumber, username, reviewText, callback, context) {
 			if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) {
 				context = callback;

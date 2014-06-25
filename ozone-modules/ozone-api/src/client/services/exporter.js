@@ -1,8 +1,23 @@
+/**
+    @module Ozone.Services
+    @class Ozone.Services.Exporter
+    @submodule Client-Side
+*/
 Ozone.Service("Exporter", (function () {
     var service = {
+        /**
+            Gets the service path
+
+            @method getServicePath
+        */
         getServicePath: function () {
             return Ozone.utils.murl("apiBaseUrl", "/exporter/", true);
         },
+        /**
+            @method exportService
+            @param {Array} services the services to export
+            @param {Method} callback the callback to execute upon completion
+        */
         exportService: function (services, callback, context) {
             if (Ozone.utils.isUndefinedOrNull(services)) {
                 services = [];
