@@ -405,12 +405,12 @@
             }
         },
         /**
-         * 
+         * Imports tag or topic data from data object
          * @method import
-         * @param importData
-         * @param callback
+         * @param importData {Object} contains tag and/or topic data in the format {```tag: [], topic: []```}
+         * @param callback {Function} method called after importing.
          */
-        import: function(importData, callback){// object: { tag: [], topic: [] }, function
+        import: function(importData, callback){
             var importReport = { tag: { successful: 0, failed: 0 }, topic: { successful: 0, failed: 0 } }
             var importTags = function(){
                 if(importData['tag'] && importData['tag'].length > 0){
@@ -477,8 +477,9 @@
             }
         },
         /**
-         * 
+         * Queries tag or topic data from database, and passes results into callback in the format {```tag: [], topic: []```}
          * @method export
+         * @param callback {Function} method called after retrieving data
          */
         export: function(callback){
             var exportData = {}

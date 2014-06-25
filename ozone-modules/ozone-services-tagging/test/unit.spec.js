@@ -30,11 +30,11 @@ var assert = require("assert"),
 if (typeof jasmine !== 'undefined') {
 	beforeEach(function (done) {
 	    setup(done);
-	})
+	});
 } else {
 	before(function (done) {
 	    setup(done);
-	})
+	});
 }
 
 function setup(done) {
@@ -84,7 +84,7 @@ beforeEach(function () {
 		title = this.currentTest.title;
 	}
     logger.info("=============== Running test: " + title + " =============== ")
-})
+});
 
 describe('Create tags', function () {
     describe('create a tag via POST', function () {
@@ -103,8 +103,8 @@ describe('Create tags', function () {
                     sampleTag1._id = res.body.Created[0]._id;
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('create a tag (that has an _id) via POST', function () {
         it('will create a tag (that already had an _id)', function (done) {
             logger.debug('sampleTag2: ' + JSON.stringify(sampleTag2));
@@ -118,8 +118,8 @@ describe('Create tags', function () {
                     expect(res.body).not.to.have.property('error');
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('create another tag (that has the same _id) via POST', function () {
         it('will not create a tag in the "tag" collection in MongoDB, due to duplicate level/topic/uri/tag/creatorUserId', function (done) {
             logger.debug('sampleTag3: ' + JSON.stringify(sampleTag3));
@@ -134,9 +134,9 @@ describe('Create tags', function () {
                     expect(res.body.error).to.contain("duplicate key error");
                     done();
                 });
-        })
-    })
-})
+        });
+    });
+});
 
 describe('Update tags', function () {
     describe('update a tag ', function () {
@@ -154,9 +154,9 @@ describe('Update tags', function () {
                     done();
                 });
 
-        })
-    })
-})
+        });
+    });
+});
 
 describe('Get Tags', function () {
     describe('get all tags', function () {
@@ -172,8 +172,8 @@ describe('Get Tags', function () {
                     logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
 
     describe('get one tag by id', function () {
         it('should return one tag by id', function (done) {
@@ -186,8 +186,8 @@ describe('Get Tags', function () {
                     logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('get a tag by query - id', function () {
         it('should return one tag by query - id', function (done) {
             request(app)
@@ -200,8 +200,8 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('get a tag by query - id & level', function () {
         it('should return one tag by query - id & level', function (done) {
             request(app)
@@ -214,8 +214,8 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('get a tag by query - id & wrong level', function () {
         it('should not return any tags by query - id & wrong level', function (done) {
             request(app)
@@ -228,8 +228,8 @@ describe('Get Tags', function () {
                     logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('get a tag by query - id & level & topic', function () {
         it('should return one tag by query - id & level & topic', function (done) {
             request(app)
@@ -242,8 +242,8 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('get a tag by query - id & level & topic & uri', function () {
         it('should return one tag by query - id & level & topic & uri', function (done) {
             request(app)
@@ -257,8 +257,8 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('get a tag by query - uri', function () {
         it('should return one tag by query - uri', function (done) {
             request(app)
@@ -271,9 +271,9 @@ describe('Get Tags', function () {
                     //logger.debug("res.body: " + JSON.stringify(res.body, undefined, 3));
                     done();
                 });
-        })
-    })
-})
+        });
+    });
+});
 
 
 
@@ -290,8 +290,8 @@ describe('Delete tags', function () {
                     expect(res.body["Deleted"]).to.be(1);
                     done();
                 });
-        })
-    })
+        });
+    });
     describe('delete the second tag by the id', function () {
         it('delete the second tag: ' + sampleTag2._id, function (done) {
             request(app)
@@ -304,9 +304,9 @@ describe('Delete tags', function () {
                     expect(res.body["Deleted"]).to.be(1);
                     done();
                 });
-        })
-    })
-})
+        });
+    });
+});
 
 describe('Create topics', function () {
     describe('create a topic via POST', function () {
@@ -325,7 +325,7 @@ describe('Create topics', function () {
                     //sampleTag1._id = res.body.Created[0]._id;
                     done();
                 });
-        })
+        });
     });
 });
 
@@ -337,6 +337,6 @@ xdescribe('Mass import tags', function () {
         	TaggingService.import(['injectableTagRecords.json'], '../test/data/', function() {
                 done();
             });
-        })
-    })
-})
+        });
+    });
+});
