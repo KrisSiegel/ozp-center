@@ -1,7 +1,5 @@
 /**
- *  The Tagging module handles all RESTful calls for Tag and Topic objects.
- *
- *  Contents only accessible via RESTful APIs.
+ *  Unit tests for Ozone Tagging services
  *
  *  @module Ozone.Services.Tagging
  *  @class Ozone.Services.Tagging.UnitTest
