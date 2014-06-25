@@ -17,28 +17,28 @@ module.exports = function (target, _ozone) {
     logger = Ozone.logger;
     return {
         /**
-         * 
+         * Get the base path for import/export
          * @method getName
-         * @return {String} 
+         * @return {String} the base path for import/export
          */
         getName: function() {
             return path.basename(__filename);
         },
         /**
-         * 
+         * Checks if the data object passed in can be processed.
          * @method canProcess
-         * @param data {Object}
-         * @return {Boolean} 
+         * @param data {Object} the data object
+         * @return {Boolean} True if data object passed in can be processed.
          */
         canProcess: function(data) {
             logger.debug("TaggingService-->importers-->tag-json-->in canProcess()");
             return Ozone.Utils.isObject(data);
         },
         /**
-         * 
+         * Processes root-level Tagging record object
          * @method process
-         * @param data {Object}
-         * @param callback {Function}
+         * @param data {Object} root-level Tagging record object that contains an injectableRecords field
+         * @param callback {Function} called after Tag objects have been processed
          */
         process: function(data, callback) {
             logger.debug("TaggingService-->importers-->tag-json-->in process()");
@@ -46,10 +46,10 @@ module.exports = function (target, _ozone) {
             this.insertItems(data.injectableRecords, callback);
         },
         /**
-         * 
+         * Inserts many Tag objects via Ozone Persistence layer
          * @method insertItems
-         * @param injectableRecords {Object}
-         * @param callback {Function}
+         * @param injectableRecords {Array} an array of Tag objects to be inserted via Ozone Persistence layer
+         * @param callback {Function} called after Tag objects have been processed
          */
         insertItems: function(injectableRecords, callback) {
             var thingsToInsert = [],

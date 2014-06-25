@@ -13,10 +13,9 @@ var PORT = 3000,
 
 /**
  * get URI from app data. (TO DO: apps and components might have different URI path components, if applicable.)
- * @method getShortnameFromUri
- * @param uri {String} the full or relative path for an app
- * @param [tagObj] {Object} a tag object used as a search constraint that, if defined, must contain a tag from allTags with uri equal to the uri passed in
- * @param Ozone {Object} an array of Tag objects that, if defined, must contain a tag with tagObj's tag name
+ * @method setup
+ * @param callback {Function} method that gets called on Ozone after Tag indexing and routing has been set up.
+ * @param Ozone {Object} The Ozone API object
  * @public
  * @return {String} the shortname parsed from the uri passed in, or the empty string of the uri was not contained in the tag object and tag list parameters
  */
@@ -33,20 +32,20 @@ function setup(callback, Ozone) {
         taggingService = require('./service/TaggingService');
 
     /**
-     * 
+     * Sets up Ozone tagging service for both tags and topics
      * @method setupTagRouting
      * @private
-     * @return {Object} 
      */
     function setupTagRouting() {
         logger.debug("TaggingService-->setup-->setupTagRouting()");
         taggingService.init(Ozone);
 
         /**
-         * 
+         * Creates new query object with standardized id, level, topic, tag, and/or uri field names
          * @method createTagQueryObject
+         * @param query {Object} 
          * @private
-         * @return {Object} 
+         * @return {Object} a new object with query parameters passed in, and standardized id, level, topic, tag, and/or uri field names
          */
         var createTagQueryObject = function (query) {
             var item = {};
@@ -72,8 +71,8 @@ function setup(callback, Ozone) {
     };
 
     /**
-     * 
-     * @attribute tagIndexers {Array}
+     * Create list of indexing functions for accessing Tag persistence data
+     * @attribute tagIndexers {Array} an array of indexing objects, with Tag fields as keys
      * @private
      */
     var tagIndexers = [
@@ -123,8 +122,8 @@ function setup(callback, Ozone) {
     });
 
     /**
-     * 
-     * @attribute topicIndexers {Array}
+     * Create list of indexing functions for accessing Topic persistence data
+     * @attribute topicIndexers {Array}an array of indexing objects, with Topic fields as keys
      * @private
      */
     var topicIndexers = [
@@ -159,8 +158,8 @@ function setup(callback, Ozone) {
     });
 
     /**
-     * 
-     * @method setupTagRouting
+     * Event-driven method to create list of indexing functions for accessing persistence data
+     * @method createIndexes
      * @private
      */
     function createIndexes() {

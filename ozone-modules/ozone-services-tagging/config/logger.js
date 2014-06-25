@@ -8,8 +8,8 @@
  *  @submodule Server-Side
  *  @requires winston
  */
-var winston = require('winston')
-  , customLogLevels = {
+var winston = require('winston'),
+    customLogLevels = {
        /**
         * 
         * @attribute levels {Object}
@@ -32,8 +32,12 @@ var winston = require('winston')
             warning: 'orange',
             error: 'red'
         }
-    }
-  , logger = new (winston.Logger)({
+    },
+    /**
+     * Creates a logger object using the Winston library, which logs at the debug level
+     * @attribute logger {Object}
+     */
+    logger = new (winston.Logger)({
       transports: [
         new (winston.transports.Console)({
             'timestamp': true,
