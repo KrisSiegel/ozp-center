@@ -40,7 +40,7 @@
          * @param callback {Function} Callback function invoked after JSON or bundle import succeeds.
          * @param [defaultImport] {Boolean} Default path will be used for file import if truthy.
          */
-        import: function(filePath, callback, defaultImport) { //passes callback error, importResults
+        import: function(filePath, callback, defaultImport, autoImporting) { //passes callback error, importResults
             if(defaultImport){
                 filePath = __dirname + '/' + containerConfigDir + filePath;
             }
@@ -49,11 +49,11 @@
             // try to load it as json first, then try file
             try {
                 data = require(filePath);
-                _importJson(data, callback);
+                _importJson(data, callback, undefined, autoImporting);
             }
             catch (e) {
                 data = fs.readFileSync(filePath);
-                _importBundle(data, callback);
+                _importBundle(data, callback, autoImporting);
             }
         }
     };
@@ -66,7 +66,7 @@
      * @param tmpDirPath {String} Relative path of import file
      * @private
      */
-    var _importJson = function(importJson, callback, tmpDirPath){
+    var _importJson = function(importJson, callback, tmpDirPath, autoImporting){
         var importResults = {}
         async.each(Object.keys(importJson), function(service, cb){
             //TODO: add check to ensure if service doesn't exist the callback will still be called.
@@ -76,7 +76,7 @@
                     Ozone.Service(service).import(importJson[service], function(serviceImportResults){
                         importResults[service] = serviceImportResults;
                         cb();
-                    }, tmpDirPath);
+                    }, tmpDirPath, autoImporting);
                 }else{
                     cb();
                 }
@@ -94,7 +94,7 @@
      * @param callback {Function} Callback function invoked after JSON or bundle import succeeds.
      * @private
      */
-    var _importBundle = function(importZipFile, callback){
+    var _importBundle = function(importZipFile, callback, autoImporting){
         if(!_canProcessBundle(importZipFile)){
             logger.debug('ImportService -> importBundle -> unable to process bundle file.');
             callback('Unable to process bundle file.');
@@ -136,7 +136,7 @@
                         _importJson(jsonData, function(err, res){
                             _reduceResults(res, importResults);
                             cb();
-                        }, tempPath);
+                        }, tempPath, autoImporting);
                     } else {
                         cb();
                     }
