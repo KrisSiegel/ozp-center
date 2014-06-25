@@ -8,6 +8,13 @@
  *  @submodule Server-Side
  *  @requires async
  */
+
+ /**
+  * Constant value for server port
+  * @attribute PORT
+  * @private
+  * @final
+  */
 var PORT = 3000,
     logger;
 
@@ -72,7 +79,7 @@ function setup(callback, Ozone) {
 
     /**
      * Create list of indexing functions for accessing Tag persistence data
-     * @attribute tagIndexers {Array} an array of indexing objects, with Tag fields as keys
+     * @attribute tagIndexers {Array}
      * @private
      */
     var tagIndexers = [
@@ -123,7 +130,7 @@ function setup(callback, Ozone) {
 
     /**
      * Create list of indexing functions for accessing Topic persistence data
-     * @attribute topicIndexers {Array}an array of indexing objects, with Topic fields as keys
+     * @attribute topicIndexers {Array}
      * @private
      */
     var topicIndexers = [

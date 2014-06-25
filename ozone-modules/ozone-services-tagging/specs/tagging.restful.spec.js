@@ -4,7 +4,7 @@
  *  Contents only accessible via RESTful APIs.
  *
  *  @module Ozone.Services.Tagging
- *  @class Ozone.Services.Tagging
+ *  @class Ozone.Services.Tagging.UnitTest
  *  @submodule Server-Side
  */
 module.exports = (function (Ozone) {

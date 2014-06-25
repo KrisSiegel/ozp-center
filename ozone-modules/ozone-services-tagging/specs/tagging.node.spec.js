@@ -4,11 +4,11 @@
  *  Contents only accessible via RESTful APIs.
  *
  *  @module Ozone.Services.Tagging
- *  @class Ozone.Services.Tagging
+ *  @class Ozone.Services.Tagging.UnitTest
  *  @submodule Server-Side
  */
 module.exports = (function (Ozone) {
-    describe("ozone-services-tagging-importing", function () {
+    describe("Ozone Tagging Import Service", function () {
         var TopicService = null,
             TagService = null;
 
@@ -23,7 +23,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it('Will pass an import report into the callback with the number of successful and failed imports', function(done){
+        it('should pass an import report into the callback with the number of successful and failed imports', function(done){
             Ozone.Service("Tags").import({topic: require('../specs/spec-data/test-imports/topics.json').injectableRecords, tag: require('../specs/spec-data/test-imports/tags.json').injectableRecords }, function(importReport){
                 expect(importReport).not.toBe(null);
                 expect(importReport.tag.successful).toBe(3);
@@ -34,7 +34,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it('Will import an array of topic json and an array of tag data', function(done){
+        it('should import an array of topic json and an array of tag data', function(done){
             Ozone.Service("Tags").import({topic: require('../specs/spec-data/test-imports/topics.json').injectableRecords, tag: require('../specs/spec-data/test-imports/tags.json').injectableRecords }, function(importReport){
                 expect(importReport).not.toBe(null);
                 expect(importReport.tag.successful).toBe(3);
@@ -55,7 +55,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it('Will import an array of tag json and create topics for imported tags if topics do not exist', function(done){
+        it('should import an array of tag json and create topics for imported tags if topics do not exist', function(done){
             Ozone.Service("Tags").import({ tag: require('../specs/spec-data/test-imports/tags.json').injectableRecords }, function(importReport){
                 expect(importReport).not.toBe(null);
                 expect(importReport.tag.successful).toBe(3);
@@ -77,7 +77,7 @@ module.exports = (function (Ozone) {
         });
     });
 
-    describe("ozone-services-tagging-exporting", function () {
+    describe("Ozone Tagging Export Service", function () {
         var TopicService = null,
             TagService = null;
 
@@ -92,7 +92,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it('exports will call a callback and pass into it the the exported object: {tag: [], topic: []}', function(done){
+        it('should export will call a callback and pass into it the the exported object: {tag: [], topic: []}', function(done){
             Ozone.Service("Tags").import({topic: require('../specs/spec-data/test-imports/topics.json').injectableRecords, tag: require('../specs/spec-data/test-imports/tags.json').injectableRecords }, function(){
                 Ozone.Service("Tags").export(function(exportData){
                     expect(exportData).not.toBe(undefined);
@@ -105,7 +105,7 @@ module.exports = (function (Ozone) {
         });
     });
 
-    describe("ozone-services-tagging-topic", function () {
+    describe("Ozone Tagging Topic Service", function () {
         var TopicService = null,
             TagService = null;
 
@@ -127,7 +127,7 @@ module.exports = (function (Ozone) {
             testTopic1 = require('./spec-data/testTopic1.json'),
             testTopic2 = require('./spec-data/testTopic2.json');
 
-        it("Returns an array of one topic object when you get by ID", function(done){
+        it("should return an array of one topic object when you get by ID", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
             var topic2 = Ozone.utils.clone(testTopic2);
            TopicService.create(topic1, function(err, res){
@@ -145,7 +145,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Returns an empty array when you get by an invalid ID", function(done){
+        it("should return an empty array when you get by an invalid ID", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
             var topic2 = Ozone.utils.clone(testTopic2);
            TopicService.create(topic1, function(err, res){
@@ -160,7 +160,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Adds a topic to the DB when create is called", function(done){
+        it("should add a topic to the DB when create is called", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
            TopicService.create(topic1, function (err, res) {
                 expect(err).toBe(null);
@@ -180,7 +180,7 @@ module.exports = (function (Ozone) {
         });
 
 
-        it("Will not create a topic if a topic with the same uri and tag already exists", function(done){
+        it("should not create a topic if a topic with the same uri and tag already exists", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
            TopicService.create(topic1, function (err, res) {
                 expect(err).toBe(null);
@@ -198,7 +198,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will delete a topic from a topic id", function(done){
+        it("should delete a topic from a topic id", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
            TopicService.create(topic1, function (err, res) {
                 expect(err).toBe(null);
@@ -218,7 +218,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Updates a topic to the new data when update is called", function(done){
+        it("should update a topic to the new data when update is called", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
            TopicService.create(topic1, function(err, res){
                 var topic = res[0];
@@ -239,7 +239,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Updates a topic when only the description changes, ensuring it passes its own uniqueness test.", function(done){
+        it("should update a topic when only the description changes, ensuring it passes its own uniqueness test.", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
             TopicService.create(topic1, function(err, res){
                 var topic = res[0];
@@ -258,7 +258,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will not update a topic if the update causes a duplicate tag/uri combination", function(done){
+        it("should not update a topic if the update causes a duplicate tag/uri combination", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
             var topic2 = Ozone.utils.clone(testTopic2);
 
@@ -278,7 +278,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will update tag topics if the topic's tag is updated", function(done){
+        it("should update tag topics if the topic's tag is updated", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
             var tag1 = Ozone.utils.clone(testTagApp1ToTopic1);
             var tag2 = Ozone.utils.clone(testTagApp2ToTopic1);
@@ -306,7 +306,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will return the proper tag when queried", function(done){
+        it("should return the proper tag when queried", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
             var topic2 = Ozone.utils.clone(testTopic2);
 
@@ -323,7 +323,7 @@ module.exports = (function (Ozone) {
         });
     });
 
-    describe("ozone-services-tagging-tag", function () {
+    describe("Ozone Tagging Tag Service", function () {
         var TopicService = null,
             TagService = null;
 
@@ -345,7 +345,7 @@ module.exports = (function (Ozone) {
             testTopic1 = require('./spec-data/testTopic1.json'),
             testTopic2 = require('./spec-data/testTopic2.json');
 
-        it("Returns an array of one tag object when you get by ID", function(done){
+        it("should return an array of one tag object when you get by ID", function(done){
             var tag1 = Ozone.utils.clone(testTagApp1ToTopic1);
             var tag2 = Ozone.utils.clone(testTagApp2ToTopic1);
             TagService.create(tag1, function(err, res){
@@ -363,7 +363,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Returns an empty array when you get by an invalid ID", function(done){
+        it("should return an empty array when you get by an invalid ID", function(done){
             var tag1 = Ozone.utils.clone(testTagApp1ToTopic1);
             var tag2 = Ozone.utils.clone(testTagApp2ToTopic1);
             TagService.create(tag1, function(err, res){
@@ -378,7 +378,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Adds a tag to the DB when create is called", function(done){
+        it("should add a tag to the DB when create is called", function(done){
             var tag = Ozone.utils.clone(testTagApp1ToTopic1);
             TagService.create(tag, function (err, res) {
                 expect(err).toBe(null);
@@ -396,7 +396,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will not create a tag if a tag with the same uri, tag, and topic already exists", function(done){
+        it("should not create a tag if a tag with the same uri, tag, and topic already exists", function(done){
             var tag = Ozone.utils.clone(testTopic1);
             TopicService.create(tag, function (err, res) {
                 expect(err).toBe(null);
@@ -414,7 +414,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will delete a tag from a tag id", function(done){
+        it("should delete a tag from a tag id", function(done){
             var tag1 = Ozone.utils.clone(testTagApp1ToTopic1);
             TagService.create(tag1, function (err, res) {
                 expect(err).toBe(null);
@@ -434,7 +434,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Updates a tag to the new data when update is called", function(done){
+        it("should update a tag to the new data when update is called", function(done){
             var tag1 = Ozone.utils.clone(testTopic1);
             TagService.create(tag1, function(err, res){
                 var topic = res[0];
@@ -453,7 +453,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will not update a tag if the update causes a duplicate tag/uri/topic combination", function(done){
+        it("should not update a tag if the update causes a duplicate tag/uri/topic combination", function(done){
             var tag1 = Ozone.utils.clone(testTagApp1ToTopic1);
             var tag2 = Ozone.utils.clone(testTagApp1ToTopic2);
 
@@ -475,7 +475,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Will return the proper tag when queried", function(done){
+        it("should return the proper tag when queried", function(done){
             var tag1 = Ozone.utils.clone(testTagApp1ToTopic1);
             var tag2 = Ozone.utils.clone(testTagApp1ToTopic2);
 
