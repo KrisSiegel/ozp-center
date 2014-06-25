@@ -17,7 +17,7 @@
         Persistence = null;
 
     /**
-     * 
+     *
      * @method importRecords
      * @param filePathArray {Array} array of local filenames, from config directory
      * @param configDir {String} directory where files are stored
@@ -72,7 +72,7 @@
          * @method common.get
          * @param collection {String} name of Persistence collection name
          * @param ids {Array} id fields of all records to retrieve from database
-         * @param callback {Function} method called after GET request has been completed.  
+         * @param callback {Function} method called after GET request has been completed.
          *        Standard (err, result) Express parameters get passed into this function.
          * @private
          */
@@ -88,7 +88,7 @@
          * @param collection {String} name of Persistence collection name
          * @param findParams {Object} query parameters for finding records
          * @param options {Object} query options
-         * @param callback {Function} method called after query has been completed.  
+         * @param callback {Function} method called after query has been completed.
          *        Standard (err, result) Express parameters get passed into this function.
          * @private
          */
@@ -103,7 +103,7 @@
          * @method common.delete
          * @param collection {String} name of Persistence collection name
          * @param ids {Array} ids of the records to be deleted
-         * @param callback {Function} method called after DELETE request has been completed.  
+         * @param callback {Function} method called after DELETE request has been completed.
          *        Standard (err, result) Express parameters get passed into this function.
          * @private
          */
@@ -119,7 +119,7 @@
          * @param collection {String} name of Persistence collection name
          * @param id {String} id of record to be updated
          * @param item {Object} data object that will replace previous object on update
-         * @param callback {Function} method called after PUT request has been completed.  
+         * @param callback {Function} method called after PUT request has been completed.
          *        Standard (err, result) Express parameters get passed into this function.
          * @param uniqueClause {Boolean} If True, then object will only be updated if collection objects remain unique
          * @private
@@ -152,7 +152,7 @@
          * @param item {Object} The data object to be created
          * @param overwriteExisting {Boolean} An existing record with matching id will only get overwritten if this value is truthy
          * @param uniqueClause {Boolean} If True, then object will only be updated if collection objects remain unique
-         * @param callback {Function} method called after GET request has been completed.  
+         * @param callback {Function} method called after GET request has been completed.
          *        Standard (err, result) Express parameters get passed into this function.
          * @private
          */
@@ -231,7 +231,7 @@
         /**
          * Retrieves all records and invokes callback on results
          * @method common.export
-         * @param callback {Function} method called after export has been completed.  
+         * @param callback {Function} method called after export has been completed.
          *        Standard (err, result) Express parameters get passed into this function.
          * @private
          */
@@ -311,9 +311,11 @@
                     if(skipTopicCheck){
                         callback(tagCreateErr, tagCreateResults);
                     } else {
-                        exporting.topic.create({uri: tagCreateResults[0].topic, tag: tagCreateResults[0].tag, creatorUserId: tagCreateResults[0].creatorUserId}, false, function () {
-                            callback(tagCreateErr, tagCreateResults);
-                        });
+                        if (tagCreateResults !== undefined && tagCreateResults.length > 0) {
+                            exporting.topic.create({uri: tagCreateResults[0].topic, tag: tagCreateResults[0].tag, creatorUserId: tagCreateResults[0].creatorUserId}, false, function () {
+                                callback(tagCreateErr, tagCreateResults);
+                            });
+                        }
                     }
                 });
             }
