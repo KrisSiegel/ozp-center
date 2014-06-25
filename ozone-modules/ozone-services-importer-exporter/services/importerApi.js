@@ -1,3 +1,15 @@
+/**
+ *  The Import/Export module performs JSON serialization and deserialization of all module data and metadata
+ *
+ *  Contents only accessible via RESTful APIs.
+ *
+ *  @module Ozone.Services.ImportExport
+ *  @class Ozone.Services.ImportExport
+ *  @submodule Server-Side
+ *  @requires async
+ *  @requires fs
+ *  @requires path
+ */
 (function(){
     var constants = require('../config/constants'),
         async = require('async'),
@@ -10,11 +22,25 @@
 
 
     var exporting = {
+        /**
+         * Setter function for Ozone service object and logger
+         * @method init
+         * @param ozone {Object} Ozone object
+         */
         init: function(_ozone){
             Ozone = _ozone;
             logger = Ozone.logger;
         },
-        import: function(filePath, callback, defaultImport){//passes callback error, importResults
+
+        /**
+         * Performs import on file with path passed in.
+         * @method import
+         * @param filePath {String} Absoolute or relative file path of file to be imported, depending on defaultImport parameter.
+         *        If contents of import file cannot be imported as JSON, then it will be imported as a bundled zip file.
+         * @param callback {Function} Callback function invoked after JSON or bundle import succeeds.
+         * @param [defaultImport] {Boolean} Default path will be used for file import if truthy.
+         */
+        import: function(filePath, callback, defaultImport) { //passes callback error, importResults
             if(defaultImport){
                 filePath = __dirname + '/' + containerConfigDir + filePath;
             }
@@ -33,6 +59,13 @@
     };
     module.exports = exporting;
 
+    /**
+     * @method importJson
+     * @param importJson {Object} Object with all services to be imported as keys
+     * @param callback {Function} Callback function invoked after JSON or bundle import succeeds.
+     * @param tmpDirPath {String} Relative path of import file
+     * @private
+     */
     var _importJson = function(importJson, callback, tmpDirPath){
         var importResults = {}
         async.each(Object.keys(importJson), function(service, cb){
@@ -54,6 +87,13 @@
 
     };
 
+    /**
+     * Imports bundled Zip file passed in, if the object is a valid zip file.
+     * @method importBundle
+     * @param importZipFile {Object} The bundle object to be imported, if the object is a valid zip file.
+     * @param callback {Function} Callback function invoked after JSON or bundle import succeeds.
+     * @private
+     */
     var _importBundle = function(importZipFile, callback){
         if(!_canProcessBundle(importZipFile)){
             logger.debug('ImportService -> importBundle -> unable to process bundle file.');
@@ -116,6 +156,14 @@
         });
     };
 
+    /**
+     * Determines object passed in is a bundled Zip file that can be processed.
+     * See (http://stackoverflow.com/a/8475542/1262856) for details on how to check the leading bytes of a zip file.
+     * @method canProcessBundle
+     * @param data {Object} Zip file object
+     * @return {Boolean} True if object passed in is a valid zip file
+     * @private
+     */
     var _canProcessBundle = function(data){
         logger.debug("ImportService-->canProcess()");
 
@@ -131,7 +179,13 @@
             return false;
         }
     };
-    
+
+    /**
+     * Removes folder path passed in, and all child folders within this folder.
+     * @method deleteFolderRecursive
+     * @param path {String} directory path to be deleted.
+     * @private
+     */
     var _deleteFolderRecursive = function(path) {
         var files = [];
         if( fs.existsSync(path) ) {
@@ -148,6 +202,16 @@
         }
     };
 
+    /**
+     * Recursively merges all fields of obj into target.  If a value exists in both obj and target objects, then
+     * the following operation is performed using the Javascript plus operator:
+     * <target_value> = <target_value> + <obj_value>
+     * @method reduceResults
+     * @param obj {Object} object to merge into target
+     * @param target {Object} target of merge object, which will contain all keys of both objects passed in when returned.
+     * @return {Object} target object
+     * @private
+     */
     var _reduceResults = function(obj, target){
         if (Object.prototype.toString.call(obj) === "[object Object]") {
             for (var key in obj) {

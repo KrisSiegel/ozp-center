@@ -1,5 +1,5 @@
 /**
- * 
+ * Services module for workflow status collections and accessors
  *
  * @module AppsMallUI.servicesModule
  * @submodule AppsMallUI.AppWorkflowModule
