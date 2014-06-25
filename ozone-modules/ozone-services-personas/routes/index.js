@@ -1,3 +1,9 @@
+/**
+
+    @module Ozone.Services.Personas
+    @class Ozone.Services.Personas.RESTful
+    @submodule Server-Side
+*/
 var personaBaseURL = require('../config/constants.json').urls.persona;
 var permissionBaseURL = require('../config/constants.json').urls.permission;
 var roleBaseURL = require('../config/constants.json').urls.role;
@@ -9,9 +15,11 @@ module.exports = exports = function (Ozone) {
     	personasService = require('../service/PersonasService');
 
 	personasService.init(Ozone);
-    /*  Get current persona from session
-	Example URL: http://localhost:3000/api/personas/persona/current
-	 */
+
+    /**
+        @method /personas/persona/current GET
+        @return {Object} the current persona object
+    */
     routing.get(personaBaseURL + '/current', { loggedIn: true }, function (req, res, next) {
 
         logger.debug("Routes(PersonasService)-->get current persona");
@@ -25,9 +33,11 @@ module.exports = exports = function (Ozone) {
 
     });
 
-    /*  Update specified persona in db & session
-    Example URL: http://localhost:3000/api/personas/persona/current
-     */
+    /**
+        Updates the specified persona
+
+        @method /personas/persona/:personaId POST
+    */
     routing.post(personaBaseURL + '/:personaId', { loggedIn: true }, function (req, res, next) {
 
         logger.debug("Routes(PersonasService)-->update persona id " + req.params.personaId);
@@ -83,9 +93,10 @@ module.exports = exports = function (Ozone) {
         });
     });
 
-    /*  Get a specific element with userId
-	Example URL: http://localhost:3000/api/personas/persona/someUserId
-	 */
+    /**
+        @method /personas/persona/:userId GET
+        @return {Object} the specified persona object
+    */
     routing.get(personaBaseURL + '/:userId', { loggedIn: true }, function (req, res) {
     	var userId = req.params.userId;
 
@@ -108,9 +119,12 @@ module.exports = exports = function (Ozone) {
         });
     });
 
-    /*  Get a specific element with userId/username/auth_token/auth_service
-	Example URL: http://localhost:3000/api/personas/persona/?userId=someUserId&username=someUserName&auth_token=someToken&auth_service=someService
-	 */
+    /**
+        Queries for personas based on userId or username or auth_token or auth_service
+
+        @method /personas/persona/ GET
+        @return {Object} all of the personas found
+    */
     routing.get(personaBaseURL, { loggedIn: true }, function (req, res) {
     	var selector = {};
     	if (req.query.userId) selector._id = req.query.userId;
@@ -139,8 +153,11 @@ module.exports = exports = function (Ozone) {
     });
 
 
-    /*	Create an element using the json in the body of request.
-     */
+    /**
+        Creates a new persona object
+
+        @method /personas/persona POST
+    */
     routing.post(personaBaseURL, { loggedIn: true }, function (req, res, next) {
         if (req.session.user === undefined) {
             res.statusCode = 401;
@@ -169,8 +186,9 @@ module.exports = exports = function (Ozone) {
         }
     });
 
-    /*	Delete an element
-     */
+    /**
+        @method /personas/persona/:userId DELETE
+    */
     routing.delete(personaBaseURL + '/:userId', { loggedIn: true }, function (req, res, next) {
         if (req.session.user === undefined) {
             res.statusCode = 401;
@@ -191,6 +209,10 @@ module.exports = exports = function (Ozone) {
         }
     });
 
+    /**
+        @method /personas/permissions/ GET
+        @return {Object} the permissions objects
+    */
     routing.get(permissionBaseURL, { loggedIn: true, permisions: [] }, function (req, res, next) {
         personasService.permissions.query({
 
@@ -199,6 +221,13 @@ module.exports = exports = function (Ozone) {
         });
     });
 
+    /**
+        Returns the roles contained within the system. When the mock security module is used all roles are returned
+        without requiring authentication otherwise authentication is required.
+        
+        @method /personas/roles/ GET
+        @return {Object} the roles objects of the system
+    */
     var usingMockSecurity = (Ozone.config().getServerProperty("security.module") === "ozone-services-security-mock");
     routing.get(roleBaseURL, { loggedIn: !usingMockSecurity }, function (req, res, next) {
         var selector = { };
