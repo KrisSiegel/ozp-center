@@ -40,11 +40,11 @@ module.exports = (function (Ozone) {
                 expect(importReport.topic.successful).toBe(2);
                 expect(importReport.topic.failed).toBe(0);
                 TopicService.query({},{}, function(err, res){
-                    expect(err).toBe(null);
+                    expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                     expect(res).not.toBe(null);
                     expect(res.length).toBe(2);
                     TagService.query({},{}, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         expect(res).not.toBe(null);
                         expect(res.length).toBe(3);
                         done(err);
@@ -61,11 +61,11 @@ module.exports = (function (Ozone) {
                 expect(importReport.topic.successful).toBe(2);
                 expect(importReport.topic.failed).toBe(0);
                 TopicService.query({},{}, function(err, res){
-                    expect(err).toBe(null);
+                    expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                     expect(res).not.toBe(null);
                     expect(res.length).toBe(2);
                     TagService.query({},{}, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         expect(res).not.toBe(null);
                         expect(res.length).toBe(3);
                         done(err);
@@ -131,7 +131,7 @@ module.exports = (function (Ozone) {
            TopicService.create(topic1, function(err, res){
                TopicService.create(topic2, function(err, res){
                    TopicService.get(topic1._id, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         expect(res).not.toBe(null);
                         expect(res.length).toBe(1);
                         var retId = res[0]._id.toString();
@@ -149,7 +149,7 @@ module.exports = (function (Ozone) {
            TopicService.create(topic1, function(err, res){
                TopicService.create(topic2, function(err, res){
                    TopicService.get('123456789121', function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         expect(res).not.toBe(null);
                         expect(res.length).toBe(0);
                         done(err);
@@ -161,13 +161,13 @@ module.exports = (function (Ozone) {
         it("should add a topic to the DB when create is called", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
            TopicService.create(topic1, function (err, res) {
-                expect(err).toBe(null);
+                expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                 expect(res.constructor).toBe(Array);
                 expect(res.length).toBe(1);
                 expect(res[0].uri).toBe('/AppsMall/TestTopic/');
                 expect(res[0].tag).toBe('Topic1');
                 TopicService.query({uri: '/AppsMall/TestTopic/', tag: 'Topic1'}, {}, function (err, res) {
-                    expect(err).toBe(null);
+                    expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                     expect(res.constructor).toBe(Array);
                     expect(res.length).toBe(1);
                     expect(res[0].uri).toBe('/AppsMall/TestTopic/');
@@ -181,7 +181,7 @@ module.exports = (function (Ozone) {
         it("should not create a topic if a topic with the same uri and tag already exists", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
            TopicService.create(topic1, function (err, res) {
-                expect(err).toBe(null);
+                expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                 //remove id from object to attempt to re-add it
                 delete topic1._id;
                 TopicService.create(topic1, function (err, res) {
@@ -199,15 +199,15 @@ module.exports = (function (Ozone) {
         it("should delete a topic from a topic id", function(done){
             var topic1 = Ozone.utils.clone(testTopic1);
            TopicService.create(topic1, function (err, res) {
-                expect(err).toBe(null);
+                expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                TopicService.get(topic1._id, function(err, res){
                     //ensure was created
                     expect(res.length).toBe(1);
                    TopicService.delete(topic1._id, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         //query db to ensure is empty as
                        TopicService.get(topic1._id, function(err, res){
-                            expect(err).toBe(null);
+                            expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                             expect(res.length).toBe(0);
                             done(err);
                         });
@@ -224,10 +224,10 @@ module.exports = (function (Ozone) {
                 topic1.tag = 'Updated Tag';
                 topic1.description = 'updated description';
                TopicService.update(topic1._id, topic1, function(err, res){
-                    expect(err).toBe(null);
+                    expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                     //get the topic from db to ensure it was updated
                    TopicService.get(topic1._id, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         var updatedTag = res[0];
                         expect(updatedTag.tag).toBe('Updated Tag');
                         expect(updatedTag.description).toBe('updated description');
@@ -244,10 +244,10 @@ module.exports = (function (Ozone) {
                 expect(topic).not.toBe(null);
                 topic1.description = 'updated description';
                 TopicService.update(topic1._id, topic1, function(err, res){
-                    expect(err).toBe(null);
+                    expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                     //get the topic from db to ensure it was updated
                     TopicService.get(topic1._id, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         var updatedTag = res[0];
                         expect(updatedTag.description).toBe('updated description');
                         done(err);
@@ -349,7 +349,7 @@ module.exports = (function (Ozone) {
             TagService.create(tag1, function(err, res){
                 TagService.create(tag2, function(err, res){
                     TagService.get(tag1._id, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         expect(res).not.toBe(null);
                         expect(res.length).toBe(1);
                         var retId = res[0]._id.toString();
@@ -367,7 +367,7 @@ module.exports = (function (Ozone) {
             TagService.create(tag1, function(err, res){
                 TagService.create(tag2, function(err, res){
                     TagService.get('123456789012', function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         expect(res).not.toBe(null);
                         expect(res.length).toBe(0);
                         done(err);
@@ -379,12 +379,12 @@ module.exports = (function (Ozone) {
         it("should add a tag to the DB when create is called", function(done){
             var tag = Ozone.utils.clone(testTagApp1ToTopic1);
             TagService.create(tag, function (err, res) {
-                expect(err).toBe(null);
+                expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                 expect(res.length).toBe(1);
                 expect(res[0].uri).toBe('/AppsMall/Apps/App1');
                 expect(res[0].tag).toBe('Topic1');
                 TagService.query({uri: '/AppsMall/Apps/App1', tag: 'Topic1', topic: '/AppsMall/TestTopic/'},{}, function(err, res){
-                    expect(err).toBe(null);
+                    expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                     expect(res.constructor).toBe(Array);
                     expect(res.length).toBe(1);
                     expect(res[0].uri).toBe('/AppsMall/Apps/App1');
@@ -397,7 +397,7 @@ module.exports = (function (Ozone) {
         it("should not create a tag if a tag with the same uri, tag, and topic already exists", function(done){
             var tag = Ozone.utils.clone(testTopic1);
             TopicService.create(tag, function (err, res) {
-                expect(err).toBe(null);
+                expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                 //remove id from object to attempt to re-add it
                 delete tag._id;
                 TopicService.create(tag, function (err, res) {
@@ -415,15 +415,15 @@ module.exports = (function (Ozone) {
         it("should delete a tag from a tag id", function(done){
             var tag1 = Ozone.utils.clone(testTagApp1ToTopic1);
             TagService.create(tag1, function (err, res) {
-                expect(err).toBe(null);
+                expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                 TagService.get(tag1._id, function(err, res){
                     //ensure was created
                     expect(res.length).toBe(1);
                     TagService.delete(tag1._id, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         //query db to ensure is empty as
                         TagService.get(tag1._id, function(err, res){
-                            expect(err).toBe(null);
+                            expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                             expect(res.length).toBe(0);
                             done(err);
                         });
@@ -439,10 +439,10 @@ module.exports = (function (Ozone) {
                 expect(topic).not.toBe(null);
                 tag1.tag = 'Updated Tag';
                 TagService.update(tag1._id, tag1, function(err, res){
-                    expect(err).toBe(null);
+                    expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                     //get the topic from db to ensure it was updated
                     TagService.get(tag1._id, function(err, res){
-                        expect(err).toBe(null);
+                        expect(Ozone.utils.isUndefinedOrNull(err)).toBe(true);
                         var updatedTag = res[0];
                         expect(updatedTag.tag).toBe('Updated Tag');
                         done(err);
