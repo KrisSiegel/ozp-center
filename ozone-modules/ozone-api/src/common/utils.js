@@ -208,7 +208,7 @@ Ozone.extend(function () {
                 }
                 var temp = obj.constructor(); // changed
                 for (var key in obj) {
-                    temp[key] = method.utils.clone(obj[key]);
+                    temp[key] = methods.utils.clone(obj[key]);
                 }
                 return temp;
             },
@@ -444,7 +444,7 @@ Ozone.extend(function () {
 			},
             /*
 				Checks whether all values within an array are truthy
-				
+
                 @method all
 				@param {Array} array an array
             */
