@@ -48,7 +48,7 @@
 					currentApp = app;
 				} else if (app !== undefined) {
 					pubsub.publish("hideMask");
-					window.location.href = Ozone.utils.murl("hudUrl", ["/#App/", app.shortname, "/"], true);
+					window.location.href = Ozone.utils.murl("hudUrl", ["/#App/", app.shortname, "/"]);
 				}
 			},
 			navigated: function (hash) {
