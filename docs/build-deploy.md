@@ -1,4 +1,4 @@
-Apps Mall supports three production configurations: single installation, 2-tiered and 3-tiered deployment.  In 2-tiered deployment, Web content for Apps Mall may be served from one host while the Ozone API services are served from another host.  In 3-tier deplooyment, the Web content is further broken into 2 tiers: static content and server-generated content.  This section covers how to create packages for deployment on a production host or hosts in all of these configurations.
+Apps Mall supports three production configurations: single installation, 2-tiered and 3-tiered deployment.  In 2-tiered deployment, Web content for Apps Mall may be served from one host while the Ozone API services are served from another host.  In 3-tier deployment, the Web content is further broken into 2 tiers: static content and server-generated content.  This section covers how to create packages for deployment on a production host or hosts in all of these configurations.
 
 ##Building Apps Mall
 
@@ -54,9 +54,9 @@ The next prompt is similar, but concerns ths static file host:
 Enter the URL where Apps Mall static files (*.js, *.css, etc.) will be hosted from,
 if the host/port is different from the HUD or AML start page:
 ```
-If you leave this blank, no bundle will be created for a static-file-only installation; instead, one bundle will be created for both static and dynamic content, whith the services bundle still separate.
+If you leave this blank, no bundle will be created for a static-file-only installation; instead, one bundle will be created for both static and dynamic content, with the services bundle still separate.
 
-After you have responded to the prompts, the script will create a sister directory to the top-level directory, called "builds", and place two or three tarballs in it, ozone-static (if you spuulied a static host URL at the prompt), ozone-services.tgz and ozone-ui.tgz.
+After you have responded to the prompts, the script will create a sister directory to the top-level directory, called "builds", and place two or three tarballs in it, ozone-static (if you supplied a static host URL at the prompt), ozone-services.tgz and ozone-ui.tgz.
 
 Note that the bundle-tiered.sh script is destructive to the starting directory.  It creates a sister directory, ozone-ui-build and moves the apps and public/lib directories over to that directory, since they are not needed by the API server.
 It also moves the node_modules over, since that is very large and doing a recursive copy would take a long time.  Finally, it modifies the custom config script indicated by package.json.
