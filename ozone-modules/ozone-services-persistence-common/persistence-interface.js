@@ -7,6 +7,7 @@
 */
 (function () {
     "use strict";
+    var constants = require("./constants");
 
     var Ozone = null,
         logger = null;
@@ -49,6 +50,35 @@
             */
             Store: function (store) {
                 return {
+                    Metadata: {
+                        /**
+                            @method Store(store).Metadata.get
+                            @param {String} key the id of the value to fetch.
+                            @param {Function} callback with the get result.
+                        */
+                        get: function (key, callback) {
+                            Ozone.Service("Persistence").Store(store).Collection(constants.collections.metadata).query({ "meta": key }, undefined, callback);
+                        },
+                        /**
+                            @method Store(store).Metedata.set
+                            @param {String} key the name of the value
+                            @param {Object} value the value to set.
+                            @param {Function} callback containing any errors or status codes.
+                        */
+                        set: function (metadata, callback) {
+                            Ozone.Service("Persistence").Store(store).Collection(constants.collections.metadata).set((metadata._id || Ozone.Service("Persistence").objectId()), metadata, callback);
+                        },
+                        /**
+                            Takes a key and deletes the object.
+
+                            @method Store(store).Metadata.remove
+                            @param {String} key the name of the key to remove.
+                            @param {Function} callback to return the result.
+                        */
+                        remove: function (key, callback) {
+                            Ozone.Service("Persistence").Store(store).Collection(constants.collections.metadata).remove(key, callback);
+                        }
+                    },
                     /**
                         Collection branches off of a specific store and can be thought of as a "table" in some sense; it is a bucket for data to live in.
 
@@ -155,7 +185,7 @@
                                 Takes a key and value and sets the data within the database with errors being reported via the callback.
 
                                 @method Store(store).Collection(collection).set
-                                @param {String} key the name of the method to test.
+                                @param {String} key the name value.
                                 @param {Object} value the value to set.
                                 @param {Function} callback containing any errors or status codes.
                             */
@@ -181,7 +211,7 @@
                                 Takes a key and deletes the object.
 
                                 @method Store(store).Collection(collection).remove
-                                @param {String} key the name of the method to test.
+                                @param {String} key the name of value to remove.
                                 @param {Function} callback to return the result.
                             */
                             remove: function (key, callback) {

@@ -583,8 +583,9 @@
             @param {Object} data the data to attempt to import
             @param {Method} callback the callback to execute upon completion
         */
-        import: function(data, callback){
+        import: function(data, callback, path, autoImporting){
             var importReport = { persona: { successful: 0, failed: 0 }, permissions: { successful: 0, failed: 0 }, roles: { successful: 0, failed: 0 } }
+
             var importPersona = function (person, callback) {
                 person.meta = person.meta || {}
                 person.meta.permissions = person.meta.permissions || []

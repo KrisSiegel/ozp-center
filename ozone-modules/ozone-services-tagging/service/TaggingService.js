@@ -412,7 +412,7 @@
          * @param importData {Object} contains tag and/or topic data in the format {```tag: [], topic: []```}
          * @param callback {Function} method called after importing.
          */
-        import: function(importData, callback){
+        import: function(importData, callback, path, autoImporting){
             var importReport = { tag: { successful: 0, failed: 0 }, topic: { successful: 0, failed: 0 } }
             var importTags = function(){
                 if(importData['tag'] && importData['tag'].length > 0){

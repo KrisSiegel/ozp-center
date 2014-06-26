@@ -88,7 +88,7 @@ module.exports = (function (environment) {
             Ozone.Service().on('ready', 'Importer', function () {
                 Ozone.Service('Importer').import(imports, function(err, importResults){
                     Ozone.logger.debug(importResults);
-                }, true);
+                }, true, true);
             });
         }
 
