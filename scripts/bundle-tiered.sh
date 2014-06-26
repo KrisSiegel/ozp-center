@@ -47,19 +47,15 @@ mkdir -p ../$UI_BUILD_DIR/public \
     ../$UI_BUILD_DIR/ozone-modules/ozone-api
 
 
-if [ -n $STATIC_BASE_URL ]
-then
-    #Make a sister directory which will contain the layout of the UI server only
-    mkdir -p ../$STATIC_BUILD_DIR/public
-fi
-
 echo Creating services tarball....
 # Move client-only stuff to client dir, and copy some things over before we start modifying things
 mv apps ../$UI_BUILD_DIR
-if [ -z $STATIC_BASE_URL ]
+if [ -z "$STATIC_BASE_URL" ]
 then
     mv public/lib ../$UI_BUILD_DIR/public
 else
+    #Make a sister directory which will contain the layout of the UI server only
+    mkdir -p ../$STATIC_BUILD_DIR/public
     mv public/lib ../$STATIC_BUILD_DIR/public
 fi
 
@@ -90,7 +86,7 @@ mv $DEFAULT_CONFIG orig-$DEFAULT_CONFIG
 $STARTDIR/scripts/ui-default-config-adjust.awk orig-$DEFAULT_CONFIG > $DEFAULT_CONFIG
 cd environments
 mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
-$STARTDIR/scripts/ui-custom-config-adjust.awk -v SVC_URL=$SERVICES_BASE_URL -v STATIC_URL=$STATIC_BASE_URL -v PORT=$CLIENT_PORT orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
+$STARTDIR/scripts/ui-custom-config-adjust.awk -v SVC_URL="$SERVICES_BASE_URL" -v STATIC_URL="$STATIC_BASE_URL" -v PORT=$CLIENT_PORT orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
 
 
 cd $STARTDIR/..
@@ -100,7 +96,7 @@ echo Creating UI tarball....
 echorun tar zcf $UI_INSTALL_FILE $UI_BUILD_DIR
 echo Done.
 
-if [ -n $STATIC_BASE_URL ]
+if [ -n "$STATIC_BASE_URL" ]
 then
     cd $UI_BUILD_DIR
     mv node_modules ../$STATIC_BUILD_DIR
