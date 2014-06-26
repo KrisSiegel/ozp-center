@@ -4,17 +4,17 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Ozone Platform</title>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', false) %>"></script>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.min.js', false) %>"></script>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/msDropdown/js/msdropdown/jquery.dd.min.js', false) %>"></script>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', false) %>"></script>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', false) %>"></script>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/pubsub.js', false) %>"></script>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/animate.js', false) %>"></script>
-        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/micro-x-tag.js', false) %>"></script>
-        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/reset.css', false) %>" />
-        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-global.css', false) %>">
-        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/icomoon.css', false) %>">
+        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery/jquery.min.js', 'staticHost') %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/jquery-ui/ui/minified/jquery-ui.min.js', 'staticHost') %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('libUrl', '/msDropdown/js/msdropdown/jquery.dd.min.js', 'staticHost') %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/client/client-api.js', 'staticHost') %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('apiBaseUrl', '/config/default.js', '') %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/pubsub.js', 'staticHost') %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/animate.js', 'staticHost') %>"></script>
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/micro-x-tag.js', 'staticHost') %>"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/reset.css', 'staticHost') %>" />
+        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/ozone-global.css', 'staticHost') %>">
+        <link rel="stylesheet" type="text/css" media="all" href="<%- Ozone.utils.murl('hudUrl', '/assets/css/icomoon.css', 'staticHost') %>">
 	<!--
           <link rel="import" href="hud-components.html">
     -->
@@ -34,7 +34,7 @@
 
             function addLink(rel, href) {
  	            link = document.createElement("link");
-                link.setAttribute("href", Ozone.utils.murl("hudUrl", href, false));
+                link.setAttribute("href", Ozone.utils.murl("hudUrl", href, "staticHost"));
                 link.setAttribute("rel", rel);
                 document.head.appendChild(link);
             }
@@ -51,8 +51,8 @@
         })();
         </script>
 	<% } %>
-        <!-- <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/ext-lib/x-tags/dist/x-tag-components.js', true) %>"></script> -->
-        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/x-tagger.js', false) %>"></script>
+        <!-- <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/ext-lib/x-tags/dist/x-tag-components.js', 'staticHost') %>"></script> -->
+        <script type="text/javascript" src="<%- Ozone.utils.murl('hudUrl', '/components/x-tagger.js', 'staticHost') %>"></script>
 
     </head>
     <body>

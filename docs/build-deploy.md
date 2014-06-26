@@ -1,4 +1,4 @@
-Apps Mall supports two production configurations: single installation and tiered deployment.  In tiered deployment, Web content for Apps Mall may be served from one host while the Ozone API services are served from another host.  This section covers how to create packages for deployment on a production host or hosts in either of these configurations.
+Apps Mall supports three production configurations: single installation, 2-tiered and 3-tiered deployment.  In 2-tiered deployment, Web content for Apps Mall may be served from one host while the Ozone API services are served from another host.  In 3-tier deployment, the Web content is further broken into 2 tiers: static content and server-generated content.  This section covers how to create packages for deployment on a production host or hosts in all of these configurations.
 
 ##Building Apps Mall
 
@@ -49,13 +49,14 @@ Enter the URL where the Ozone services will be hosted from
 
 This is mostly self-explanatory; if there is a non-standard port that is being used, that should be included in the URL.
 
-The next prompt is as follows:
+The next prompt is similar, but concerns ths static file host:
 ```
-Enter the port where the UI server should run on:
+Enter the URL where Apps Mall static files (*.js, *.css, etc.) will be hosted from,
+if the host/port is different from the HUD or AML start page:
 ```
-Note that this prompt is for the host that will host the Web content.  If you leave this blank, the server for the Web content will run at the port specified in the "server" section of the configuration file.
+If you leave this blank, no bundle will be created for a static-file-only installation; instead, one bundle will be created for both static and dynamic content, with the services bundle still separate.
 
-After you have responded to the prompts, the script will create a sister directory to the top-level directory, called "builds", and place two tarballs in it, ozone-services.tgz and ozone-ui.tgz.
+After you have responded to the prompts, the script will create a sister directory to the top-level directory, called "builds", and place two or three tarballs in it, ozone-static (if you supplied a static host URL at the prompt), ozone-services.tgz and ozone-ui.tgz.
 
 Note that the bundle-tiered.sh script is destructive to the starting directory.  It creates a sister directory, ozone-ui-build and moves the apps and public/lib directories over to that directory, since they are not needed by the API server.
 It also moves the node_modules over, since that is very large and doing a recursive copy would take a long time.  Finally, it modifies the custom config script indicated by package.json.
@@ -64,8 +65,8 @@ It also moves the node_modules over, since that is very large and doing a recurs
 * **Custom script on API side:** removes "client" from the "deployedTiers" list
 * **Default script on client (UI) side:** removes references to all ozone modules except ozone-api and ozone-services-client-configuration
 * **Default script on client (UI) side:** 
-  * sets absoluteBaseUrl to the URL you set at the prompt
-  * adds the port value you entered at the second prompt at client.port
+  * sets client.servicesHost to the URL you set at the first prompt
+  * sets client.staticHost to the URL you set at the second prompt, if non-empty
   * removes all tiers from the "deployedTiers" list except "client"
 
 ##Deploying Apps Mall
@@ -73,4 +74,7 @@ To deploy any of the bundles above, simply extract the files in a suitable locat
 ```
 tar zxvf ozone-ui.tgz # or whatever the name is
 ```
-The machine should have Node.js installed and runnable.
+
+If any of your hosts will be running at a port number different from each other, be sure to change the value at server.port on each host after extraction.
+
+The deployment/production machine should have Node.js installed and runnable.

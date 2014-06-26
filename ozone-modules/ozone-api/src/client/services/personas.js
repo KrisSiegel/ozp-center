@@ -335,7 +335,7 @@ Ozone.Service("Personas", (function () {
 			@method getServicePath
 		*/
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/personas/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/personas/", "servicesHost");
 		},
 		/**
 			@method export

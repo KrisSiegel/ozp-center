@@ -11,7 +11,7 @@ Ozone.Service("Tags", (function () {
 			@method getServicePath
 		*/
         getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/tags/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/tags/", 'servicesHost');
 	    },
 		export: function (callback) {
 			throw "Method not implemented";

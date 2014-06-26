@@ -14,7 +14,7 @@
             @method getServicePath
         */
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", this.controller, true);
+			return Ozone.utils.murl("apiBaseUrl", this.controller, 'servicesHost');
 		},
         /**
             @method export

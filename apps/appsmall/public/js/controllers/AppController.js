@@ -633,7 +633,7 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
      */
     $scope.loadAppChildForm = function(selectedApp) {
         var modalInstance = $modal.open({
-            templateUrl: Ozone.utils.murl('amlUrl', '/partials/appmodal.html'),
+            templateUrl: Ozone.utils.murl('amlUrl', '/partials/appmodal.html', 'staticHost'),
             controller: AppModalInstanceController,
             backdrop: 'true',
             resolve: {

@@ -61,9 +61,9 @@ Ozone.extend(function () {
 							}
 						} else if (xhr.status === 401) {
 							if (Ozone.config().getClientProperty("canLogin") === true) {
-								location.href = Ozone.utils.murl("hudUrl", '/login', false);
+								location.href = Ozone.utils.murl("hudUrl", '/login', "");
 							} else {
-								location.href = Ozone.utils.murl("hudUrl", '/unauthorized', false);
+								location.href = Ozone.utils.murl("hudUrl", '/unauthorized', "");
 							}
 						} else if (xhr.status === 403) {
 							alert("Unauthorized to conduct requested action!");

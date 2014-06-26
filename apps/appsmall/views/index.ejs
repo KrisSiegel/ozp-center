@@ -19,7 +19,7 @@
 	      <%- partial ('partials/top-bar') %>
               <div class="appsmall-empty-container" ng-show="isEmpty()">
                 <p class="appsmall-empty-placeholder">There are no apps currently available in AppsMall</p>
-                <img src="img/placeholder-text-sad-face.png">
+                <img src="<% Ozone.utils.murl('amlUrl', 'img/placeholder-text-sad-face.png', 'staticHost') %>">
               </div>
                 <!--
                 FACETS' BAR

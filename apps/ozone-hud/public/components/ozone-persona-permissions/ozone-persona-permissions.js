@@ -149,7 +149,7 @@
                         var iconImg = document.createElement("img");
                         iconImg.setAttribute("id", "ozone-persona-permissions-persona-list-" + id);
                         var iconImgSrc = (Ozone.utils.isUndefinedOrNull(img)
-                                          ? Ozone.utils.murl("hudUrl", "/components/ozone-persona-permissions/images/default-profile.jpg", false)
+                                          ? Ozone.utils.murl("hudUrl", "/components/ozone-persona-permissions/images/default-profile.jpg", "staticHost")
                                           : Ozone.Service("Persistence").Store("personas").Drive("profileImages").getDrivePath(img));
                         iconImg.setAttribute("src", iconImgSrc);
 
@@ -208,8 +208,8 @@ icon.appendChild(div);
 					listElm.appendChild(li);
 				};
 				var specialSnowFlakeApps = [
-					{ name: "Ozone", imgUrl: Ozone.utils.murl("hudUrl", "/assets/images/ozone-logo.png", false) },
-					{ name: "Apps Mall", imgUrl: Ozone.utils.murl("hudUrl", "/components/ozone-persona-permissions/images/apps-mall.jpg", false) }
+					{ name: "Ozone", imgUrl: Ozone.utils.murl("hudUrl", "/assets/images/ozone-logo.png", "staticHost") },
+					{ name: "Apps Mall", imgUrl: Ozone.utils.murl("hudUrl", "/components/ozone-persona-permissions/images/apps-mall.jpg", "staticHost") }
 				];
 				// Hide Ozone for this release; TODO: Add Ozone back
 				specialSnowFlakeApps.shift();

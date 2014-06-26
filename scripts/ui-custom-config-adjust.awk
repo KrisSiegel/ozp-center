@@ -5,15 +5,16 @@ BEGIN {
     printed = "false"
 }
 
-/absoluteBaseUrl/ && BASE {
-    printf("%s%s \"%s\",\n", clientIndent, $1, BASE);
-    printed = "true"
-}
-
 /client: *{/ {
     print $0
     if (PORT != "") {
 	printf("%sport: %s,\n", clientIndent, PORT);
+    }
+    if (SVC_URL != "") {
+        printf("%sservicesHost: \"%s\",\n", clientIndent, SVC_URL);
+    }
+    if (STATIC_URL != "") {
+        printf("%sstaticHost: \"%s\",\n", clientIndent, STATIC_URL);
     }
     printed = "true"
 }

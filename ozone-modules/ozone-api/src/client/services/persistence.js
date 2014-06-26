@@ -11,7 +11,7 @@ Ozone.Service("Persistence", (function () {
 			@method getServicePath
 		*/
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/persistence/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/persistence/", "servicesHost");
 		},
 		/**
 			The Store method starts the chain for accessing data and blobs; it accepts a name to use as a store which can be thought of as a database.

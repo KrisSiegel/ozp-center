@@ -12,11 +12,11 @@ Ozone.extend(function () {
                 @method murl
                 @param {String} urlProp the url property to use from the configuration
                 @param {Array} postfixes an array of items to postfix to a url
-                @param {Boolean} isClient returns whether we're running on the client or not
+                @param {String} hostRole indicates what tier this URL is targeting, viz. "servicesHost" or "staticHost"
             */
-            murl: function (urlProp, postfixes, isClient) {
-                if (methods.utils.isUndefinedOrNull(isClient)) {
-                    isClient = false;
+            murl: function (urlProp, postfixes, hostRole) {
+                if (methods.utils.isUndefinedOrNull(hostRole)) {
+                    hostRole = "";
                 }
 
                 // Start building the URL
@@ -35,8 +35,8 @@ Ozone.extend(function () {
                     }
                 }
                 url = url.replace("//", "/");
-                if (isClient) {
-                    var abs = Ozone.config().getClientProperty("absoluteBaseUrl");
+                if (hostRole) {
+                    var abs = Ozone.config().getClientProperty(hostRole);
                     if (abs === undefined) {
                         abs = "";
                     }

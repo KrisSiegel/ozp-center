@@ -9,14 +9,14 @@ Ozone.Service("Apps", (function () {
 			@method getServicePath
 		*/
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/apps/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/apps/", "servicesHost");
 		},
 		/**
 			@method getRedirectUrl
 			@param {String} shortname the shortname of the application
 		*/
 		getRedirectUrl: function (shortname) {
-			return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"], false);
+			return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"], "");
 		},
 		/**
 			@method redirectIntoHudWithoutLogging
