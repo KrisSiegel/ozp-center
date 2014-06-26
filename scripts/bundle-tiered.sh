@@ -47,7 +47,6 @@ mkdir -p ../$UI_BUILD_DIR/public \
     ../$UI_BUILD_DIR/ozone-modules/ozone-api
 
 
-echo Creating services tarball....
 # Move client-only stuff to client dir, and copy some things over before we start modifying things
 mv apps ../$UI_BUILD_DIR
 if [ -z "$STATIC_BASE_URL" ]
@@ -72,13 +71,7 @@ mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
 $STARTDIR/scripts/service-custom-config.awk orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
 # Build the services installation tarball
 cd $STARTDIR/..
-echorun tar zcf $SERVICES_INSTALL_FILE --exclude public $SERVICES_BUILD_DIR/[^R]*
-echo Done.
 
-
-# It'll be quicker to steal the node_modules directory than to copy it over
-# We're in the parent directory now...
-mv $SERVICES_BUILD_DIR/node_modules $UI_BUILD_DIR
 
 #Fix config for client installation
 cd $UI_BUILD_DIR/config
@@ -88,9 +81,22 @@ cd environments
 mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
 $STARTDIR/scripts/ui-custom-config-adjust.awk -v SVC_URL="$SERVICES_BASE_URL" -v STATIC_URL="$STATIC_BASE_URL" -v PORT=$CLIENT_PORT orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
 
+if [ -n "$STATIC_BASE_URL" ]
+then
+    cd $STARTDIR/../$UI_BUILD_DIR
+    cp -R config package.json main.js server.js apps ozone-modules ../$STATIC_BUILD_DIR
+fi
 
 cd $STARTDIR/..
 
+echo Creating services tarball....
+echorun tar zcf $SERVICES_INSTALL_FILE --exclude public $SERVICES_BUILD_DIR/[^R]*
+echo Done.
+
+
+# It'll be quicker to steal the node_modules directory than to copy it over
+# We're in the parent directory now...
+mv $SERVICES_BUILD_DIR/node_modules $UI_BUILD_DIR
 
 echo Creating UI tarball....
 echorun tar zcf $UI_INSTALL_FILE $UI_BUILD_DIR
@@ -98,12 +104,7 @@ echo Done.
 
 if [ -n "$STATIC_BASE_URL" ]
 then
-    cd $UI_BUILD_DIR
-    mv node_modules ../$STATIC_BUILD_DIR
-    cp -R config package.json main.js server.js apps ozone-modules ../$STATIC_BUILD_DIR
-
-    cd $STARTDIR/..
-
+    mv $UI_BUILD_DIR/node_modules $STATIC_BUILD_DIR
     echo Creating static install tarball....
     echorun tar zcf $STATIC_INSTALL_FILE $STATIC_BUILD_DIR
     echo Done.
