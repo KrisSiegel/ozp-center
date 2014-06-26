@@ -12,7 +12,7 @@ Ozone.extend(function () {
                 @method murl
                 @param {String} urlProp the url property to use from the configuration
                 @param {Array} postfixes an array of items to postfix to a url
-                @param {Boolean} hostRole returns whether we're running on the client or not
+                @param {String} hostRole indicates what tier this URL is targeting, viz. "servicesHost" or "staticHost"
             */
             murl: function (urlProp, postfixes, hostRole) {
                 if (methods.utils.isUndefinedOrNull(hostRole)) {
