@@ -1,5 +1,8 @@
 {
 	"rest":{
 		"url": "persistence"
+	},
+	"collections": {
+		"metadata": "__METADATA"
 	}
 }

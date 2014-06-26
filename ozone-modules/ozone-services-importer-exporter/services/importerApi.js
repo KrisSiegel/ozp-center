@@ -17,9 +17,30 @@
         path = require("path"),
         Ozone = null,
         containerConfigDir = '../../../config/',
-        logger = null;
+        logger = null,
+        cachedMetadata = undefined;
 
+    var cacheMeta = function (callback) {
+        Ozone.Service().on("ready", "Persistence", function () {
+            Ozone.Service("Persistence").Store(Ozone.config().getServerProperty("persistence.store")).Metadata.get("importer", function (err, res) {
+                for (var i = 0; i < res.length; ++i) {
+                    if (res[i] !== undefined && res[i].meta === "importer") {
+                        cachedMetadata = res[i];
+                        break;
+                    }
+                }
 
+                if (Ozone.utils.isUndefinedOrNull(cachedMetadata)) {
+                    cachedMetadata = {
+                        _id: Ozone.Service("Persistence").objectId(),
+                        meta: "importer",
+                        autoImported: []
+                    };
+                }
+                callback.apply(this, []);
+            });
+        });
+    };
 
     var exporting = {
         /**
@@ -46,15 +67,18 @@
             }
             logger.debug("ImportService-->import-->filePath: " + filePath);
             var data = null;
-            // try to load it as json first, then try file
-            try {
-                data = require(filePath);
-                _importJson(data, callback, undefined, autoImporting);
-            }
-            catch (e) {
-                data = fs.readFileSync(filePath);
-                _importBundle(data, callback, autoImporting);
-            }
+
+            cacheMeta(function () {
+                // try to load it as json first, then try file
+                try {
+                    data = require(filePath);
+                    _importJson(data, callback, undefined, autoImporting);
+                }
+                catch (e) {
+                    data = fs.readFileSync(filePath);
+                    _importBundle(data, callback, autoImporting);
+                }
+            });
         }
     };
     module.exports = exporting;
@@ -73,10 +97,17 @@
             Ozone.Service().on("ready", service, function () {
                 Ozone.logger.debug("ImportService -> importJson -> conducting auto import for " + service);
                 if (!Ozone.Utils.isUndefinedOrNull(Ozone.Service(service).import)) {
-                    Ozone.Service(service).import(importJson[service], function(serviceImportResults){
-                        importResults[service] = serviceImportResults;
-                        cb();
-                    }, tmpDirPath, autoImporting);
+                    if (autoImporting === true && cachedMetadata.autoImported.indexOf(service) === -1) {
+                        Ozone.Service(service).import(importJson[service], function(serviceImportResults){
+                            importResults[service] = serviceImportResults;
+                            cachedMetadata.autoImported.push(service);
+                            Ozone.Service("Persistence").Store(Ozone.config().getServerProperty("persistence.store")).Metadata.set(cachedMetadata, function () {
+                                cb();
+                            });
+                        }, tmpDirPath, autoImporting);
+                    } else {
+                        Ozone.logger.debug("ImportService -> importJson -> importing skipped for " + service + " due to previous import detected");
+                    }
                 }else{
                     cb();
                 }
