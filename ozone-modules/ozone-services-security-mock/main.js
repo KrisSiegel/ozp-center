@@ -20,6 +20,9 @@
             getMiddleware: function () {
                 return function(req, res, next) {
                     Ozone.logger.info("Mock Security -> Inpecting route");
+                    if (Ozone.utils.safe(req, "req.session.cookie") !== undefined) {
+                        req.session.cookie.maxAge = Ozone.config().getServerProperty("session.maxAge");
+                    }
                     if (Ozone.utils.safe(req, "session.user") === undefined) {
                         var autoLogin = Ozone.config().getServerProperty("security.mock.autoLogin");
                         if (!Ozone.utils.isUndefinedOrNull(autoLogin)) {
