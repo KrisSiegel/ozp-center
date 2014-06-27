@@ -46,8 +46,12 @@
             var username = document.getElementById("username").value;
             var role = document.getElementById("role").value;
             Ozone.ajax({
-                method: "get",
-                url: "<%- Ozone.utils.murl('apiBaseUrl', '/security/mockLogin/', 'servicesHost') %>" + username + ((role === "stored") ? "" : "/role/" + encodeURIComponent(role)),
+                method: "post",
+                url: "<%- Ozone.utils.murl('apiBaseUrl', '/security/mockLogin/', 'servicesHost') %>",
+                data: {
+                    username: username,
+                    role: role
+                },
                 success: function (response) {
                     console.log("referrer is " + document.referrer);
                     location.href = document.referrer;
