@@ -49,14 +49,7 @@ mkdir -p ../$UI_BUILD_DIR/public \
 
 # Move client-only stuff to client dir, and copy some things over before we start modifying things
 mv apps ../$UI_BUILD_DIR
-if [ -z "$STATIC_BASE_URL" ]
-then
-    mv public/lib ../$UI_BUILD_DIR/public
-else
-    #Make a sister directory which will contain the layout of the UI server only
-    mkdir -p ../$STATIC_BUILD_DIR/public
-    mv public/lib ../$STATIC_BUILD_DIR/public
-fi
+mv public/lib ../$UI_BUILD_DIR/public
 
 CUSTOM_CONFIG=$(awk '/"environment" *:/ { print substr($2, 2, length($2) - 3) }' $STARTDIR/package.json).js
 DEFAULT_CONFIG=default.js # Not currently used for server, but used for client
@@ -88,8 +81,17 @@ $STARTDIR/scripts/ui-custom-config-adjust.awk orig-$CUSTOM_CONFIG > $CUSTOM_CONF
 
 if [ -n "$STATIC_BASE_URL" ]
 then
-    cd $STARTDIR/../$UI_BUILD_DIR
-    cp -R config package.json main.js server.js apps ozone-modules ../$STATIC_BUILD_DIR
+    cd $STARTDIR/..
+    mkdir $STATIC_BUILD_DIR
+    mv $UI_BUILD_DIR/public/lib $STATIC_BUILD_DIR
+    mkdir -p $STATIC_BUILD_DIR/AppsMall
+    cd $UI_BUILD_DIR/apps/appsmall/public
+    mv css ext-lib fonts img js $STARTDIR/../$STATIC_BUILD_DIR/AppsMall
+    cd ../../ozone-hud/public
+    mv components assets $STARTDIR/../$STATIC_BUILD_DIR
+    cd $STARTDIR/..
+    mkdir -p $STATIC_BUILD_DIR/api/client
+    mv $UI_BUILD_DIR/ozone-modules/ozone-api/client-*.js $STATIC_BUILD_DIR/api/client
 fi
 
 cd $STARTDIR/..
@@ -109,7 +111,6 @@ echo Done.
 
 if [ -n "$STATIC_BASE_URL" ]
 then
-    mv $UI_BUILD_DIR/node_modules $STATIC_BUILD_DIR
     echo Creating static install tarball....
     echorun tar zcf $STATIC_INSTALL_FILE $STATIC_BUILD_DIR
     echo Done.
