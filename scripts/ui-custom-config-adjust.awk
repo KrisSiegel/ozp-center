@@ -5,20 +5,6 @@ BEGIN {
     printed = "false"
 }
 
-/client: *{/ {
-    print $0
-    if (PORT != "") {
-	printf("%sport: %s,\n", clientIndent, PORT);
-    }
-    if (SVC_URL != "") {
-        printf("%sservicesHost: \"%s\",\n", clientIndent, SVC_URL);
-    }
-    if (STATIC_URL != "") {
-        printf("%sstaticHost: \"%s\",\n", clientIndent, STATIC_URL);
-    }
-    printed = "true"
-}
-
 /deployedTiers/ {
     print;
     printf("%s    \"client\"\n", clientIndent);

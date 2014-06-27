@@ -58,6 +58,13 @@ else
     mv public/lib ../$STATIC_BUILD_DIR/public
 fi
 
+CUSTOM_CONFIG=$(awk '/"environment" *:/ { print substr($2, 2, length($2) - 3) }' $STARTDIR/package.json).js
+DEFAULT_CONFIG=default.js # Not currently used for server, but used for client
+cd config/environments
+mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
+$STARTDIR/scripts/config-servers.awk -v SVC_URL="$SERVICES_BASE_URL" -v STATIC_URL="$STATIC_BASE_URL" orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
+
+cd $STARTDIR
 cp -R config package.json main.js server.js ../$UI_BUILD_DIR
 OZONE_API_DIR=ozone-modules/ozone-api
 cp $OZONE_API_DIR/client-*.js $OZONE_API_DIR/server*.js $OZONE_API_DIR/package.json ../$UI_BUILD_DIR/$OZONE_API_DIR
@@ -65,8 +72,6 @@ cp -R ozone-modules/ozone-services-client-configuration ../$UI_BUILD_DIR/ozone-m
 
 #Fix config for server installation
 cd config/environments
-CUSTOM_CONFIG=$(awk '/"environment" *:/ { print substr($2, 2, length($2) - 3) }' $STARTDIR/package.json).js
-DEFAULT_CONFIG=default.js # Not currently used for server, but used for client
 mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
 $STARTDIR/scripts/service-custom-config.awk orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
 # Build the services installation tarball
@@ -79,7 +84,7 @@ mv $DEFAULT_CONFIG orig-$DEFAULT_CONFIG
 $STARTDIR/scripts/ui-default-config-adjust.awk orig-$DEFAULT_CONFIG > $DEFAULT_CONFIG
 cd environments
 mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
-$STARTDIR/scripts/ui-custom-config-adjust.awk -v SVC_URL="$SERVICES_BASE_URL" -v STATIC_URL="$STATIC_BASE_URL" -v PORT=$CLIENT_PORT orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
+$STARTDIR/scripts/ui-custom-config-adjust.awk orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
 
 if [ -n "$STATIC_BASE_URL" ]
 then
