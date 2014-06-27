@@ -47,18 +47,17 @@ mkdir -p ../$UI_BUILD_DIR/public \
     ../$UI_BUILD_DIR/ozone-modules/ozone-api
 
 
-echo Creating services tarball....
 # Move client-only stuff to client dir, and copy some things over before we start modifying things
 mv apps ../$UI_BUILD_DIR
-if [ -z "$STATIC_BASE_URL" ]
-then
-    mv public/lib ../$UI_BUILD_DIR/public
-else
-    #Make a sister directory which will contain the layout of the UI server only
-    mkdir -p ../$STATIC_BUILD_DIR/public
-    mv public/lib ../$STATIC_BUILD_DIR/public
-fi
+mv public/lib ../$UI_BUILD_DIR/public
 
+CUSTOM_CONFIG=$(awk '/"environment" *:/ { print substr($2, 2, length($2) - 3) }' $STARTDIR/package.json).js
+DEFAULT_CONFIG=default.js # Not currently used for server, but used for client
+cd config/environments
+mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
+$STARTDIR/scripts/config-servers.awk -v SVC_URL="$SERVICES_BASE_URL" -v STATIC_URL="$STATIC_BASE_URL" orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
+
+cd $STARTDIR
 cp -R config package.json main.js server.js ../$UI_BUILD_DIR
 OZONE_API_DIR=ozone-modules/ozone-api
 cp $OZONE_API_DIR/client-*.js $OZONE_API_DIR/server*.js $OZONE_API_DIR/package.json ../$UI_BUILD_DIR/$OZONE_API_DIR
@@ -66,12 +65,38 @@ cp -R ozone-modules/ozone-services-client-configuration ../$UI_BUILD_DIR/ozone-m
 
 #Fix config for server installation
 cd config/environments
-CUSTOM_CONFIG=$(awk '/"environment" *:/ { print substr($2, 2, length($2) - 3) }' $STARTDIR/package.json).js
-DEFAULT_CONFIG=default.js # Not currently used for server, but used for client
 mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
 $STARTDIR/scripts/service-custom-config.awk orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
 # Build the services installation tarball
 cd $STARTDIR/..
+
+
+#Fix config for client installation
+cd $UI_BUILD_DIR/config
+mv $DEFAULT_CONFIG orig-$DEFAULT_CONFIG
+$STARTDIR/scripts/ui-default-config-adjust.awk orig-$DEFAULT_CONFIG > $DEFAULT_CONFIG
+cd environments
+mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
+$STARTDIR/scripts/ui-custom-config-adjust.awk orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
+
+if [ -n "$STATIC_BASE_URL" ]
+then
+    cd $STARTDIR/..
+    mkdir $STATIC_BUILD_DIR
+    mv $UI_BUILD_DIR/public/lib $STATIC_BUILD_DIR
+    mkdir -p $STATIC_BUILD_DIR/AppsMall
+    cd $UI_BUILD_DIR/apps/appsmall/public
+    mv css ext-lib fonts img js $STARTDIR/../$STATIC_BUILD_DIR/AppsMall
+    cd ../../ozone-hud/public
+    mv components assets $STARTDIR/../$STATIC_BUILD_DIR
+    cd $STARTDIR/..
+    mkdir -p $STATIC_BUILD_DIR/api/client
+    mv $UI_BUILD_DIR/ozone-modules/ozone-api/client-*.js $STATIC_BUILD_DIR/api/client
+fi
+
+cd $STARTDIR/..
+
+echo Creating services tarball....
 echorun tar zcf $SERVICES_INSTALL_FILE --exclude public $SERVICES_BUILD_DIR/[^R]*
 echo Done.
 
@@ -80,30 +105,12 @@ echo Done.
 # We're in the parent directory now...
 mv $SERVICES_BUILD_DIR/node_modules $UI_BUILD_DIR
 
-#Fix config for client installation
-cd $UI_BUILD_DIR/config
-mv $DEFAULT_CONFIG orig-$DEFAULT_CONFIG
-$STARTDIR/scripts/ui-default-config-adjust.awk orig-$DEFAULT_CONFIG > $DEFAULT_CONFIG
-cd environments
-mv $CUSTOM_CONFIG orig-$CUSTOM_CONFIG
-$STARTDIR/scripts/ui-custom-config-adjust.awk -v SVC_URL="$SERVICES_BASE_URL" -v STATIC_URL="$STATIC_BASE_URL" -v PORT=$CLIENT_PORT orig-$CUSTOM_CONFIG > $CUSTOM_CONFIG
-
-
-cd $STARTDIR/..
-
-
 echo Creating UI tarball....
 echorun tar zcf $UI_INSTALL_FILE $UI_BUILD_DIR
 echo Done.
 
 if [ -n "$STATIC_BASE_URL" ]
 then
-    cd $UI_BUILD_DIR
-    mv node_modules ../$STATIC_BUILD_DIR
-    cp -R config package.json main.js server.js apps ozone-modules ../$STATIC_BUILD_DIR
-
-    cd $STARTDIR/..
-
     echo Creating static install tarball....
     echorun tar zcf $STATIC_INSTALL_FILE $STATIC_BUILD_DIR
     echo Done.
