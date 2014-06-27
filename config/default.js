@@ -42,7 +42,7 @@ module.exports = (function () {
             session: {
                 secret: "OzoneSessionSecretHere",
                 key: "OzoneSID",
-                timeout: 86400000,
+                maxAge: (24 * 60 * 60 * 1000),
                 redis: {
                     host: "localhost",
                     port: 6379

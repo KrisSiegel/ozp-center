@@ -163,109 +163,111 @@
                 @param {Method} next the next method to continue routing
             */
             login: function (obj, req, res, next) {
-                var personaName = Ozone.utils.safe(obj, "username");
-                var personaAuthToken = Ozone.utils.safe(obj, "auth_token");
-                var personaAuthService = Ozone.utils.safe(obj, "auth_service");
-                var personaRole = Ozone.utils.safe(obj, "overriding_role");
-                var personaPermissions = Ozone.utils.safe(obj, "overriding_permissions");
-                var canCreatePersona = Ozone.utils.safe(obj, "ensure");
-                var personaFavorites = Ozone.utils.safe(obj, "overriding_favorites");
-                var personaRecentLaunches = Ozone.utils.safe(obj, "overriding_recent_launches");
-                var newUserRole = Ozone.config().getServerProperty("security.newUserRole");
-                var firstNewUserRole = Ozone.config().getServerProperty("security.firstNewUserRole");
+                createCacheForPermissionsAndRoles(function () {
+                    var personaName = Ozone.utils.safe(obj, "username");
+                    var personaAuthToken = Ozone.utils.safe(obj, "auth_token");
+                    var personaAuthService = Ozone.utils.safe(obj, "auth_service");
+                    var personaRole = Ozone.utils.safe(obj, "overriding_role");
+                    var personaPermissions = Ozone.utils.safe(obj, "overriding_permissions");
+                    var canCreatePersona = Ozone.utils.safe(obj, "ensure");
+                    var personaFavorites = Ozone.utils.safe(obj, "overriding_favorites");
+                    var personaRecentLaunches = Ozone.utils.safe(obj, "overriding_recent_launches");
+                    var newUserRole = Ozone.config().getServerProperty("security.newUserRole");
+                    var firstNewUserRole = Ozone.config().getServerProperty("security.firstNewUserRole");
 
-                var applyPermissions = function (persona, isFirst) {
-                    if (Ozone.utils.safe(persona, "meta") === undefined) {
-                        persona.meta = { };
-                    }
-
-                    if (Ozone.utils.isUndefinedOrNull(persona.meta.permissions) && Ozone.utils.isUndefinedOrNull(persona._id)) {
-                        // New persona; set default permission scheme.
-                        if (isFirst) {
-                            persona.meta.permissions = getPermissionsFromCachedRole(firstNewUserRole);
-                        } else {
-                            persona.meta.permissions = getPermissionsFromCachedRole(newUserRole);
+                    var applyPermissions = function (persona, isFirst) {
+                        if (Ozone.utils.safe(persona, "meta") === undefined) {
+                            persona.meta = { };
                         }
-                    }
 
-                    if (!Ozone.utils.isUndefinedOrNull(personaRole) && cachedPermissionsAndRoles.roles.length > 0) {
-                        for (var i = 0; i < cachedPermissionsAndRoles.roles.length; ++i) {
-                            if (cachedPermissionsAndRoles.roles[i].role === personaRole) {
-                                persona.meta.permissions = getPermissionsFromCachedRole(personaRole);
-                                break;
-                            }
-                        }
-                    }
-
-                    if (!Ozone.utils.isUndefinedOrNull(personaPermissions) && personaPermissions.length > 0) {
-                        persona.meta.permissions = personaPermissions;
-                    }
-
-                    persona.meta.role = exporting.roles.calculateSync(persona.meta.permissions);
-
-                    return persona;
-                };
-
-                var updatePersona = function (persona, isFirst) {
-                    if (Ozone.utils.safe(persona, "meta") === undefined) {
-                        persona.meta = { };
-                    }
-
-                    applyPermissions(persona, isFirst);
-
-                    if (!Ozone.utils.isUndefinedOrNull(personaFavorites)) {
-                        persona.meta.favoriteApps = personaFavorites;
-                    }
-
-                    if (!Ozone.utils.isUndefinedOrNull(personaRecentLaunches)) {
-                        persona.meta.launchedApps = personaRecentLaunches;
-                    }
-
-                    return persona;
-                };
-
-                exporting.persona.query({
-                    username: personaName,
-                    auth_token: personaAuthToken,
-                    auth_service: personaAuthService
-                }, function (err, result) {
-                    if (result.length === 1) {
-                        var personaObj = updatePersona(result[0] || { });
-
-                        req.session.user = {
-                            persona: personaObj
-                        };
-
-                        if (!Ozone.utils.isUndefinedOrNull(obj.success)) {
-                            obj.success.apply(this, [personaObj]);
-                        };
-
-                    } else {
-                        exporting.persona.query({}, function (errCheck, resultCheck) {
-                            if (canCreatePersona) {
-                                var personaObj = {
-                                    username: personaName,
-                                    auth_token: personaAuthToken,
-                                    auth_service: personaAuthService,
-                                    meta: { }
-                                };
-                                personaObj = updatePersona(personaObj, !(resultCheck.length > 0));
-                                exporting.persona.create(personaObj, function (errCreate, resultCreate) {
-                                    req.session.user = {
-                                        persona: resultCreate[0]
-                                    };
-
-                                    if (!Ozone.utils.isUndefinedOrNull(obj.success)) {
-                                        obj.success.apply(this, [resultCreate]);
-                                    };
-                                });
+                        if (Ozone.utils.isUndefinedOrNull(persona.meta.permissions) && Ozone.utils.isUndefinedOrNull(persona._id)) {
+                            // New persona; set default permission scheme.
+                            if (isFirst) {
+                                persona.meta.permissions = getPermissionsFromCachedRole(firstNewUserRole);
                             } else {
-                                if (!Ozone.utils.isUndefinedOrNull(obj.error)) {
-                                    obj.error.apply(this, [errCheck]);
-                                };
+                                persona.meta.permissions = getPermissionsFromCachedRole(newUserRole);
                             }
-                        });
-                    }
+                        }
+
+                        if (!Ozone.utils.isUndefinedOrNull(personaRole) && cachedPermissionsAndRoles.roles.length > 0) {
+                            for (var i = 0; i < cachedPermissionsAndRoles.roles.length; ++i) {
+                                if (cachedPermissionsAndRoles.roles[i].role === personaRole) {
+                                    persona.meta.permissions = getPermissionsFromCachedRole(personaRole);
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!Ozone.utils.isUndefinedOrNull(personaPermissions) && personaPermissions.length > 0) {
+                            persona.meta.permissions = personaPermissions;
+                        }
+
+                        persona.meta.role = exporting.roles.calculateSync(persona.meta.permissions);
+
+                        return persona;
+                    };
+
+                    var updatePersona = function (persona, isFirst) {
+                        if (Ozone.utils.safe(persona, "meta") === undefined) {
+                            persona.meta = { };
+                        }
+
+                        applyPermissions(persona, isFirst);
+
+                        if (!Ozone.utils.isUndefinedOrNull(personaFavorites)) {
+                            persona.meta.favoriteApps = personaFavorites;
+                        }
+
+                        if (!Ozone.utils.isUndefinedOrNull(personaRecentLaunches)) {
+                            persona.meta.launchedApps = personaRecentLaunches;
+                        }
+
+                        return persona;
+                    };
+
+                    exporting.persona.query({
+                        username: personaName,
+                        auth_token: personaAuthToken,
+                        auth_service: personaAuthService
+                    }, function (err, result) {
+                        if (result.length === 1) {
+                            var personaObj = updatePersona(result[0] || { });
+
+                            req.session.user = {
+                                persona: personaObj
+                            };
+
+                            if (!Ozone.utils.isUndefinedOrNull(obj.success)) {
+                                obj.success.apply(this, [personaObj]);
+                            };
+
+                        } else {
+                            exporting.persona.query({}, function (errCheck, resultCheck) {
+                                if (canCreatePersona) {
+                                    var personaObj = {
+                                        username: personaName,
+                                        auth_token: personaAuthToken,
+                                        auth_service: personaAuthService,
+                                        meta: { }
+                                    };
+                                    personaObj = updatePersona(personaObj, !(resultCheck.length > 0));
+                                    exporting.persona.create(personaObj, function (errCreate, resultCreate) {
+                                        req.session.user = {
+                                            persona: resultCreate[0]
+                                        };
+
+                                        if (!Ozone.utils.isUndefinedOrNull(obj.success)) {
+                                            obj.success.apply(this, [resultCreate]);
+                                        };
+                                    });
+                                } else {
+                                    if (!Ozone.utils.isUndefinedOrNull(obj.error)) {
+                                        obj.error.apply(this, [errCheck]);
+                                    };
+                                }
+                            });
+                        }
+                    });
                 });
             },
             /**

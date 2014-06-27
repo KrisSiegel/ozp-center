@@ -391,6 +391,7 @@ icon.appendChild(div);
 												perms.push(checks[i].value);
 											}
 											pers.addPermission(perms);
+											alert("Permission change saved!");
 										}
 									});
 								}
