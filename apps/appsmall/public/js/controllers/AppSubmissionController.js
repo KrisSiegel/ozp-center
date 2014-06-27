@@ -564,17 +564,18 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
              var updateOrgTag = function() {
                  if (!_.isObject(orgTag)) {
                      if (!_.isEmpty($scope.currentOrgTag)) {
-                         Tag.createNewTag($scope.currentOrgTag, '/AppsMall/Apps/' + $scope.currentApp.shortname, '/AppsMall/Organization/');
+                         return Tag.createNewTag($scope.currentOrgTag, '/AppsMall/Apps/' + $scope.currentApp.shortname, '/AppsMall/Organization/');
                      };
                  } else if (orgTag.tag != $scope.currentOrgTag) {
                      if(_.isEmpty($scope.currentOrgTag)) return; //cannot save an app such that there is no orgTag if it had one.
                      // organization has been changed on the app
                      orgTag.tag = $scope.currentOrgTag;
-                     Tag.updateTag(orgTag).then(function (tagUpdate) {
+                     return Tag.updateTag(orgTag).then(function(tagUpdate) {
                          Ozone.logger.info("tag updated");
                          orgTag = tagUpdate[0];
                      });
                  };
+                 return $q.reject();
              };
 
              var tagsByType = _.groupBy($scope.initialTagObjects, function(tag){
@@ -637,7 +638,10 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
                  tasks.push({fn: Tag.updateTags, args: [updateList]})
              }
 
-             $q.all(_.map(tasks, function(task){return task.fn.apply(this, task.args)})).then(updateOrgTag).then(deleteTagsFunction);
+             // push function call to update organization tag
+             tasks.push({fn: updateOrgTag, args: []})
+
+             $q.all(_.map(tasks, function(task){return task.fn.apply(this, task.args)})).then(deleteTagsFunction);
          }
 
          /**
