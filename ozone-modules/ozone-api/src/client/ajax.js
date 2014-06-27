@@ -66,7 +66,9 @@ Ozone.extend(function () {
 								location.href = Ozone.utils.murl("hudUrl", '/unauthorized', "");
 							}
 						} else if (xhr.status === 403) {
-							alert("Unauthorized to conduct requested action!");
+							if (options.error !== undefined || options.failure !== undefined) {
+								(options.error || options.failure).apply((options.context || this), [xhr.status, xhr.response]);
+							}
                         } else {
                             Ozone.logger.warn("Ozone.ajax: status is " + xhr.status);
                             if (xhr.status == 0 && (options.method == 'GET' || options.method == 'OPTIONS') && numTries++ < maxTries) {
