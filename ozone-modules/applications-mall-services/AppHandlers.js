@@ -1,7 +1,11 @@
-/*
-  This file contains handlers for the "Application" entity, when the
-  generic REST-to-mongo handler is, well, too generic.
-*/
+/**
+ *  This file contains handlers for the "Application" entity, when the
+ *  generic REST-to-mongo handler is, well, too generic.
+ *  
+ *  @module Ozone.Services.AppsMall
+ *  @class Ozone.Services.AppsMall
+ *  @submodule Server-Side
+ */
 
 var constants = require('./conf/constants'),
 	appsStore = constants.database.store.apps,
@@ -12,14 +16,24 @@ var constants = require('./conf/constants'),
     Persistence = null,
     logger = null;
 
-exports.init = function (_ozone) {
+/**
+ * Initializes the Ozone API object
+ * @method init
+ * @param _ozone {Object} the Ozone API object
+ */
+exports.init = function(_ozone) {
 	Ozone = _ozone;
 	Persistence = Ozone.Service('Persistence');
 	logger = Ozone.logger;
 };
 
-// returns the app from the app id
-function getAppFromID(appId, callback) {
+/**
+ * Returns the app from the app id
+ * @method getAppFromID
+ * @param appId {String} The unique identifier for the app passed in
+ * @param callback {Function} Method invoked with (```err, app```) parameters after app has been retrieved
+ */
+function getAppFromID = function(appId, callback) {
 	Persistence.Store(appsStore).Collection(appCollection).get(appId, function(err, result) {
 		if (err) {
 			return callback({'error':'Error getting app with id ' + appId + ' err: ' + err});
@@ -40,10 +54,9 @@ function getAppFromID(appId, callback) {
  * 'updateAction' MongoDB collection 'update' method, with custom action, CORS enabled.
  *
  * @method updateAction
- * @param {Object} req Express request object -- will contain an "action" parameter
- * @param {Object} res Express results object
+ * @param req {Object} Express request object -- will contain an "action" parameter
+ * @param res {Object} Express results object
  */
-
 exports.addReview = function(req, res) {
 		var id = req.params.id || req.body.appid, update = req.body;
 		getAppFromID(id, function (err, app) {
@@ -83,6 +96,14 @@ exports.addReview = function(req, res) {
 		});
 };
 
+/**
+ * Updates app to database and manually performs all auto-calculations on app fields (such as Average Rating)
+ * @method updateDb
+ * @param id {String} The unique identifier for the app passed in
+ * @param app {Object} The app to be updated
+ * @param res {Object} Express results object
+ * @private
+ */
 var updateDb = function(id, app, res) {
 	logger.debug("AppsMallService-->AppHandlers-->update manually");
 	var selector = {
@@ -113,6 +134,14 @@ var updateDb = function(id, app, res) {
 
 };
 
+/**
+ * Updates existing app in database
+ * @method updateApp
+ * @param id {String} The unique identifier for the app passed in
+ * @param app {Object} The app to be updated
+ * @param res {Object} Express results object
+ * @private
+ */
 var updateApp = function(id, app, res) {
 	// update the app
 	Persistence.Store(appsStore).Collection(appCollection).set(id, app, function(err, result) {
@@ -124,6 +153,14 @@ var updateApp = function(id, app, res) {
 	});
 };
 
+/**
+ * Performs all auto-calculations calculations on app fields (such as Average Rating) using an aggregation function, for increased performance
+ * @method aggregateDb
+ * @param id {String} The unique identifier for the app passed in
+ * @param app {Object} The app to be updated
+ * @param res {Object} Express results object
+ * @private
+ */
 var aggregateDb = function(id, app, res) {
 	logger.debug("AppsMallService-->AppHandlers-->running aggregation");
 
@@ -154,6 +191,12 @@ var aggregateDb = function(id, app, res) {
 	});
 };
 
+/**
+ * Updates the Review records based on the ```action``` query parameter passed in
+ * @method updateAction
+ * @param req {Object} Express request object -- will contain an "action" parameter
+ * @param res {Object} Express results object
+ */
 exports.updateAction = function(req, res) {
 	var action = req.params.action;
 	switch (action) {
@@ -165,6 +208,12 @@ exports.updateAction = function(req, res) {
 	};
 };
 
+/**
+ * Retrieves all Review records for the app whose ID matches the ```appid``` query parameter passed in
+ * @method getReviews
+ * @param req {Object} Express request object -- will contain an "action" parameter
+ * @param res {Object} Express results object
+ */
 exports.getReviews = function(req, res) {
 	var appid = req.query.appid;
 	logger.debug('AppsMallService-->AppHandlers-->getReviews-->Getting reviews for appid: ' + appid);

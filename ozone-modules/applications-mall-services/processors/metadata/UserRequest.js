@@ -1,4 +1,14 @@
 /**
+ *  
+ *
+ *  
+ *
+ *  @module Ozone.Services.AppsMall
+ *  @class Ozone.Services.AppsMall.UserRequest
+ *  @submodule Server-Side
+ */
+
+/**
  * UserRequest constructor.
  * 
  * @class UserRequest
@@ -20,7 +30,6 @@ UserRequest.prototype = {
  * @param {Array} queryParameters List of relevant query parameters from the RESTful request
  * @return {Object} Object describing MongoDB operation and parameters for the method
  */
-
 UserRequest.prototype.run = function (req, res) {
 	return {
 		requestInformation: {
@@ -44,7 +53,6 @@ UserRequest.prototype.run = function (req, res) {
  * @method getQueryFields
  * return {Array} List of relevant parameters
  */
-
 UserRequest.prototype.getQueryFields = function () {
 	return ['request_info'];
 };
@@ -55,7 +63,6 @@ UserRequest.prototype.getQueryFields = function () {
  * @method queryFieldParameters
  * @return {Array} List of relevant field descriptions for the processor
  */
-
 UserRequest.prototype.queryFieldParameters = function () {
 	return [{
 		type: 'Boolean',

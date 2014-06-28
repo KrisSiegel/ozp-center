@@ -1,14 +1,22 @@
 /**
-	Provides some basic Apps Mall services. Note: this module has a bit of old code from the previous maintainers that hasn't been prioritized for clean-up; this should be done at some point in the near future to maintain good maintainability.
+ *  Provides some basic Apps Mall services. Note: this module has a bit of old code from the previous maintainers that hasn't been prioritized for clean-up; 
+ *  this should be done at some point in the near future to maintain good maintainability.
+ *
+ *  @module Ozone.Services.AppsMall
+ *  @class Ozone.Services.AppsMall
+ *  @submodule Server-Side
+ */
 
-	@module AppsMall.Services.AppsMall
-	@class AppsMall.Services.AppsMall
-	@submodule Server-Side
-*/
 var PORT = 3000,
 	logger;
 
-function amlService (callback, Ozone) {
+/**
+ * The AppsMall service object
+ * @method amlService
+ * @param callback {Function} Method invoked with (```result```) parameter after service has been loaded
+ * @param Ozone {Object} the Ozone API object
+ */
+function amlService = function(callback, Ozone) {
 	var constants = require('./conf/constants'),
 		appsStore = constants.database.store.apps,
 		appsmallStore = constants.database.store.appsmall,
@@ -32,6 +40,11 @@ function amlService (callback, Ozone) {
 		}
 	});
 
+    /**
+     * Initializing Persistence routes and indexes
+     * @method setupRouting
+     * @private
+     */
     function setupRouting() {
         logger.debug("AppsMallService-->setup-->setupRouting()");
         Persistence = Ozone.Service('Persistence');

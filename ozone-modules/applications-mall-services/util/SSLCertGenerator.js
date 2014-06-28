@@ -1,8 +1,21 @@
+/**
+ *  Contains utility methods for generating SSL certificates
+ *
+ *  @module Ozone.Services.AppsMall
+ *  @class Ozone.Services.AppsMall.SSLCertGenerator
+ *  @submodule Server-Side
+ */
+
 var fs = require('fs');
 var colorize = require('colorize');
 var cconsole = colorize.console;
 
-function eliminateDuplicates (arr) {
+/**
+ * Creates new array of items containing all unique values passed in, without duplicates.
+ * @method eliminateDuplicates
+ * @param arr {Array} an array of items
+ */
+function eliminateDuplicates = function(arr) {
 	var i,
 		len=arr.length,
 		out=[],
@@ -17,7 +30,18 @@ function eliminateDuplicates (arr) {
 	return out;
 };
 
+/**
+ * 
+ * @attribute nameCombinations {Object}
+ * @private
+ */
 var nameCombinations = {};
+
+/**
+ * UNIX command to create directory and file structure for certificates
+ * @attribute createFileStructure {String}
+ * @private
+ */
 var createFileStructure = 'mkdir ./certificateGeneration &&' +
 	'cp ./openssl.conf ./certificateGeneration && ' +
 	'cd ./certificateGeneration && ' +
@@ -32,6 +56,11 @@ var createFileStructure = 'mkdir ./certificateGeneration &&' +
 	'touch index.txt';
 
 
+/**
+ * A collection of commands for SSL certificate generation, where the keys are named ```create<cert_type>``` or ```remove<cert_type>```
+ * @attribute commands {object}
+ * @private
+ */
 var commands = {
 	createCAKey: "openssl genrsa -des3 -passout pass:password -out  ./private/rootCA.key 2048",
 	removeCAPassword: "openssl rsa -passin pass:password -in ./private/rootCA.key -out ./private/rootCA.key",
@@ -95,7 +124,12 @@ fs.readFile('names.txt', 'utf8', function(err, data) {
 	generateFileSystemStructure();
 });
 
-var generateFileSystemStructure = function () {
+/**
+ * Launches process to create file structure for all certificates
+ * @method generateFileSystemStructure
+ * @private
+ */
+var generateFileSystemStructure = function() {
 	cconsole.log('#yellow[Generating file system structure...]');
 	var exec = require('child_process').exec;
 	exec(createFileStructure, function callback(error, stdout, stderr) {
@@ -107,7 +141,12 @@ var generateFileSystemStructure = function () {
 	});
 };
 
-var createCAKey = function () {
+/**
+ * Spawns child process to run command that creates Certificate Authority key
+ * @method createCAKey
+ * @private
+ */
+var createCAKey = function() {
 	cconsole.log('Creating #green[CA] key...');
 	var exec = require('child_process').exec;
 	exec(commands.createCAKey, function callback(error, stdout, stderr) {
@@ -116,7 +155,12 @@ var createCAKey = function () {
 	});
 };
 
-var removeCAPassword = function () {
+/**
+ * Spawns child process to run command that removes Certificate Authority password
+ * @method removeCAPassword
+ * @private
+ */
+var removeCAPassword = function() {
 	cconsole.log('Removing #green[CA] password...');
 	var exec = require('child_process').exec;
 	exec(commands.removeCAPassword, function callback(error, stdout, stderr) {
@@ -125,7 +169,12 @@ var removeCAPassword = function () {
 	});
 };
 
-var createCACrt = function () {
+/**
+ * Spawns child process to run command that creates server certificate
+ * @method createCACrt
+ * @private
+ */
+var createCACrt = function() {
 	cconsole.log('Creating #green[CA] certificate...');
 	var exec = require('child_process').exec;
 	exec(commands.createCACrt, function callback(error, stdout, stderr) {
@@ -134,7 +183,12 @@ var createCACrt = function () {
 	});
 };
 
-var createServerPrivateKey = function () {
+/**
+ * Spawns child process to run command that creates server private key
+ * @method createServerPrivateKey
+ * @private
+ */
+var createServerPrivateKey = function() {
 	cconsole.log('Removing #green[server] private key...');
 	var exec = require('child_process').exec;
 	exec(commands.createServerPrivateKey, function callback(error, stdout, stderr) {
@@ -143,7 +197,12 @@ var createServerPrivateKey = function () {
 	});
 };
 
-var removeServerPrivateKeyPassword = function () {
+/**
+ * Spawns child process to run command that removes private key password
+ * @method removeServerPrivateKeyPassword
+ * @private
+ */
+var removeServerPrivateKeyPassword = function() {
 	cconsole.log('Removing #green[server] private key password...');
 	var exec = require('child_process').exec;
 	exec(commands.createServerPrivateKey, function callback(error, stdout, stderr) {
@@ -152,7 +211,12 @@ var removeServerPrivateKeyPassword = function () {
 	});
 };
 
-var createServerCSR = function () {
+/**
+ * Spawns child process to run command that creates server CSR (Certificate Signing Request)
+ * @method createServerCSR
+ * @private
+ */
+var createServerCSR = function() {
 	cconsole.log('Creating #green[server] CSR...');
 	var exec = require('child_process').exec;
 	exec(commands.createServerCSR, function callback(error, stdout, stderr) {
@@ -161,7 +225,12 @@ var createServerCSR = function () {
 	});
 };
 
-var createServerCrt = function () {
+/**
+ * Spawns child process to run command that creates server certificate
+ * @method createServerCrt
+ * @private
+ */
+var createServerCrt = function() {
 	cconsole.log('Creating #green[server] certificate...');
 	var exec = require('child_process').exec;
 	exec(commands.createServerCrt, function callback(error, stdout, stderr) {
@@ -170,7 +239,12 @@ var createServerCrt = function () {
 	});
 };
 
-var createClientPrivateKey = function () {
+/**
+ * Spawns child process to run command that creates private key
+ * @method createClientPrivateKey
+ * @private
+ */
+var createClientPrivateKey = function() {
 	cconsole.log('Creating #cyan[client] private key for #bold[' + names[nameIndex] + ']...');
 	var exec = require('child_process').exec;
 	exec(commands.createClientPrivateKey.replace(/client/g, names[nameIndex]), function callback(error, stdout, stderr) {
@@ -179,7 +253,12 @@ var createClientPrivateKey = function () {
 	});
 };
 
-var removeClientPrivateKeyPassword = function () {
+/**
+ * Spawns child process to run command that removes client private key password
+ * @method removeClientPrivateKeyPassword
+ * @private
+ */
+var removeClientPrivateKeyPassword = function() {
 	cconsole.log('\tRemoving #cyan[client] private key password.');
 	var exec = require('child_process').exec;
 	exec(commands.removeClientPrivateKeyPassword.replace(/client/g, names[nameIndex]), function callback(error, stdout, stderr) {
@@ -188,7 +267,12 @@ var removeClientPrivateKeyPassword = function () {
 	});
 };
 
-var createClientCSR = function () {
+/**
+ * Spawns child process to run command that creates client CSR (Certificate Signing Request)
+ * @method createClientCSR
+ * @private
+ */
+var createClientCSR = function() {
 	cconsole.log('\tCreating #cyan[client] CSR.');
 	var exec = require('child_process').exec;
 	exec(commands.createClientCSR.replace(/clientCN/g, names[nameIndex] + '@' + organizations[Math.floor(Math.random() * 5)]).replace(/client/g, names[nameIndex]), function callback(error, stdout, stderr) {
@@ -197,7 +281,12 @@ var createClientCSR = function () {
 	});
 };
 
-var createClientCrt = function () {
+/**
+ * Spawns child process to run command that creates client certificate
+ * @method createClientCrt
+ * @private
+ */
+var createClientCrt = function() {
 	cconsole.log('\tCreating #cyan[client] certificate.');
 	var exec = require('child_process').exec;
 	exec(commands.createClientCrt.replace(/client/g, names[nameIndex]), function callback(error, stdout, stderr) {
@@ -206,7 +295,12 @@ var createClientCrt = function () {
 	});
 };
 
-var createClientP12 = function () {
+/**
+ * Spawns child process to run command that creates P12 certificate
+ * @method createClientP12
+ * @private
+ */
+var createClientP12 = function() {
 	cconsole.log('\tCreating #cyan[client] P12 certificate.');
 	var exec = require('child_process').exec;
 	exec(commands.createClientP12.replace(/client/g, names[nameIndex]), function callback(error, stdout, stderr) {
@@ -215,7 +309,12 @@ var createClientP12 = function () {
 	});
 };
 
-var createClientPEM = function () {
+/**
+ * Spawns child process to run command that creates PEM certificate
+ * @method createClientPEM
+ * @private
+ */
+var createClientPEM = function() {
 	cconsole.log('\tCreating #cyan[client] PEM certificate.');
 	var exec = require('child_process').exec;
 	exec(commands.createClientPEM.replace(/client/g, names[nameIndex]), function callback(error, stdout, stderr) {

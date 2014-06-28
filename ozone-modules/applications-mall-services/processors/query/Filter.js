@@ -1,11 +1,20 @@
 /**
+ *  
+ *
+ *  
+ *
+ *  @module Ozone.Services.AppsMall
+ *  @class Ozone.Services.AppsMall.Filter
+ *  @submodule Server-Side
+ */
+
+/**
  * Filter constructor.
  * 
- * @class Filter
+ * @class Ozone.Services.AppsMall.Filter
  * @module Processors
  * @constructor
  */
-
 var Filter = function() {}
 
 Filter.prototype = {
@@ -21,7 +30,6 @@ Filter.prototype = {
  * @param {Array} queryParameters List of relevant query parameters from the RESTful request
  * @return {Object} Object describing MongoDB operation and parameters for the method
  */
-
 Filter.prototype.run = function (queryParameters) {
 	var filterObj = {}
 	return {
@@ -36,7 +44,6 @@ Filter.prototype.run = function (queryParameters) {
  * @method getQueryFields
  * return {Array} List of relevant parameters
  */
-
 Filter.prototype.getQueryFields = function () {
 	return ['filter'];
 };
@@ -45,9 +52,9 @@ Filter.prototype.getQueryFields = function () {
  * RESTful parameter field descriptions.
  * 
  * @method queryFieldParameters
- * @return {Array} List of relevant field descriptions for the processor
+ * @return {Array} List of relevant field descriptions for the processor, where each list element
+  *         has ```type, field, example,``` and ```description``` fields.
  */
-
 Filter.prototype.queryFieldParameters = function () {
 	return [{
 		type: 'String',
