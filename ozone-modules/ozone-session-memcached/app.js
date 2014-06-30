@@ -13,7 +13,10 @@ module.exports = (function (callback, Ozone) {
 	Ozone.Service("ApplicationEngine").use(express.cookieParser());
 	var sessionOpts = {
 		secret: Ozone.config().getServerProperty("session.secret"),
-		key: Ozone.config().getServerProperty("session.key")
+		key: Ozone.config().getServerProperty("session.key"),
+		cookie: {
+			maxAge: Ozone.config().getServerProperty("session.maxAge")
+		}
 	};
 
 	Ozone.logger.debug("ozone-session-memcache-->Memcache Host: " + Ozone.config().getServerProperty("session.memcached.hosts"));

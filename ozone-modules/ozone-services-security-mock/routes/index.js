@@ -22,23 +22,13 @@ module.exports = exports = function (Ozone) {
 
     logger.debug("Routing(mockSecurity)-->setting up routes");
 
-    routing.get(baseURL + ':username', function(req, res, next) {
-    	Ozone.Service("Personas").persona.login({
-			username: req.params.username,
-			auth_token: req.params.username,
-			auth_service: "Mock",
-			overriding_role: Ozone.config().getServerProperty("security.mock.role"),
-			ensure: true,
-			success: function (persona) {
-				res.send(persona);
-			}
-		}, req, res);
-    });
-
-	routing.get(baseURL + ':username' + "/role/:role", function(req, res, next) {
+	/**
+		@method /api/security/mockLogin/ POST
+	*/
+	routing.post(baseURL, function(req, res, next) {
 		Ozone.Service("Personas").persona.login({
-			username: req.params.username,
-			auth_token: req.params.username,
+			username: req.body.username,
+			auth_token: req.body.username,
 			auth_service: "Mock",
 			overriding_role: (req.params.role || Ozone.config().getServerProperty("security.mock.role")),
 			ensure: true,

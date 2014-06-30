@@ -61,8 +61,8 @@
 				$(window).resize(function() {
 					//resize just happened, pixels changed
 					var firstAppInfo = $('.application-container').first();
-					var grid = xtag.query(document, '#ozone-apps-main-grid')[0];
-					var container = xtag.query(grid, '.ozone-apps-appcontainer')[0];
+					var grid = document.querySelectorAll('#ozone-apps-main-grid')[0];
+					var container = grid.querySelectorAll('.ozone-apps-appcontainer')[0];
 					if (grid.getContainerAvailableHeight) {
 						var containerAvailableHeight = grid.getContainerAvailableHeight();
 						var canFitRows = Math.floor(containerAvailableHeight / firstAppInfo.outerHeight());
