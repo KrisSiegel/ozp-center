@@ -14,6 +14,7 @@ var cconsole = colorize.console;
  * Creates new array of items containing all unique values passed in, without duplicates.
  * @method eliminateDuplicates
  * @param arr {Array} an array of items
+ * @return {Array} an array of unique items contained in the array passed in
  */
 function eliminateDuplicates(arr) {
 	var i,

@@ -53,7 +53,7 @@ function getAppFromID(appId, callback) {
 /**
  * 'updateAction' MongoDB collection 'update' method, with custom action, CORS enabled.
  *
- * @method updateAction
+ * @method addReview
  * @param req {Object} Express request object -- will contain an "action" parameter
  * @param res {Object} Express results object
  */

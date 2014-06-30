@@ -11,7 +11,7 @@
 var winston = require('winston'),
     customLogLevels = {
        /**
-        * 
+        * Numerical level lookup for logging levels
         * @attribute levels {Object}
         * @private
         */
@@ -22,7 +22,7 @@ var winston = require('winston'),
             error: 3
         },
         /**
-         * 
+         * Color lookup for logging levels
          * @attribute colors {Object}
          * @private
          */
