@@ -104,11 +104,61 @@ module.exports = (function (Ozone) {
             });
         });
 
-        /*
-        it("Ozone.Service('Persistence').", function (done) {
 
+        it("Ozone.Service('Persistence').Store(store).Drive(drive).set()", function (done) {
+            var fs = require("fs");
+            var file = fs.readFileSync("README.md");
+            var id = Ozone.Service("Persistence").objectId();
+            Ozone.Service("Persistence").Store(store).Drive("TestDrive").set(id, {
+                fileName: "README.md",
+                data: file,
+                id: id
+            }, function (err, res) {
+                expect(err).toBeUndefined();
+                done();
+            });
         });
 
+        it("Ozone.Service('Persistence').Store(store).Drive(drive).get()", function (done) {
+            var fs = require("fs");
+            var file = fs.readFileSync("README.md");
+            var id = Ozone.Service("Persistence").objectId();
+            Ozone.Service("Persistence").Store(store).Drive("TestDrive").set(id, {
+                fileName: "README.md",
+                data: file,
+                id: id
+            }, function (errSet, resSet) {
+                expect(errSet).toBeUndefined();
+                Ozone.Service("Persistence").Store(store).Drive("TestDrive").get(id, function (errGet, resGet) {
+                    expect(errGet).toBeUndefined();
+                    expect(resGet).not.toBeUndefined();
+                    done();
+                });
+            });
+        });
+
+        it("Ozone.Service('Persistence').Store(store).Drive(drive).remove()", function (done) {
+            var fs = require("fs");
+            var file = fs.readFileSync("README.md");
+            var id = Ozone.Service("Persistence").objectId();
+            Ozone.Service("Persistence").Store(store).Drive("TestDrive").set(id, {
+                fileName: "README.md",
+                data: file,
+                id: id
+            }, function (errSet, resSet) {
+                expect(errSet).toBeUndefined();
+                Ozone.Service("Persistence").Store(store).Drive("TestDrive").get(id, function (errGet, resGet) {
+                    expect(errGet).toBeUndefined();
+                    expect(resGet).not.toBeUndefined();
+                    Ozone.Service("Persistence").Store(store).Drive("TestDrive").remove(id, function (errRemove, resRemove) {
+                        expect(errRemove).toBeUndefined();
+                        done();
+                    });
+                });
+            });
+        });
+
+        /*
         it("Ozone.Service('Persistence').", function (done) {
 
         });
