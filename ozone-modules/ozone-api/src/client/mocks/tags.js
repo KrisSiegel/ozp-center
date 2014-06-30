@@ -1,16 +1,16 @@
 Ozone.Service("Tags", (function () {
 	var api = {
         getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", "/tags/", true);
+			return Ozone.utils.murl("apiBaseUrl", "/tags/");
 	    },
         tag: {
             get: function (id, callback, context) {
-                if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) { // get all 
+                if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) { // get all
                     context = callback;
                     callback = id;
                     id = undefined;
-                } 
-            
+                }
+
                 if (!Ozone.utils.isFunction(callback)) {
                     throw "No callback defined";
                 }
@@ -89,7 +89,7 @@ Ozone.Service("Tags", (function () {
                 if (Ozone.utils.isUndefinedOrNull(tag)) {
                     throw "No tag defined";
                 }
-            
+
                 var id = (tag.id || tag._id);
                 if (id === undefined) {
                     throw "tag has no id";
@@ -109,7 +109,7 @@ Ozone.Service("Tags", (function () {
                 if (Ozone.utils.isUndefinedOrNull(tag)) {
                     throw "No tag defined";
                 }
-            
+
                 var id = (tag.id || tag._id);
                 if (id === undefined) {
                     throw "tag has no id";

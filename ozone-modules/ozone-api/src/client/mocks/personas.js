@@ -230,7 +230,7 @@ Ozone.Service("Personas", (function () {
 
     var api = {
         getServicePath: function () {
-            return Ozone.utils.murl("apiBaseUrl", "/personas/", true);
+            return Ozone.utils.murl("apiBaseUrl", "/personas/");
         },
         persona: {
             envelop: function (obj) {

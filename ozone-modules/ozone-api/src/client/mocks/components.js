@@ -1,7 +1,7 @@
 Ozone.Service("Components", (function () {
     var service = {
         getServicePath: function () {
-            return Ozone.utils.murl("apiBaseUrl", "/components/", true);
+            return Ozone.utils.murl("apiBaseUrl", "/components/");
         },
         get: function (id, callback, context) {
             if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) { // get all

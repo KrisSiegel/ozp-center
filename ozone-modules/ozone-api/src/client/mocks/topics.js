@@ -4,7 +4,7 @@
 
     var genericService = {
 		getServicePath: function () {
-			return Ozone.utils.murl("apiBaseUrl", this.controller, true);
+			return Ozone.utils.murl("apiBaseUrl", this.controller);
 		},
 		get: function (id, callback, context) {
 			if (Ozone.utils.isUndefinedOrNull(context) && !Ozone.utils.isFunction(callback)) { // get all
@@ -126,7 +126,7 @@
                 var isDeleted = Ozone.mockDb.delete('TagTopics', id);
                 if (isDeleted) {
                     console.log('!!! DELETING TAG NAME ' + tagName + ', TAG NAME OBJS = ' + JSON.stringify(tagsWithName) + ', TAG + TOPIC OBJS = ' + JSON.stringify(tagsWithNameAndTopic));
-                    tagsWithNameAndTopic.map(function(tag) { 
+                    tagsWithNameAndTopic.map(function(tag) {
                         isDeleted = isDeleted && Ozone.mockDb.delete('Tags', tag._id);
                     });
                     // if topic and all related tags are deleted, then call the callback method

@@ -25,7 +25,7 @@ Ozone.Service("Persistence", (function () {
 
     return {
         getServicePath: function () {
-            return Ozone.utils.murl("apiBaseUrl", "/persistence/", true);
+            return Ozone.utils.murl("apiBaseUrl", "/persistence/");
         },
         Store: function (store) {
             return {
