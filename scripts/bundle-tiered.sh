@@ -86,7 +86,7 @@ then
     mv $UI_BUILD_DIR/public/lib $STATIC_BUILD_DIR
     mkdir -p $STATIC_BUILD_DIR/AppsMall
     cd $UI_BUILD_DIR/apps/appsmall/public
-    mv css ext-lib fonts img js $STARTDIR/../$STATIC_BUILD_DIR/AppsMall
+    mv css ext-lib fonts img js partials template $STARTDIR/../$STATIC_BUILD_DIR/AppsMall
     cd ../../ozone-hud/public
     mv components assets $STARTDIR/../$STATIC_BUILD_DIR
     cd $STARTDIR/..
@@ -117,5 +117,5 @@ then
 fi
 echo
 echo Check for complete tarballs in $TARGET_DIR
-echo 
+echo
 echo Remember to change the server port on each installation if needed.
