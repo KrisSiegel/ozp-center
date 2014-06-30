@@ -16,7 +16,7 @@
   * @final
   */
 var PORT = 3000,
-    logger;
+    logger = null;
 
 /**
  * get URI from app data. (TO DO: apps and components might have different URI path components, if applicable.)

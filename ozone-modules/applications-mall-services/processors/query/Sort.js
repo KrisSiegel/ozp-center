@@ -1,7 +1,5 @@
 /**
- *  
- *
- *  
+ *  Contains preset objects containing sorting parameters for MongoDB.
  *
  *  @module Ozone.Services.AppsMall
  *  @class Ozone.Services.AppsMall.Sort

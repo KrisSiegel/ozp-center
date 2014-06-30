@@ -1,7 +1,5 @@
 /**
- *  
- *
- *  
+ *  Contains preset objects containing user request information, parameters, and field names for querying.
  *
  *  @module Ozone.Services.AppsMall
  *  @class Ozone.Services.AppsMall.UserRequest

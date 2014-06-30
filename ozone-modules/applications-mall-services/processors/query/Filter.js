@@ -1,7 +1,5 @@
 /**
- *  
- *
- *  
+ *  Contains preset objects containing filtering parameters for MongoDB
  *
  *  @module Ozone.Services.AppsMall
  *  @class Ozone.Services.AppsMall.Filter

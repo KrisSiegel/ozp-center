@@ -33,7 +33,7 @@ exports.init = function(_ozone) {
  * @param appId {String} The unique identifier for the app passed in
  * @param callback {Function} Method invoked with (```err, app```) parameters after app has been retrieved
  */
-function getAppFromID = function(appId, callback) {
+function getAppFromID(appId, callback) {
 	Persistence.Store(appsStore).Collection(appCollection).get(appId, function(err, result) {
 		if (err) {
 			return callback({'error':'Error getting app with id ' + appId + ' err: ' + err});
