@@ -11,6 +11,16 @@ var logger = null,
     user,
     password;
 
+// There are inconsistencies with how errors are returned; let's normalize them
+// so if it's null or undefined we simply return undefined otherwise we return the error.
+// TODO: Drop this method in favor of simply doing things correctly within the implementation.
+var nErr = function (err) {
+	if (Ozone.utils.isUndefinedOrNull(err)) {
+		return undefined;
+	}
+	return err;
+};
+
 module.exports = {
 	init: function (_ozone) {
 		Ozone = _ozone;
@@ -42,11 +52,11 @@ module.exports = {
 			model.find(findParams).toArray(function(err, elements) {
 				if (err) {
 					logger.error("mongoHelper-->Error occurred while searching with mongo's find: " + JSON.stringify(findParams) + " err: " + err);
-					return callback(err);
+					return callback(nErr(err));
 				}
 				logger.debug("mongoHelper-->in get callback-->Found " + elements.length + " elements.");
 
-				callback(err, elements);
+				callback(nErr(err), elements);
 			});
 		});
 	},
@@ -80,7 +90,7 @@ module.exports = {
 				db.command(searchParams, function(err, results){
 					if (err || results.errmsg) {
 						logger.error("Error occurred while searching with Mongo's Text Search - err: " + err);
-						return callback(err || results.errmsg);
+						return callback(nErr(err || results.errmsg));
 					}
 
 					logger.debug("mongoHelper-->query-->in text search callback-->search:" + selector[searchField] +
@@ -93,7 +103,7 @@ module.exports = {
 						elements.push(record.obj);
 					}
 
-					callback(err, elements);
+					callback(nErr(err), elements);
 				});
 
 			} else {
@@ -107,11 +117,11 @@ module.exports = {
 				model.find(selector, options).toArray(function(err, elements) {
 					if (err) {
 						logger.error("mongoHelper-->query-->Error occurred while searching with mongo's find: " + JSON.stringify(selector) + " err: " + err);
-						return callback(err);
+						return callback(nErr(err));
 					}
 					logger.debug("mongoHelper-->query-->in find callback-->Found " + elements.length + " elements.");
 
-					callback(err, elements);
+					callback(nErr(err), elements);
 				});
 			}
 		});
@@ -127,11 +137,11 @@ module.exports = {
 				if (err) {
 					logger.error("mongoHelper-->aggregate-->Error occurred while searching with mongo's aggregate: " +
 									aggregationArray + " err: " + err);
-					return callback(err);
+					return callback(nErr(err));
 				}
 				logger.debug("mongoHelper-->in aggregate callback-->Found " + elements.length + " elements.");
 
-				callback(err, elements);
+				callback(nErr(err), elements);
 			});
 		});
 	},
@@ -183,12 +193,12 @@ module.exports = {
 					    // if any of the getFromGridFSWithIdFunction calls produced an error, err would equal that error
 						if (err) {
 							logger.error("mongoHelper-->getFromGridFS-->error: " + err);
-							return callback(err);
+							return callback(nErr(err));
 						}
-						callback(err, fileDataArray);
+						callback(nErr(err), fileDataArray);
 					});
 				} else {
-					callback(err, []);
+					callback(nErr(err), []);
 				}
 			});
 		});
@@ -235,7 +245,7 @@ module.exports = {
 					model.insert(value, { safe: true }, function(err, elements) {
 						if (err) {
 							logger.error("mongoHelper-->set-->Error occurred while creating: " + JSON.stringify(value) + " err: " + err);
-							return callback(err);
+							return callback(nErr(err));
 						}
 						logger.debug("mongoHelper-->set-->in insert callback-->created " + JSON.stringify(elements));
 						updatedResults.push(elements[0]); // elements should be an array of 1 object
@@ -254,7 +264,7 @@ module.exports = {
 					model.update(findParams, updateObj, { upsert: true }, function(err, elements) {
 						if (err) {
 							logger.error("mongoHelper-->set-->Error occurred while updating: " + JSON.stringify(findParams) + " err: " + err);
-							return callback(err);
+							return callback(nErr(err));
 						}
 						// put the _id value back in the orig obj since it may be needed later (for example, Tag objects)
 						if (idObj === undefined) {
@@ -272,9 +282,9 @@ module.exports = {
 			    // if any of the setFunction calls produced an error, err would equal that error
 				if (err) {
 					logger.error("mongoHelper-->set-->error: " + err);
-					return callback(err);
+					return callback(nErr(err));
 				}
-				callback(err, updatedResults);
+				callback(nErr(err), updatedResults);
 			});
 		});
 	},
@@ -330,7 +340,7 @@ module.exports = {
 				}
 
 				grid.put(data, options, function(err, result) {
-					if (err) return cb(err);
+					if (err) return cb(nErr(err));
 					updatedResults.push(result);
 					logger.debug("mongoHelper-->setToGridFS-->done with grid.put");
 					cb();
@@ -341,9 +351,9 @@ module.exports = {
 			    // if any of the setToGridFSFunction calls produced an error, err would equal that error
 				if (err) {
 					logger.error("mongoHelper-->setToGridFS-->error: " + err);
-					return callback(err);
+					return callback(nErr(err));
 				}
-				callback(err, updatedResults);
+				callback(nErr(err), updatedResults);
 			});
 		});
 	},
@@ -366,12 +376,12 @@ module.exports = {
 			model.remove(findParams, function(err, elements) {
 				if (err) {
 					logger.error("mongoHelper-->Error occurred while removing: " + JSON.stringify(findParams) + " err: " + err);
-					return callback(err);
+					return callback(nErr(err));
 				}
 				logger.debug("mongoHelper-->in remove callback-->Deleted " + elements + " elements.");
 
 
-				callback(err, { count:elements });
+				callback(nErr(err), { count:elements });
 			});
 		});
 	},
@@ -401,7 +411,7 @@ module.exports = {
 				var removeFromGridFSWithIdFunction = function(result, cb) {
 					var grid = new mongo.Grid(db, rootCollectionName);
 					removeFromGridFSWithId(grid, result._id, function(err, deleted) {
-						if (err) return cb(err);
+						if (err) return cb(nErr(err));
 						fileDataArray.push({ gridFSfile: result, deleted: deleted });
 						cb();
 					});
@@ -411,9 +421,9 @@ module.exports = {
 				    // if any of the removeFromGridFSWithIdFunction calls produced an error, err would equal that error
 					if (err) {
 						logger.error("mongoHelper-->removeFromGridFS-->error: " + err);
-						return callback(err);
+						return callback(nErr(err));
 					}
-					callback(err, fileDataArray);
+					callback(nErr(err), fileDataArray);
 				});
 
 			});
@@ -428,7 +438,7 @@ module.exports = {
 
 			model.ensureIndex(index, options, function(err, indexName) {
 				logger.debug("mongoHelper-->addIndex-->ensured index-->indexName: " + indexName);
-				callback(err, { indexName: indexName } );
+				callback(nErr(err), { indexName: indexName } );
 			})
 		});
 	},
@@ -441,7 +451,7 @@ module.exports = {
 
 			model.indexInformation({ full: true }, function(err, indexInformation) {
 				logger.debug("mongoHelper-->getIndexes-->got indexes-->indexInformation: " + indexInformation);
-				callback(err, { indexInformation: indexInformation } );
+				callback(nErr(err), { indexInformation: indexInformation } );
 			})
 		});
 	},
@@ -454,7 +464,7 @@ module.exports = {
 
 			model.dropIndex(indexName, function(err, result) {
 				logger.debug("mongoHelper-->removeIndex-->removed-->result: " + result);
-				callback(err, { result: result } );
+				callback(nErr(err), { result: result } );
 			})
 		});
 	},
@@ -467,7 +477,7 @@ module.exports = {
 
 			model.dropAllIndexes(function(err, result) {
 				logger.debug("mongoHelper-->removeAllIndexes-->removed-->result: " + result);
-				callback(err, { result: result } );
+				callback(nErr(err), { result: result } );
 			})
 		});
 	},
@@ -486,6 +496,8 @@ module.exports = {
 		return db.collection(collectionName);
 	},
 	doAuth: function (store, callback) {
+		// TODO: Remove this method; this is a holdover from a previous
+		// implementation that just stuck around and was essentially made harmless.
 		var db,
 			storeName = this.getDatabaseName(store);
 
@@ -553,11 +565,11 @@ var getFromGridFSWithId = function(grid, id, callback) {
 	grid.get(id, function(err, data) {
 		if (err) {
 			logger.error("mongoHelper-->getFromGridFSWithId-->Error occurred while searching with id: " + id + " err: " + err);
-			return callback(err);
+			return callback(nErr(err));
 		}
 		logger.debug("mongoHelper-->getFromGridFSWithId-->callback-->data size: " + data.length);
 
-		callback(err, data);
+		callback(nErr(err), data);
 	});
 };
 var removeFromGridFSWithId = function(grid, id, callback) {
@@ -566,10 +578,10 @@ var removeFromGridFSWithId = function(grid, id, callback) {
 	grid.delete(id, function(err, deleted) {
 		if (err) {
 			logger.error("mongoHelper-->removeFromGridFSWithId-->Error occurred while deleting with id: " + id + " err: " + err);
-			return callback(err);
+			return callback(nErr(err));
 		}
 		logger.debug("mongoHelper-->removeFromGridFSWithId-->callback-->deleted: " + deleted);
 
-		callback(err, deleted);
+		callback(nErr(err), deleted);
 	});
 };

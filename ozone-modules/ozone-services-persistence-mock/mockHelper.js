@@ -62,7 +62,7 @@ module.exports = {
         //logger.debug("mockHelper-->get-->database: " + JSON.stringify(database, null, 3));
         //logger.debug("mockHelper-->get-->elements: " + JSON.stringify(elements, null, 3));
 
-        callback(null, elements);
+        callback(undefined, elements);
 
     },
     query: function (store, collection, selector, options, callback) {
@@ -114,7 +114,7 @@ module.exports = {
         //logger.debug("mockHelper-->query-->database: " + JSON.stringify(database, null, 3));
         //logger.debug("mockHelper-->query-->elements: " + JSON.stringify(elements, null, 3));
 
-        callback(null, elements);
+        callback(undefined, elements);
 
     },
     getFile: function (store, drive, ids, callback) {
@@ -150,7 +150,7 @@ module.exports = {
         //logger.debug("mockHelper-->getFile-->database: " + JSON.stringify(database, null, 3));
         //logger.debug("mockHelper-->getFile-->elements: " + JSON.stringify(elements, null, 3));
 
-        callback(null, elements);
+        callback(undefined, elements);
 
     },
     set: function (store, collection, objList, callback) {
@@ -354,7 +354,7 @@ module.exports = {
         logger.debug("mockHelper-->in remove callback-->Deleted " + elements + " elements.");
 
 
-        callback(null, {
+        callback(undefined, {
             count: elements
         });
 
@@ -377,7 +377,7 @@ module.exports = {
 
         //logger.debug("mockHelper-->removeFile-->database: " + JSON.stringify(database, null, 3));
 
-        callback(null, deletedFiles);
+        callback(undefined, deletedFiles);
     }
 };
 
