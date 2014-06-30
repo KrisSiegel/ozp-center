@@ -1,3 +1,11 @@
+/**
+ *  Contains JSON conversion methods for the AppsMall Service layer
+ *
+ *  @module Ozone.Services.AppsMall
+ *  @class Ozone.Services.AppsMall
+ *  @submodule Server-Side
+ */
+
 var fs = require('fs');
 
 // Set up variables.

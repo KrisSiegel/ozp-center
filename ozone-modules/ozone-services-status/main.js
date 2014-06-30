@@ -10,6 +10,7 @@
 (function () {
     module.exports = function (callback, Ozone) {
         var status = require("./status")(Ozone);
+
         /**
          *  Provides a JSON response containing a listing of Ozone Modules and their current status.
          *
