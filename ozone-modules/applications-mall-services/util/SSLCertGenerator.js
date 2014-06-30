@@ -15,7 +15,7 @@ var cconsole = colorize.console;
  * @method eliminateDuplicates
  * @param arr {Array} an array of items
  */
-function eliminateDuplicates = function(arr) {
+function eliminateDuplicates(arr) {
 	var i,
 		len=arr.length,
 		out=[],

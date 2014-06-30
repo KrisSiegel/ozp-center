@@ -47,8 +47,8 @@
                     logger.info("Import-->successfully imported: " + filePath);
                 }
 
-                if(collection === constants.database.collection.tag && !err && results && results.length > 0){
-                    var topics = {}
+                if((collection === constants.database.collection.tag) && !err && results && (results.length > 0)) {
+                    var topics = {};
                     for(var index = 0; index < results.length; index++){
                         var tag = results[index];
                         if(!topics[tag.topic + tag.tag]){

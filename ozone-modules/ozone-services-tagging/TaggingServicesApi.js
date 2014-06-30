@@ -54,7 +54,7 @@ function setup(callback, Ozone) {
          * @private
          * @return {Object} a new object with query parameters passed in, and standardized id, level, topic, tag, and/or uri field names
          */
-        var createTagQueryObject = function (query) {
+        var createTagQueryObject = function(query) {
             var item = {};
             if (query.id) item._id = query.id;
             if (query._id) item._id = query._id;

@@ -12,7 +12,7 @@ var baseURL = require('../conf/version.json').rest.url,
     fs = require('fs'),
     mkdirp = require('mkdirp');
 
-module.exports = exports = function (Ozone) {
+module.exports = exports = function(Ozone) {
 
     var routing = Ozone.Routing;
     logger = Ozone.logger;
@@ -38,7 +38,5 @@ module.exports = exports = function (Ozone) {
      *
      *  @method /api/aml/action/id_POST
      */
-    routing.post(
-        baseURL + ':action/:id', appHandlers.updateAction
-    );
+    routing.post(baseURL + ':action/:id', appHandlers.updateAction);
 };

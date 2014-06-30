@@ -16,7 +16,7 @@ var PORT = 3000,
  * @param callback {Function} Method invoked with (```result```) parameter after service has been loaded
  * @param Ozone {Object} the Ozone API object
  */
-function amlService = function(callback, Ozone) {
+function amlService(callback, Ozone) {
 	var constants = require('./conf/constants'),
 		appsStore = constants.database.store.apps,
 		appsmallStore = constants.database.store.appsmall,
