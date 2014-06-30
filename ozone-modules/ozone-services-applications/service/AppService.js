@@ -1,3 +1,8 @@
+/**
+	@module Ozone.Services.App
+	@submodule Server-Side
+	@class Ozone.Services.App
+*/
 var Ozone = null,
 	logger = null,
     Persistence = null,
@@ -19,12 +24,29 @@ var exporting = {
         });
 
 	},
+	/**
+		@method query
+		@param {Object} selector the selector to query against
+		@param {Object} options the optional options
+		@param {Method} callback the callback that executes with the results
+	*/
     query: function(selector, options, callback){
         Persistence.Store(appsStore).Collection(appCollectionName).query(selector, options, callback);
     },
+	/**
+		@method update
+		@param {String} appId the application id to update
+		@param {Object} appJson the application's json to use in the update
+		@param {Method} callback the callback that executes with the results
+	*/
     update: function(appId, appJson, callback){
         Persistence.Store(appsStore).Collection(appCollectionName).set(appId, appJson, callback);
     },
+	/**
+		@method create
+		@param {Object} appJson the application's json to use in the creation
+		@param {Method} callback the callback that executes with the results
+	*/
     create: function(appJson, callback){
         exporting.query({shortname: appJson['shortname']}, {}, function(err, res) {//if matching shortname, update existing entry
             if (err) {
@@ -37,6 +59,13 @@ var exporting = {
             }
         });
     },
+	/**
+		@method import
+		@param {Object} data the data to import
+		@param {Method} callback the callback that executes with the results
+		@Param {String} path the path to the exploded zip if it exists
+		@param {Boolean} autoImporting whether the import is an automatic one or not
+	*/
     import: function(data, callback, path, autoImporting){
         var importReport = { successful: 0, failed: 0 };
         if(!data){
