@@ -19,7 +19,7 @@
 /**
  * @class AppsMallUI.HelpOverlayDirective
  * @constructor
- * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.PersonaService"}}{{/crossLink}}
  */
 var HelpOverlayDirective = ['Persona', function(Persona) {
     function Controller($scope, $element, $attrs) {

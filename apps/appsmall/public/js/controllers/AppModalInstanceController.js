@@ -19,15 +19,15 @@
  * @param $modalInstance {Object} Controller for the modal instance, injected by Angular - [API Documentation](http://angular-ui.github.io/bootstrap/#/modal) 
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
  * @param $sce {Object} Service that provides Strict Contextual Escaping - [API Documentation](https://docs.angularjs.org/api/ng/service/$sce) 
- * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
- * @param Review {Object} an Angular-injected instance of {{#crossLink "ReviewService"}}{{/crossLink}}
- * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
- * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}
- * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
- * @param OzoneCommon {Object} an Angular-injected instance of {{#crossLink "OzoneCommonService"}}{{/crossLink}}
- * @param {Object} currentApp
- * @param {Array} currentTags
- * @param {Boolean} previewer
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.PersonaService"}}{{/crossLink}}
+ * @param Review {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.ReviewService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.TagService"}}{{/crossLink}}
+ * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppOrComponentService"}}{{/crossLink}}
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.FileUploadService"}}{{/crossLink}}
+ * @param OzoneCommon {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.OzoneCommonService"}}{{/crossLink}}
+ * @param currentApp {Object} The App object with attributes to be displayed in modal
+ * @param [currentTags] {Array} A list of tags to be auto-loaded if previewer parameter equals True
+ * @param [previewer] {Boolean} If True, then this modal will preview user-entered Tag/Topic data instead of loading from server
  */
 
 
@@ -56,7 +56,7 @@ var AppModalInstanceController = ['$scope', '$modal', '$modalInstance', '$rootSc
      $scope.visibleUserReviews = [];
 
      /**
-      * Star rating scale from {{#crossLink "ReviewService"}}{{/crossLink}}.getRatings
+      * Star rating scale from {{#crossLink "AppsMallUI.ReviewService"}}{{/crossLink}}.getRatings
       * @attribute {Array} ratingScale
       * @required
       */

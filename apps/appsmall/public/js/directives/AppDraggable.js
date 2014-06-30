@@ -20,7 +20,7 @@
 /**
  * @class AppsMallUI.AppDraggableDirective
  * @constructor
- * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.FileUploadService"}}{{/crossLink}}
  */
 var AppDraggableDirective = ['FileUpload', function(FileUpload) {
     function getSquareIcon(app) {

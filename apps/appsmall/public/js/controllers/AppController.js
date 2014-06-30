@@ -20,13 +20,13 @@
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
  * @param $modal {Object} Angular service that creates modal instances - [API Documentation](http://angular-ui.github.io/bootstrap/#/modal) 
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
- * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}
- * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
- * @param Review {Object} an Angular-injected instance of {{#crossLink "ReviewService"}}{{/crossLink}}
- * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
- * @param Search {Object} an Angular-injected instance of {{#crossLink "SearchService"}}{{/crossLink}}
- * @param AppSelectionMessage {Object} an Angular-injected instance of {{#crossLink "AppSelectionMessageService"}}{{/crossLink}}
- * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppOrComponentService"}}{{/crossLink}}
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.FileUploadService"}}{{/crossLink}}
+ * @param Review {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.ReviewService"}}{{/crossLink}}
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.PersonaService"}}{{/crossLink}}
+ * @param Search {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.SearchService"}}{{/crossLink}}
+ * @param AppSelectionMessage {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppSelectionMessageService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.TagService"}}{{/crossLink}}
  */
 
 
@@ -458,7 +458,7 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
     }
 
     /**
-     * loading Home (default) page from {{#crossLink "AppSelectionMessageService"}}{{/crossLink}} parameters
+     * loading Home (default) page from {{#crossLink "AppsMallUI.AppSelectionMessageService"}}{{/crossLink}} parameters
      * @method loadHomePageFromMessage
      * @private
      */
@@ -633,7 +633,7 @@ var AppController = ['$scope', '$rootScope', '$modal', '$q', 'AppOrComponent', '
      */
     $scope.loadAppChildForm = function(selectedApp) {
         var modalInstance = $modal.open({
-            templateUrl: Ozone.utils.murl('amlUrl', '/partials/appmodal.html', 'staticHost'),
+            templateUrl: Ozone.utils.murl('amlUrl', '/partials/appmodal.html'),
             controller: AppModalInstanceController,
             backdrop: 'true',
             resolve: {

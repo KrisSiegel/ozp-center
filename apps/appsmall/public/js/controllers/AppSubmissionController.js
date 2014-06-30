@@ -22,12 +22,12 @@
  * @param $location {LocationHashbangUrl} Angular service for parsing URLs - [API Documentation](https://docs.angularjs.org/api/ng/service/$location) 
  * @param $window {Window} Reference to browser window object - [API Documentation](https://docs.angularjs.org/api/ng/service/$window) 
  * @param $modal {Object} Angular service that creates modal instances - [API Documentation](http://angular-ui.github.io/bootstrap/#/modal) 
- * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
- * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}
- * @param Dropdown {Object} an Angular-injected instance of {{#crossLink "DropdownService"}}{{/crossLink}}
- * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
- * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppWorkflowService"}}{{/crossLink}}
- * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.PersonaService"}}{{/crossLink}}
+ * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppOrComponentService"}}{{/crossLink}}
+ * @param Dropdown {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.DropdownService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.TagService"}}{{/crossLink}}
+ * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.FileUploadService"}}{{/crossLink}}
  */
 
 
@@ -243,7 +243,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
      /**
       * Gets the CSS class used to visually display workflow state
       * @method workflowStatusClass
-      * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+      * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
       * @return {String} the CSS class corresponding to workflow state passed in
       */
      $scope.workflowStatusClass = function(workflowStatus) {
@@ -406,8 +406,8 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
       * Set tabValidationState based on validation state: complete, incomplete, or error.
       * Tri-state flags (true, false, undefined) are used for each tab, where true = complete and false = error.
       * @method formValidReceiveFunction
-      * @param [event] {Object} Event object sent from {{#crossLink "FormValidationWatcherDirective"}}{{/crossLink}} -- _**deprecated**_ and no longer used
-      * @param msg {Object} Tab validation message sent from {{#crossLink "FormValidationWatcherDirective"}}{{/crossLink}}
+      * @param [event] {Object} Event object sent from {{#crossLink "AppsMallUI.FormValidationWatcherDirective"}}{{/crossLink}} -- _**deprecated**_ and no longer used
+      * @param msg {Object} Tab validation message sent from {{#crossLink "AppsMallUI.FormValidationWatcherDirective"}}{{/crossLink}}
       * @private
       */
      var formValidReceiveFunction = function(event, msg) {
@@ -483,7 +483,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
          /**
           * Performs validation on current app, and saves all App data (including tags) to database if valid.
           * @method saveApp
-          * @param workflowAction {String} The workflow action button clicked on by the user, as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateActions
+          * @param workflowAction {String} The workflow action button clicked on by the user, as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateActions
           */
          $scope.saveApp = function(workflowAction) {
              var params = {};

@@ -24,7 +24,7 @@
 /**
  * User-editable rating in stars.  Changes in both current and parent scope on change.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope, with bound watcher event)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope, with bound watcher event)**_
  *
  * @attribute {Number} rating
  * @required
@@ -33,7 +33,7 @@
 /**
  * Review text corresponding with star rating
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope, with bound watcher event)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope, with bound watcher event)**_
  *
  * @attribute {String} reviewText
  * @optional

@@ -25,7 +25,7 @@
  * Function for performing form validation outside of ng-form scope.  Sets ```ng-invalid-custom``` CSS class 
  * on form control if invalid.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Function} ng-valid-func
  * @optional

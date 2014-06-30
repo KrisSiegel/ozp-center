@@ -19,14 +19,14 @@
 /**
  * @class AppsMallUI.AmlNavLinksDirective
  * @constructor
- * @param OzoneCommon {Object} an Angular-injected instance of {{#crossLink "OzoneCommonService"}}{{/crossLink}}
- * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
+ * @param OzoneCommon {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.OzoneCommonService"}}{{/crossLink}}
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.PersonaService"}}{{/crossLink}}
  */
 
 /**
  * If set to true, then the navigation links will always display the Help page link.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {String} show-help 
  * @optional
