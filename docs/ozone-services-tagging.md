@@ -34,11 +34,3 @@ Tags consist of two components: a tag topic and a tag. A tag should be looked at
 Looking at the examples above this demonstrates how the backend works. The Tag Topic with a tag of "Fun Apps" has a URI of "/AppsMall/Category/". This means we're defining a type of tag which would be a category in Apps Mall. In the Apps Mall application it would read from all tag topics with a URI of "/AppsMall/Category/" and display those as categories.
 
 Looking at the tag example it shows that the URI is pointing to a resource (the "MyApp" application) and it has a tag. It also has a topic which is its way of saying "this tag was created from a category" and thusly allows the backend to provide further filtering and bucketing while being able to reuse the tagging system for almost any type of meta data attachments.
-
-####Server-Side API
-
-
-####RESTful Endpoints
-
-
-####Client-Side API
