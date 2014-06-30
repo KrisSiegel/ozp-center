@@ -65,32 +65,3 @@ Roles are simply a way of grouping permissions and are mostly for organizational
 }
 
 ```
-
-####Server-Side API
-
-```Ozone.Service("Personas").persona.login(obj, req, res, next)``` ->
-```Ozone.Service("Personas").persona.getById(userId, callback)``` ->
-```Ozone.Service("Personas").persona.hasPermission(persona, permission)``` ->
-```Ozone.Service("Personas").persona.query(selector, callback)``` ->
-```Ozone.Service("Personas").persona.create(persona, callback)``` ->
-```Ozone.Service("Personas").persona.update(personaId, persona, callback)``` ->
-```Ozone.Service("Personas").persona.delete(personaId, callback)``` ->
-```Ozone.Service("Personas").permissions.getById(permissionId, callback)``` ->
-```Ozone.Service("Personas").permissions.query(selector, callback)``` ->
-```Ozone.Service("Personas").permissions.create(permission, callback)``` ->
-```Ozone.Service("Personas").permissions.update(permissionId, permission, callback)``` ->
-```Ozone.Service("Personas").permissions.delete(permissionId, callback)``` ->
-```Ozone.Service("Personas").roles.calculate(userPermissions, callback, fullPermissions, fullRoles, forceSync)``` ->
-```Ozone.Service("Personas").roles.calculateSync(userPermissions, fullPermissions, fullRoles)``` ->
-```Ozone.Service("Personas").roles.getById(roleId, callback)``` ->
-```Ozone.Service("Personas").roles.query(selector, callback)``` ->
-```Ozone.Service("Personas").roles.create(role, callback)``` ->
-```Ozone.Service("Personas").roles.update(roleId, role, callback)``` ->
-```Ozone.Service("Personas").roles.delete(roleId, callback)``` ->
-```Ozone.Service("Personas").export()``` ->
-```Ozone.Service("Personas").import()``` ->
-
-####RESTful Endpoints
-
-
-####Client-Side API

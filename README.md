@@ -46,6 +46,9 @@ The documentation below outlines everything needed to configure, deploy, extend 
 * [Extending the Ozone HUD](docs/ozone-hud.md)
 * [Testing Apps Mall and Ozone Platform](docs/testing.md)
 
+##Code and API Documentation
+All documentation for the code or the API exists within the code itself as comments using a yuidoc format. This allows for all code and API documentation to be generated upon build. The generated documentation is generated with the ```grunt build``` command and is available at the following path within the project [once generated]: ```docs/code/index.html```.
+
 ## Copyrights
 > Software (c) 2014 [Computer Sciences Corporation](http://www.csc.com/ "CSC")
 
