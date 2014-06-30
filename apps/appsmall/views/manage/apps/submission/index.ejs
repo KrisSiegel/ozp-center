@@ -294,7 +294,7 @@
                                                data-placeholder="Select Categories" ng-model="categoryDropdownText"
                                                typeahead="categoryObj as categoryObj.category for categoryObj in getCategoryDropdownSelection($viewValue)"
                                                typeahead-on-select="addSelectedItemToList($item, 'selectedCategories', getCategoryField)"
-                                               typeahead-template-url="../../../template/categoryTemplate.html" tabindex="12" />
+                                               typeahead-template-url="<%- Ozone.utils.murl('amlUrl', '/template/categoryTemplate.html', 'staticHost') %>" tabindex="12" />
                                         <div class="bootstrap-tagsinput searchbar-tags" ng-repeat="selectedCategory in selectedCategories">
                                             <span class="tag badge badge-info"> {{selectedCategory}}
                                                 <span> <!-- style="background:#fff;border-radius:10px;margin-left:8px;text-align:center;border:1px solid #d6d6d6" -->
@@ -311,7 +311,7 @@
                                         <input type="text" class="input-large form-search" placeholder="Select Tags" name="appTags" autofocus id="tag_select" data-placeholder="Select Tags"
                                                ng-model="tagDropdownText" typeahead="tagObj as tagObj.tag for tagObj in getTagDropdownSelection($viewValue)"
                                                typeahead-on-select="addSelectedItemToList($item, 'selectedTags', getTagField)"
-                                               typeahead-template-url="../../../template/tagTemplate.html" tabindex="13" />
+                                               typeahead-template-url="<%- Ozone.utils.murl('amlUrl', '/template/tagTemplate.html', 'staticHost') %>" tabindex="13" />
                                         <div class="bootstrap-tagsinput searchbar-tags" ng-repeat="selectedTag in selectedTags">
                                             <span class="tag badge badge-info"> {{selectedTag}}
                                                 <span> <!-- style="background:#fff;border-radius:10px;margin-left:8px;text-align:center;border:1px solid #d6d6d6" -->
