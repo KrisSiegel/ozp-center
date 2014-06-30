@@ -413,7 +413,7 @@ Ozone.extend(function () {
 				@param {Object} obj a JavaScript object to grab keys from
             */
 			keys: function(obj) {
-			    if (isObject(obj)) {
+			    if (methods.utils.isObject(obj)) {
 			        var keys = [];
 			        for (var key in obj) {
 			            if (obj.hasOwnProperty(key)) {
@@ -431,7 +431,7 @@ Ozone.extend(function () {
 				@param {Object} obj a JavaScript object to grab values from
             */
 			values: function(obj) {
-			    if (isObject(obj)) {
+			    if (methods.utils.isObject(obj)) {
 			        var vals = [];
 			        for (var key in obj) {
 			            if (obj.hasOwnProperty(key)) {

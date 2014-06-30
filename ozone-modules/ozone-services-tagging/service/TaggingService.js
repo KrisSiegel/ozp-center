@@ -47,8 +47,8 @@
                     logger.info("Import-->successfully imported: " + filePath);
                 }
 
-                if(collection === constants.database.collection.tag && !err && results && results.length > 0){
-                    var topics = {}
+                if((collection === constants.database.collection.tag) && !err && results && (results.length > 0)) {
+                    var topics = {};
                     for(var index = 0; index < results.length; index++){
                         var tag = results[index];
                         if(!topics[tag.topic + tag.tag]){
@@ -295,7 +295,7 @@
             },
             /**
              * Save the Tag object passed in to persistence, with the id passed in.
-             * @method tag.update
+             * @method tag.create
              * @param id {Object} id of the Tag object to update
              * @param item {Object} the Tag object to update
              * @param callback {Function} method called after saving Tag record; updated Tag object is passed in as the lone parameter when invoked.

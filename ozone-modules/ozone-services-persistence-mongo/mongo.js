@@ -36,7 +36,7 @@ module.exports = (function (Ozone) {
 
         var objectId = {
             getObjectId: function () {
-                return require('mongodb').ObjectID();
+                return require('mongodb').ObjectID().toHexString();
             }
         }
         Ozone.Service("Persistence", Ozone.Service("PersistenceCommon")(collectionImp, driveImp, objectId, Ozone));

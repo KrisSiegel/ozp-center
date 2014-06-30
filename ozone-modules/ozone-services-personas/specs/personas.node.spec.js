@@ -18,13 +18,13 @@ module.exports = (function (Ozone) {
             var dataSet = require('./spec-data/testImport.json');
             personaService.import(dataSet, function(){
                 personaService.roles.query({}, function(err, result){
-                    expect(err).toBe(null);
+                    expect(err).toBeUndefined();
                     expect(result.length).toBe(5);
                     personaService.permissions.query({}, function(err, result){
-                        expect(err).toBe(null);
+                        expect(err).toBeUndefined();
                         expect(result.length).toBe(9);
                         personaService.persona.query({}, function(err, result){
-                            expect(err).toBe(null);
+                            expect(err).toBeUndefined();
                             expect(result.length).toBe(6);
                             done();
                         });
@@ -38,13 +38,13 @@ module.exports = (function (Ozone) {
             personaService.import(dataSet, function(){
                 personaService.import(dataSet, function(){
                     personaService.roles.query({}, function(err, result){
-                        expect(err).toBe(null);
+                        expect(err).toBeUndefined();
                         expect(result.length).toBe(5);
                         personaService.permissions.query({}, function(err, result){
-                            expect(err).toBe(null);
+                            expect(err).toBeUndefined();
                             expect(result.length).toBe(9);
                             personaService.persona.query({}, function(err, result){
-                                expect(err).toBe(null);
+                                expect(err).toBeUndefined();
                                 expect(result.length).toBe(6);
                                 done();
                             });
@@ -58,7 +58,7 @@ module.exports = (function (Ozone) {
             var dataSet = require('./spec-data/testImport.json');
             personaService.import(dataSet, function(){
                 personaService.roles.query({role: "/Ozone/Apps/App/AppsMall/MallModerator/"}, function(err, result){
-                    expect(err).toBe(null);
+                    expect(err).toBeUndefined();
                     expect(result.length).toBe(1);
                     var role = result[0];
                     expect(role.role).toBe("/Ozone/Apps/App/AppsMall/MallModerator/");
@@ -78,7 +78,7 @@ module.exports = (function (Ozone) {
             var dataSet = require('./spec-data/testImport.json');
             personaService.import(dataSet, function(){
                 personaService.permissions.query({permission: "/Ozone/System/Administration/"}, function(err, result){
-                    expect(err).toBe(null);
+                    expect(err).toBeUndefined();
                     expect(result.length).toBe(1);
                     var permission = result[0];
                     expect(permission.permission).toBe("/Ozone/System/Administration/");
@@ -96,7 +96,7 @@ module.exports = (function (Ozone) {
             var dataSet = require('./spec-data/testImport.json');
             personaService.import(dataSet, function(){
                 personaService.persona.query({username: "testSystemAdmin1"}, function(err, result){
-                    expect(err).toBe(null);
+                    expect(err).toBeUndefined();
                     expect(result.length).toBe(1);
                     var user = result[0];
                     expect(user.username).toBe("testSystemAdmin1");
@@ -150,7 +150,7 @@ module.exports = (function (Ozone) {
             personaService.export(function(data){
                 expect(data['Personas'].length).toBe(6);
                 var person = find(data['Personas'], 'username', 'testOzoneAdmin1');
-                expect(person).not.toBe(null);
+                expect(person).not.toBeUndefined();
                 expect(person.username).toBe('testOzoneAdmin1');
                 expect(person.auth_token).toBe('testOzoneAdmin1');
                 expect(person.auth_service).toBe('Mock');
@@ -172,7 +172,7 @@ module.exports = (function (Ozone) {
             personaService.export(function(data){
                 expect(data['Roles'].length).toBe(5);
                 var role = find(data['Roles'], 'role', '/Ozone/Apps/App/AppsMall/MallModerator/');
-                expect(role).not.toBe(null);
+                expect(role).not.toBeUndefined();
                 expect(role.role).toBe('/Ozone/Apps/App/AppsMall/MallModerator/');
                 expect(role.label).toBe('Mall Moderator');
                 expect(role.description).toBe('A mall wide moderator.');
@@ -294,14 +294,14 @@ module.exports = (function (Ozone) {
         });
         it("Ozone.Service('Personas').persona.query({ username: 'fkjsdfsdfwr' }, function () { }) returns nothing.", function (done) {
             Ozone.Service('Personas').persona.query({ username: 'fkjsdfsdfwr' }, function (err, result) {
-                expect(err).toBe(null);
+                expect(err).toBeUndefined();
                 expect(result.length).toBe(0);
                 done(err);
             });
         });
         it("Ozone.Service('Personas').persona.query({ username: 'testOzoneUser1' }, function () { }) returns one persona.", function (done) {
             Ozone.Service('Personas').persona.query({ username: 'testOzoneUser1' }, function (err, result) {
-                expect(err).toBe(null);
+                expect(err).toBeUndefined();
                 expect(result.length).toBe(1);
                 done(err);
             });

@@ -29,14 +29,14 @@ function resetModalTabs() {
 /**
  * @class AppsMallUI.AmlAppDirective
  * @constructor
- * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
- * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.FileUploadService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.TagService"}}{{/crossLink}}
  */
 
 /**
  * The App object to be displayed as HTML
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(must exist in parent scope)**_
  *
  * @attribute {Object} app
  * @required
@@ -45,7 +45,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app will always appear as standard (non-featured).
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} no-featured
  * @optional
@@ -55,7 +55,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app HTML will not contain a launch button.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} no-launch
  * @optional
@@ -64,7 +64,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app will not open a modal when clicked.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} no-click
  * @optional
@@ -73,7 +73,7 @@ function resetModalTabs() {
 /**
  * If set to true, then the app will always appear as a featured app.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {Boolean} featured-banner
  * @optional

@@ -25,7 +25,7 @@
 /**
  * Error message that appears in red text when this value is not empty
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
  *
  * @attribute {String} error-message
  * @optional
@@ -34,7 +34,7 @@
 /**
  * Success message that appears in green text when this value is not empty
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
  *
  * @attribute {String} success-message
  * @optional
@@ -43,7 +43,7 @@
 /**
  * If true, status message background flashes green or red when updated
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {Boolean} highlighted
  * @optional
@@ -52,7 +52,7 @@
 /**
  * CSS class of parent to be highlighted, if highlighted equals true.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {String} highlighted-parent-class
  * @optional

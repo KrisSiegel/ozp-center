@@ -1,11 +1,18 @@
 /**
+ *  Contains preset objects containing sorting parameters for MongoDB.
+ *
+ *  @module Ozone.Services.AppsMall
+ *  @class Ozone.Services.AppsMall.Sort
+ *  @submodule Server-Side
+ */
+
+/**
  * Sort constructor.
  * 
  * @class Sort
  * @module Processors
  * @constructor
  */
-
 var Sort = function() {}
 
 Sort.prototype = {
@@ -22,7 +29,6 @@ Sort.prototype = {
  * @param {Array} queryParameters List of relevant query parameters from the RESTful request
  * @return {Object} Object describing MongoDB operation and parameters for the method
  */
-
 Sort.prototype.run = function (queryParameters) {
 	var i, j, k, obj, key, sortDir, sortFields = {}, sortObj = {};
 	for (i = 0; i < queryParameters.length; i++) {
@@ -75,7 +81,6 @@ Sort.prototype.run = function (queryParameters) {
  * @method getQueryFields
  * return {Array} List of relevant parameters
  */
-
 Sort.prototype.getQueryFields = function () {
 	return ['sort_by', 'sort_dir'];
 };
@@ -84,9 +89,9 @@ Sort.prototype.getQueryFields = function () {
  * RESTful parameter field descriptions.
  * 
  * @method queryFieldParameters
- * @return {Array} List of relevant field descriptions for the processor
+ * @return {Array} List of relevant field descriptions for the processor, where each list element
+ *         has ```type, field, example,``` and ```description``` fields.
  */
-
 Sort.prototype.queryFieldParameters = function () {
 	return [{
 		type: 'String',

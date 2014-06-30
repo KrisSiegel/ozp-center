@@ -1,10 +1,10 @@
 Ozone.Service("Apps", (function () {
     var service = {
         getServicePath: function () {
-            return Ozone.utils.murl("apiBaseUrl", "/apps/", true);
+            return Ozone.utils.murl("apiBaseUrl", "/apps/");
         },
         getRedirectUrl: function (shortname) {
-            return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"], true);
+            return Ozone.utils.murl("hudUrl", ["/#App/", shortname, "/"]);
         },
         redirectIntoHudWithoutLogging: function (shortname) {
             location.href = this.getRedirectUrl(shortname);

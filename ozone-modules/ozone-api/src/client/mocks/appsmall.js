@@ -1,7 +1,7 @@
 Ozone.Service("AppsMall", (function () {
     return {
         getServicePath: function () {
-            return Ozone.utils.murl("apiBaseUrl", "/aml/", true);
+            return Ozone.utils.murl("apiBaseUrl", "/aml/");
         },
         getReviews: function (appId, username, callback, context) {
             var user = username;

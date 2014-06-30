@@ -20,10 +20,10 @@
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
- * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}
- * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppWorkflowService"}}{{/crossLink}}
- * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
- * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppOrComponentService"}}{{/crossLink}}
+ * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.PersonaService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.TagService"}}{{/crossLink}}
  */
 
 
@@ -157,7 +157,7 @@ var AdminTopicsController = ['$scope', '$rootScope', '$q','$timeout', 'AppOrComp
      * Method called by ng-init directive when declaring controller in view page.  The admin page type (Tag, Collection, or Category) is determined by the topic URI passed in
      * @method initializeController
      * @param topicUri {String} Determines admin page type (Tag, Collection, or Category) and must equal one of the following values:
-     *        '/AppsMall/App/' for Tag Management, '/AppsMall/Category/' for Category Management, or '/AppsMall/Collection/' for Collection Management.
+     *        ```/AppsMall/App/``` for Tag Management, ```/AppsMall/Category/``` for Category Management, or ```/AppsMall/Collection/``` for Collection Management.
      */
     $scope.initializeController = function (topicUri) {
         $scope.topicUri = topicUri;

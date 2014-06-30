@@ -22,7 +22,6 @@ module.exports = (function () {
                 }
             },
             persistence: {
-                module: "ozone-services-persistence-mongo",
                 store: "Ozone-Test",
                 mongo: {
                     servers: "localhost"

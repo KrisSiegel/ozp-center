@@ -1,0 +1,531 @@
+{
+    "Tags": {
+        "topic": [
+            {
+                "level": "System",
+                "uri": "/AppsMall/Category/",
+                "tag": "New Arrivals",
+                "description": "New and updated apps in the AppsMall.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "System",
+                "uri": "/AppsMall/Category/",
+                "tag": "Most Popular",
+                "description": "Currently most popular apps across the AppsMall.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "Business",
+                "description": "Business related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "Education",
+                "description": "Education related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "Entertainment",
+                "description": "Entertainment related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "Games",
+                "description": "Games related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "Lifestyle",
+                "description": "Business related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "News",
+                "description": "News related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "Productivity",
+                "description": "Productivity related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Category/",
+                "tag": "Weather",
+                "description": "Weather related applications.",
+                "creatorUserId": "System",
+                "created": "2014-01-1T17:54:11Z",
+                "modified": "2014-01-1T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Organization/",
+                "tag": "Organization1",
+                "description": "The Organization1 organization",
+                "creatorUserId": "System",
+                "created": "2014-01-4T17:54:11Z",
+                "modified": "2014-01-5T17:54:11Z",
+                "visibility": {}
+            },
+            {
+                "level": "Role",
+                "uri": "/AppsMall/Organization/",
+                "tag": "Organization2",
+                "description": "The Organization2 organization",
+                "creatorUserId": "System",
+                "created": "2014-01-4T17:54:11Z",
+                "modified": "2014-01-5T17:54:11Z",
+                "visibility": {}
+            }
+        ]
+    },
+    "Personas": {
+        "Permissions": [
+            {   "permission": "/Ozone/System/Administration/",
+                "label": "Ozone System Administration",
+                "description": "Permits useful functions to a system administrator.",
+                "designation": "Ozone",
+                "rank": 500,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/",
+                "label": "Submit Application",
+                "description": "The ability to submit an application.",
+                "designation": "AppsMall",
+                "rank": 500,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectOrganizationOnlyApplication/",
+                "label": "Approve or Reject Organization Application",
+                "description": "The ability to approve or reject an organization only application.",
+                "designation": "AppsMall",
+                "rank": 400,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectMallWideApplication/",
+                "label": "Approve or Reject Mall Wide Application",
+                "description": "The ability to approve or reject a mall wide application.",
+                "designation": "AppsMall",
+                "rank": 450,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Apps/App/AppsMall/Manage/Categories/",
+                "label": "Manage Categories",
+                "description": "The ability to manage the categories within Apps Mall.",
+                "designation": "AppsMall",
+                "rank": 400,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Apps/App/AppsMall/Manage/Collections/",
+                "label": "Manage Collections",
+                "description": "The ability to manage the collections within Apps Mall.",
+                "designation": "AppsMall",
+                "rank": 400,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Apps/App/AppsMall/Manage/Tags/",
+                "label": "Manage Tags",
+                "description": "The ability to manage the tags within Apps Mall.",
+                "designation": "AppsMall",
+                "rank": 400,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Apps/App/AppsMall/GrantPermission/",
+                "label": "Grant Apps Mall Permission",
+                "description": "The ability to grant Apps Mall permissions to other users.",
+                "designation": "AppsMall",
+                "rank": 400,
+                "createdBy": "SYSTEM"
+            },
+            {   "permission": "/Ozone/Personas/Permission/GrantPermission/",
+                "label": "Grant Ozone Permission",
+                "description": "The ability to grant any permissions to other users.",
+                "designation": "Ozone",
+                "rank": 100,
+                "createdBy": "SYSTEM"
+            }
+        ],
+        "Roles": [
+            {   "role": "/Ozone/Apps/App/AppsMall/MallModerator/",
+                "label": "Mall Moderator",
+                "description": "A mall wide moderator.",
+                "designation": "AppsMall",
+                "rank": 400,
+                "permissions": [
+                    "/Ozone/Apps/App/AppsMall/GrantPermission/",
+                    "/Ozone/Apps/App/AppsMall/Manage/Tags/",
+                    "/Ozone/Apps/App/AppsMall/Manage/Collections/",
+                    "/Ozone/Apps/App/AppsMall/Manage/Categories/",
+                    "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectMallWideApplication/",
+                    "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectOrganizationOnlyApplication/",
+                    "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
+                ],
+                "createdBy": "SYSTEM"
+            },
+            {   "role": "/Ozone/Apps/App/AppsMall/OrganizationModerator/",
+                "label": "Organization Moderator",
+                "description": "An organization wide moderator.",
+                "designation": "AppsMall",
+                "rank": 450,
+                "permissions": [
+                    "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectMallWideApplication/",
+                    "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
+                ],
+                "createdBy": "SYSTEM"
+            },
+            {   "role": "/Ozone/Personas/Role/Administrator/",
+                "label": "Ozone Administrator",
+                "description": "An Ozone wide administrator.",
+                "designation": "Ozone",
+                "rank": 0,
+                "permissions": [
+                    "/Ozone/Personas/Permission/GrantPermission/"
+                ],
+                "createdBy": "SYSTEM"
+            },
+            {   "role": "/Ozone/Personas/Role/User/",
+                "label": "Ozone User",
+                "description": "An Ozone wide user.",
+                "designation": "Ozone",
+                "rank": 9999,
+                "permissions": [
+
+                ],
+                "createdBy": "SYSTEM"
+            },
+            {   "role": "/Ozone/Apps/App/AppsMall/User/",
+                "label": "Apps Mall User",
+                "description": "An Apps Mall user.",
+                "designation": "AppsMall",
+                "rank": 9999,
+                "permissions": [
+                    "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
+                ],
+                "createdBy": "SYSTEM"
+            }
+        ]
+    },
+    "App": [
+      {
+        "_id": "53b107d33ec3a2000052b899",
+        "accessible": true,
+        "appUrl": "http://www.wikipedia.org/",
+        "categories": [
+          "Business"
+        ],
+        "createdBy": "skfhskdfdsf",
+        "createdOn": "2014-06-30T06:46:43.764Z",
+        "description": "A lock box is fantastic to use to store all awesome things others should not know about.",
+        "descriptionShort": "A lock box is a great place to store valuables!",
+        "featured": false,
+        "images": {
+          "screenshots": []
+        },
+        "lifeCycleState": "dev",
+        "name": "Lock Box",
+        "owner": {
+          "name": "Tom",
+          "email": "tdawg@lockbox.org",
+          "phone": "555-555-5555"
+        },
+        "personnel": [],
+        "poc": {
+          "phone": "555-555-5555",
+          "name": "Tom",
+          "email": "tdawg@lockbox.org"
+        },
+        "ratings": 0,
+        "shortname": "LockBox",
+        "softwareUpdatedOn": "Mon Jun 30 2014 02:43:29 GMT-0400 (EDT)",
+        "type": "app",
+        "updatedBy": "skfhskdfdsf",
+        "updatedOn": "2014-06-30T06:47:51.779Z",
+        "users": 0,
+        "version": "1",
+        "workflowState": "Published"
+      },
+      {
+        "_id": "53b108f73ec3a2000052b8b0",
+        "accessible": true,
+        "appUrl": "http://www.wikipedia.org",
+        "categories": [
+          "Entertainment"
+        ],
+        "createdBy": "skfhskdfdsf",
+        "createdOn": "2014-06-30T06:51:35.775Z",
+        "description": "WY Cam provides fantastic analytics to help you with your job.",
+        "descriptionShort": "WY Cam provides awesome camera analytics!",
+        "featured": false,
+        "images": {
+          "screenshots": []
+        },
+        "lifeCycleState": "dev",
+        "name": "WY Cam",
+        "owner": {
+          "name": "Elvis",
+          "email": "erock@wikipedia.org",
+          "phone": "555-555-5555"
+        },
+        "personnel": [],
+        "poc": {
+          "phone": "555-555-5555",
+          "name": "Elvis",
+          "email": "erock@wikipedia.org"
+        },
+        "ratings": 0,
+        "screenshotArrayItem": "53b108d23ec3a2000052b8ae",
+        "shortname": "WYCam",
+        "softwareUpdatedOn": "Mon Jun 30 2014 02:48:06 GMT-0400 (EDT)",
+        "type": "app",
+        "updatedBy": "skfhskdfdsf",
+        "updatedOn": "2014-06-30T06:51:48.303Z",
+        "users": 0,
+        "version": "1",
+        "workflowState": "Published"
+      },
+      {
+        "_id": "53b10a2e3ec3a2000052b8c1",
+        "accessible": true,
+        "appUrl": "http://www.bing.com",
+        "categories": [
+          "Business",
+          "Productivity"
+        ],
+        "createdBy": "skfhskdfdsf",
+        "createdOn": "2014-06-30T06:56:46.366Z",
+        "description": "The UPanel is a fantastic panel. Use it for paneling your home, an administrative interface to your blog or even as a surfboard.",
+        "descriptionShort": "UPanel is a fantastic panel. Sturdy, fast and wooden; you can't go wrong!",
+        "featured": false,
+        "images": {
+          "screenshots": []
+        },
+        "lifeCycleState": "dev",
+        "name": "UPanel",
+        "owner": {
+          "name": "Ren",
+          "email": "rstimpy@bing.com",
+          "phone": "555-555-5555"
+        },
+        "personnel": [],
+        "poc": {
+          "name": "Ren",
+          "email": "rstimpy@bing.com",
+          "phone": "555-555-5555"
+        },
+        "ratings": 0,
+        "screenshotArrayItem": "53b10a083ec3a2000052b8bf",
+        "shortname": "UPanel",
+        "softwareUpdatedOn": "Mon Jun 30 2014 02:52:10 GMT-0400 (EDT)",
+        "type": "app",
+        "updatedBy": "skfhskdfdsf",
+        "updatedOn": "2014-06-30T06:57:36.166Z",
+        "users": 0,
+        "version": "1",
+        "workflowState": "Published"
+      },
+      {
+        "lifeCycleState": "dev",
+        "accessible": true,
+        "featured": false,
+        "type": "app",
+        "workflowState": "Published",
+        "owner": {
+          "name": "Joe",
+          "email": "jstunner@thesecretplaybook.org",
+          "phone": "555-555-5555"
+        },
+        "poc": {
+          "name": "Joe",
+          "email": "jstunner@thesecretplaybook.org",
+          "phone": "555-555-5555"
+        },
+        "personnel": [],
+        "categories": [
+          "Business",
+          "Productivity"
+        ],
+        "images": {
+          "screenshots": []
+        },
+        "softwareUpdatedOn": "Mon Jun 30 2014 02:57:45 GMT-0400 (EDT)",
+        "name": "Playbook",
+        "shortname": "Playbook",
+        "appUrl": "http://www.bing.com",
+        "descriptionShort": "The Playbook used by successful teams!",
+        "description": "The Playbook application is a great tool for all application developers and consumers!",
+        "version": "1",
+        "screenshotArrayItem": "53b10ac03ec3a2000052b8d7",
+        "createdOn": "2014-06-30T06:59:52.310Z",
+        "updatedOn": "2014-06-30T06:59:52.310Z",
+        "createdBy": "skfhskdfdsf",
+        "users": 0,
+        "ratings": 0,
+        "updatedBy": "skfhskdfdsf",
+        "_id": "53b10ae83ec3a2000052b8de"
+      },
+      {
+        "lifeCycleState": "dev",
+        "accessible": true,
+        "featured": false,
+        "type": "app",
+        "workflowState": "Published",
+        "owner": {
+          "name": "John",
+          "email": "jaseed@yummyfruits.org",
+          "phone": "555-555-5555"
+        },
+        "poc": {
+          "name": "John",
+          "email": "jaseed@yummyfruits.org",
+          "phone": "555-555-5555"
+        },
+        "personnel": [],
+        "categories": [
+          "Business",
+          "News",
+          "Lifestyle"
+        ],
+        "images": {
+          "screenshots": []
+        },
+        "softwareUpdatedOn": "Mon Jun 30 2014 02:59:57 GMT-0400 (EDT)",
+        "name": "Flash Search",
+        "shortname": "FlashSearch",
+        "appUrl": "http://www.bing.com",
+        "descriptionShort": "Find things IN A FLASH!!!!!!",
+        "description": "Find things in a FLASH with Flash Search! The greatest search ever!",
+        "version": "1",
+        "screenshotArrayItem": "53b10b3a3ec3a2000052b8ec",
+        "createdOn": "2014-06-30T07:02:00.292Z",
+        "updatedOn": "2014-06-30T07:02:00.292Z",
+        "createdBy": "skfhskdfdsf",
+        "users": 0,
+        "ratings": 0,
+        "updatedBy": "skfhskdfdsf",
+        "_id": "53b10b683ec3a2000052b8f5"
+      },
+      {
+        "lifeCycleState": "dev",
+        "accessible": true,
+        "featured": false,
+        "type": "app",
+        "workflowState": "Published",
+        "owner": {
+          "name": "Timmy",
+          "email": "ttttimmy@wikipedia.org",
+          "phone": "555-555-5555"
+        },
+        "poc": {
+          "name": "Timmy",
+          "phone": "555-555-5555",
+          "email": "ttttimmy@wikipedia.org"
+        },
+        "personnel": [],
+        "categories": [
+          "Entertainment",
+          "Education"
+        ],
+        "images": {
+          "screenshots": []
+        },
+        "softwareUpdatedOn": "Mon Jun 30 2014 03:02:03 GMT-0400 (EDT)",
+        "name": "Cyclops",
+        "shortname": "Cyclops",
+        "appUrl": "http://www.wikipedia.org",
+        "descriptionShort": "Cyclops is watching you with one eye!",
+        "description": "The Cyclops application allows monitoring of yourself using your own webcam! Cool, huh!?",
+        "version": "1",
+        "screenshotArrayItem": "53b10bb93ec3a2000052b900",
+        "createdOn": "2014-06-30T07:03:56.118Z",
+        "updatedOn": "2014-06-30T07:03:56.118Z",
+        "createdBy": "skfhskdfdsf",
+        "users": 0,
+        "ratings": 0,
+        "updatedBy": "skfhskdfdsf",
+        "_id": "53b10bdc3ec3a2000052b906"
+      },
+      {
+        "lifeCycleState": "dev",
+        "accessible": true,
+        "featured": false,
+        "type": "app",
+        "workflowState": "Published",
+        "owner": {
+          "name": "Jack",
+          "email": "jripper@greenpeace.org",
+          "phone": "555-555-5555"
+        },
+        "poc": {
+          "name": "Jack",
+          "email": "jripper@greenpeace.org",
+          "phone": "555-555-5555"
+        },
+        "personnel": [],
+        "categories": [
+          "Lifestyle"
+        ],
+        "images": {
+          "screenshots": []
+        },
+        "softwareUpdatedOn": "Mon Jun 30 2014 03:04:56 GMT-0400 (EDT)",
+        "name": "Greenwave",
+        "shortname": "Greenwave",
+        "appUrl": "http://www.bing.com/",
+        "descriptionShort": "Make waves with Greenwave! Ha, get it? Make waves? Oh whatever; I don't care what you say it was funny!",
+        "description": "Greenwave makes waves using green energy by directly applying electricity to pools of water. Why? Because science!",
+        "version": "1",
+        "screenshotArrayItem": "53b10c753ec3a2000052b911",
+        "createdOn": "2014-06-30T07:06:58.764Z",
+        "updatedOn": "2014-06-30T07:06:58.764Z",
+        "createdBy": "skfhskdfdsf",
+        "users": 0,
+        "ratings": 0,
+        "updatedBy": "skfhskdfdsf",
+        "_id": "53b10c923ec3a2000052b917"
+      }
+    ]
+}

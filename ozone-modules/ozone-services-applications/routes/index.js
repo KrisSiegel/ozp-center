@@ -1,3 +1,8 @@
+/**
+    @module Ozone.Services.App
+    @submodule Server-Side
+    @class Ozone.Services.App.RESTful
+*/
 var constants = require('../constants'),
     appsBaseURL = constants.rest.appsURL,
     componentsBaseURL = constants.rest.componentsURL,
@@ -18,60 +23,110 @@ module.exports = exports = function (Ozone) {
     /* Either get all elements, or search for elements.
        Example URL: http://localhost:3000/api/apps/app                     (get all apps)
      */
+     /**
+         Gets all applications
+
+         @method /api/apps/app GET
+     */
     routing.get(appsBaseURL + appCollectionName, { loggedIn: true }, function (req, res) {
         RoutesHelper.get(appCollectionName, req, res);
     });
 
+    /**
+        Gets all components
+
+        @method /api/components/component GET
+    */
     routing.get(componentsBaseURL + componentCollectionName, { loggedIn: true }, function (req, res) {
         RoutesHelper.get(componentCollectionName, req, res);
     });
 
-    /*  Get a specific element with id
-    Example URL: http://localhost:3000/api/apps/app/523a041cd73d5c0000000012
-     */
+    /**
+        Gets a specific application
+
+        @method /api/apps/app/:id GET
+    */
     routing.get(appsBaseURL + appCollectionName + '/:id', { loggedIn: true }, function (req, res, next) {
         RoutesHelper.getOne(appCollectionName, req, res, next);
     });
 
+    /**
+        Gets a specific component
+
+        @method /api/components/component/:id GET
+    */
     routing.get(componentsBaseURL + componentCollectionName + '/:id', { loggedIn: true }, function (req, res, next) {
         RoutesHelper.getOne(componentCollectionName, req, res, next);
     });
 
+     /**
+         Create an application using a JSON blob in the body.
 
-    /*  Create an element using the json in the body of request.
+         @method /api/apps/app/ POST
      */
     routing.post(appsBaseURL + appCollectionName, { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.post(appCollectionName, req, res, next);
     });
 
+    /**
+        Create a component using a JSON blob in the body.
+
+        @method /api/components/component/ POST
+    */
     routing.post(componentsBaseURL + componentCollectionName, { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.post(componentCollectionName, req, res, next);
     });
 
-    /*  Update an element. It will update only the fields that are in the json request, not replacing the whole object.
+    /**
+        Update an element. It will update only the fields that are in the json request, not replacing the whole object.
+
+        @method /api/apps/app/:id PUT
      */
     routing.put(appsBaseURL + appCollectionName + '/:id', { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.put(appCollectionName, req, res, next);
     });
 
+    /**
+        Update an element. It will update only the fields that are in the json request, not replacing the whole object.
+
+        @method /api/components/component/:id PUT
+     */
     routing.put(componentsBaseURL + componentCollectionName + '/:id', { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.put(componentCollectionName, req, res, next);
     });
 
+    /**
+        Update an element. It will update only the fields that are in the json request, not replacing the whole object.
+
+        @method /api/apps/app/:id POST
+     */
     routing.post(appsBaseURL + appCollectionName + '/:id', { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.put(appCollectionName, req, res, next);
     });
 
+    /**
+        Update an element. It will update only the fields that are in the json request, not replacing the whole object.
+
+        @method /api/components/component/:id POST
+     */
     routing.post(componentsBaseURL + componentCollectionName + '/:id', { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.put(componentCollectionName, req, res, next);
     });
 
-    /*  Delete an element
+    /**
+        Delete an element
+
+        @method /api/apps/app/:id DELETE
      */
     routing.delete(appsBaseURL + appCollectionName + '/:id', { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.delete(appCollectionName, req, res, next);
     });
 
+    /**
+        Delete an element
+
+        @method /api/components/component/:id DELETE
+     */
     routing.delete(componentsBaseURL + componentCollectionName + '/:id', { loggedIn: true, permissions: ["/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"]  }, function (req, res, next) {
         RoutesHelper.delete(componentCollectionName, req, res, next);
     });
@@ -93,23 +148,6 @@ module.exports = exports = function (Ozone) {
         });
 
     });
-
-    routing.get(appsBaseURL + collectionName + '/:id', { loggedIn: true }, function (req, res, next) {
-        RoutesHelper.getOne(collectionName, req, res, next);
-    });
-
-    routing.post(appsBaseURL + collectionName, { loggedIn: true }, function (req, res, next) {
-        RoutesHelper.post(collectionName, req, res, next);
-    });
-
-    routing.put(appsBaseURL + collectionName + '/:id', { loggedIn: true }, function (req, res, next) {
-        RoutesHelper.put(collectionName, req, res, next);
-    });
-
-    routing.delete(appsBaseURL + collectionName + '/:id', { loggedIn: true }, function (req, res, next) {
-        RoutesHelper.delete(collectionName, req, res, next);
-    });
-
 
     /*  Mass import of apps
      */
