@@ -21,8 +21,8 @@
  * @class AppsMallUI.AppOrComponentService
  * @constructor
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
- * @param App {Object} an Angular-injected instance of {{#crossLink "AppService"}}{{/crossLink}}
- * @param Component {Object} an Angular-injected instance of {{#crossLink "ComponentService"}}{{/crossLink}}
+ * @param App {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppService"}}{{/crossLink}}
+ * @param Component {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.ComponentService"}}{{/crossLink}}
  */
 var AppOrComponentService = ['$q', 'App', 'Component', function($q, App, Component) {
     

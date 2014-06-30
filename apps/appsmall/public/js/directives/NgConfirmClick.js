@@ -27,7 +27,7 @@
 /**
  * Message text for confirmation dialog; defaults to "Are you sure?" if empty.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(1-way binding to ```attrs``` parameter) **_
  *
  * @attribute {String} ng-confirm-click
  * @optional
@@ -36,7 +36,7 @@
 /**
  * Method called only if user selects Confirm/OK in confirmation dialog
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(function call expression, must exist in parent scope)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(function call expression, must exist in parent scope)**_
  *
  * @attribute {Function} confirmed-click
  * @required

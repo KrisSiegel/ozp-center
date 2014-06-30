@@ -20,9 +20,9 @@
  * @param $scope {ChildScope} Child scope that provides context for this controller - [API Documentation](https://docs.angularjs.org/api/ng/type/$rootScope.Scope) 
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
  * @param $timeout {Function} Angular wrapper for window.setTimeout - [API Documentation](https://docs.angularjs.org/api/ng/service/$timeout) 
- * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}
- * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
- * @param AppSelectionMessage {Object} an Angular-injected instance of {{#crossLink "AppSelectionMessageService"}}{{/crossLink}}
+ * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppOrComponentService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.TagService"}}{{/crossLink}}
+ * @param AppSelectionMessage {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppSelectionMessageService"}}{{/crossLink}}
  */
 
 

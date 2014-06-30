@@ -21,13 +21,13 @@
 /**
  * @class AppsMallUI.AppBadgesDirective
  * @constructor
- * @param Dropdown {Object} an Angular-injected instance of {{#crossLink "DropdownService"}}{{/crossLink}}
+ * @param Dropdown {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.DropdownService"}}{{/crossLink}}
  */
 
 /**
  * An array of badge names that is set once.  Badges do not change if modified.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Array} badges
  * @optional
@@ -36,7 +36,7 @@
 /**
  * An array of badge names that can be dynamically refreshed via watch event
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
  *
  * @attribute {Array} dynbadges 
  * @optional

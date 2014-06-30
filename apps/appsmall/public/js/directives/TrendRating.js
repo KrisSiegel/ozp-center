@@ -25,7 +25,7 @@
 /**
  * Trend rating that is set once, and does not change if modified.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Number} srating
  * @optional
@@ -34,7 +34,7 @@
 /**
  * Trend rating that can be dynamically refreshed via watch event
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding plus scoped watcher event)**_
  *
  * @attribute {Number} dynrating
  * @optional

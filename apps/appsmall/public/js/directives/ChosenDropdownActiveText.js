@@ -19,8 +19,8 @@
 /**
  * @class AppsMallUI.ChosenDropdownActiveTextDirective
  * @constructor
- * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "FileUploadService"}}{{/crossLink}}
- * @param Tag {Object} an Angular-injected instance of {{#crossLink "TagService"}}{{/crossLink}}
+ * @param FileUpload {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.FileUploadService"}}{{/crossLink}}
+ * @param Tag {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.TagService"}}{{/crossLink}}
  */
 var ChosenDropdownActiveTextDirective = [function() {
     return {

@@ -25,7 +25,7 @@
 /**
  * Form validation state.  This directive sends a broadcast when this value changes from true to false, or vice versa.
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 2-way binding)**_
  *
  * @attribute {Boolean} form-valid-state
  * @optional
@@ -34,7 +34,7 @@
 /**
  * Name of tab page, which gets broadcast out in message when applicable
  *
- * {{#crossLinkModule "AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
+ * {{#crossLinkModule "AppsMallUI.AngularScope"}}{{/crossLinkModule}}: _**(scoped to directive as 1-way binding)**_
  *
  * @attribute {String} tab-page
  * @optional

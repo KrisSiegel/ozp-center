@@ -20,9 +20,9 @@
  * @param $rootScope {Scope} Single root scope for application, and ancestor of all other scopes - [API Documentation](https://docs.angularjs.org/api/ng/service/$rootScope) 
  * @param $window {Window} Reference to browser window object - [API Documentation](https://docs.angularjs.org/api/ng/service/$window) 
  * @param $q {Object} The AngularJS core promise service - [API Documentation](https://docs.angularjs.org/api/ng/service/$q) 
- * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppOrComponentService"}}{{/crossLink}}
- * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppWorkflowService"}}{{/crossLink}}
- * @param Persona {Object} an Angular-injected instance of {{#crossLink "PersonaService"}}{{/crossLink}}
+ * @param AppOrComponent {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppOrComponentService"}}{{/crossLink}}
+ * @param AppWorkflow {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}
+ * @param Persona {Object} an Angular-injected instance of {{#crossLink "AppsMallUI.PersonaService"}}{{/crossLink}}
  */
 
 
@@ -62,14 +62,14 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     $scope.allApps = [];
 
     /**
-     * Workflow state type lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * Workflow state type lookup as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
      * @attribute {Array} workflowStateTypes
      * @required
      */
      $scope.workflowStateTypes = AppWorkflow.workflowStateTypes;
 
     /**
-     * Workflow state action lookup as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateActions
+     * Workflow state action lookup as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateActions
      * @attribute {Object} workflowStateActions
      * @required
      */
@@ -90,7 +90,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     /**
      * Gets the CSS class used to visually display workflow state
      * @method workflowStatusClass
-     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
      * @return {String} the CSS class corresponding to workflow state passed in
      */
     $scope.workflowStatusClass = function(workflowStatus) {
@@ -100,7 +100,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     /**
      * Check whether workflow state appears in red on the left panel
      * @method isHighlighted
-     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
      * @return {Boolean} true if workflow state is red-highlighted
      */
     $scope.isHighlighted = function(workflowStatus) {
@@ -121,7 +121,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     /**
      * Checks if workflow status passed in was last selected
      * @method isWorkflowStatusSelected
-     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
      * @return {Boolean} True if the workflow status passed in was last selected, and False otherwise.
      */
     $scope.isWorkflowStatusSelected = function(workflowStatus) {
@@ -133,7 +133,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
      * If user clicked on selected workflow status, then unselect tag.
      * If user clicked on an unselected workflow status, then select the clicked status.
      * @method toggleWorkflowStatusSelection
-     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
      */
     $scope.toggleWorkflowStatusSelection = function(workflowStatus) {
         var workflowStatusClicked = $scope.isWorkflowStatusSelected(workflowStatus);
@@ -149,7 +149,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
     /**
      * Returns the number of apps with the workflow state passed in.
      * @method getWorkflowStatusCount
-     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
+     * @param workflowStatus {String} A workflow state as defined in {{#crossLink "AppsMallUI.AppWorkflowService"}}{{/crossLink}}.workflowStateTypes
      * @return {Number} the number of apps with the workflow state passed in
      */
     $scope.getWorkflowStatusCount = function(workflowStatus) {
@@ -290,6 +290,7 @@ var AdminAppController = ['$scope', '$rootScope', '$window', '$q', 'AppOrCompone
      * @method importErrorFunction
      * @param status {Number} HTTP status code
      * @param response {Object} Error message response from server
+     * @private
      */
     var importErrorFunction = function(status, response) {
         alert("Error importing apps to Apps Mall.");
