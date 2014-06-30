@@ -14,7 +14,7 @@ module.exports = (function () {
                 { urlProp: "libUrl", filePath: '/public/lib'},
                 { urlProp: "apiClientUrl", filePath: '/ozone-modules/ozone-api'}
             ],
-            autoImport: 'resources/autoImport/default.json',
+            autoImport: 'resources/autoImport/defaultPlusSampleAppsWithImages.zip',
             security: {
                 module: "ozone-services-security-mock",
                 newUserRole: "/Ozone/Apps/App/AppsMall/MallModerator/",
