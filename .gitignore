@@ -29,3 +29,4 @@ ozone-modules/ozone-api/client*
 ozone-modules/ozone-api/server*
 README.pdf
 apps/appsmall/public/js/out/
+apps/ozone-hud/public/fonts

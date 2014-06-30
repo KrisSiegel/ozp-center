@@ -120,7 +120,7 @@
         grunt.registerTask("start-mongod", ["exec:mongodWithText"]);
         grunt.registerTask("mongod", ["exec:mongodWithText"]);
         grunt.registerTask("dropDb", ["exec:dropDb"]);
-        grunt.registerTask("build", ["clean", "yuidoc", "concat", "component-concat", "uglify:minify"]);
+        grunt.registerTask("build", ["clean", "yuidoc", "concat", "component-concat", "uglify:minify", "copy-fonts"]);
         grunt.registerTask("bundle", ["exec:singletar"]);
         grunt.registerTask("test", ["exec:test"]);
         grunt.registerTask("angularTest", ["exec:angularTest"]);
