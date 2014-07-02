@@ -5,4 +5,6 @@ before_script:
     - "npm install -g jasmine-node"
     - "npm install -g grunt-cli"
     - "grunt build"
-    - "mongod"
+    - "sleep 15"
+services:
+    - mongodb
