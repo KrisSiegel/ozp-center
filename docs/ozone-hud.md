@@ -16,7 +16,7 @@ If you are dynamically inserting a custom element into the page, you must ensure
 
 2. Again, instead of appendChild, use the jQuery-style appendTo method of the mxtElement, newMxtElement.appendTo(parentElement).
 
-3. If you need to use an insertion method which may not be supported by micro-xtags, such ass insertBefore, you can use such a method to insert the raw element manually, but then you must call the onInsert method of the corresponding mxtElement object.
+3. If you need to use an insertion method which may not be supported by micro-xtags, such as insertBefore, you can use such a method to insert the raw element manually, but then you must call the onInsert method of the corresponding mxtElement object.
 
 
 ###The Setup
