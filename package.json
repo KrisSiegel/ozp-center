@@ -47,8 +47,8 @@
   "scripts": {
     "start": "node main.js",
     "test": "jasmine-node specs/server.spec.js --verbose --color --captureExceptions",
-    "prerequisites-unix": "sudo npm install -g grunt-cli && sudo npm install -g bower && sudo npm install -g jasmine-node && sudo npm install -g karma && sudo npm install -g karma-jasmine && sudo npm install -g karma-chrome-launcher && sudo npm install -g yuidoc",
-    "prerequisites-windows": "npm install -g grunt-cli && npm install -g bower && npm install -g jasmine-node && npm install -g karma && npm install -g karma-jasmine && npm install -g karma-chrome-launcher && npm install -g yuidoc",
+    "prerequisites-unix": "sudo npm install -g grunt-cli && sudo npm install -g bower && sudo npm install -g jasmine-node && sudo npm install -g karma && sudo npm install -g karma-jasmine && sudo npm install -g karma-chrome-launcher && sudo npm install -g yuidocjs",
+    "prerequisites-windows": "npm install -g grunt-cli && npm install -g bower && npm install -g jasmine-node && npm install -g karma && npm install -g karma-jasmine && npm install -g karma-chrome-launcher && npm install -g yuidocjs",
     "start-all": "npm install && bower install && grunt build && npm start"
   },
   "clientApiPaths": [
