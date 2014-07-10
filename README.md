@@ -1,5 +1,5 @@
-#Apps Mall
-The Apps Mall project provides access to, and facilitates the discovery of, web applications through a store front. Apps Mall is built on top of the Ozone Platform Service Container and various Ozone Services that provide modularity and an API all services can consume and export at each level (server-side, RESTful and client-side API levels).
+#OZP Center
+The OZP Center project provides access to, and facilitates the discovery of, web applications through a store front. Apps Mall is built on top of the Ozone Platform Service Container and various Ozone Services that provide modularity and an API all services can consume and export at each level (server-side, RESTful and client-side API levels).
 
 ##Prerequisites
 The requirements below are required to go from cloning the repository to running the application and unit tests. The last 5 prerequisites (jasmine-node, karma, karma-jarmine, karma-chrome-launcher and yuidoc) are either required if you wish you run the unit tests or generate the related JavaScript documentation. The only exception in this list is MongoDB can be replaced with an in-memory mock data store.
@@ -22,15 +22,15 @@ If the requirements are all installed then follow these 6 steps to quickly get u
 * Run ```npm start```
 * Verify your server is running by visiting http://localhost:3000/
 
-You are now running Apps Mall. Now what? Check out the additional documentation resources below.
+You are now running the OZP Center. Now what? Check out the additional documentation resources below.
 
 ##Documentation
-The documentation below outlines everything needed to configure, deploy, extend and consume Apps Mall and Ozone Platform components.
+The documentation below outlines everything needed to configure, deploy, extend and consume the OZP Center and Ozone Platform components.
 
 * [Getting Started](docs/getting-started.md)
 * [Architecture Design](docs/design.md)
-* [Configuring Apps Mall and Ozone Platform](docs/configuration.md)
-* [Building and Deploying Apps Mall and Ozone Platform](docs/build-deploy.md)
+* [Configuring OZP Center and Ozone Platform](docs/configuration.md)
+* [Building and Deploying the OZP Center and Ozone Platform](docs/build-deploy.md)
 * [Ozone Platform API](docs/ozone-api.md)
 * [Creating a new Ozone Module](docs/creating-ozone-module.md)
 * Bundled Ozone Platform Services
@@ -44,7 +44,7 @@ The documentation below outlines everything needed to configure, deploy, extend 
     * [Ozone Session Providers](docs/ozone-session-providers.md)
     * [Ozone Status Service](docs/ozone-services-status.md)
 * [Extending the Ozone HUD](docs/ozone-hud.md)
-* [Testing Apps Mall and Ozone Platform](docs/testing.md)
+* [Testing OZP Center and Ozone Platform](docs/testing.md)
 
 ##Code and API Documentation
 All documentation for the code or the API exists within the code itself as comments using a yuidoc format. This allows for all code and API documentation to be generated upon build. The generated documentation is generated with the ```grunt build``` command and is available at the following path within the project [once generated]: ```docs/code/index.html```.
