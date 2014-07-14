@@ -42,7 +42,8 @@ var AmlNavLinksDirective = ['OzoneCommon', 'Persona', function(OzoneCommon, Pers
             '<li style="display:none;"><a id="tagMgmtLink" title="Admin-level management of tags."><span class="icon-key"></span>Tag Management</a></li>' +
             '<li style="display:none;"><a id="categoryMgmtLink" title="Admin-level management of categories."><span class="icon-key"></span>Category Management</a></li>' +
             '<li style="display:none;"><a id="collectionMgmtLink" title="Admin-level management of collections."><span class="icon-key"></span>Collection Management</a></li>' +
-            '<li style="display:none;"><a id="helpScreen" title="Help screen." ng-click="toggleHelp()"><span class="icon-support"></span>Help</a></li>'
+            '<li style="display:none;"><a id="helpScreen" title="Help screen." ng-click="toggleHelp()"><span class="icon-support"></span>Help</a></li>' +
+            '<li><a id="logoutLink" title="Logout Button." ng-click="logout()"><span class="icon-key"></span>Logout</a></li>'+
     '</ul>' +
     '</div></div>';
 
@@ -53,6 +54,11 @@ var AmlNavLinksDirective = ['OzoneCommon', 'Persona', function(OzoneCommon, Pers
         controller: function($scope) {
             $scope.toggleHelp = function() {
                 $scope.showHelp = ($scope.showHelp ? undefined : true);
+            };
+
+            $scope.logout = function() {
+                $.get("/api/security/logout");
+                window.location.replace('/login');
             };
 
         },
