@@ -9,5 +9,5 @@ before_script:
 services:
     - mongodb
 before_install:
-    -"sleep 5"
+    - "sleep 5"
     - "mongo --eval 'db.runCommand({setParameter: 1, textSearchEnabled: true})' admin"
