@@ -2,12 +2,11 @@ language: node_js
 node_js:
   - "0.10"
 before_script:
-    - "npm install -g jasmine-node"
+    - "npm install -g jasmine-node@1.14.2 -g"
     - "npm install -g grunt-cli"
     - "grunt build"
     - "sleep 15"
 services:
     - mongodb
 before_install:
-    - "sleep 5"
     - "mongo --eval 'db.runCommand({setParameter: 1, textSearchEnabled: true})' admin"
