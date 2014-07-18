@@ -71,6 +71,59 @@
 					$('#oop-switch-grid').removeClass('opp-content-container-header-btn-icon-active');
 				});
 
+                //Sorting click handlers
+                var sorter = function(field, comparator){
+                    if ($("#sort-bars").data('clicks') === field){
+                        personas.reverse();
+                    } else {
+                        console.log(personas);
+                        personas.sort(comparator);
+                        $("#sort-bars").data('clicks', field);
+                    }
+                    document.getElementById("persona_tile_display").innerHTML = "";
+                    component.loadPersonasList();
+                };
+
+                $('#name-sort-bar').click(sorter.bind(null, "name", function(a, b) {
+                    if (a.username < b.username) {
+                        return -1;
+                    } else if (a.username > b.username) {
+                        return 1;
+                    }
+                    return 0;
+                }));
+
+                $('#role-sort-bar').click(sorter.bind(null, "role", function (a, b) {
+                    if (a.meta.role < b.meta.role || a.meta.role === undefined) {
+                        return -1;
+                    } else if (a.meta.role > b.meta.role || b.meta.role === undefined) {
+                        return 1;
+                    }
+                    return 0;
+                }));
+
+
+/*
+                $('#name-sort-bar').click(function(){
+                    if ($(this).data('clicks')){
+                        personas.reverse();
+                    } else {
+                        var nameComparator = function (a, b) {
+                            if (a.username < b.username) {
+                                return -1;
+                            } else if (a.username > b.username) {
+                                return 1;
+                            }
+                            return 0;
+                        };
+                        personas.sort(nameComparator);
+                        $(this).data('clicks', true);
+                    }
+                    document.getElementById("persona_tile_display").innerHTML = "";
+                    component.loadPersonasList();
+                });
+*/
+
 				// Need to trigger custom dropdown items
 
 				var first = true;
@@ -139,7 +192,6 @@
 						// var iconImgSrc = (Ozone.utils.isUndefinedOrNull(img) ? "components/ozone-persona-permissions/images/default-profile.jpg" : Ozone.Service("Persistence").Store("personas").Drive("profileImages").getDrivePath(img));
 						// iconImg.setAttribute("src", iconImgSrc);
 						// icon.appendChild(iconImg);
-
 						var icon = row.insertCell(0);
                         icon.className = "opp-content-container-content-user-profile";
 
@@ -153,9 +205,9 @@
                                           : Ozone.Service("Persistence").Store("personas").Drive("profileImages").getDrivePath(img));
                         iconImg.setAttribute("src", iconImgSrc);
 
-div.appendChild(iconImg);
+                        div.appendChild(iconImg);
 
-icon.appendChild(div);
+                        icon.appendChild(div);
 
 						var nameC = row.insertCell(1);
 						var nameP = document.createElement("p");
@@ -186,7 +238,7 @@ icon.appendChild(div);
 					}
 					var tileTable = document.getElementById("persona_tile_display");
 					for (var i = 0; i < personas.length; ++i) {
-						var row = tileTable.insertRow(tileTable.rows.length - 1);
+						var row = tileTable.insertRow(-1);
 						createTileRow(row, (personas[i].name || personas[i].username), personas[i].username, personas[i].meta.role, personas[i].meta.profileImageId, personas[i]._id);
 					}
 				}
@@ -226,7 +278,6 @@ icon.appendChild(div);
 			},
 			showRoleAndPermissionsControlForPersona: function (persona, designation) {
 				Ozone.Service("Personas").roles.query({ designation: designation }, function (results) {
-
 					var loadPermissionList = function (permissions) {
 						var permListElm = document.getElementById("ozone-persona-permissions-persona-permission-list");
 						Ozone.utils.dom.removeAllChildrenNodes(permListElm);
