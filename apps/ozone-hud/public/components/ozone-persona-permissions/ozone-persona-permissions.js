@@ -14,6 +14,7 @@
 	var component = (function () {
 		var roleListEventListenerOnChange;
 		var personas;
+        var basePersonas;
 		var personaPermissionSaveButtonElement;
 		var personaPermissionSelectedImageElement;
 		return {
@@ -21,6 +22,7 @@
 				component.loadAppList();
 				Ozone.Service("Personas").persona.query({}, function (res) {
 					personas = res;
+                    basePersonas = res;
 					component.loadPersonasList();
 					pubsub.subscribe("navigate", function (payload) {
 						component.navigated(payload);
@@ -76,7 +78,6 @@
                     if ($("#sort-bars").data('clicks') === field){
                         personas.reverse();
                     } else {
-                        console.log(personas);
                         personas.sort(comparator);
                         $("#sort-bars").data('clicks', field);
                     }
@@ -102,28 +103,24 @@
                     return 0;
                 }));
 
-
-/*
-                $('#name-sort-bar').click(function(){
-                    if ($(this).data('clicks')){
-                        personas.reverse();
-                    } else {
-                        var nameComparator = function (a, b) {
-                            if (a.username < b.username) {
-                                return -1;
-                            } else if (a.username > b.username) {
-                                return 1;
-                            }
-                            return 0;
-                        };
-                        personas.sort(nameComparator);
-                        $(this).data('clicks', true);
+                $('#search-icon').click(function() {
+                    var str = $("#search-users-text").val();
+                    personas = [];
+                    for(i in basePersonas){
+                        if(basePersonas[i].username.indexOf(str) > -1) {
+                            personas.push(basePersonas[i]);
+                        }
                     }
                     document.getElementById("persona_tile_display").innerHTML = "";
                     component.loadPersonasList();
                 });
-*/
 
+                $("#search-users-text").keypress(function(event) {
+                    if (event.which == 13) {
+                        event.preventDefault();
+                        $('#search-icon').click();
+                    }
+                });
 				// Need to trigger custom dropdown items
 
 				var first = true;
