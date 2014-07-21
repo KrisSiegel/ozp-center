@@ -216,7 +216,13 @@ module.exports = (function (Ozone) {
         });
 
         it("Ozone.Service.('Personas').roles.calculate() to be 'Mall Moderator'", function (done) {
-            var personaPermissions = [
+            
+        	var dataSet = require('./spec-data/testImport.json');
+            personaService.import(dataSet, function(){
+            
+            });
+        	
+        	var personaPermissions = [
                 "/Ozone/Apps/App/AppsMall/GrantPermission/",
                 "/Ozone/Apps/App/AppsMall/Manage/Tags/",
                 "/Ozone/Apps/App/AppsMall/Manage/Collections/",
