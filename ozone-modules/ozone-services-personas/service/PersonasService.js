@@ -468,7 +468,7 @@
                         roleResult = matchingRoles[0].label;
                     }
 
-                    console.log("Test : roleResult = " + roleResult);
+                    //console.log("Test : roleResult = " + roleResult);
                     if (Ozone.utils.isUndefinedOrNull(roleResult)) {
                         roleResult = "Custom";
                     }
