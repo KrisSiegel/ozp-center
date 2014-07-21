@@ -448,7 +448,6 @@
                         }
                         if (match) {
                             matchingRoles.push(fullRoles[i]);
-                            //console.log("Test : "  + i + " Role = " + fullRoles[i].label);
                         }
                     }
                     var roleResult;
@@ -467,8 +466,7 @@
                     } else if (matchingRoles.length === 1) {
                         roleResult = matchingRoles[0].label;
                     }
-
-                    //console.log("Test : roleResult = " + roleResult);
+                    
                     if (Ozone.utils.isUndefinedOrNull(roleResult)) {
                         roleResult = "Custom";
                     }
