@@ -389,6 +389,7 @@
 			showAndLoadPermissionSelection: function (username) {
 				for (var i = 0; i < personas.length; ++i) {
 					if (personas[i].username === username) {
+                        console.log("Selected: " + username + " " + i);
 						component.showRoleAndPermissionsControlForPersona(personas[i], "AppsMall");
 						var p = Ozone.Service("Personas").persona.envelop(personas[i]);
 
@@ -415,7 +416,7 @@
 							document.getElementById("persona-permission-selected-image").src = "components/ozone-persona-permissions/images/default-profile.jpg";
 						}
 
-						if (Ozone.utils.isUndefinedOrNull(personaPermissionSelectedImageElement)) {
+						//if (Ozone.utils.isUndefinedOrNull(personaPermissionSelectedImageElement)) {
 							personaPermissionSelectedImageElement = document.getElementById("persona-permission-selected-image-control");
 							personaPermissionSelectedImageElement.addEventListener("click", function (event) {
 								if (event.preventDefault) {
@@ -423,28 +424,32 @@
 								}
 								document.getElementById("persona-permission-selected-image-input").click();
 							});
-
-							document.getElementById("ozone-personas-permission-permission-save").addEventListener("click", function (event) {
+                        $('#ozone-personas-permission-permission-save').unbind("click");
+                        console.log("Submit Handler assigned: " + i);
+							$("#ozone-personas-permission-permission-save").bind("click", function (event) {
 								if (event.preventDefault) {
 									event.preventDefault();
 								}
 								var checks = document.querySelectorAll("#ozone-persona-permissions-persona-permission-list input[type='checkbox']:checked");
+                                console.log(checks);
 								if (!Ozone.utils.isUndefinedOrNull(checks)) {
 									Ozone.Service("Personas").persona.getPersonaById(personas[i]._id, function (pers) {
+                                        console.log(personas[i]);
 										if (!Ozone.utils.isUndefinedOrNull(pers)) {
 											pers.removeAllPermissions(true);
 											var perms = [];
-											for (var i = 0; i < checks.length; ++i) {
-												console.log(checks[i].value);
-												perms.push(checks[i].value);
+											for (var j = 0; j < checks.length; ++j) {
+												console.log(checks[j].value);
+												perms.push(checks[j].value);
 											}
 											pers.addPermission(perms);
-											alert("Permission change saved!");
+                                            $("#ozone-personas-permission-permission-save").text("Saving ...");
+                                            setTimeout(function(){$("#ozone-personas-permission-permission-save").text("Save Changes");},1000);
+											//alert("Permission change saved!");
 										}
 									});
 								}
 							});
-
 							document.getElementById("persona-permission-selected-image-input").addEventListener("change", function (event) {
 								var file = document.getElementById("persona-permission-selected-image-input").files[0];
 
@@ -466,7 +471,7 @@
 									});
 								};
 							});
-						}
+						//}
 
 						document.getElementById("ozone-persona-permissions-persona-list").style.display = "none";
 						document.getElementById("ozone-persona-permissions-persona").style.display = "block";
