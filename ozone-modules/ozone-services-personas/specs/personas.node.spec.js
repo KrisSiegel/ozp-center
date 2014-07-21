@@ -225,6 +225,11 @@ module.exports = (function (Ozone) {
                 "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectOrganizationOnlyApplication/",
                 "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
             ];
+            
+            personaService.export(function(data){
+            	expect(data['Personas'].length).toBe(6);
+            });
+            
             Ozone.Service("Personas").roles.calculate(personaPermissions, function (result) {
                 expect(result).not.toBe(undefined);
                 expect(result).not.toBe(null);
