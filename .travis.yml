@@ -9,5 +9,5 @@ before_script:
 services:
     - mongodb
 before_install:
-    - "sleep 15"
+    - "while [ $(netstat -tnl | grep -c 27017) == 0 ]; do sleep 1; done"
     - "mongo --eval 'db.runCommand({setParameter: 1, textSearchEnabled: true})' admin"
