@@ -67,7 +67,7 @@
             <div class="action-bar" ng-class="{{}}">
                 <div class="action-info">
                     <h1>Application Submission</h1>
-                    <p>Last Updated: {{currentApp.updatedOn}}</p>
+                    <p>Last Updated: {{currentApp.updatedOn | date:'yyyy-MM-dd HH:mm:ss Z'}}</p>
                 </div>
                 <div ng-show="personaData.hasSubmitApplicationAccess && canAcceptOrRejectApp()" class="action-buttons-user">
                     <button type="submit" class="btn workflow-publish-button" ng-click="saveApp('publish', appSubmissionForm.$valid)">Publish Application</button>

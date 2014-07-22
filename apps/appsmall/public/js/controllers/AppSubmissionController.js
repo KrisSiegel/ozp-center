@@ -555,7 +555,7 @@ var AppSubmissionController = ['$scope', '$rootScope', '$q', '$location', '$wind
 
          /**
           * Saves all tags added by user, and deletes all tags removed by user -- all done as per tag and topic type.
-          * @method saveApp
+          * @method saveTags
           * @param callback {Function} Callback to get invoked after all tags have been successfully updated and/or deleted
           */
          $scope.saveTags = function(callback) {
