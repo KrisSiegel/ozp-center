@@ -152,11 +152,11 @@ div.ozone-persona-permissions input[type="checkbox"] + label span {
     vertical-align: middle;
 	border: 1px solid #e5e5e5;
 	cursor: pointer;
-    background: url(../images/check-radio-sheet.png) left top no-repeat #f1f1f1;
+    background: url("components/ozone-persona-permissions/images/check-radio-sheet.png") left top no-repeat #f1f1f1;
 }
 
 div.ozone-persona-permissions input[type="checkbox"]:checked + label span {
-    background:url(../images/check-radio-sheet.png) -20px top no-repeat #fff;
+    background:url("components/ozone-persona-permissions/images/check-radio-sheet.png") -20px top no-repeat #fff;
 }
 
 input[type="radio"] {

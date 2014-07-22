@@ -435,6 +435,7 @@
 								if (!Ozone.utils.isUndefinedOrNull(checks)) {
 									Ozone.Service("Personas").persona.getPersonaById(personas[i]._id, function (pers) {
                                         console.log(personas[i]);
+                                        console.log(pers.getRoles());
 										if (!Ozone.utils.isUndefinedOrNull(pers)) {
 											pers.removeAllPermissions(true);
 											var perms = [];
@@ -444,8 +445,18 @@
 											}
 											pers.addPermission(perms);
                                             $("#ozone-personas-permission-permission-save").text("Saving ...");
-                                            setTimeout(function(){$("#ozone-personas-permission-permission-save").text("Save Changes");},1000);
-											//alert("Permission change saved!");
+
+                                            setTimeout(function(){
+                                                $("#ozone-personas-permission-permission-save").text("Save Changes");
+                                                Ozone.Service("Personas").persona.getPersonaById(personas[i]._id, function (pers){
+                                                    console.log(pers.getRoles());
+                                                    personas[i].meta.role = pers.getRoles();
+                                                    $("#persona-permission-selected-role").text(personas[i].meta.role);
+                                                    document.getElementById("persona_tile_display").innerHTML = "";
+                                                    component.loadPersonasList();
+                                                });
+
+                                            },1000);
 										}
 									});
 								}
