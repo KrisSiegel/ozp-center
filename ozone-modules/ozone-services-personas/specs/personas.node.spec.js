@@ -1,5 +1,5 @@
 module.exports = (function (Ozone) {
-    describe("ozone-services-personas-importing", function(){
+    /*describe("ozone-services-personas-importing", function(){
         var personaService = null;
         beforeEach(function (done) {
             Ozone.Service().on("ready", "Personas", function () {
@@ -205,7 +205,7 @@ module.exports = (function (Ozone) {
                 done();
             });
         });
-    });
+    });*/
     describe("ozone-services-personas", function () {
         var personaService = null;
         beforeEach(function (done) {
@@ -216,13 +216,7 @@ module.exports = (function (Ozone) {
         });
 
         it("Ozone.Service.('Personas').roles.calculate() to be 'Mall Moderator'", function (done) {
-            
-        	var dataSet = require('./spec-data/testImport.json');
-            personaService.import(dataSet, function(){
-            
-            });
-        	
-        	var personaPermissions = [
+            var personaPermissions = [
                 "/Ozone/Apps/App/AppsMall/GrantPermission/",
                 "/Ozone/Apps/App/AppsMall/Manage/Tags/",
                 "/Ozone/Apps/App/AppsMall/Manage/Collections/",
@@ -230,8 +224,7 @@ module.exports = (function (Ozone) {
                 "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectMallWideApplication/",
                 "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectOrganizationOnlyApplication/",
                 "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
-            ];
-            
+            ];            
             Ozone.Service("Personas").roles.calculate(personaPermissions, function (result) {
                 expect(result).not.toBe(undefined);
                 expect(result).not.toBe(null);
@@ -239,7 +232,7 @@ module.exports = (function (Ozone) {
                 done();
             });
         });
-        it("Ozone.Service.('Personas').roles.calculate() to be 'Organization Moderator'", function (done) {
+        /*it("Ozone.Service.('Personas').roles.calculate() to be 'Organization Moderator'", function (done) {
             var personaPermissions = [
                 "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectMallWideApplication/",
                 "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
@@ -343,6 +336,6 @@ module.exports = (function (Ozone) {
                     done();
                 });
             });
-        });
+        });*/
     });
 });

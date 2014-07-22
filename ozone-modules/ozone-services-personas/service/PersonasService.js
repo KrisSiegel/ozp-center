@@ -436,8 +436,11 @@
                     fullRoles = fullRoles || [];
                     for (var i = 0; i < fullRoles.length; ++i) {
                         var match = true;
+                        console.log()
                         if (fullRoles[i].permissions && fullRoles[i].permissions.length <= userPermissions.length) {
+                        	console.log("inside if");
                             for (var j = 0; j < fullRoles[i].permissions.length; ++j) {
+                            	console.log("inside for");
                                 if (userPermissions.indexOf(fullRoles[i].permissions[j]) === -1) {
                                     match = false;
                                     break;
