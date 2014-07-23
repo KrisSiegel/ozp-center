@@ -218,22 +218,6 @@ module.exports = (function (Ozone) {
         it("Ozone.Service.('Personas').roles.calculate() to be 'Mall Moderator'", function (done) {
             
         	var dataSet = require('./spec-data/testImport.json');
-            personaService.import(dataSet, function(){
-                personaService.roles.query({role: "/Ozone/Apps/App/AppsMall/MallModerator/"}, function(err, result){
-                    /*expect(err).toBeUndefined();
-                    expect(result.length).toBe(1);
-                    var role = result[0];
-                    expect(role.role).toBe("/Ozone/Apps/App/AppsMall/MallModerator/");
-                    expect(role.label).toBe("Mall Moderator");
-                    expect(role.description).toBe("A mall wide moderator.");
-                    expect(role.designation).toBe("AppsMall");
-                    expect(role.rank).toBe(400);
-                    expect(role.permissions.length).toBe(7);
-                    expect(role.permissions.indexOf("/Ozone/Apps/App/AppsMall/GrantPermission/")).not.toBe(-1);
-                    expect(role.createdBy).toBe("SYSTEM");
-                    done(err);*/
-                });
-            });
         	
         	var personaPermissions = [
                 "/Ozone/Apps/App/AppsMall/GrantPermission/",
@@ -249,7 +233,7 @@ module.exports = (function (Ozone) {
                 expect(result).not.toBe(null);
                 expect(result).toBe("Mall Moderator");
                 done();
-            });
+            }, dataSet.Permissions, dataSet.Roles);
         });
         /*it("Ozone.Service.('Personas').roles.calculate() to be 'Organization Moderator'", function (done) {
             var personaPermissions = [
