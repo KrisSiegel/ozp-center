@@ -434,6 +434,7 @@
                 var calcWithData = function (err, results) {
                     var matchingRoles = [];
                     fullRoles = fullRoles || [];
+                    console.log("Length of fullRoles :" + fullRoles.length);
                     for (var i = 0; i < fullRoles.length; ++i) {
                         var match = true;
                         console.log()
