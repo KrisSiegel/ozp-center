@@ -438,23 +438,34 @@
                         var match = true;
                         console.log()
                         if (fullRoles[i].permissions && fullRoles[i].permissions.length <= userPermissions.length) {
-                        	console.log("inside if");
+                        	//console.log("inside if");
                             for (var j = 0; j < fullRoles[i].permissions.length; ++j) {
-                            	console.log("inside for");
+                            	//console.log("inside for : " + fullRoles[i].permissions[j]);
                                 if (userPermissions.indexOf(fullRoles[i].permissions[j]) === -1) {
-                                    match = false;
+                                	console.log("match false for : " + fullRoles[i].permissions[j]);
+                                	match = false;
                                     break;
                                 }
                             }
                         } else {
+                        	if(fullRoles[i].permissions)
+                        	{
+                        		console.log("match false because fullRoles[i].permissions && fullRoles[i].permissions.length <= userPermissions.length failed : " + fullRoles[i].permissions.length + "; " + userPermissions.length);
+                        	}
+                        	else
+                        	{
+                        		console.log("fullRoles[i].permissions is undefined");
+                        	}
                             match = false;
                         }
                         if (match) {
-                            matchingRoles.push(fullRoles[i]);
+                        	console.log("match true for : " + fullRoles[i].label);
+                        	matchingRoles.push(fullRoles[i]);
                         }
                     }
                     var roleResult;
                     if (matchingRoles.length > 1) {
+                    	console.log("matching roles greater than 1 ");
                         var compare = function (a, b) {
                             if (a.rank < b.rank) {
                                 return -1;
@@ -465,13 +476,15 @@
                             return 0;
                         }
                         matchingRoles.sort(compare);
+                        console.log("Role Result is : " + matchingRoles[0].label);
                         roleResult = matchingRoles[0].label;
                     } else if (matchingRoles.length === 1) {
                         roleResult = matchingRoles[0].label;
                     }
                     
                     if (Ozone.utils.isUndefinedOrNull(roleResult)) {
-                        roleResult = "Custom";
+                    	console.log("Role Result is probably null: " + roleResult);
+                    	roleResult = "Custom";
                     }
 
                     if (callback !== undefined) {
