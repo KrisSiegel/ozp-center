@@ -434,40 +434,25 @@
                 var calcWithData = function (err, results) {
                     var matchingRoles = [];
                     fullRoles = fullRoles || [];
-                    console.log("Length of fullRoles :" + fullRoles.length);
                     for (var i = 0; i < fullRoles.length; ++i) {
                         var match = true;
-                        console.log()
                         if (fullRoles[i].permissions && fullRoles[i].permissions.length <= userPermissions.length) {
-                        	//console.log("inside if");
-                            for (var j = 0; j < fullRoles[i].permissions.length; ++j) {
-                            	//console.log("inside for : " + fullRoles[i].permissions[j]);
-                                if (userPermissions.indexOf(fullRoles[i].permissions[j]) === -1) {
-                                	console.log("match false for : " + fullRoles[i].permissions[j]);
+                        	for (var j = 0; j < fullRoles[i].permissions.length; ++j) {
+                            	if (userPermissions.indexOf(fullRoles[i].permissions[j]) === -1) {
                                 	match = false;
                                     break;
                                 }
                             }
                         } else {
-                        	if(fullRoles[i].permissions)
-                        	{
-                        		console.log("match false because fullRoles[i].permissions && fullRoles[i].permissions.length <= userPermissions.length failed : " + fullRoles[i].permissions.length + "; " + userPermissions.length);
-                        	}
-                        	else
-                        	{
-                        		console.log("fullRoles[i].permissions is undefined");
-                        	}
-                            match = false;
+                        	match = false;
                         }
                         if (match) {
-                        	console.log("match true for : " + fullRoles[i].label);
                         	matchingRoles.push(fullRoles[i]);
                         }
                     }
                     var roleResult;
                     if (matchingRoles.length > 1) {
-                    	console.log("matching roles greater than 1 ");
-                        var compare = function (a, b) {
+                    	var compare = function (a, b) {
                             if (a.rank < b.rank) {
                                 return -1;
                             }
@@ -477,14 +462,12 @@
                             return 0;
                         }
                         matchingRoles.sort(compare);
-                        console.log("Role Result is : " + matchingRoles[0].label);
                         roleResult = matchingRoles[0].label;
                     } else if (matchingRoles.length === 1) {
                         roleResult = matchingRoles[0].label;
                     }
                     
                     if (Ozone.utils.isUndefinedOrNull(roleResult)) {
-                    	console.log("Role Result is probably null: " + roleResult);
                     	roleResult = "Custom";
                     }
 

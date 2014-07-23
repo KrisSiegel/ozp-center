@@ -1,5 +1,5 @@
 module.exports = (function (Ozone) {
-    /*describe("ozone-services-personas-importing", function(){
+    describe("ozone-services-personas-importing", function(){
         var personaService = null;
         beforeEach(function (done) {
             Ozone.Service().on("ready", "Personas", function () {
@@ -205,7 +205,7 @@ module.exports = (function (Ozone) {
                 done();
             });
         });
-    });*/
+    });
     describe("ozone-services-personas", function () {
         var personaService = null;
         beforeEach(function (done) {
@@ -215,8 +215,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it("Ozone.Service.('Personas').roles.calculate() to be 'Mall Moderator'", function (done) {
-            
+        it("Ozone.Service.('Personas').roles.calculate() to be 'Mall Moderator'", function (done) {            
         	var dataSet = require('./spec-data/testImport.json');
         	
         	var personaPermissions = [
@@ -235,8 +234,10 @@ module.exports = (function (Ozone) {
                 done();
             }, dataSet.Permissions, dataSet.Roles);
         });
-        /*it("Ozone.Service.('Personas').roles.calculate() to be 'Organization Moderator'", function (done) {
-            var personaPermissions = [
+        it("Ozone.Service.('Personas').roles.calculate() to be 'Organization Moderator'", function (done) {
+        	var dataSet = require('./spec-data/testImport.json');
+        	
+        	var personaPermissions = [
                 "/Ozone/Apps/App/AppsMall/Manage/ApproveOrRejectMallWideApplication/",
                 "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
             ];
@@ -245,19 +246,21 @@ module.exports = (function (Ozone) {
                 expect(result).not.toBe(null);
                 expect(result).toBe("Organization Moderator");
                 done();
-            });
+            }, dataSet.Permissions, dataSet.Roles);
         });
         it("Ozone.Service.('Personas').roles.calculate() to be 'Ozone User'", function (done) {
-            var personaPermissions = [
+        	var dataSet = require('./spec-data/testImport.json');
+        	
+        	var personaPermissions = [
                 "/Ozone/Personas/Permission/User/",
                 "/Ozone/Apps/App/AppsMall/Manage/SubmitApplication/"
             ];
             Ozone.Service("Personas").roles.calculate(personaPermissions, function (result) {
                 expect(result).not.toBe(undefined);
                 expect(result).not.toBe(null);
-                expect(result).toBe("Apps Mall User");
+                expect(result).toBe("Ozone User");
                 done();
-            });
+            }, dataSet.Permissions, dataSet.Roles);
         });
         it("Ozone.Service.('Personas').permissions.query({ }, function () { }) works for fetching all permissions", function (done) {
             Ozone.Service("Personas").permissions.query({}, function (err, results) {
@@ -339,6 +342,6 @@ module.exports = (function (Ozone) {
                     done();
                 });
             });
-        });*/
+        });
     });
 });

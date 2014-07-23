@@ -89,26 +89,26 @@
         process.exit();
     }
 
-//    describe("Setup Ozone Service Container", function () {
-//        it("Initialize testing server", function () {
-//            expect(serviceContainerTests.length).toBeGreaterThan(0);
-//            expect(moduleServerTests.length).toBeGreaterThan(0);
-//            expect(moduleRestfulTests.length).toBeGreaterThan(0);
-//            expect(clientTests.length).toBeGreaterThan(0);
-//        });
-//
-//        it("API initialized", function () {
-//            expect(Ozone).not.toBe(undefined);
-//            expect(Ozone.config().getConfig()).not.toBe(undefined);
-//        });
-//    });
-//
-//    describe("Ozone Service Container", function () {
-//        it("Test Ready", function () {
-//            expect(serviceContainerTests.length).toBeGreaterThan(0);
-//        });
-//        testRunner(serviceContainerTests);
-//    });
+    describe("Setup Ozone Service Container", function () {
+        it("Initialize testing server", function () {
+            expect(serviceContainerTests.length).toBeGreaterThan(0);
+            expect(moduleServerTests.length).toBeGreaterThan(0);
+            expect(moduleRestfulTests.length).toBeGreaterThan(0);
+            expect(clientTests.length).toBeGreaterThan(0);
+        });
+
+        it("API initialized", function () {
+            expect(Ozone).not.toBe(undefined);
+            expect(Ozone.config().getConfig()).not.toBe(undefined);
+        });
+    });
+
+    describe("Ozone Service Container", function () {
+        it("Test Ready", function () {
+            expect(serviceContainerTests.length).toBeGreaterThan(0);
+        });
+        testRunner(serviceContainerTests);
+    });
 
     describe("Ozone Modules - Server Side", function () {
         it("Test Ready", function () {
@@ -116,18 +116,18 @@
         });
         testRunner(moduleServerTests);
     });
-//
-//    describe("Ozone Modules - RESTful", function () {
-//        it("Test Ready", function () {
-//            expect(moduleRestfulTests.length).toBeGreaterThan(0);
-//        });
-//        testRunner(moduleRestfulTests);
-//    });
-//
-//    describe("Ozone API - Client Side", function () {
-//        it("Test Ready", function () {
-//            expect(clientTests.length).toBeGreaterThan(0);
-//        });
-//        testRunner(clientTests);
-//    });
+
+    describe("Ozone Modules - RESTful", function () {
+        it("Test Ready", function () {
+            expect(moduleRestfulTests.length).toBeGreaterThan(0);
+        });
+        testRunner(moduleRestfulTests);
+    });
+
+    describe("Ozone API - Client Side", function () {
+        it("Test Ready", function () {
+            expect(clientTests.length).toBeGreaterThan(0);
+        });
+        testRunner(clientTests);
+    });
 }())
