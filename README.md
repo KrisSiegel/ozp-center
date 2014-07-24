@@ -2,7 +2,7 @@
 The OZP Center project provides access to, and facilitates the discovery of, web applications through a store front. Apps Mall is built on top of the Ozone Platform Service Container and various Ozone Services that provide modularity and an API all services can consume and export at each level (server-side, RESTful and client-side API levels).
 
 ##Components
-OZP Center consists of two major tools:
+OZP Center consists of two major pieces:
 * Marketplace - the search and discovery capability of OZP
 * HALO - the Home Application LayOut - the home page for users, primarily for favoriting applications for quick launch.
 
