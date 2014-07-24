@@ -1,6 +1,11 @@
 #OZP Center
 The OZP Center project provides access to, and facilitates the discovery of, web applications through a store front. Apps Mall is built on top of the Ozone Platform Service Container and various Ozone Services that provide modularity and an API all services can consume and export at each level (server-side, RESTful and client-side API levels).
 
+##Components
+OZP Center consists of two major tools:
+* Marketplace - the search and discovery capability of OZP
+* HALO - the Home Application LayOut - the home page for users, primarily for favoriting applications for quick launch.
+
 ##Prerequisites
 The requirements below are required to go from cloning the repository to running the application and unit tests. The last 5 prerequisites (jasmine-node, karma, karma-jarmine, karma-chrome-launcher and yuidoc) are either required if you wish you run the unit tests or generate the related JavaScript documentation. The only exception in this list is MongoDB can be replaced with an in-memory mock data store.
 * node.js 0.10.x
