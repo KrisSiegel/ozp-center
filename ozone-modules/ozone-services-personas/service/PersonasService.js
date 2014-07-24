@@ -27,16 +27,17 @@
         execQueue.push(function (cb) {
             exporting.permissions.query({}, function (err, results) {
                 cachedPermissionsAndRoles.permissions = results;
-                cb.apply(this, []);
+                cb.apply(this, [results]);
             })
         });
         execQueue.push(function (cb) {
             exporting.roles.query({}, function (err, results) {
             	//console.log("XXXXXXXXXXXXXXXXXXXXXxx " + results);
             	cachedPermissionsAndRoles.roles = results;
-                cb.apply(this, []);
+                cb.apply(this, [results]);
             })
         });
+        
         async.parallel(execQueue, (callback || function () {}));
     };
 
