@@ -162,6 +162,7 @@ module.exports = (function (Ozone) {
                 expect(person.meta.permissions.length).toBe(1);
                 expect(person.meta.favoriteApps.length).toBe(0);
                 expect(person.meta.launchedApps.length).toBe(0);
+                console.log("XXXXXX"+person.meta.role);
                 //expect(person.meta.role).toBe('Ozone Administrator');
                 expect(person.meta.permissions[0]).toBe('/Ozone/Personas/Permission/GrantPermission/');
                 done();
