@@ -1,37 +1,37 @@
 module.exports = (function (Ozone) {
-//    describe("ozone-services-personas-importing", function(){
-//        var personaService = null;
-//        beforeEach(function (done) {
-//            Ozone.Service().on("ready", "Personas", function () {
-//                personaService = Ozone.Service('Personas');
-//                personaService.persona.query({},function(e,r){personaService.persona.delete(r.map(function(x){return x._id}), function(){
-//                    personaService.permissions.query({},function(e,r){personaService.permissions.delete(r.map(function(x){return x._id}), function(){
-//                        personaService.roles.query({},function(e,r){personaService.roles.delete(r.map(function(x){return x._id}), function(){
-//                            done();
-//                        })})
-//                    })});
-//                })});
-//            });
-//        });
-//
-//        it("imports a json data set", function(done){
-//            var dataSet = require('./spec-data/testImport.json');
-//            personaService.import(dataSet, function(){
-//                personaService.roles.query({}, function(err, result){
-//                    expect(err).toBeUndefined();
-//                    expect(result.length).toBe(5);
-//                    personaService.permissions.query({}, function(err, result){
-//                        expect(err).toBeUndefined();
-//                        expect(result.length).toBe(9);
-//                        personaService.persona.query({}, function(err, result){
-//                            expect(err).toBeUndefined();
-//                            expect(result.length).toBe(6);
-//                            done();
-//                        });
-//                    });
-//                });
-//            });
-//        });
+    describe("ozone-services-personas-importing", function(){
+        var personaService = null;
+        beforeEach(function (done) {
+            Ozone.Service().on("ready", "Personas", function () {
+                personaService = Ozone.Service('Personas');
+                personaService.persona.query({},function(e,r){personaService.persona.delete(r.map(function(x){return x._id}), function(){
+                    personaService.permissions.query({},function(e,r){personaService.permissions.delete(r.map(function(x){return x._id}), function(){
+                        personaService.roles.query({},function(e,r){personaService.roles.delete(r.map(function(x){return x._id}), function(){
+                            done();
+                        })})
+                    })});
+                })});
+            });
+        });
+
+        it("imports a json data set", function(done){
+            var dataSet = require('./spec-data/testImport.json');
+            personaService.import(dataSet, function(){
+                personaService.roles.query({}, function(err, result){
+                    expect(err).toBeUndefined();
+                    expect(result.length).toBe(5);
+                    personaService.permissions.query({}, function(err, result){
+                        expect(err).toBeUndefined();
+                        expect(result.length).toBe(9);
+                        personaService.persona.query({}, function(err, result){
+                            expect(err).toBeUndefined();
+                            expect(result.length).toBe(6);
+                            done();
+                        });
+                    });
+                });
+            });
+        });
 //
 //        it("imports overwrite current data, does not duplicate", function(done){
 //            var dataSet = require('./spec-data/testImport.json');
@@ -117,7 +117,7 @@ module.exports = (function (Ozone) {
 //                });
 //            });
 //        });
-//    });
+    });
     describe("ozone-services-personas-exporting", function() {
         var personaService = null;
         var find = function(arr, key, value){
