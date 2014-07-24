@@ -148,7 +148,7 @@ module.exports = (function (Ozone) {
 
         it('exports all of the persona.persona data', function(done){        	
         	personaService.export(function(data){
-                expect(data['Personas'].length).toBe(6);
+                expect(data['Personas'].length).toBe(6);                
                 var person = find(data['Personas'], 'username', 'testOzoneAdmin1');
                 expect(person).not.toBeUndefined();
                 expect(person.username).toBe('testOzoneAdmin1');
@@ -161,10 +161,15 @@ module.exports = (function (Ozone) {
                 expect(Object.keys(person.meta).indexOf('role')).not.toBe(-1);
                 expect(person.meta.permissions.length).toBe(1);
                 expect(person.meta.favoriteApps.length).toBe(0);
-                expect(person.meta.launchedApps.length).toBe(0);
-                //console.log("XXXXXX"+person.meta.role);
+                expect(person.meta.launchedApps.length).toBe(0);                
                 //expect(person.meta.role).toBe('Ozone Administrator');
                 expect(person.meta.permissions[0]).toBe('/Ozone/Personas/Permission/GrantPermission/');
+                
+                //var person2 = find(data['Personas'], 'username', 'testAppsMallMallModerator1');
+                var person2 = find(data['Personas'], 'username', 'testSystemAdmin1');
+                
+                console.log("XXXXXXXXX " + person2.meta.role);
+                
                 done();
             })
         });

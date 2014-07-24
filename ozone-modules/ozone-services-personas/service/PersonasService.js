@@ -726,13 +726,10 @@
         export: function (callback) {
             var exp = { };
             exporting.persona.query({}, function (err1, personaResult) {
-            	console.log("XOXOXOXOXOXOXO personaResult : " + personaResult);
             	exp.Personas = personaResult;
                 exporting.permissions.query({}, function (err2, permissionsResult) {
-                	console.log("XOXOXOXOXOXOXO permissionsResult : " + permissionsResult);
                 	exp.Permissions = permissionsResult;
                     exporting.roles.query({}, function (err3, rolesResult) {
-                    	console.log("XOXOXOXOXOXOXO rolesResult : " + rolesResult);
                         exp.Roles = rolesResult;
                         callback.apply(this, [exp]);
                     });
