@@ -32,7 +32,8 @@
         });
         execQueue.push(function (cb) {
             exporting.roles.query({}, function (err, results) {
-                cachedPermissionsAndRoles.roles = results;
+            	//console.log("XXXXXXXXXXXXXXXXXXXXXxx " + results);
+            	cachedPermissionsAndRoles.roles = results;
                 cb.apply(this, []);
             })
         });
@@ -431,9 +432,11 @@
             */
             calculate: function (userPermissions, callback, fullPermissions, fullRoles, forceSync) {
                 // Data should exist; run the calculations!
-                var calcWithData = function (err, results) {
+                //console.log("Got HERE");
+            	var calcWithData = function (err, results) {
                     var matchingRoles = [];
                     fullRoles = fullRoles || [];
+                    console.log("Full Roles : " + fullRoles);
                     for (var i = 0; i < fullRoles.length; ++i) {
                         var match = true;
                         if (fullRoles[i].permissions && fullRoles[i].permissions.length <= userPermissions.length) {
@@ -500,7 +503,7 @@
                     if (cachedPermissionsAndRoles.roles === undefined) {
                         execQueue.push(function (cb) {
                             exporting.roles.query({}, function (err, results) {
-                                fullRoles = results;
+                            	fullRoles = results;
                                 cachedPermissionsAndRoles.roles = results;
                                 cb.apply(this, []);
                             })
@@ -544,7 +547,8 @@
                 @param {Method} callback the callback to execute upon completion
             */
             query: function(selector, callback) {
-                Persistence.Store(store).Collection(roles).query(selector, function (err, result) {
+                //console.log("XXXXXXXX Called " + "Callback : " + callback + " Selector : "  + selector);
+            	Persistence.Store(store).Collection(roles).query(selector, function (err, result) {
                     callback(err, result);
                 });
             },
