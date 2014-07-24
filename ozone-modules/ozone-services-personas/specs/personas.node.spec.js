@@ -146,12 +146,7 @@ module.exports = (function (Ozone) {
             });
         });
 
-        it('exports all of the persona.persona data', function(done){
-        	var dataSet = require('./spec-data/testImport.json');
-            personaService.import(dataSet, function(){
-                //personaService.persona.query({username: "testSystemAdmin1"}, function(err, result){});
-            });
-        	
+        it('exports all of the persona.persona data', function(done){        	
         	personaService.export(function(data){
                 expect(data['Personas'].length).toBe(6);
                 var person = find(data['Personas'], 'username', 'testOzoneAdmin1');
