@@ -119,7 +119,7 @@
                             <div class="user-review-info">
                                 <div class="user-name">{{userReview.user}}</div>
                                 <div class="user-rate-date">{{userReview.dateModified}}</div>
-                                <star-rating num-stars="{{userReview.starRating}}" ng-model="userReview.starRating"></star-rating>
+                                <star-rating num-stars="{{userReview.starRating}}" ng-model="averageRatingAsInt"></star-rating>
                             </div>
                             <div class="user-comments">{{userReview.reviewText}}</div>
                         </div>
