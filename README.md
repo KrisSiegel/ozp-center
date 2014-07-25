@@ -1,4 +1,4 @@
-#OZP Center
+#OZP Center [![Build Status](https://travis-ci.org/ozone-development/ozp-center.svg?branch=master)](https://travis-ci.org/ozone-development/ozp-center)
 The OZP Center project provides access to, and facilitates the discovery of, web applications through a store front. Apps Mall is built on top of the Ozone Platform Service Container and various Ozone Services that provide modularity and an API all services can consume and export at each level (server-side, RESTful and client-side API levels).
 
 ##Components
