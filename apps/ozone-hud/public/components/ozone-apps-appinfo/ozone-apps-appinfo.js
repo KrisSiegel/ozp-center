@@ -68,7 +68,7 @@
 
                     // Found this code getting called twice, so writing it
                     // this way will avoid calling setAttribute on 'undefined'
-					var label = $(this.el).find('label[for="favCheckbox"]')
+					var label = $(this.el).find('label[class="favorite-toggle"]')
                         .attr("for", shortname);
 
 					var favorites = persona.getFavoriteApps();
@@ -81,18 +81,23 @@
 					}
 
 					// set up the onclick action for the bookmark (add/remove favorite)
-					$(label).click(function() {
-						if (Ozone.utils.isUndefinedOrNull(persona.getUsername())) {
-							location.href = Ozone.utils.murl("hudUrl", '/unauthorized', true);
-						} else {
-							if (checkbox.checked === true) {
-								persona.removeFavoriteApp(shortname, function(favorites) {
-			                    	Ozone.logger.debug("removeFavoriteApp() for current user, favorites: " + favorites);
-			                    });
+					$(label).unbind("click");
+					$(label).bind("click", function() {
+						if ($(label).hasClass('noclick')) {
+       						 $(label).removeClass('noclick');
+					    }else {
+							if (Ozone.utils.isUndefinedOrNull(persona.getUsername())) {
+								location.href = Ozone.utils.murl("hudUrl", '/unauthorized', true);
 							} else {
-								persona.addFavoriteApp(shortname, function(favorites) {
-			                    	Ozone.logger.debug("addFavoriteApp() for current user, favorites: " + favorites);
-			                    });
+								if (checkbox.checked === true) {
+									persona.removeFavoriteApp(shortname, function(favorites) {
+				                    	Ozone.logger.debug("removeFavoriteApp() for current user, favorites: " + favorites);
+				                    });
+								} else {
+									persona.addFavoriteApp(shortname, function(favorites) {
+				                    	Ozone.logger.debug("addFavoriteApp() for current user, favorites: " + favorites);
+				                    });
+								}
 							}
 						}
 					});
@@ -103,6 +108,8 @@
 						cursor: "move",
 						start: function (event, ui) {
 							selectedApp = self;
+							var label = $(selectedApp.xtag.componentElement).find('label[class="favorite-toggle"]');
+							 $(label).addClass('noclick');
 						},
 						revert: true,
 						/**
