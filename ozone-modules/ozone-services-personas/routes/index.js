@@ -210,7 +210,7 @@ module.exports = exports = function (Ozone) {
     });
 
     /**
-        @method /personas/permissions/ GET
+        @method /personas/permission/ GET
         @return {Object} the permissions objects
     */
     routing.get(permissionBaseURL, { loggedIn: true, permisions: [] }, function (req, res, next) {
@@ -225,7 +225,7 @@ module.exports = exports = function (Ozone) {
         Returns the roles contained within the system. When the mock security module is used all roles are returned
         without requiring authentication otherwise authentication is required.
         
-        @method /personas/roles/ GET
+        @method /personas/role/ GET
         @return {Object} the roles objects of the system
     */
     var usingMockSecurity = (Ozone.config().getServerProperty("security.module") === "ozone-services-security-mock");
