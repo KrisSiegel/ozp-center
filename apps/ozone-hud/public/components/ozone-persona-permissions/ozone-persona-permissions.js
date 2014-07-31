@@ -451,6 +451,7 @@
                                                 Ozone.Service("Personas").persona.getPersonaById(personas[i]._id, function (pers){
                                                     console.log(pers.getRoles());
                                                     personas[i].meta.role = pers.getRoles();
+                                                    personas[i].meta.permissions = pers.getPermissions();
                                                     $("#persona-permission-selected-role").text(personas[i].meta.role);
                                                     document.getElementById("persona_tile_display").innerHTML = "";
                                                     component.loadPersonasList();
