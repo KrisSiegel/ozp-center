@@ -202,7 +202,7 @@
                             persona.meta.permissions = personaPermissions;
                         }
 
-                        persona.meta.role = personaRole || exporting.roles.calculateSync(persona.meta.permissions);
+                        persona.meta.role = exporting.roles.calculateSync(persona.meta.permissions);
 
                         return persona;
                     };
