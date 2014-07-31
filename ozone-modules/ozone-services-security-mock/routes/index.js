@@ -30,7 +30,7 @@ module.exports = exports = function (Ozone) {
 			username: req.body.username,
 			auth_token: req.body.username,
 			auth_service: "Mock",
-			overriding_role: (req.params.role || Ozone.config().getServerProperty("security.mock.role")),
+			overriding_role: (req.body.role || Ozone.config().getServerProperty("security.mock.role")),
 			ensure: true,
 			success: function (persona) {
 				res.send(persona);

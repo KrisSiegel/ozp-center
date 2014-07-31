@@ -202,7 +202,7 @@
                             persona.meta.permissions = personaPermissions;
                         }
 
-                        persona.meta.role = exporting.roles.calculateSync(persona.meta.permissions);
+                        persona.meta.role = personaRole || exporting.roles.calculateSync(persona.meta.permissions);
 
                         return persona;
                     };
@@ -477,9 +477,11 @@
                 };
 
                 // Do we have all the data we need? Let's go through each piece and gather it when necessary
-                if (Ozone.utils.isNullOrUndefined(userPermissions) || userPermissions.length === 0) {
+                if (Ozone.utils.isNullOrUndefined(userPermissions)) {
                     callback.apply(this, []);
                     return undefined;
+                }else if(userPermissions.length === 0){
+                    userPermissions = [];
                 }
 
                 var execQueue = [];
