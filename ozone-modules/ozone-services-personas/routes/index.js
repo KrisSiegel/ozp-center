@@ -131,8 +131,8 @@ module.exports = exports = function (Ozone) {
     	if (req.query.username) selector.username = req.query.username;
     	if (req.query.auth_token) selector.auth_token = req.query.auth_token;
     	if (req.query.auth_service) selector.auth_service = req.query.auth_service;
-
-        logger.debug("Routes(PersonasService)-->in get, selector: " + JSON.stringify(selector));
+    	
+    	logger.debug("Routes(PersonasService)-->in get, selector: " + JSON.stringify(selector));
 
         personasService.query(selector, function (err, result) {
             if (err) {
@@ -171,18 +171,29 @@ module.exports = exports = function (Ozone) {
 
             logger.debug("Routes(PersonasService)-->in create, item: " + JSON.stringify(item));
 
-            personasService.create(item, function (err, result) {
-                if (err) {
-                    logger.error('Error creating persona: ' + err);
-                    res.send({
-                        'error': 'An error has occurred - ' + err
-                    });
-                    return next(err);
-                }
-
-                //logger.debug("'post' result: " + JSON.stringify(result));
-                res.send(result); // send whole object back?
-            });
+            //failures within creation stem from the meta block being empty when creating a persona object
+            //check to see if this object is populated and return a cooresponding error if not populated
+            if(item.meta) {            
+	            personasService.create(item, function (err, result) {
+	                if (err) {
+	                    logger.error('Error creating persona: ' + err);
+	                    res.send({
+	                        'error': 'An error has occurred - ' + err
+	                    });
+	                    return next(err);
+	                }
+	
+	                //logger.debug("'post' result: " + JSON.stringify(result));
+	                res.send(result); // send whole object back?
+	            });
+            }
+            else {
+            	logger.error('Error creating persona. Missing necessary data or data is not formatted correctly.');
+            	res.statusCode = 400;
+            	res.send({
+                    'error': 'Error creating persona. Missing necessary data or data is not formatted correctly.'
+            	});
+            }
         }
     });
 
